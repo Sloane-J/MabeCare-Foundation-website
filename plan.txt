@@ -1,0 +1,111 @@
+What We’re Actually Doing
+
+We are:
+
+Keeping Astro
+
+Keeping Tailwind
+
+Keeping the component structure
+
+Replacing all restaurant-specific sections with foundation-focused content
+
+This is a content + structure transformation, not a rebuild.
+
+How We Re-map the Sections
+
+Here’s how we intelligently convert it:
+
+Hero Section (Restaurant → Foundation)
+
+Restaurant: “Delicious food, book a table”
+Foundation:
+
+Clear mission statement
+
+Who you serve
+
+Call to action: Donate / Volunteer / Partner
+
+Popular Dishes → Focus Areas
+
+Replace dishes with:
+
+Support for Pregnant Women
+
+Women Empowerment
+
+Children Welfare
+
+Street Outreach
+
+Each becomes a card block.
+
+About Us (Keep Structure, Change Narrative)
+
+Rewrite to include:
+
+Foundation story
+
+Vision
+
+Mission
+
+Why it was created
+
+Testimonials
+
+Instead of food reviews:
+
+Beneficiary stories
+
+Volunteer feedback
+
+Partner endorsements
+
+If she doesn’t have real testimonials yet, we keep this section minimal or remove it for Phase 1.
+
+New Items → Programs / Initiatives
+
+This becomes:
+
+Current Projects
+
+Upcoming Initiatives
+
+Community Events
+
+Offers → Donation Call Section
+
+Instead of discounts:
+
+Strong donation appeal block.
+
+“Support Our Work”
+Button: Donate Now
+
+Contact Section
+
+Keep as is but change:
+
+Volunteer form
+
+General enquiries
+
+Partnership requests
+
+Important Strategic Point
+
+We are not overbuilding.
+
+This remains:
+
+Static
+Fast
+SEO optimized
+Professional
+
+No CMS yet.
+No heavy backend.
+
+That keeps you within the 2,500–2,800 range and sane.
