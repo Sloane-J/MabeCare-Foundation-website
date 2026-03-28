@@ -17,7 +17,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const {
-  title,
+  title = 'MamaCare Foundation',
   description,
   image,
   type = 'website',
@@ -31,7 +31,7 @@ const {
 } = Astro.props
 
 // Use site metadata defaults if not provided
-const finalTitle = title ? `Demo: ${title} | Mama Care - Charity and Non Profit` : SITE_METADATA.title.default
+const finalTitle = title ? `${title}` : SITE_METADATA.title.default
 const finalDescription = description || SITE_METADATA.description
 const finalKeywords = keywords || SITE_METADATA.keywords.join(', ')
 const finalImage = image || SITE_METADATA.openGraph.images[0].url

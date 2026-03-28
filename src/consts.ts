@@ -1,7 +1,7 @@
 // Site Configuration
 // Centralized configuration for site metadata, SEO, and branding
 
-export const SITE_TITLE = 'Mama CareMama Care - Charity and Non Profit'
+export const SITE_TITLE = 'MummyCare Foundation'
 export const SITE_DESCRIPTION =
   'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.'
 
@@ -10,7 +10,7 @@ export const SITE_URL = 'https://shadcnstudio.com/'
 
 export const SITE_METADATA = {
   title: {
-    default: 'Mama CareMama Care - Charity and Non Profit'
+    default: 'MummyCare Foundation'
   },
   description:
     'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
@@ -55,8 +55,8 @@ export const SITE_METADATA = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'Mama Care',
-    title: 'Mama CareMama Care - Restaurant Landing Page | Shadcn Studio',
+    siteName: 'MummyCare Foundation',
+    title: 'MummyCare Foundation',
     description:
       'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
     images: [
@@ -64,7 +64,7 @@ export const SITE_METADATA = {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Mama CareMama Care - Restaurant Landing Page | Shadcn Studio',
+        alt: 'MummyCare Foundation',
         type: 'image/png'
       }
     ]
@@ -73,7 +73,7 @@ export const SITE_METADATA = {
     card: 'summary_large_image',
     site: '@shadcnstudio',
     creator: '@shadcnstudio',
-    title: 'Mama CareMama Care - Restaurant Landing Page | Shadcn Studio',
+    title: 'MummyCare Foundation',
     description:
       'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
     images: ['/images/og-image.png']
