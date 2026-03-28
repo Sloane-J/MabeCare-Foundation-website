@@ -7,7 +7,6 @@ import type { NavigationSection } from '@/components/blocks/menu-navigation'
 import MenuNavigation from '@/components/blocks/menu-navigation'
 import ThemeToggle from '@/components/layout/theme-toggle'
 import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 
 // Hook to track active section
@@ -18,14 +17,12 @@ const useActiveSection = (sectionIds: string[]) => {
     const observer = new IntersectionObserver(
       entries => {
         const visible = entries.filter(e => e.isIntersecting)
-
         if (visible.length === 0) {
           setActiveSection('')
         } else {
           const mostVisible = visible.reduce((prev, curr) =>
             curr.intersectionRatio > prev.intersectionRatio ? curr : prev
           )
-          
           setActiveSection(mostVisible.target.id)
         }
       },
@@ -34,7 +31,6 @@ const useActiveSection = (sectionIds: string[]) => {
 
     sectionIds.forEach(id => {
       const el = document.getElementById(id)
-      
       if (el) observer.observe(el)
     })
 
@@ -57,18 +53,13 @@ const Header = ({ navigationData, className }: HeaderProps) => {
     .filter(Boolean) as string[]
 
   const detectedActiveSection = useActiveSection(sectionIds)
-  
-  const activeSection = sectionIds.includes(detectedActiveSection)
-    ? detectedActiveSection
-    : ''
+  const activeSection = sectionIds.includes(detectedActiveSection) ? detectedActiveSection : ''
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
-    
     window.addEventListener('scroll', handleScroll)
-    
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -77,87 +68,63 @@ const Header = ({ navigationData, className }: HeaderProps) => {
       className={cn(
         'fixed top-0 z-50 h-20 w-full transition-all duration-500 ease-in-out',
         {
-          // Transparent at top
           'bg-transparent': !isScrolled,
-
-          // Translucent when scrolling (NO SHADOW)
-          'bg-background/70 backdrop-blur-md': isScrolled,
+          'bg-background/80 backdrop-blur-md border-b border-border/40': isScrolled,
         },
         className
       )}
     >
-      <div className='mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8'>
-
-        {/* LEFT: Logo */}
-        <a href='/#home' className='flex items-center gap-3 shrink-0 transition-opacity hover:opacity-90'>
-          <div className="flex items-center justify-center">
-            <img 
-              src="/images/site-logo.png" 
-              alt="MummyCare Foundation Logo" 
-              className="h-10 w-auto object-contain" 
-            />
-          </div>
+      <div className='mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>
         
-          <span className='text-[22px] font-bold tracking-tight text-foreground'>
-            MummyCare <span className="text-primary">Foundation</span>
+        {/* LEFT: Logo & Brand */}
+        <a href='/#home' className='flex items-center gap-2 shrink-0 transition-opacity hover:opacity-90'>
+          <img 
+            src="/images/site-logo.png" 
+            alt="MummyCare Logo" 
+            className="h-8 w-auto sm:h-10 object-contain" 
+          />
+          {/* text-[16px] ensures "Foundation" stays visible and fits on mobile screens */}
+          <span className='text-[16px] sm:text-[22px] font-bold tracking-tight text-foreground whitespace-nowrap'>
+            MummyCare <span className="text-primary inline">Foundation</span>
           </span>
         </a>
 
-        {/* RIGHT SIDE (Nav + Actions pushed fully right) */}
-                <div className="ml-auto flex items-center gap-6">
-        
-                  {/* Desktop Navigation (FAR RIGHT) */}
-                  <div className="hidden lg:flex items-center">
-                    <MenuNavigation
-                      navigationData={navigationData}
-                      activeSection={activeSection}
-                      className={cn(
-                        "flex items-center gap-2",
-                      
-                        // BASE: Spacing and Pill shape
-                        "**:data-[slot=navigation-menu-link]:rounded-full",
-                        "**:data-[slot=navigation-menu-link]:px-5",
-                        "**:data-[slot=navigation-menu-link]:py-2",
-                      
-                        // Typography: Black and Normal weight
-                        "**:data-[slot=navigation-menu-link]:text-sm",
-                        "**:data-[slot=navigation-menu-link]:font-normal",
-                        "**:data-[slot=navigation-menu-link]:text-foreground",
-                      
-                        // Transparent background (No tint)
-                        "**:data-[slot=navigation-menu-link]:bg-transparent",
-                      
-                      )}
-                    />
-                  </div>
+        {/* RIGHT SIDE */}
+        <div className="flex items-center gap-2">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center mr-4">
+            <MenuNavigation
+              navigationData={navigationData}
+              activeSection={activeSection}
+              className={cn(
+                "flex items-center gap-1",
+                "**:data-[slot=navigation-menu-link]:rounded-full",
+                "**:data-[slot=navigation-menu-link]:px-4",
+                "**:data-[slot=navigation-menu-link]:py-2",
+                "**:data-[slot=navigation-menu-link]:text-sm",
+                "**:data-[slot=navigation-menu-link]:font-normal",
+                "**:data-[slot=navigation-menu-link]:text-foreground",
+                "**:data-[slot=navigation-menu-link]:bg-transparent",
+                "hover:**:data-[slot=navigation-menu-link]:text-primary",
+                "**:data-[active=true]:text-primary **:data-[active=true]:font-medium"
+              )}
+            />
+          </div>
 
-          {/* Actions */}
-          <div className='flex items-center gap-2'>
+          {/* Actions Container */}
+          <div className='flex items-center gap-1 sm:gap-2'>
             <ThemeToggle />
 
-            {/* Desktop Donate */}
+            {/* Donate Button: Shown from 'sm' (640px) and up to save mobile space */}
             <Button
-              className='rounded-full px-6 bg-primary hover:bg-primary/90 text-white font-semibold transition-transform hover:scale-105 active:scale-95 max-sm:hidden'
+              className='hidden sm:flex rounded-full px-5 bg-primary hover:bg-primary/90 text-white font-semibold'
               asChild
             >
               <a href='#donate'>Donate</a>
             </Button>
 
-            {/* Mobile Donate */}
-            <div className="flex items-center sm:hidden">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button size="sm" className='rounded-full bg-primary text-white px-4' asChild>
-                      <a href='#donate'>$</a>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Donate</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-
-            {/* Mobile Menu */}
+            {/* Mobile Menu Toggle */}
             <MenuDropdown
               align='end'
               navigationData={navigationData}

@@ -1,62 +1,153 @@
-import { FacebookIcon, InstagramIcon, TwitterIcon, YoutubeIcon } from 'lucide-react'
-
-import { Separator } from '@/components/ui/separator'
-
-import BistroLogo from '@/assets/svg/bistro-logo'
-import { footerData } from '@/assets/data/footer'
+import {
+	FacebookIcon,
+	GithubIcon,
+	LinkedinIcon,
+	MailIcon,
+	XIcon,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 const Footer = () => {
-  return (
-    <footer className='bg-muted' style={{ clipPath: 'polygon(0 16px, 100% 0, 100% 100%, 0 100%)' }}>
-      <div className='mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 max-md:flex-col sm:px-6 sm:py-6 md:gap-6 md:py-8'>
-        <a href='/#home'>
-          <div className='flex items-center gap-3'>
-            <BistroLogo className='gap-3' />
-            <span className='text-primary text-[20px] font-semibold'>Bistro</span>
-          </div>
-        </a>
+	return (
+		<footer className="bg-background pt-16 pb-8">
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				{/* Main Footer Content */}
+				<div className="grid grid-cols-1 gap-12 lg:grid-cols-12 mb-16">
+					{/* Brand & Newsletter Column */}
+					<div className="lg:col-span-5 flex flex-col gap-6">
+						<a href="/#home" className="flex items-center gap-3">
+							<img
+								src="/images/site-logo.png"
+								alt="Logo"
+								className="h-8 w-auto"
+							/>
+							<span className="text-2xl font-bold tracking-tight text-foreground">
+								MummyCare <span className="text-primary">Foundation</span>
+							</span>
+						</a>
 
-        <div className='flex items-center gap-5 whitespace-nowrap'>
-          {footerData.map(item => (
-            <a
-              key={item.title}
-              href={item.href}
-              className='text-foreground hover:text-primary text-base! hover:bg-transparent'
-            >
-              {item.title}
-            </a>
-          ))}
-        </div>
+						<p className="text-muted-foreground max-w-sm text-lg">
+							Together, we can make a real impact in communities around the
+							world.
+						</p>
 
-        <div className='flex items-center gap-4'>
-          <a href='#' className='hover:text-primary'>
-            <FacebookIcon className='size-5' />
-          </a>
-          <a href='#' className='hover:text-primary'>
-            <InstagramIcon className='size-5' />
-          </a>
-          <a href='#' className='hover:text-primary'>
-            <TwitterIcon className='size-5' />
-          </a>
-          <a href='#' className='hover:text-primary'>
-            <YoutubeIcon className='size-5' />
-          </a>
-        </div>
-      </div>
+						{/* Newsletter Input Pill */}
+						<div className="relative flex max-w-md items-center rounded-full bg-muted/50 p-1 pr-1.5 focus-within:ring-1 focus-within:ring-primary/20 transition-all">
+							<div className="flex items-center pl-4 pr-2 text-muted-foreground">
+								<MailIcon className="size-5" />
+							</div>
+							<input
+								type="email"
+								placeholder="Enter your email"
+								className="flex-1 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground"
+							/>
+							<Button className="rounded-full bg-foreground text-background px-6 hover:bg-foreground/90 font-medium">
+								Subscribe
+							</Button>
+						</div>
+					</div>
 
-      <Separator />
+					{/* Navigation Links Columns */}
+					<div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+						{/* Quick Links */}
+						<div className="flex flex-col gap-4">
+							<h4 className="font-bold text-foreground text-lg">Quick Links</h4>
+							<nav className="flex flex-col gap-3">
+								{["Donation", "About Us", "Programs"].map((link) => (
+									<a
+										key={link}
+										href="#"
+										className="text-muted-foreground hover:text-primary transition-colors"
+									>
+										{link}
+									</a>
+								))}
+							</nav>
+						</div>
 
-      <div className='mx-auto flex max-w-7xl justify-center px-4 py-8 sm:px-6'>
-        <p className='text-muted-foreground text-center text-balance'>
-          {`©${new Date().getFullYear()}`}{' '}
-          <a href='/#home' className='hover:underline'>
-            Bistro
-          </a>
-          , Made with ❤️ for better web.
-        </p>
-      </div>
-    </footer>
-  )
-}
+						{/* More */}
+						<div className="flex flex-col gap-4">
+							<h4 className="font-bold text-foreground text-lg">More</h4>
+							<nav className="flex flex-col gap-3">
+								{["Blog", "Blog details", "Testimonials"].map((link) => (
+									<a
+										key={link}
+										href="#"
+										className="text-muted-foreground hover:text-primary transition-colors"
+									>
+										{link}
+									</a>
+								))}
+							</nav>
+						</div>
 
-export default Footer
+						{/* Legal */}
+						<div className="flex flex-col gap-4">
+							<h4 className="font-bold text-foreground text-lg">
+								Legal & Policy
+							</h4>
+							<nav className="flex flex-col gap-3">
+								{["Privacy Policy", "Terms of Service", "Contact Us"].map(
+									(link) => (
+										<a
+											key={link}
+											href="#"
+											className="text-muted-foreground hover:text-primary transition-colors"
+										>
+											{link}
+										</a>
+									),
+								)}
+							</nav>
+						</div>
+					</div>
+				</div>
+
+				<Separator className="opacity-50" />
+
+				{/* Bottom Bar */}
+				<div className="mt-8 flex flex-col items-center justify-between gap-6 sm:flex-row">
+					<p className="text-muted-foreground text-sm">
+						Copyright © {new Date().getFullYear()} All Rights Reserved by{" "}
+						<a
+							href="https://sloanedev.vercel.app/"
+							className="font-medium text-foreground hover:underline underline-offset-4"
+						>
+						Sloane.Dev
+						</a>
+					</p>
+
+					<div className="flex items-center gap-6">
+						<a
+							href="#"
+							className="text-foreground hover:text-primary transition-colors"
+						>
+							<FacebookIcon className="size-5" />
+						</a>
+						<a
+							href="#"
+							className="text-foreground hover:text-primary transition-colors"
+						>
+							<XIcon className="size-5" />
+						</a>
+						<a
+							href="#"
+							className="text-foreground hover:text-primary transition-colors"
+						>
+							<GithubIcon className="size-5" />
+						</a>
+						<a
+							href="#"
+							className="text-foreground hover:text-primary transition-colors"
+						>
+							<LinkedinIcon className="size-5" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	);
+};
+
+export default Footer;
