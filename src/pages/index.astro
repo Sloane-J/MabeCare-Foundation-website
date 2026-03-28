@@ -26,7 +26,7 @@ const pageKeywords = 'astro template, shadcn ui, tailwind css, react components,
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'Bistro - Restaurant Landing Page',
+  name: 'Mama Care - Charity and Non Profit',
   description: pageDescription,
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Any',
@@ -37,17 +37,19 @@ const schema = {
   },
   author: {
     '@type': 'Organization',
-    name: 'Your Company Name'
+    name: 'Mama Care Foundation'
   }
 }
 ---
 
 <Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
   <HeroSectionPage menudata={menudata} client:load />
-  <PopularDishes popularDishes={popularDishes} client:load />
+  { /*<PopularDishes popularDishes={popularDishes} client:load />
   <AboutUs stats={stats} />
   <Testimonials testimonials={testimonials} client:load />
   <NewItems newItems={newItems} />
   <ContactUs contactInfo={contactInfo} />
   <Offers galleryImage={GalleryImage} />
+  
+  */ }
 </Layout>

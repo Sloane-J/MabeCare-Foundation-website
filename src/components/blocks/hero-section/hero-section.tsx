@@ -1,16 +1,7 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
-
-import { ArrowRightIcon } from 'lucide-react'
-
-import Autoplay from 'embla-carousel-autoplay'
-
-import { Separator } from '@/components/ui/separator'
-
+import { ArrowRightIcon, PlayCircleIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { cn } from '@/lib/utils'
 
 export type MenuData = {
   id: number
@@ -21,177 +12,147 @@ export type MenuData = {
 }
 
 const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
-  const [mainApi, setMainApi] = useState<CarouselApi>()
-  const [thumbApi, setThumbApi] = useState<CarouselApi>()
-  const [commentsApi, setCommentsApi] = useState<CarouselApi>()
-  const [current, setCurrent] = useState(0)
-
-  useEffect(() => {
-    if (!mainApi) {
-      return
-    }
-
-    setCurrent(mainApi.selectedScrollSnap())
-    mainApi.on('select', () => {
-      const selectedIndex = mainApi.selectedScrollSnap()
-
-      setCurrent(selectedIndex)
-
-      // Sync all carousels with main carousel
-      thumbApi?.scrollTo(selectedIndex)
-      commentsApi?.scrollTo(selectedIndex)
-    })
-  }, [mainApi, thumbApi, commentsApi])
-
-  useEffect(() => {
-    if (!thumbApi) {
-      return
-    }
-
-    thumbApi.on('select', () => {
-      const selectedIndex = thumbApi.selectedScrollSnap()
-
-      setCurrent(selectedIndex)
-
-      // Sync main and comments carousel with thumbnail carousel
-      mainApi?.scrollTo(selectedIndex)
-      commentsApi?.scrollTo(selectedIndex)
-    })
-  }, [thumbApi, mainApi, commentsApi])
-
-  useEffect(() => {
-    if (!commentsApi) {
-      return
-    }
-
-    commentsApi.on('select', () => {
-      const selectedIndex = commentsApi.selectedScrollSnap()
-
-      setCurrent(selectedIndex)
-
-      // Sync main and thumbnail carousel with comments carousel
-      mainApi?.scrollTo(selectedIndex)
-      thumbApi?.scrollTo(selectedIndex)
-    })
-  }, [commentsApi, mainApi, thumbApi])
-
-  const handleThumbClick = useCallback(
-    (index: number) => {
-      mainApi?.scrollTo(index)
-    },
-    [mainApi]
-  )
-
-  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: false }))
+  const heroImage = menudata[0]
 
   return (
     <section
       id='home'
-      className='before:border-primary/20 relative flex-1 py-12 before:absolute before:inset-0 before:-z-10 before:-skew-y-3 before:border-b sm:py-16 lg:py-24'
+      className='relative overflow-visible pt-24 pb-16 lg:pt-40'
     >
-      <div className='mx-auto flex h-full max-w-7xl flex-col gap-16 px-4 sm:px-6 lg:px-8'>
-        {/* Hero Header */}
-        <div className='grid grid-cols-1 gap-6 gap-y-12 md:gap-y-16 lg:grid-cols-5'>
-          <div className='flex w-full flex-col justify-center gap-5 max-lg:items-center lg:col-span-3 lg:h-95.5'>
-            <h1 className='text-3xl leading-[1.29167] font-semibold text-balance max-lg:text-center sm:text-4xl lg:text-5xl'>
-              Empowering Lives, Building Futures
+      {/* Subtle shimmer */}
+      <div className='absolute inset-0 -z-10 bg-[radial-gradient(50%_50%_at_50%_40%,var(--color-primary)_0%,transparent_100%)] opacity-[0.04]' />
+
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 items-center gap-12'>
+
+          {/* LEFT CONTENT */}
+          <div className='flex flex-col gap-6'>
+
+            {/* Donor Badge */}
+            <div className='flex items-center gap-2'>
+              <div className='flex -space-x-2'>
+                {menudata.slice(0, 3).map((user) => (
+                  <img
+                    key={user.id}
+                    src={user.userAvatar}
+                    className='h-8 w-8 rounded-full border-2 border-background'
+                    alt="Donor"
+                  />
+                ))}
+              </div>
+              <span className='text-sm text-muted-foreground'>
+                1000+ Donor active members
+              </span>
+            </div>
+
+            {/* HEADLINE (NOT BOLD) */}
+            <h1 className='text-4xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl'>
+              Together for <br />
+              making a <span className='text-primary'>brighter</span> future
             </h1>
-            
-            <p className='text-muted-foreground max-w-xl text-xl max-lg:text-center'>
-              Welcome to Demo Foundation, where compassion meets action. From supporting pregnant women to uplifting children and communities, every initiative is designed to create lasting impact.
+
+            <p className='max-w-lg text-lg text-muted-foreground'>
+              Together, we can make a real impact in communities around the world.
+              Help us bring hope and support to those who need it most.
             </p>
 
-            <div className='flex items-center gap-3.5'>
-              <Button
-                asChild
-                size='lg'
-                className='group relative w-fit overflow-hidden rounded-full text-base before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.5)_50%,transparent_75%,transparent_100%)] before:bg-[length:250%_250%,100%_100%] before:bg-[position:200%_0,0_0] before:bg-no-repeat before:transition-[background-position_0s_ease] before:duration-1000 hover:before:bg-[position:-100%_0,0_0] has-[>svg]:px-6 dark:before:bg-[linear-gradient(45deg,transparent_25%,rgba(0,0,0,0.2)_50%,transparent_75%,transparent_100%)]'
-              >
-                <a href='#'>
-                  Join as a Volunteer
-                  <ArrowRightIcon className='transition-transform duration-200 group-hover:translate-x-0.5' />
+            {/* CTA */}
+            <div className='flex flex-wrap items-center gap-6'>
+            
+              {/* Donate CTA (Pill + Separate Arrow) */}
+              <div className='group flex items-center gap-0'>
+                {/* Pill Button */}
+                <a
+                  href='donate'
+                  className='rounded-full bg-foreground px-8 py-4 text-lg font-semibold text-background transition-all hover:bg-foreground/90'
+                >
+                  Donate Now
                 </a>
-              </Button>
-              <Button
-                size='lg'
-                asChild
-                className='bg-primary/10 hover:bg-primary/20 text-primary rounded-full text-base'
+            
+                {/* Separate Arrow Circle */}
+                <span className='flex h-14 w-14 items-center justify-center rounded-full bg-foreground text-background transition-all border-l border-background/10'>
+                  <ArrowRightIcon className='h-6 w-6 transition-transform duration-300 group-hover:-rotate-45' />
+                </span>
+              </div>
+            
+              {/* Volunteer CTA (Text Only - No Background) 
+              <a 
+                href='#volunteer' 
+                className='px-4 py-4 text-lg font-semibold text-foreground'
               >
-                <a href='#contact-us'>Donate</a>
-              </Button>
+                Join Us As A Volunteer
+              </a>
+              */}
+            
+            </div>
+
+            {/* Partners */}
+            <div className='mt-10 pt-6 border-t border-border/50'>
+              <p className='text-xs uppercase tracking-wider text-muted-foreground/60 mb-4'>
+                Our partners
+              </p>
+              <div className='flex gap-6 opacity-40 grayscale text-sm'>
+                <span>goipsum</span>
+                <span>LOGOIPSUM</span>
+                <span>Logoipsum</span>
+              </div>
             </div>
           </div>
 
-          <Carousel
-            className='w-full lg:col-span-2'
-            setApi={setMainApi}
-            plugins={[plugin.current]}
-            opts={{
-              loop: true
-            }}
-          >
-            <CarouselContent>
-              {menudata.map(item => (
-                <CarouselItem key={item.id} className='flex w-full items-center justify-center'>
-                  <img src={item.img} alt={item.imgAlt} className='size-95 object-contain' loading='lazy' />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
+          {/* RIGHT IMAGE */}
+          <div className='relative h-[600px] lg:h-[720px]'>
 
-        <div className='grid grid-cols-1 gap-24 gap-y-12 md:gap-y-16 lg:grid-cols-5'>
-          <Carousel
-            className='relative w-full max-lg:order-2 lg:col-span-3'
-            setApi={setThumbApi}
-            opts={{
-              loop: true
-            }}
-          >
-            <div className='from-background pointer-events-none absolute inset-y-0 left-0 z-1 w-25 bg-gradient-to-r via-85% to-transparent' />
-            <div className='from-background pointer-events-none absolute inset-y-0 right-0 z-1 w-25 bg-gradient-to-l via-85% to-transparent' />
-            <CarouselContent className='my-1 flex'>
-              {menudata.map((item, index) => (
-                <CarouselItem
-                  key={item.id}
-                  className={cn('basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/3 xl:basis-1/4')}
-                  onClick={() => handleThumbClick(index)}
-                >
-                  <div className='relative flex h-33 items-center justify-center'>
-                    <div className={cn('absolute bottom-0 -z-1', current === index ? 'text-primary' : 'text-border')}>
-                      <svg xmlns='http://www.w3.org/2000/svg' width='161' height='92' viewBox='0 0 161 92' fill='none'>
-                        <path
-                          d='M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z'
-                          stroke='currentColor'
-                        />
-                      </svg>
-                    </div>
-                    <img src={item.img} alt={item.imgAlt} className='size-25' loading='lazy' />
+            {/* IMAGE pushed into header */}
+            <div className='absolute -top-24 right-0 w-full h-full z-10'>
+              <div className='relative h-full w-full overflow-hidden rounded-[2.5rem]'>
+                <img
+                  src={heroImage.img}
+                  alt={heroImage.imgAlt}
+                  className='h-full w-full object-cover'
+                />
+
+                {/* Floating testimonial */}
+                <div className='absolute top-10 left-6 bg-background/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg max-w-[260px]'>
+                  <div className='flex items-center gap-3'>
+                    <img
+                      src={heroImage.userAvatar}
+                      className='h-10 w-10 rounded-full'
+                      alt="User"
+                    />
+                    <p className='text-xs italic'>
+                      "{heroImage.userComment.substring(0, 60)}..."
+                    </p>
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-          <Carousel
-            className='flex w-full items-center justify-center lg:col-span-2'
-            setApi={setCommentsApi}
-            opts={{
-              loop: true
-            }}
-          >
-            <CarouselContent>
-              {menudata.map(item => (
-                <CarouselItem
-                  key={item.id}
-                  className='flex h-full min-h-14 w-full justify-center gap-4 px-6 lg:items-center'
-                >
-                  <img src={item.userAvatar} alt={item.imgAlt} className='size-10 rounded-full' loading='lazy' />
-                  <Separator orientation='vertical' className='bg-primary hidden !h-6 !w-0.5 !rounded-full sm:block' />
-                  <p className='text-card-foreground'>{item.userComment}</p>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+                </div>
+
+                {/* Watch button */}
+                <button className='absolute inset-0 flex items-center justify-center group'>
+                  <div className='flex items-center gap-3 bg-background/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl'>
+                    <span className='text-sm'>Watch story</span>
+                    <PlayCircleIcon className='h-8 w-8 transition group-hover:scale-110' />
+                  </div>
+                </button>
+
+                {/* Bottom card */}
+                <div className='absolute bottom-6 right-6 bg-background rounded-3xl p-4 shadow-xl w-56'>
+                  <h4 className='text-sm mb-1'>Dedicated team</h4>
+                  <p className='text-[10px] text-muted-foreground mb-3'>
+                    Providing essential resources and aid.
+                  </p>
+                  <div className='flex justify-between items-center'>
+                    <div className='flex -space-x-2'>
+                      <div className='h-5 w-5 rounded-full bg-pink-200 border border-background' />
+                      <div className='h-5 w-5 rounded-full bg-blue-200 border border-background' />
+                      <div className='h-5 w-5 rounded-full bg-yellow-200 border border-background' />
+                    </div>
+                    <span className='text-sm'>50K</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </section>
