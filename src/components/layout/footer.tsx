@@ -22,7 +22,7 @@ const Footer = () => {
 								alt="Logo"
 								className="h-8 w-auto"
 							/>
-							<span className="text-2xl font-bold tracking-tight text-foreground">
+							<span className="text-2xl font-md tracking-tight text-foreground">
 								MummyCare <span className="text-primary">Foundation</span>
 							</span>
 						</a>
@@ -52,7 +52,7 @@ const Footer = () => {
 					<div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
 						{/* Quick Links */}
 						<div className="flex flex-col gap-4">
-							<h4 className="font-bold text-foreground text-lg">Quick Links</h4>
+							<h4 className="font-md text-foreground text-lg">Quick Links</h4>
 							<nav className="flex flex-col gap-3">
 								{["Donation", "About Us", "Programs"].map((link) => (
 									<a
@@ -68,7 +68,7 @@ const Footer = () => {
 
 						{/* More */}
 						<div className="flex flex-col gap-4">
-							<h4 className="font-bold text-foreground text-lg">More</h4>
+							<h4 className="font-md text-foreground text-lg">More</h4>
 							<nav className="flex flex-col gap-3">
 								{["Blog", "Blog details", "Testimonials"].map((link) => (
 									<a
@@ -84,7 +84,7 @@ const Footer = () => {
 
 						{/* Legal */}
 						<div className="flex flex-col gap-4">
-							<h4 className="font-bold text-foreground text-lg">
+							<h4 className="font-md text-foreground text-lg">
 								Legal & Policy
 							</h4>
 							<nav className="flex flex-col gap-3">

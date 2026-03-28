@@ -46,13 +46,13 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
             </div>
 
             {/* HEADLINE (NOT BOLD) */}
-            <h1 className='text-4xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl'>
+            <h1 className='text-4xl font-md leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl'>
               Together for <br />
               making a <span className='text-primary'>brighter</span> future
             </h1>
 
             <p className='max-w-lg text-lg text-muted-foreground'>
-              Together, we can make a real impact in communities around the world.
+              Together, we can make a real impact in communities all over Ghana.
               Help us bring hope and support to those who need it most.
             </p>
 
@@ -87,14 +87,14 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
             </div>
 
             {/* Partners */}
-            <div className='mt-10 pt-6 border-t border-border/50'>
+            <div className='mt-10 pt-6'>
               <p className='text-xs uppercase tracking-wider text-muted-foreground/60 mb-4'>
-                Our partners
+                our beloved partners
               </p>
               <div className='flex gap-6 opacity-40 grayscale text-sm'>
-                <span>goipsum</span>
-                <span>LOGOIPSUM</span>
-                <span>Logoipsum</span>
+                <span>GoCart MotherCare</span>
+                <span>Anloga Junction</span>
+                <span>Sloane Developers</span>
               </div>
             </div>
           </div>
@@ -119,8 +119,8 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                       className='h-10 w-10 rounded-full'
                       alt="User"
                     />
-                    <p className='text-xs italic'>
-                      "{heroImage.userComment.substring(0, 60)}..."
+                    <p className='text-xs'>
+                      "{heroImage.userComment.substring(0, 90)}..."
                     </p>
                   </div>
                 </div>
@@ -134,7 +134,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                 </button>
 
                 {/* Bottom card */}
-                <div className='absolute bottom-6 right-6 bg-background rounded-3xl p-4 shadow-xl w-56'>
+                <div className='absolute bottom-6 right-6 bg-background backdrop-blur-sm rounded-3xl p-4 shadow-xl w-56'>
                   <h4 className='text-sm mb-1'>Dedicated team</h4>
                   <p className='text-[10px] text-muted-foreground mb-3'>
                     Providing essential resources and aid.

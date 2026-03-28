@@ -84,7 +84,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
             className="h-8 w-auto sm:h-10 object-contain" 
           />
           {/* text-[16px] ensures "Foundation" stays visible and fits on mobile screens */}
-          <span className='text-[16px] sm:text-[22px] font-bold tracking-tight text-foreground whitespace-nowrap'>
+          <span className='text-[16px] sm:text-[22px] font-md tracking-tight text-foreground whitespace-nowrap'>
             MummyCare <span className="text-primary inline">Foundation</span>
           </span>
         </a>
