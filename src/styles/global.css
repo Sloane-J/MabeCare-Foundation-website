@@ -87,6 +87,7 @@
   /* Soft brand usage */
   --accent: #ffe4f1;
   --accent-foreground: #ff1493;
+  --accent-secondary:#86cfac;
 
   /* States */
   --destructive: #ef4444;

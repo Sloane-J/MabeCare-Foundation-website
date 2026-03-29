@@ -111,8 +111,8 @@ const ImpactMetrics = () => {
             <TimerIcon className="size-4 text-primary" />
             Impactful metrics
           </Badge>
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-            Programs that change lives
+          <h2 className="text-3xl font-normal tracking-tight md:text-4xl lg:text-5xl">
+            Programs that <span className="text-primary">change</span> lives
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-xl">
             Together, we can make a real impact in communities around the world. Help us bring hope and support.
@@ -134,12 +134,12 @@ const ImpactMetrics = () => {
                 </div>
 
                 {/* Stat */}
-                <p className={`text-5xl sm:text-6xl font-bold leading-none ${area.textColor}`}>
+                <p className={`text-5xl sm:text-6xl font-md leading-none ${area.textColor}`}>
                   {area.stat}
                 </p>
 
                 {/* Label */}
-                <p className={`text-sm font-semibold uppercase tracking-widest ${area.textColor} opacity-75`}>
+                <p className={`text-sm font-normal uppercase tracking-widest ${area.textColor} opacity-75`}>
                   {area.label}
                 </p>
 

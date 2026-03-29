@@ -95,8 +95,8 @@ const GallerySection = () => {
             <CameraIcon className="size-4 text-primary" />
             Our gallery
           </Badge>
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-            Moments that matter
+          <h2 className="text-3xl font-normal tracking-tight md:text-4xl lg:text-5xl">
+            Moments that <span className='text-primary'>matter</span>
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-xl">
             A glimpse into the lives we touch and the communities we serve. Every image tells a story of hope, resilience, and change.

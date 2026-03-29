@@ -32,8 +32,8 @@ const ResultsSection = () => {
             <BellIcon className="size-4 text-primary" />
             Our results
           </Badge>
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-            Results that inspire change
+          <h2 className="text-3xl font-normal tracking-tight md:text-4xl lg:text-5xl">
+            Results that <span className='text-primary'>inspire</span> change
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-xl">
             Together, we can make a real impact in communities around the world. Help us bring hope and support.
@@ -89,7 +89,7 @@ const ResultsSection = () => {
               <Badge variant="outline" className="w-fit text-sm font-normal px-4 py-1.5">
                 Empowering Education
               </Badge>
-              <h3 className="text-2xl sm:text-3xl font-bold leading-snug">
+              <h3 className="text-2xl sm:text-3xl font-normal leading-snug">
                 Building Brighter Futures Through Learning Opportunities
               </h3>
               <p className="text-muted-foreground text-base leading-relaxed">
@@ -105,7 +105,7 @@ const ResultsSection = () => {
                   <TimerIcon className="size-4 text-[#166534]" />
                 </div>
                 <p className="text-sm text-muted-foreground">Schools Partnered</p>
-                <p className="text-3xl font-bold text-foreground">100+</p>
+                <p className="text-3xl font-normal text-foreground">100+</p>
               </div>
 
               {/* Scholarships Awarded */}
@@ -114,7 +114,7 @@ const ResultsSection = () => {
                   <AwardIcon className="size-4 text-[#713f12]" />
                 </div>
                 <p className="text-sm text-muted-foreground">Scholarships Awarded</p>
-                <p className="text-3xl font-bold text-foreground">800+</p>
+                <p className="text-3xl font-normal text-foreground">800+</p>
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ const HealthResourcesSection = () => {
               <Badge variant="outline" className="w-fit text-sm font-normal px-4 py-1.5">
                 Medical Resources
               </Badge>
-              <h3 className="text-2xl sm:text-3xl font-bold leading-snug">
+              <h3 className="text-2xl sm:text-3xl font-normal leading-snug">
                 Delivering Vital Health Resources to Those in Need
               </h3>
               <p className="text-muted-foreground text-base leading-relaxed max-w-md">
@@ -43,7 +43,7 @@ const HealthResourcesSection = () => {
                   <MedicalKitIcon className="size-4 text-[#991b1b]" />
                 </div>
                 <p className="text-sm text-muted-foreground">Medical Kits Distributed</p>
-                <p className="text-3xl font-bold text-foreground">20K+</p>
+                <p className="text-3xl font-normal text-foreground">20K+</p>
               </div>
 
               {/* Clinics */}
@@ -52,7 +52,7 @@ const HealthResourcesSection = () => {
                   <ClinicIcon className="size-4 text-[#166534]" />
                 </div>
                 <p className="text-sm text-muted-foreground">Clinics Operated</p>
-                <p className="text-3xl font-bold text-foreground">800K+</p>
+                <p className="text-3xl font-normal text-foreground">800K+</p>
               </div>
             </div>
           </div>

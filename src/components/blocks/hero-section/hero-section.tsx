@@ -52,7 +52,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
             </h1>
 
             <p className='max-w-lg text-lg text-muted-foreground'>
-              Together, we can make a real impact in communities all over Ghana.
+              Together, we can make a real impact in communities all over the world.
               Help us bring hope and support to those who need it most.
             </p>
 

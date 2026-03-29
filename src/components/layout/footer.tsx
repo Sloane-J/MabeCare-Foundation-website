@@ -23,7 +23,7 @@ const Footer = () => {
 								className="h-8 w-auto"
 							/>
 							<span className="text-xl sm:text-2xl font-md tracking-tight text-foreground">
-								MummyCare <span className="text-primary">Foundation</span>
+								MabeCare <span className="text-primary">Foundation</span>
 							</span>
 						</a>
 

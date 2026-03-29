@@ -49,7 +49,7 @@ const VolunteerImpactSection = () => {
   return (
     <section id="volunteer-impact" className="py-12 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-[#f0fdf4] dark:bg-[#0f1f13] px-8 py-12 sm:px-12 sm:py-16">
+        <div className="relative overflow-hidden rounded-3xl bg-[#f0fdf4] dark:bg-[#fca5a5] px-8 py-12 sm:px-12 sm:py-16">
 
           {/* Subtle grid texture */}
           <div
@@ -61,14 +61,14 @@ const VolunteerImpactSection = () => {
           />
 
           {/* Pink accent blob — very subtle, top right */}
-          <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+          <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-accent-secondary/50 blur-3xl pointer-events-none" />
 
           {/* Top row: heading left, description right */}
           <div className="relative z-10 grid grid-cols-1 gap-6 sm:grid-cols-2 mb-10 sm:mb-14 items-start">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-snug">
+            <h2 className="text-3xl sm:text-4xl font-normal text-foreground leading-snug">
               Discover the Impact of Volunteering
             </h2>
-            <p className="text-muted-foreground text-base sm:text-lg sm:text-right leading-relaxed">
+            <p className="text-muted-foreground dark:text-foreground text-base sm:text-lg sm:text-right leading-relaxed">
               Together, we can make a real impact in communities around the world. Help us bring hope and support.
             </p>
           </div>
@@ -103,6 +103,7 @@ const VolunteerImpactSection = () => {
                   Watch our<br />story reel
                 </span>
                 <button
+                  type="button"
                   aria-label="Watch story reel"
                   className="w-9 h-9 rounded-full bg-foreground flex items-center justify-center flex-shrink-0 hover:opacity-80 transition-opacity"
                 >
