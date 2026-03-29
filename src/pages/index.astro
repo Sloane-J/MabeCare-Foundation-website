@@ -12,6 +12,7 @@ import HeroSectionPage from "@/components/blocks/hero-section/hero-section";
 import ImpactMetrics from "@/components/blocks/impact-metrics/impact-metrics";
 import NewItems from "@/components/blocks/new-items-section/new-items";
 import Offers from "@/components/blocks/offers-section/offers-section";
+import GallerySection from "@/components/blocks/gallery-section/gallery-section";
 import ResultsSection from "@/components/blocks/results-section/results-section";
 import VolunteerImpactSection from "@/components/blocks/volunteer-impact-section/volunteer-impact-section";
 import Testimonials from "@/components/blocks/testimonials-section/testimonials-section";
@@ -50,6 +51,7 @@ const schema = {
   <ResultsSection client:load />
   <HealthResourcesSection client:load />
   <VolunteerImpactSection client:load />
+  <GallerySection client:load />
   <AboutUs stats={stats} />
   <Testimonials testimonials={testimonials} client:load />
   <NewItems newItems={newItems} />
