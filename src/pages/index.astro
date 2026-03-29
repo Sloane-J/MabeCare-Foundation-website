@@ -13,6 +13,7 @@ import ImpactMetrics from "@/components/blocks/impact-metrics/impact-metrics";
 import NewItems from "@/components/blocks/new-items-section/new-items";
 import Offers from "@/components/blocks/offers-section/offers-section";
 import ResultsSection from "@/components/blocks/results-section/results-section";
+import VolunteerImpactSection from "@/components/blocks/volunteer-impact-section/volunteer-impact-section";
 import Testimonials from "@/components/blocks/testimonials-section/testimonials-section";
 import Layout from "@/layouts/Layout.astro";
 
@@ -48,6 +49,7 @@ const schema = {
   <ImpactMetrics client:load />
   <ResultsSection client:load />
   <HealthResourcesSection client:load />
+  <VolunteerImpactSection client:load />
   <AboutUs stats={stats} />
   <Testimonials testimonials={testimonials} client:load />
   <NewItems newItems={newItems} />
