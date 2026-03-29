@@ -1,48 +1,60 @@
 ---
-import { stats } from "@/assets/data/about-us";
-import { contactInfo } from "@/assets/data/contact-us";
+//import { stats } from "@/assets/data/about-us";
+//import { contactInfo } from "@/assets/data/contact-us";
 import { menudata } from "@/assets/data/hero";
-import { newItems } from "@/assets/data/new-items";
-import { GalleryImage } from "@/assets/data/offers";
-import { testimonials } from "@/assets/data/testimonials";
-import AboutUs from "@/components/blocks/about-us-section/about-us-page";
-import ContactUs from "@/components/blocks/contact-us-section/contact-us-page";
+//import { newItems } from "@/assets/data/new-items";
+//import { GalleryImage } from "@/assets/data/offers";
+//import { testimonials } from "@/assets/data/testimonials";
+//import AboutUs from "@/components/blocks/about-us-section/about-us-page";
+//import ContactUs from "@/components/blocks/contact-us-section/contact-us-page";
+import GallerySection from "@/components/blocks/gallery-section/gallery-section";
 import HealthResourcesSection from "@/components/blocks/health-resources-section/health-resources-section";
 import HeroSectionPage from "@/components/blocks/hero-section/hero-section";
 import ImpactMetrics from "@/components/blocks/impact-metrics/impact-metrics";
-import NewItems from "@/components/blocks/new-items-section/new-items";
-import Offers from "@/components/blocks/offers-section/offers-section";
-import GallerySection from "@/components/blocks/gallery-section/gallery-section";
+//import NewItems from "@/components/blocks/new-items-section/new-items";
+//import Offers from "@/components/blocks/offers-section/offers-section";
 import ResultsSection from "@/components/blocks/results-section/results-section";
+//import Testimonials from "@/components/blocks/testimonials-section/testimonials-section";
 import VolunteerImpactSection from "@/components/blocks/volunteer-impact-section/volunteer-impact-section";
-import Testimonials from "@/components/blocks/testimonials-section/testimonials-section";
 import Layout from "@/layouts/Layout.astro";
 
-// Page-specific SEO configuration
-const pageTitle = "";
+const pageTitle = "MummyCare Foundation | Empowering Mothers & Children";
 const pageDescription =
-	"Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.";
+  "MummyCare Foundation is dedicated to supporting pregnant women, empowering mothers, and protecting children through healthcare, education, and community outreach programs.";
 const pageKeywords =
-	"astro template, shadcn ui, tailwind css, react components, restaurant";
+  "mummycare foundation, charity, non-profit, maternal health, children welfare, women empowerment, community outreach, donations, volunteering, Ghana";
 
-// Structured data for better SEO
 const schema = {
-	"@context": "https://schema.org",
-	"@type": "WebApplication",
-	name: "Mama Care - Charity and Non Profit",
-	description: pageDescription,
-	applicationCategory: "DeveloperApplication",
-	operatingSystem: "Any",
-	offers: {
-		"@type": "Offer",
-		price: "0",
-		priceCurrency: "USD",
-	},
-	author: {
-		"@type": "Organization",
-		name: "Sloane Dev",
-	},
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  name: "MummyCare Foundation",
+  description: pageDescription,
+  url: "https://mummycarefoundation.org",
+  logo: "/images/site-logo.png",
+  sameAs: [],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "General Enquiries",
+    availableLanguage: "English",
+  },
+  founder: {
+    "@type": "Organization",
+    name: "Sloane Dev",
+    url: "https://sloanedev.vercel.app",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "Ghana",
+  },
+  knowsAbout: [
+    "Maternal Health",
+    "Children Welfare",
+    "Women Empowerment",
+    "Community Outreach",
+    "Street Outreach",
+  ],
 };
+
 ---
 
 <Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
@@ -52,11 +64,13 @@ const schema = {
   <HealthResourcesSection client:load />
   <VolunteerImpactSection client:load />
   <GallerySection client:load />
+  
+  {/* 
   <AboutUs stats={stats} />
   <Testimonials testimonials={testimonials} client:load />
   <NewItems newItems={newItems} />
   <ContactUs contactInfo={contactInfo} />
   <Offers galleryImage={GalleryImage} />
   
-
+*/}
 </Layout>
