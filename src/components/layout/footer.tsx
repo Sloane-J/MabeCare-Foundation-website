@@ -23,7 +23,7 @@ const Footer = () => {
 								className="h-8 w-auto"
 							/>
 							<span className="text-xl sm:text-2xl font-md tracking-tight text-foreground">
-								MabeCare <span className="text-primary">Foundation</span>
+								<span className='font-bold'>MABECARE</span> <span className="text-primary">FOUNDATION</span>
 							</span>
 						</a>
 
@@ -56,7 +56,7 @@ const Footer = () => {
 								Quick Links
 							</h4>
 							<nav className="flex flex-col gap-3">
-								{["Donation", "About Us", "Programs"].map((link) => (
+								{["Donation", "About Us", "Programmes"].map((link) => (
 									<a
 										key={link}
 										href="#"

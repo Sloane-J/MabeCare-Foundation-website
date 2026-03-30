@@ -8,6 +8,7 @@ import { menudata } from "@/assets/data/hero";
 //import AboutUs from "@/components/blocks/about-us-section/about-us-page";
 //import ContactUs from "@/components/blocks/contact-us-section/contact-us-page";
 import GallerySection from "@/components/blocks/gallery-section/gallery-section";
+import SmoothScroll from "@/components/SmoothScroll";
 import HealthResourcesSection from "@/components/blocks/health-resources-section/health-resources-section";
 import HeroSectionPage from "@/components/blocks/hero-section/hero-section";
 import ImpactMetrics from "@/components/blocks/impact-metrics/impact-metrics";
@@ -58,6 +59,7 @@ const schema = {
 ---
 
 <Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
+  <SmoothScroll client:load>
   <HeroSectionPage menudata={menudata} client:load />
   <ImpactMetrics client:load />
   <ResultsSection client:load />
@@ -73,4 +75,5 @@ const schema = {
   <Offers galleryImage={GalleryImage} />
   
 */}
+  </SmoothScroll>
 </Layout>

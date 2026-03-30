@@ -85,7 +85,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
           />
           {/* text-[16px] ensures "Foundation" stays visible and fits on mobile screens */}
           <span className='text-[16px] sm:text-[22px] font-md tracking-tight text-foreground whitespace-nowrap'>
-            MabeCare <span className="text-primary inline">Foundation</span>
+            <span className='font-bold'>MABECARE</span> <span className="text-primary inline">FOUNDATOIN</span>
           </span>
         </a>
 
