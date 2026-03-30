@@ -1,22 +1,15 @@
 ---
-//import { stats } from "@/assets/data/about-us";
-//import { contactInfo } from "@/assets/data/contact-us";
 import { menudata } from "@/assets/data/hero";
-//import { newItems } from "@/assets/data/new-items";
-//import { GalleryImage } from "@/assets/data/offers";
-//import { testimonials } from "@/assets/data/testimonials";
-//import AboutUs from "@/components/blocks/about-us-section/about-us-page";
-//import ContactUs from "@/components/blocks/contact-us-section/contact-us-page";
 import GallerySection from "@/components/blocks/gallery-section/gallery-section";
 import SmoothScroll from "@/components/SmoothScroll";
 import HealthResourcesSection from "@/components/blocks/health-resources-section/health-resources-section";
 import HeroSectionPage from "@/components/blocks/hero-section/hero-section";
 import ImpactMetrics from "@/components/blocks/impact-metrics/impact-metrics";
-//import NewItems from "@/components/blocks/new-items-section/new-items";
-//import Offers from "@/components/blocks/offers-section/offers-section";
 import ResultsSection from "@/components/blocks/results-section/results-section";
-//import Testimonials from "@/components/blocks/testimonials-section/testimonials-section";
 import VolunteerImpactSection from "@/components/blocks/volunteer-impact-section/volunteer-impact-section";
+import DonationProgrammesSection from "@/components/blocks/donation-programmes-section/donation-programmes-section";
+import WaysToHelpSection from "@/components/blocks/ways-to-help-section/ways-to-help-section";
+import CallToAction from '@/components/blocks/call-to-action/call-to-action';
 import Layout from "@/layouts/Layout.astro";
 
 const pageTitle = "MabeCare Foundation | Empowering Mothers & Children";
@@ -66,14 +59,8 @@ const schema = {
   <HealthResourcesSection client:load />
   <VolunteerImpactSection client:load />
   <GallerySection client:load />
-  
-  {/* 
-  <AboutUs stats={stats} />
-  <Testimonials testimonials={testimonials} client:load />
-  <NewItems newItems={newItems} />
-  <ContactUs contactInfo={contactInfo} />
-  <Offers galleryImage={GalleryImage} />
-  
-*/}
+  <DonationProgrammesSection client:load />
+  <WaysToHelpSection client:load />
+  <CallToAction client:load />
   </SmoothScroll>
 </Layout>
