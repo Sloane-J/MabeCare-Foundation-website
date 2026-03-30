@@ -39,7 +39,7 @@ const CloseIcon = ({ className }: { className?: string }) => (
 )
 
 const navLinks = [
-  { label: 'About', href: '#about' },
+  { label: 'About Us', href: '/about-us' },
   { label: 'Programmes', href: '#donation-programmes' },
   { label: 'Impact', href: '#impact-metrics' },
   { label: 'Contact', href: '#contact' },

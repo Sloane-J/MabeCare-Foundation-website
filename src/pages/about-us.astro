@@ -1,0 +1,29 @@
+---
+import AboutSection from "@/components/blocks/about-section/about-section";
+import SmoothScroll from "@/components/SmoothScroll";
+import Layout from "@/layouts/Layout.astro";
+
+const pageTitle = "About Us | MabeCare Foundation";
+const pageDescription =
+  "Learn about MabeCare Foundation's mission, vision, team, and the impact we've made supporting mothers and children across Ghana.";
+const pageKeywords =
+  "about mabecare foundation, our mission, our team, foundation story, maternal health Ghana, women empowerment, community outreach";
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About MabeCare Foundation",
+  description: pageDescription,
+  url: "https://mabecarefoundation.org/about",
+  isPartOf: {
+    "@type": "NGO",
+    name: "MabeCare Foundation",
+    url: "https://mabecarefoundation.org",
+  },
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
+  <SmoothScroll client:load>
+    <AboutSection client:load />
+  </SmoothScroll>
+</Layout>

@@ -56,7 +56,7 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 
 const footerLinks = {
   quickLinks: [
-    { label: 'About Us', href: '#about' },
+    { label: 'About Us', href: '/about-us' },
     { label: 'Our Programmes', href: '#donation-programmes' },
     { label: 'Impact', href: '#impact-metrics' },
     { label: 'Gallery', href: '#gallery' },

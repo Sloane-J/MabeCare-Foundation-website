@@ -87,7 +87,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                               {/* Pill Button */}
                               <a
                                 href='donate'
-                                className='rounded-full bg-foreground px-8 py-4 text-lg font-semibold text-background transition-all hover:bg-foreground/90'
+                                className='rounded-full bg-foreground px-8 py-4 text-lg font-normal text-background transition-all hover:bg-foreground/90'
                               >
                                 Donate Now
                               </a>
@@ -101,7 +101,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                             {/* Volunteer CTA (Text Only - No Background)
                             <a
                               href='#volunteer'
-                              className='px-4 py-4 text-lg font-semibold text-foreground'
+                              className='px-4 py-4 text-lg font-normal text-foreground'
                             >
                               Join Us As A Volunteer
                             </a>
@@ -156,7 +156,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                         height={40}
                       />
                       <blockquote className="text-xs text-foreground leading-relaxed">
-                        "{heroImage.userComment.substring(0, 90)}..."
+                        "{heroImage.userComment.substring(0, 60)}..."
                       </blockquote>
                     </div>
                   </figure>
@@ -164,7 +164,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
 
                 {/* Bottom card */}
                 <div className="absolute bottom-6 right-6 bg-background/95 backdrop-blur-sm rounded-3xl p-4 shadow-xl w-56">
-                  <h4 className="text-sm font-semibold text-foreground mb-1">
+                  <h4 className="text-sm font-normal text-foreground mb-1">
                     Dedicated team
                   </h4>
                   <p className="text-[11px] text-muted-foreground mb-3 leading-relaxed">
@@ -176,7 +176,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                       <div className="h-5 w-5 rounded-full bg-blue-200 border border-background" />
                       <div className="h-5 w-5 rounded-full bg-yellow-200 border border-background" />
                     </div>
-                    <span className="text-sm font-semibold text-foreground">50K+</span>
+                    <span className="text-sm font-normal text-foreground">50K+</span>
                   </div>
                 </div>
 
