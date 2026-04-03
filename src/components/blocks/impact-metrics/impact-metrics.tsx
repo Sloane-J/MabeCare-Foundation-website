@@ -1,4 +1,9 @@
+'use client'
+
 import { Badge } from '@/components/ui/badge'
+import { motion } from 'framer-motion'
+import { useInView } from 'framer-motion'
+import { useRef } from 'react'
 
 type FocusArea = {
   stat: string
@@ -100,13 +105,50 @@ const focusAreas: FocusArea[] = [
   },
 ]
 
+// Animation variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0 },
+}
+
+const stagger = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+// Reusable animated section wrapper
+const AnimatedSection = ({ children, className }: { children: React.ReactNode, className?: string }) => {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeUp}
+      initial="hidden"
+      animate={inView ? 'show' : 'hidden'}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
 const ImpactMetrics = () => {
+  const cardsRef = useRef(null)
+  const cardsInView = useInView(cardsRef, { once: true, margin: '-80px' })
+
   return (
     <section id="impact-metrics" className="py-12 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="mx-auto mb-12 flex max-w-2xl flex-col items-center justify-center space-y-4 text-center sm:mb-16">
+        <AnimatedSection className="mx-auto mb-12 flex max-w-2xl flex-col items-center justify-center space-y-4 text-center sm:mb-16">
           <Badge variant="outline" className="gap-2 text-sm font-normal px-4 py-1.5">
             <TimerIcon className="size-4 text-primary" />
             Impactful metrics
@@ -117,13 +159,21 @@ const ImpactMetrics = () => {
           <p className="text-muted-foreground text-base sm:text-lg max-w-xl">
             From welfare support to skills training, we are walking alongside mothers and children in Ghana — one family at a time.
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Cards Grid */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          ref={cardsRef}
+          variants={stagger}
+          initial="hidden"
+          animate={cardsInView ? 'show' : 'hidden'}
+          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {focusAreas.map((area, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={fadeUp}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
               className={`relative overflow-hidden rounded-3xl ${area.bg} p-6 sm:p-8 flex flex-col justify-between min-h-[360px] sm:min-h-[400px] group`}
             >
               {/* Top: icon + stat */}
@@ -173,9 +223,10 @@ const ImpactMetrics = () => {
                 className="absolute bottom-0 right-0 h-52 sm:h-60 w-auto max-w-[55%] object-cover object-top grayscale opacity-50 pointer-events-none select-none"
                 style={{ maskImage: 'linear-gradient(to top, black 60%, transparent 100%)' }}
               />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
       </div>
     </section>
   )
