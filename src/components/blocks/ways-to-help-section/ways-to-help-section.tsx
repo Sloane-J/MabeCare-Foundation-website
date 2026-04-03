@@ -86,14 +86,14 @@ const ways: WayToHelp[] = [
     icon: <GiftIcon className="size-5 text-white" />,
     iconBg: 'bg-[#fb923c]',
     title: 'In-Kind Donations',
-    description: 'Donate food, clothing, medical supplies, or school materials directly to families and communities in need.',
+    description: 'Donate food, clothing, school materials, or baby items directly to mothers and children who need them most.',
     cta: 'Learn More',
   },
   {
     icon: <UsersIcon className="size-5 text-white" />,
     iconBg: 'bg-[#4ade80]',
     title: 'Volunteer Your Time',
-    description: 'Offer your skills as a medical professional, teacher, or tradesperson. Your time is a powerful gift.',
+    description: 'Offer your skills as a teacher, trainer, or community worker. Your time and presence can change a mother\'s life.',
     cta: 'Get Involved',
   },
   {
@@ -120,7 +120,7 @@ const WaysToHelpSection = () => {
             Ways you can make a difference
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-xl">
-            Together, we can make a real impact in communities around the world. Help us bring hope and support.
+            There are many ways to support mothers and children in Ghana. Find the one that works best for you and help us make a lasting difference.
           </p>
         </div>
 

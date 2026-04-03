@@ -20,34 +20,34 @@ type Programme = {
 
 const programmes: Programme[] = [
   {
+    image: 'https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=600&q=80',
+    alt: 'Mother receiving welfare support from MabeCare Foundation',
+    category: 'Welfare',
+    daysLeft: 60,
+    title: 'Mother and Child Welfare Fund',
+    description: 'Providing basic needs support, home visits, and care packages to vulnerable mothers and their children across our community.',
+    goal: '₵15,000',
+    raised: '₵6,200',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=600&q=80',
+    alt: 'Women participating in a skills training workshop',
+    category: 'Skills Training',
+    daysLeft: 45,
+    title: 'Women Skills Training Programme',
+    description: 'Equipping mothers with practical vocational skills in trades like baking, sewing, and soap making to help them earn a sustainable income.',
+    goal: '₵10,000',
+    raised: '₵4,500',
+  },
+  {
     image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80',
-    alt: 'Community rebuilding programme',
-    category: 'Shelter',
-    daysLeft: 84,
-    title: 'Community Rebuilding',
-    description: 'Emphasize the broader community impact, like job creation, improved infrastructure, or restored communal spaces.',
-    goal: '$240,000',
-    raised: '$96,080',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1593113630400-ea4288922559?w=600&q=80',
-    alt: 'Give a meal campaign',
-    category: 'Features',
-    daysLeft: 53,
-    title: 'Give a Meal, Give Campaign',
-    description: 'Shine a light on collaborations with local businesses, architects, or governments the rebuilding efforts possible.',
-    goal: '$210,000',
-    raised: '$97,080',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&q=80',
-    alt: 'Give a meal give hope campaign',
-    category: 'Temporary',
-    daysLeft: 145,
-    title: 'Give a Meal, Give Hope Campaign',
-    description: 'Showcase striking before-and-after photos of rebuilt homes to illustrate the of your work.',
-    goal: '$120,000',
-    raised: '$43,080',
+    alt: 'Children supported through MabeCare outreach programme',
+    category: 'Child Support',
+    daysLeft: 90,
+    title: 'Children Outreach and Support',
+    description: 'Reaching children in underserved communities with educational materials, nutritional support, and a safe space to grow and learn.',
+    goal: '₵8,000',
+    raised: '₵2,800',
   },
 ]
 
@@ -66,7 +66,7 @@ const DonationProgramsSection = () => {
             Make a meaningful <span className='text-primary'>donation</span> today
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-xl">
-            Together, we can make a real impact in communities around the world. Help us bring hope and support.
+            Every contribution goes directly into the hands of mothers and children who need it most. Help us keep going.
           </p>
         </div>
 
@@ -126,8 +126,8 @@ const DonationProgramsSection = () => {
                     className="h-full rounded-full bg-primary"
                     style={{
                       width: `${Math.round(
-                        (parseFloat(programme.raised.replace(/[$,]/g, '')) /
-                          parseFloat(programme.goal.replace(/[$,]/g, ''))) *
+                        (parseFloat(programme.raised.replace(/[₵,]/g, '')) /
+                          parseFloat(programme.goal.replace(/[₵,]/g, ''))) *
                           100
                       )}%`,
                     }}
