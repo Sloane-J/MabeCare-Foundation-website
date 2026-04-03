@@ -48,7 +48,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
           <div className="flex flex-col gap-6">
 
             {/* Avatars */}
-            <div className="flex items-center gap-3">
+            {/*<div className="flex items-center gap-3">
               <div className="flex -space-x-2" role="list" aria-label="Donor avatars">
                 {menudata?.slice(0, 3).map((user) => (
                   <img
@@ -66,20 +66,20 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
               <span className="text-sm text-muted-foreground">
                 1,000+ active donor members
               </span>
-            </div>
+            </div>*/}
 
             {/* Heading */}
             <h1 className="text-4xl font-medium leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl">
-              Together for <br />
-              making a{' '}
-              <span className="text-primary">brighter</span>{' '}
-              future
+              Empowering mothers,
+              <br />
+              nurturing every
+              <br />
+              <span className="text-primary">child's</span> future
             </h1>
 
-            <p className="max-w-lg text-lg text-muted-foreground leading-relaxed">
-              Together, we can make a real impact in communities all over the world.
-              Help us bring hope and support to those who need it most.
-            </p>
+                       <p className="max-w-lg text-lg text-muted-foreground leading-relaxed">
+                                     MabeCare Foundation supports mothers and children across Ghana through welfare programs, skills training, and community care — because every family deserves the chance to thrive.
+                                   </p>
 
             {/* CTA */}
             <div className="flex flex-wrap items-center gap-4">
@@ -110,13 +110,13 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                           </div>
 
             {/* Partners */}
-            <div className="mt-6 pt-6 border-t border-border/40">
+            <div>
               <p className="text-xs uppercase tracking-wider text-muted-foreground/60 mb-4">
                 Our Beloved Partners
               </p>
               <div
                 className="flex flex-wrap gap-6 opacity-40 grayscale text-sm text-foreground"
-                aria-label="Foundation partners"
+                
               >
                 <span>GoCart MotherCare</span>
                 <span>Anloga Junction</span>
@@ -164,11 +164,11 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
 
                 {/* Bottom card */}
                 <div className="absolute bottom-6 right-6 bg-background/95 backdrop-blur-sm rounded-3xl p-4 shadow-xl w-56">
-                  <h4 className="text-sm font-normal text-foreground mb-1">
-                    Dedicated team
+                  <h4 className="text-sm font-semibold text-foreground mb-1">
+                    Growing Together
                   </h4>
                   <p className="text-[11px] text-muted-foreground mb-3 leading-relaxed">
-                    Providing essential resources and aid to those in need.
+                    Skills, support, and community for every mother and child.
                   </p>
                   <div className="flex justify-between items-center">
                     <div className="flex -space-x-2">
@@ -176,7 +176,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                       <div className="h-5 w-5 rounded-full bg-blue-200 border border-background" />
                       <div className="h-5 w-5 rounded-full bg-yellow-200 border border-background" />
                     </div>
-                    <span className="text-sm font-normal text-foreground">50K+</span>
+                    <span className="text-sm font-normal text-foreground">10K+</span>
                   </div>
                 </div>
 
