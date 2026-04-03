@@ -38,20 +38,35 @@ const CloseIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const navLinks = [
+const homeNavLinks = [
   { label: 'About Us', href: '/about-us' },
   { label: 'Programmes', href: '#donation-programmes' },
   { label: 'Impact', href: '#impact-metrics' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '#contact-us' },
 ]
 
-const Header = () => {
+const aboutNavLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Programmes', href: '/#donation-programmes' },
+  { label: 'Impact', href: '/#impact-metrics' },
+  { label: 'Contact', href: '/#contact-us' },
+]
+
+type HeaderProps = {
+  pathname: string
+}
+
+const Header = ({ pathname }: HeaderProps) => {
+  const isAbout = pathname === '/about-us'
+  const navLinks = isAbout ? aboutNavLinks : homeNavLinks
+
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20)
+    const handleScroll = () => setIsScrolled
+      (window.scrollY > 20)
     
     window.addEventListener('scroll', handleScroll)
     
@@ -59,8 +74,9 @@ const Header = () => {
   }, [])
 
   useEffect(() => {
-    const ids = navLinks.map(l => l.href.replace('#', ''))
-    
+    const anchorLinks = navLinks.filter(l => l.href.startsWith('#'))
+    const ids = anchorLinks.map(l => l.href.replace('#', ''))
+
     const observer = new IntersectionObserver(
       entries => {
         const visible = entries.filter(e => e.isIntersecting)
@@ -83,13 +99,21 @@ const Header = () => {
     })
 
     return () => observer.disconnect()
-  }, [])
+  }, [navLinks])
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
+
+  const isLinkActive = (href: string) => {
+    if (href.startsWith('#')) return activeSection === href.replace('#', '')
+    if (href === '/about-us') return pathname === '/about-us'
+    if (href === '/') return pathname === '/'
+    
+    return false
+  }
 
   return (
     <>
@@ -104,11 +128,17 @@ const Header = () => {
         <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 
           {/* Logo */}
-          <a href="/#home" className="flex items-center gap-3 shrink-0">
+          <a
+            href="/"
+            className="flex items-center gap-3 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+            aria-label="MabeCare Foundation home"
+          >
             <img
               src="/images/site-logo.png"
               alt="MabeCare Foundation Logo"
               className="h-9 w-auto object-contain"
+              width={36}
+              height={36}
             />
             <div className="flex flex-col leading-none">
               <span className="text-sm sm:text-base font-bold tracking-widest uppercase text-foreground">
@@ -123,8 +153,7 @@ const Header = () => {
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
             {navLinks.map(link => {
-              const isActive = activeSection === link.href.replace('#', '')
-              
+              const isActive = isLinkActive(link.href)
               return (
                 <a
                   key={link.href}
@@ -151,14 +180,13 @@ const Header = () => {
               className="hidden sm:flex rounded-full px-6 bg-primary hover:bg-primary/90 text-white text-sm font-semibold"
               asChild
             >
-              <a href="#donate">Donate</a>
+              <a href="/#donation-programmes">Donate</a>
             </Button>
 
-            {/* Mobile toggle */}
             <button
-              type='button'
+              type="button"
               onClick={() => setMobileOpen(prev => !prev)}
-              aria-label="Toggle menu"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
               className="lg:hidden flex items-center justify-center w-9 h-9 rounded-full text-foreground hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
@@ -172,11 +200,12 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile menu */}
       <div
         id="mobile-menu"
         role="dialog"
         aria-modal="true"
+        aria-label="Mobile navigation menu"
         className={cn(
           'fixed inset-0 z-40 bg-background flex flex-col pt-20 px-6 pb-8 transition-all duration-300 lg:hidden',
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
@@ -184,7 +213,7 @@ const Header = () => {
       >
         <nav className="flex flex-col gap-1 mt-6" aria-label="Mobile navigation">
           {navLinks.map(link => {
-            const isActive = activeSection === link.href.replace('#', '')
+            const isActive = isLinkActive(link.href)
             return (
               <a
                 key={link.href}
@@ -192,7 +221,7 @@ const Header = () => {
                 onClick={() => setMobileOpen(false)}
                 aria-current={isActive ? 'page' : undefined}
                 className={cn(
-                  'text-2xl font-semibold py-3 border-b border-border/40 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+                  'text-2xl font-semibold py-4 border-b border-border/40 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary',
                   isActive ? 'text-primary' : 'text-foreground'
                 )}
               >
@@ -207,7 +236,7 @@ const Header = () => {
             className="w-full rounded-full bg-primary hover:bg-primary/90 text-white font-semibold py-5 text-base"
             asChild
           >
-            <a href="#donate" onClick={() => setMobileOpen(false)}>
+            <a href="/#donation-programmes" onClick={() => setMobileOpen(false)}>
               Donate Now
             </a>
           </Button>
