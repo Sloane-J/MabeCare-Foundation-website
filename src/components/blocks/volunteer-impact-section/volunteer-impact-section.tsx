@@ -30,18 +30,18 @@ const PlayIcon = ({ className }: { className?: string }) => (
 const features = [
   {
     icon: <HandshakeIcon className="size-5 text-primary" />,
-    title: 'Make a Tangible Impact',
-    description: 'An invitation for individuals to join hands with the charity through volunteering efforts.',
+    title: 'Support a Mother Directly',
+    description: 'Volunteer your time to visit, encourage, and walk alongside mothers in your community who need care and companionship.',
   },
   {
     icon: <BookmarkIcon className="size-5 text-primary" />,
-    title: 'Gain New Skills and Experiences',
-    description: 'A call for supporters to create their own fundraising events or campaigns.',
+    title: 'Share a Skill, Change a Life',
+    description: 'Teach a trade, run a workshop, or lead a session. Your skills can help a mother become more independent and confident.',
   },
   {
     icon: <SmileIcon className="size-5 text-primary" />,
-    title: 'Boost Mental Well-being',
-    description: 'A reminder that awareness is just as good as giving. Encourage people to spread the word.',
+    title: 'Spread the Word',
+    description: 'Awareness is one of the most powerful tools we have. Help us reach more families by sharing our work with those around you.',
   },
 ]
 
@@ -49,7 +49,7 @@ const VolunteerImpactSection = () => {
   return (
     <section id="volunteer-impact" className="py-12 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-[#f0fdf4] dark:bg-[#fca5a5] px-8 py-12 sm:px-12 sm:py-16">
+        <div className="relative overflow-hidden rounded-3xl bg-[#f5f5f5] dark:bg-[#722f37] px-8 py-12 sm:px-12 sm:py-16">
 
           {/* Subtle grid texture */}
           <div
@@ -60,20 +60,20 @@ const VolunteerImpactSection = () => {
             }}
           />
 
-          {/* Pink accent blob — very subtle, top right */}
+          {/* Pink accent blob */}
           <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-accent-secondary/50 blur-3xl pointer-events-none" />
 
-          {/* Top row: heading left, description right */}
+          {/* Top row */}
           <div className="relative z-10 grid grid-cols-1 gap-6 sm:grid-cols-2 mb-10 sm:mb-14 items-start">
             <h2 className="text-3xl sm:text-4xl font-normal text-foreground leading-snug">
-              Discover the Impact of Volunteering
+              Volunteer With Us and Help Shape Better Futures
             </h2>
-            <p className="text-muted-foreground dark:text-foreground text-base sm:text-lg sm:text-right leading-relaxed">
-              Together, we can make a real impact in communities around the world. Help us bring hope and support.
+            <p className="text-muted-foreground text-base sm:text-lg sm:text-right leading-relaxed">
+              You do not need to be an expert to make a difference. Show up, share what you know, and help us support mothers and children across Ghana.
             </p>
           </div>
 
-          {/* Bottom row: feature cards left, image right */}
+          {/* Bottom row */}
           <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-2 items-center">
 
             {/* Feature cards */}
@@ -104,28 +104,28 @@ const VolunteerImpactSection = () => {
                 </span>
                 <button
                   type="button"
-                  aria-label="Watch story reel"
+                  aria-label="Watch our story reel"
                   className="w-9 h-9 rounded-full bg-foreground flex items-center justify-center flex-shrink-0 hover:opacity-80 transition-opacity"
                 >
                   <PlayIcon className="size-3.5 text-background ml-0.5" />
                 </button>
               </div>
 
-              {/* Real Lives Changed badge */}
+              {/* Badge */}
               <div className="absolute top-4 right-0 z-20">
                 <Badge
                   variant="outline"
                   className="bg-white dark:bg-card text-foreground shadow-md text-xs font-medium px-4 py-2 rounded-full border-border"
                 >
-                  Real Lives Changed by Your Support
+                  Real Mothers Changed by Your Support
                 </Badge>
               </div>
 
               {/* Image */}
               <div className="relative mt-8 lg:mt-0 w-full">
                 <img
-                  src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=700&q=80"
-                  alt="Volunteers making a difference in the community"
+                  src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=700&q=80"
+                  alt="Volunteers spending time with mothers and children in the community"
                   loading="lazy"
                   className="relative z-10 w-full h-72 sm:h-96 object-cover rounded-2xl"
                   style={{ maskImage: 'linear-gradient(to top, transparent 0%, black 15%)' }}
