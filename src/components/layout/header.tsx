@@ -42,7 +42,7 @@ const homeNavLinks = [
   { label: 'About Us', href: '/about-us' },
   { label: 'Programmes', href: '#donation-programmes' },
   { label: 'Impact', href: '#impact-metrics' },
-  { label: 'Contact', href: '#contact-us' },
+  { label: 'Contact', href: '/contact-us' },
 ]
 
 const aboutNavLinks = [
@@ -52,13 +52,21 @@ const aboutNavLinks = [
   { label: 'Contact', href: '/#contact-us' },
 ]
 
+const contactNavLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about-us' },
+  { label: 'Programmes', href: '/#donation-programmes' },
+  { label: 'Impact', href: '/#impact-metrics' },
+]
+
 type HeaderProps = {
   pathname: string
 }
 
 const Header = ({ pathname }: HeaderProps) => {
   const isAbout = pathname === '/about-us'
-  const navLinks = isAbout ? aboutNavLinks : homeNavLinks
+  const isContact = pathname === '/contact-us'
+  const navLinks = isContact ? contactNavLinks : isAbout ? aboutNavLinks : homeNavLinks
 
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)

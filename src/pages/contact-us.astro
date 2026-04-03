@@ -1,0 +1,31 @@
+---
+import ContactUsSection from "@/components/blocks/contact-us-section/contact-us-section";
+import CallToAction from "@/components/blocks/call-to-action/call-to-action";
+import SmoothScroll from "@/components/SmoothScroll";
+import Layout from "@/layouts/Layout.astro";
+
+const pageTitle = "Contact Us | MabeCare Foundation";
+const pageDescription =
+  "Get in touch with MabeCare Foundation. Whether you want to donate, volunteer, or partner with us, we would love to hear from you.";
+const pageKeywords =
+  "contact mabecare foundation, get in touch, volunteer Ghana, donate Ghana, maternal health foundation contact";
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact MabeCare Foundation",
+  description: pageDescription,
+  url: "https://mabecarefoundation.org/contact-us",
+  isPartOf: {
+    "@type": "NGO",
+    name: "MabeCare Foundation",
+    url: "https://mabecarefoundation.org",
+  },
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
+  <SmoothScroll client:load>
+    <ContactUsSection client:load />
+    <CallToAction client:load />
+  </SmoothScroll>
+</Layout>

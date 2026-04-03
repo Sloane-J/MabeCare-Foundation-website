@@ -102,23 +102,42 @@ const Footer = () => {
           </div>
 
           {/* Links */}
+          {/* Links */}
           <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
-
-            {Object.entries(footerLinks).map(([key, links]) => (
-              <nav key={key} className="flex flex-col gap-4">
-                <h4 className="font-semibold text-sm uppercase">{key}</h4>
-                {links.map(link => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="text-muted-foreground hover:text-primary text-sm"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-            ))}
-
+          
+            <nav className="flex flex-col gap-4" aria-label="Quick links">
+              <h4 className="font-semibold text-foreground text-sm uppercase tracking-wider">
+                Quick Links
+              </h4>
+              {footerLinks.quickLinks.map(link => (
+                <a key={link.label} href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          
+            <nav className="flex flex-col gap-4" aria-label="Get involved">
+              <h4 className="font-semibold text-foreground text-sm uppercase tracking-wider">
+                Get Involved
+              </h4>
+              {footerLinks.getInvolved.map(link => (
+                <a key={link.label} href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          
+            <nav className="col-span-2 sm:col-span-1 flex flex-col gap-4" aria-label="Legal">
+              <h4 className="font-semibold text-foreground text-sm uppercase tracking-wider">
+                Legal & Policy
+              </h4>
+              {footerLinks.legal.map(link => (
+                <a key={link.label} href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          
           </div>
         </div>
 

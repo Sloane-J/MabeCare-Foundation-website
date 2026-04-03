@@ -14,9 +14,9 @@ const HeartIcon = ({ className }: { className?: string }) => (
 )
 
 const stats = [
-  { value: '16K+', label: 'People Supported' },
-  { value: '98%', label: 'Funds to Programs' },
-  { value: '12+', label: 'Years of Impact' },
+  { value: '200+', label: 'Mothers Supported' },
+  { value: '150+', label: 'Women in Training' },
+  { value: '300+', label: 'Children Reached' },
 ]
 
 const CallToAction = () => {
@@ -47,13 +47,13 @@ const CallToAction = () => {
               {/* Eyebrow */}
               <div className="flex items-center gap-2">
                 <HeartIcon className="size-4 text-primary" />
-                <span className="text-primary text-sm font-semibold uppercase tracking-widest">
+                <span className="text-primary text-sm font-normal uppercase tracking-widest">
                   Make an impact
                 </span>
               </div>
 
               {/* Heading */}
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-white leading-tight">
                 Together, we can
                 <br />
                 <span className="text-primary">change lives</span>
@@ -63,20 +63,20 @@ const CallToAction = () => {
 
               {/* Subtext */}
               <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-md">
-                Every donation, every volunteer hour, every act of kindness brings us closer to a world where no mother or child is left behind.
+                Every donation and every hour you give helps a mother gain skills, meet her basic needs, and build a better life for her children.
               </p>
 
               {/* CTAs */}
               <div className="flex flex-wrap gap-3">
                 <Button
-                  className="rounded-full bg-primary hover:bg-primary/90 text-white px-8 py-5 text-sm font-semibold gap-2"
+                  className="rounded-full bg-primary hover:bg-primary/90 text-white px-8 py-5 text-sm font-normal gap-2"
                 >
                   Donate Now
                   <ArrowRightIcon className="size-4" />
                 </Button>
                 <Button
                   variant="outline"
-                  className="rounded-full border-white/20 text-white hover:bg-white/10 hover:border-white/40 px-8 py-5 text-sm font-semibold"
+                  className="rounded-full border-white/20 text-white hover:bg-white/10 hover:border-white/40 px-8 py-5 text-sm font-normal"
                 >
                   Become A Volunteer
                 </Button>
@@ -86,7 +86,7 @@ const CallToAction = () => {
               <div className="flex flex-wrap gap-8 pt-4 border-t border-white/10">
                 {stats.map((stat, i) => (
                   <div key={i} className="flex flex-col gap-1">
-                    <span className="text-2xl font-bold text-white">{stat.value}</span>
+                    <span className="text-2xl font-normal text-white">{stat.value}</span>
                     <span className="text-xs text-white/50 uppercase tracking-wider">{stat.label}</span>
                   </div>
                 ))}
@@ -108,7 +108,7 @@ const CallToAction = () => {
               {/* Floating card — top right */}
               <div className="absolute top-10 right-8 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-4 max-w-[180px]">
                 <p className="text-white text-xs leading-snug opacity-80">
-                  Helping vulnerable families and individuals rebuild their lives.
+                  Supporting mothers and children to grow, thrive, and build brighter futures together.
                 </p>
               </div>
 
@@ -130,7 +130,7 @@ const CallToAction = () => {
                   ))}
                 </div>
                 <div>
-                  <p className="text-white text-sm font-semibold">16K+ People</p>
+                  <p className="text-white text-sm font-normal">200+ Mothers</p>
                   <p className="text-white/50 text-xs">supported so far</p>
                 </div>
               </div>
