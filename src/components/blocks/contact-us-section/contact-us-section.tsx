@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
@@ -43,27 +46,53 @@ const contactDetails = [
   {
     icon: <MailIcon className="size-5 text-primary" />,
     label: 'Email',
-    value: 'hello@mabecarefoundation.org',
-    href: 'mailto:hello@mabecarefoundation.org',
+    value: 'mabecarefoundation@gmail.com',
+    href: 'mailto:mabecarefoundation@gmail.com',
   },
   {
     icon: <WhatsAppIcon className="size-5 text-primary" />,
     label: 'WhatsApp',
-    value: '+233 50 000 0000',
-    href: 'https://wa.me/233500000000',
+    value: '+233 54 578 4681',
+    href: 'https://wa.me/233545784681',
   },
 ]
 
+type FormState = 'idle' | 'submitting' | 'success' | 'error'
+
 const ContactUsSection = () => {
+  const [formState, setFormState] = useState<FormState>('idle')
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setFormState('submitting')
+
+    const form = e.currentTarget
+    const data = new FormData(form)
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      })
+
+      const json = await res.json()
+
+      if (json.success) {
+        setFormState('success')
+        form.reset()
+      } else {
+        setFormState('error')
+      }
+    } catch {
+      setFormState('error')
+    }
+  }
+
   return (
     <div id="contact-us" className="flex flex-col">
-
-      {/* ── HERO ── */}
-      <section
-        aria-labelledby="contact-heading"
-        className="py-12 sm:py-20 lg:py-28"
-      >
+      <section aria-labelledby="contact-heading" className="py-12 sm:py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
           <div className="mx-auto mb-12 flex max-w-2xl flex-col items-center justify-center space-y-4 text-center sm:mb-16">
             <Badge variant="outline" className="gap-2 text-sm font-normal px-4 py-1.5">
               <MailIcon className="size-4 text-primary" />
@@ -82,28 +111,20 @@ const ContactUsSection = () => {
             </p>
           </div>
 
-          {/* ── TWO COLUMN LAYOUT ── */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
             {/* Left — contact info */}
             <div className="flex flex-col gap-8">
-
               <div className="flex flex-col gap-3">
-                <h2 className="text-xl font-semibold text-foreground">
-                  Get in touch
-                </h2>
+                <h2 className="text-xl font-semibold text-foreground">Get in touch</h2>
                 <p className="text-muted-foreground text-base leading-relaxed">
                   Reach out to us through any of the channels below. We typically respond within one to two business days.
                 </p>
               </div>
 
-              {/* Contact detail cards */}
               <div className="flex flex-col gap-4">
                 {contactDetails.map((detail, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5"
-                  >
+                  <div key={i} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5">
                     <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
                       {detail.icon}
                     </div>
@@ -111,24 +132,30 @@ const ContactUsSection = () => {
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">
                         {detail.label}
                       </p>
+
                       {detail.href ? (
                         <a
                           href={detail.href}
-                          target={detail.href.startsWith('http') ? '_blank' : undefined}
-                          rel={detail.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                          target={detail.href.startsWith("http") ? "_blank" : undefined}
+                          rel={
+                            detail.href.startsWith("http")
+                              ? "noopener noreferrer"
+                              : undefined
+                          }
                           className="text-sm font-medium text-foreground hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
                         >
                           {detail.value}
                         </a>
                       ) : (
-                        <p className="text-sm font-medium text-foreground">{detail.value}</p>
+                        <p className="text-sm font-medium text-foreground">
+                          {detail.value}
+                        </p>
                       )}
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* Office hours */}
               <div className="rounded-2xl bg-muted/50 px-6 py-5 flex flex-col gap-2">
                 <p className="text-sm font-semibold text-foreground">Office Hours</p>
                 <p className="text-sm text-muted-foreground">Monday to Friday, 8:00 AM to 5:00 PM GMT</p>
@@ -143,89 +170,123 @@ const ContactUsSection = () => {
                 <p className="text-sm text-muted-foreground">Fill in the form below and we will get back to you.</p>
               </div>
 
-              <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
-
-                {/* Name + Email row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="full-name" className="text-sm font-medium text-foreground">
-                      Full Name <span className="text-primary">*</span>
-                    </label>
-                    <input
-                      id="full-name"
-                      type="text"
-                      required
-                      autoComplete="name"
-                      placeholder="Abena Mensah"
-                      className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
-                    />
+              {formState === 'success' ? (
+                <div className="flex flex-col items-center justify-center gap-4 py-12 text-center">
+                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                    <svg className="size-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
                   </div>
-
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="email" className="text-sm font-medium text-foreground">
-                      Email Address <span className="text-primary">*</span>
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      required
-                      autoComplete="email"
-                      placeholder="abena@example.com"
-                      className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
-                    />
+                  <div className="flex flex-col gap-1">
+                    <p className="text-base font-semibold text-foreground">Message sent!</p>
+                    <p className="text-sm text-muted-foreground">Thank you for reaching out. We will get back to you within one to two business days.</p>
                   </div>
-                </div>
-
-                {/* Subject dropdown */}
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="subject" className="text-sm font-medium text-foreground">
-                    Subject <span className="text-primary">*</span>
-                  </label>
-                  <select
-                    id="subject"
-                    required
-                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all appearance-none cursor-pointer"
+                  <Button
+                    variant="outline"
+                    className="rounded-full mt-2"
+                    onClick={() => setFormState('idle')}
                   >
-                    <option value="" disabled selected>Select a subject</option>
-                    <option value="general">General Enquiry</option>
-                    <option value="volunteer">Volunteering</option>
-                    <option value="donation">Donation</option>
-                    <option value="partnership">Partnership</option>
-                    <option value="other">Other</option>
-                  </select>
+                    Send another message
+                  </Button>
                 </div>
+              ) : (
+                <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
 
-                {/* Message */}
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="message" className="text-sm font-medium text-foreground">
-                    Message <span className="text-primary">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={5}
-                    placeholder="Tell us how we can help or how you would like to get involved..."
-                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
-                  />
-                </div>
+                  {/* Web3Forms access key — replace with your own from web3forms.com */}
+                  <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
+                  <input type="hidden" name="subject" value="New message from MabeCare Foundation website" />
+                  <input type="hidden" name="from_name" value="MabeCare Foundation Website" />
+                  {/* Honeypot spam protection */}
+                  <input type="checkbox" name="botcheck" className="hidden" />
 
-                <Button
-                  type="submit"
-                  className="w-full rounded-full bg-primary hover:bg-primary/90 text-white font-semibold py-5 text-sm"
-                >
-                  Send Message
-                </Button>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="full-name" className="text-sm font-medium text-foreground">
+                        Full Name <span className="text-primary">*</span>
+                      </label>
+                      <input
+                        id="full-name"
+                        name="name"
+                        type="text"
+                        required
+                        autoComplete="name"
+                        placeholder="Joana Ewurama Safoa Yirenkyi"
+                        className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                      />
+                    </div>
 
-                <p className="text-xs text-muted-foreground text-center">
-                  We respect your privacy. Your information will never be shared with third parties.
-                </p>
-              </form>
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="email" className="text-sm font-medium text-foreground">
+                        Email Address <span className="text-primary">*</span>
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        autoComplete="email"
+                        placeholder="joana.yirenkyi@example.com"
+                        className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="subject-select" className="text-sm font-medium text-foreground">
+                      Subject <span className="text-primary">*</span>
+                    </label>
+                    <select
+                      id="subject-select"
+                      name="subject_type"
+                      required
+                      className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all appearance-none cursor-pointer"
+                    >
+                      <option value="" disabled>Select a subject</option>
+                      <option value="General Enquiry">General Enquiry</option>
+                      <option value="Volunteering">Volunteering</option>
+                      <option value="Donation">Donation</option>
+                      <option value="Partnership">Partnership</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="message" className="text-sm font-medium text-foreground">
+                      Message <span className="text-primary">*</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={5}
+                      placeholder="Tell us how we can help or how you would like to get involved..."
+                      className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
+                    />
+                  </div>
+
+                  {formState === 'error' && (
+                    <p className="text-sm text-destructive bg-destructive/10 px-4 py-3 rounded-xl">
+                      Something went wrong. Please try again or contact us directly by email.
+                    </p>
+                  )}
+
+                  <Button
+                    type="submit"
+                    disabled={formState === 'submitting'}
+                    className="w-full rounded-full bg-primary hover:bg-primary/90 text-white font-semibold py-5 text-sm"
+                  >
+                    {formState === 'submitting' ? 'Sending...' : 'Send Message'}
+                  </Button>
+
+                  <p className="text-xs text-muted-foreground text-center">
+                    We respect your privacy. Your information will never be shared with third parties.
+                  </p>
+                </form>
+              )}
             </div>
-
           </div>
         </div>
       </section>
-
     </div>
   )
 }
