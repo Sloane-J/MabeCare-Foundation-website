@@ -1,310 +1,295 @@
-<p align="center"></p>
+<p align="center">
+  <img src="/public/images/site-logo.png" alt="MabEcare Foundation Logo" width="60px" height="auto" />
+</p>
+
+<h1 align="center">MabEcare Foundation</h1>
 
 <p align="center">
-   <a href="https://shadcnstudio.com" target="_blank">
-      <img src="https://cdn.shadcnstudio.com/ss-assets/logo/logo.png" alt="$brand_name-logo" width="40px" height="auto">
-   </a>
+  Official website for the MabEcare Foundation — empowering mothers, nurturing children, and building stronger communities across Ghana.
 </p>
 
-<h1 align="center">
-   <a href="https://shadcnstudio.com" target="_blank" align="center">
-      shadcn/studio
-   </a>
-</h1>
-
-<p>
-   <a href="https://shadcnstudio.com" target="_blank">
-      shadcn/studio
-   </a>
-   is an open-source collection of copy-and-paste shadcn components, blocks, and templates - paired with a powerful theme generator & AI Tools to craft, customize, and ship faster. 🚀
-</p>
-
-<a href="https://shadcnstudio.com" target="_blank">
-  <img src="https://cdn.shadcnstudio.com/ss-assets/smm/marketing/shadcn-studio-smm-banner.png" alt="shadcn/studio banner" width="1200">
-</a>
-
-<p>
-    <a href="https://github.com/themeselection/shadcn-studio/blob/main/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
-    <a href="https://x.com/ShadcnStudio" target="_blank">
-      <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/ShadcnStudio">
-   </a>
-</p>
-
-<a href="https://themeselection.com" target="_blank">
-  <img
-    src="https://cdn.shadcnstudio.com/ts-assets/themeselection/logo/logo.png"
-    alt="themeselection logo"
-    height="30"
-  />
-</a>
-
-<p>
-  Supported by
-  <a href="https://themeselection.com" target="_blank">
-    ThemeSelection
+<p align="center">
+  <a href="https://mabecare-foundation.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/live-mabecare--foundation.vercel.app-green" alt="Live Site" />
   </a>
-  , with a commitment to empowering the open-source community.
+  <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" />
+  <img src="https://img.shields.io/badge/built%20with-Astro-FF5D01" alt="Built with Astro" />
+  <img src="https://img.shields.io/badge/styled%20with-Tailwind%20CSS%20v4-38BDF8" alt="Tailwind CSS" />
 </p>
 
 ---
 
-## Table of Contents 📋
+## About the Foundation
 
-- [Table of Contents 📋](#table-of-contents-)
-- [Features ✨](#-features)
-- [Project Structure 🏗️](#-project-structure)
-- [Quick Start 🚀](#-quick-start)
-- [Available Commands 🧞](#-available-commands)
-- [Code Formatting 🎨](#-code-formatting)
-- [Configuration ⚙️](#-configuration)
-- [Deployment 🌐](#-deployment)
-- [Documentation 📚](#documentation-)
-- [Community 🤝](#community-)
-- [Useful Links 🎁](#useful-links-)
-- [Social Media :earth_africa:](#social-media-earth_africa)
+MabEcare Foundation is a non-profit organisation based in Ho, Volta Region, Ghana. We are dedicated to supporting pregnant women, empowering mothers, and protecting children through healthcare, education, and community outreach. Our programmes serve families in underserved communities across Ghana, ensuring every mother and child has access to care, dignity, and opportunity.
+
+### Our Programmes
+
+- **Mother and Child Welfare Fund** — Basic needs support, home visits, and care packages for vulnerable mothers and children
+- **Women Skills Training Programme** — Vocational training in baking, sewing, and soap making to help mothers earn sustainably
+- **Children Outreach and Support** — Educational materials, nutritional support, and safe spaces for children in underserved communities
+- **Blood Donation Drive** — Community blood drives ensuring safe supply for mothers and newborns in emergencies
+- **Maternal Mental Health** — Counselling, peer support groups, and community-based care for postpartum depression and anxiety
+- **Early Childhood Education** — Play-based learning for children aged 0–6 with trained caregivers and materials
+- **Special Needs Children Welfare** — Adaptive care, therapy referrals, and advocacy for inclusive education and dignity
 
 ---
 
-## Why should I use shadcn/studio? 💡
+## Table of Contents
 
-shadcn/ui aims to provide core components with a unique distribution system, allowing developers to copy and paste reusable, customizable UI elements directly into their codebase.
+- [About the Foundation](#about-the-foundation)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Quick Start](#quick-start)
+- [Available Commands](#available-commands)
+- [Configuration](#configuration)
+- [SEO](#seo)
+- [Contact Form](#contact-form)
+- [Deployment](#deployment)
+- [Developer](#developer)
 
-While this approach offers flexibility and control, it comes with some limitations: a lack of diverse component variants examples, limited theme customization options, and limited pre-built blocks. Additionally, its extensive customization options, though powerful, can sometimes feel overwhelming, especially for those seeking a more guided or streamlined experience.
+---
 
-# Shadcn + Astro — Bistro Landing Page
+## Features
 
-This project showcases a complete business website with sections for Header, Hero, Popular Dishes, About Us, Testimonials, New Items, Contact Us and Offers components.
+- 🚀 **Built with Astro** — Fast static site generation with minimal JavaScript
+- ⚛️ **React Islands** — Interactive components where needed, static everywhere else
+- 🎨 **shadcn/ui** — Accessible, composable UI components
+- 📱 **Mobile First** — Fully responsive across all screen sizes
+- 🌙 **Dark Mode** — System-aware theme with manual toggle
+- ⚡ **Optimised Performance** — HTML compression, CSS minification, code splitting
+- 🔍 **SEO Ready** — Structured data (JSON-LD), Open Graph, Twitter cards, sitemap, robots.txt
+- 📧 **Contact Form** — Powered by Web3Forms, no backend required
+- 🗺️ **Auto Sitemap** — Generated at build time via `@astrojs/sitemap`
+- 📡 **RSS Feed** — Auto-generated for blog content
+- 🔒 **TypeScript** — Full type safety throughout
 
-## ✨ Features
+---
 
-- 🚀 **Built with Astro** - Fast, modern static site generation
-- 🎨 **Shadcn Studio Components** - Beautiful, ready-to-use Tailwind CSS components
-- 📱 **Fully Responsive** - Optimized for mobile, tablet, and desktop
-- ⚡ **Optimized Performance** - Fast page loads and excellent SEO
-- 🔧 **TypeScript Support** - Type-safe configuration and development
-- 💅 **Prettier Integration** - Automatic code formatting with Tailwind class sorting
-- 🌙 **Tailwind CSS 4** - Latest Tailwind with modern features
-
-## 🏗️ Project Structure
+## Project Structure
 
 ```text
-shadcn-studio-astro-template/
-├── public/                    # Public static assets
-│   ├── favicon/               # Favicon files
-│   ├── images/                # Public images
-│   ├── _headers               # Netlify Deploy Headers
-│   ├── robots.txt             # SEO crawler rules
-│   └── site.webmanifest       # PWA manifest
+mabecare-foundation/
+├── public/                         # Static assets served as-is
+│   ├── favicon/                    # Favicon files
+│   ├── images/                     # Public images (logos, hero, OG image)
+│   ├── robots.txt                  # Crawler rules
+│   └── site.webmanifest            # PWA manifest
 │
 ├── src/
-│   ├── assets/                # SVG and other assets
+│   ├── assets/                     # SVGs and processed assets
 │   │
-│   ├── components/            # Reusable UI components
-│   │   └── blocks/            # Block components
-│   │   └── layout/            # Layout components
-│   │   └── sections/          # Data of components
-│   │   └── ui/                # Base UI components
+│   ├── components/
+│   │   ├── blocks/                 # Page section components
+│   │   │   ├── about-section/
+│   │   │   ├── call-to-action/
+│   │   │   ├── contact-us-section/
+│   │   │   ├── donation-programmes-section/
+│   │   │   ├── gallery-section/
+│   │   │   ├── health-resources-section/
+│   │   │   ├── hero-section/
+│   │   │   ├── impact-metrics/
+│   │   │   ├── results-section/
+│   │   │   ├── volunteer-impact-section/
+│   │   │   └── ways-to-help-section/
+│   │   ├── ui/                     # Base shadcn/ui components
+│   │   └── SmoothScroll.tsx        # Smooth scroll wrapper
 │   │
-│   ├── layouts/               # Astro layout files
-│   │   ├── BlankLayout.astro  # Minimal layout
-│   │   ├── HeadSeo.astro      # SEO head layout
-│   │   └── Layout.astro       # Main site layout
+│   ├── layouts/
+│   │   ├── HeadSeo.astro           # SEO head (meta, OG, schema)
+│   │   └── Layout.astro            # Main site layout
 │   │
-│   ├── lib/                   # Helper libraries
-│   │   └── utils.ts           # Utility functions
-│   │
-│   ├── pages/                 # Route-based pages
-│   │   ├── 404.astro          # 404 page
-│   │   ├── index.astro        # Home page
-│   │   ├── login.astro        # Login page
-│   │   └── rss.xml.js         # RSS feed generator
+│   ├── pages/
+│   │   ├── 404.astro               # Custom 404 page
+│   │   ├── index.astro             # Homepage
+│   │   ├── about-us.astro          # About Us page
+│   │   ├── contact-us.astro        # Contact Us page
+│   │   ├── donate.astro            # Donate page
+│   │   └── rss.xml.js              # RSS feed generator
 │   │
 │   ├── styles/
-│   │   └── global.css         # Global styles
+│   │   └── global.css              # Global styles and Tailwind imports
 │   │
-│   ├── utils/                 # Utility functions
-│   │   └── seo.ts             # SEO helpers
-│   └── consts.ts              # Application constants (SEO)
+│   └── consts.ts                   # Site-wide constants and SEO metadata
 │
-├── astro.config.mjs           # Astro configuration
-├── content.config.ts          # Content collections config
-├── .env.example               # Environment variable template
-├── components.json            # shadcn/ui config
-├── package.json               # Dependencies & scripts
-├── tsconfig.json              # TypeScript configuration
-└── vercel.json                # Vercel deployment config
+├── astro.config.mjs                # Astro + integrations config
+├── content.config.ts               # Content collections config
+├── .env.example                    # Environment variable template
+├── components.json                 # shadcn/ui config
+├── package.json                    # Dependencies and scripts
+├── tsconfig.json                   # TypeScript config
+└── vercel.json                     # Vercel deployment config
 ```
 
-## 🚀 Quick Start
+---
+
+## Quick Start
 
 ### Prerequisites
 
 - Node.js 18, 20, or 22+
-- pnpm (recommended) or npm
+- pnpm (recommended)
 
 ### Installation
 
-1. **Install dependencies:**
+1. **Clone the repository:**
 
-   ```bash
+```bash
+   git clone https://github.com/Sloane-J/MabeCare-Foundation-website
+   cd foundation
+```
+
+2. **Install dependencies:**
+
+```bash
    pnpm install
-   ```
+```
 
-2. **Start the development server:**
+3. **Set up environment variables:**
 
-   ```bash
+```bash
+   cp .env.example .env
+```
+
+Fill in your values (see [Configuration](#configuration)).
+
+4. **Start the development server:**
+
+```bash
    pnpm run dev
-   ```
+```
 
-   The site will be available at `http://localhost:4321`
+The site will be available at `http://localhost:4321`
 
-3. **Build for production:**
+5. **Build for production:**
 
-   ```bash
-   pnpm build
-   ```
+```bash
+   pnpm run build
+```
 
-   The built site will be in the `dist/` folder with relative asset paths for easy deployment.
+6. **Preview the production build:**
 
-4. **Preview the production build:**
-
-   ```bash
+```bash
    pnpm run preview
-   ```
+```
 
-## 🧞 Available Commands
+> Always use `pnpm run preview` — not `pnpm run dev` — to check the sitemap and other build-only outputs.
 
-The template comes with several pre-configured scripts to help you with development, building, and maintaining your project. All scripts can be run using your package manager of choice (npm, pnpm, yarn, or bun) from the root of the project.
+---
 
-| Command       | Action                                                                                                                                 |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------- |
-| `dev`         | Starts the Astro development server with hot-reload enabled. Your application will be available at http://localhost:4321/              |
-| `build`       | Creates an optimized production build of your application. This command generates static files and optimizes your code for deployment. |
-| `preview`     | Preview production site locally. Use this to test your production build locally before deploying.                                      |
-| `lint`        | Runs ESLint to check your code for potential errors and code quality issues. This helps maintain clean and consistent code.            |
-| `lint:fix`    | Runs ESLint and automatically fixes problems where possible.                                                                           |
-| `format`      | Formats all files using Prettier to ensure consistent code style.                                                                      |
-| `check-types` | Checks TypeScript types to catch type errors before building or deploying.                                                             |
+## Available Commands
 
-## 🎨 Code Formatting
+| Command             | Action                                                    |
+| :------------------ | :-------------------------------------------------------- |
+| `pnpm run dev`      | Start local development server at `http://localhost:4321` |
+| `pnpm run build`    | Build for production, output to `dist/`                   |
+| `pnpm run preview`  | Preview the production build locally                      |
+| `pnpm run lint`     | Run ESLint across the codebase                            |
+| `pnpm run lint:fix` | Run ESLint and auto-fix issues                            |
+| `pnpm run format`   | Format all files with Prettier                            |
+| `pnpm check-types`  | Run TypeScript type checking                              |
 
-This project uses **Prettier** for code formatting with the following features:
+---
 
-- **Automatic formatting on save** in VS Code
-- **Tailwind CSS class sorting** - Classes are automatically sorted in the recommended order
-- **Extra space removal** - Trailing whitespace and extra spaces are removed
-- **Consistent code style** - Enforced across all `.astro`, `.js`, `.ts`, and `.css` files
+## Configuration
 
-### Setup
-
-1. **Install recommended VS Code extensions** (you'll be prompted when opening the project):
-   - Prettier - Code formatter
-   - Astro
-   - Tailwind CSS IntelliSense
-   - EditorConfig for VS Code
-
-2. **Formatting will work automatically** on save thanks to:
-   - `.prettierrc` - Prettier configuration
-   - `.editorconfig` - Editor settings
-   - `.vscode/settings.json` - VS Code workspace settings
-
-3. **Manual formatting:**
-
-   ```bash
-   pnpm run format        # Format all files
-   ```
-
-## ⚙️ Configuration
-
-Edit `src/consts.ts` to customize your site:
+Edit `src/consts.ts` to update site-wide metadata:
 
 ```typescript
-export const siteConfig = {
-  creatorName: 'Shadcn Studio',
-  demoName: 'Bistro',
-  templateName: 'Restaurant Landing Page'
-  // ... more settings
+export const SITE_METADATA = {
+  title: {
+    default: 'MabEcare Foundation | Empowering Mothers & Children in Ghana'
+  },
+  description:
+    'MabEcare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach.',
+  siteUrl: 'https://mabecare-foundation.vercel.app',
+  locale: 'en_US',
+  language: 'en-US',
+  creator: 'Samuel Dorkey',
+  publisher: 'MabEcare Foundation',
+  twitter: {
+    handle: '@mabecarefoundation'
+  }
+  // ... other fields
 }
 ```
 
-### 🔍 SEO & Site Configuration
+### Environment Variables
 
-Configure the site's SEO and global metadata in `src/consts.ts`. These settings power the `HeadSeo.astro` layout and `seo.ts` helpers so pages have correct titles, descriptions, and social previews.
+| Variable                    | Description                               |
+| :-------------------------- | :---------------------------------------- |
+| `VITE_WEB3FORMS_ACCESS_KEY` | Web3Forms access key for the contact form |
 
-Recommended fields:
+---
 
-- `siteTitle`: The site-wide default title.
-- `siteDescription`: Default meta description for pages.
-- `siteUrl`: The canonical base URL for building absolute links.
-- `siteLocale`: Locale string used for html/lang and Open Graph (e.g. `en-US`).
-- `siteAuthor`: Default author/creator name.
-- `siteKeywords`: Array of SEO keywords.
-- `socialImage`: Path to the default social preview image (OG/Twitter card).
-- `faviconPath`: Path to the favicon in `/public`.
-- `themeColor`: Theme color meta for browsers and PWA.
-- `twitterHandle`: Official Twitter/X handle for site cards.
-- `analyticsId`: Optional analytics measurement id (Google Analytics, Plausible, etc.).
+## SEO
 
-Example `siteConfig` with SEO fields:
+The site is fully optimised for search engines:
 
-```typescript
-// Example SEO & site settings — edit src/consts.ts
-export const siteConfig = {
-  siteTitle: 'Bistro — Restaurant Landing Page',
-  siteDescription:
-    'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
-  siteUrl: 'https://example.com',
-  siteLocale: 'en-US',
-  siteAuthor: 'Shadcn Studio',
-  siteKeywords: ['bistro', 'restaurant', 'landing page', 'astro', 'shadcn'],
-  socialImage: '/images/social-preview.png',
-  faviconPath: '/favicon/favicon.ico',
-  themeColor: '#0ea5e9',
-  twitterHandle: '@ShadcnStudio',
-  analyticsId: '' // optional
-}
+- **Structured data** — JSON-LD schema on every page (`NGO`, `AboutPage`, `ContactPage`)
+- **Open Graph** — Full OG tags for Facebook and LinkedIn sharing
+- **Twitter cards** — `summary_large_image` card type
+- **Sitemap** — Auto-generated at `/sitemap-index.xml` on build, submitted to Google Search Console
+- **Robots.txt** — Located at `/public/robots.txt`, allows all crawlers
+- **Canonical URLs** — Set on every page to prevent duplicate content
+
+To verify the sitemap after a build:
+
+```bash
+pnpm run build && pnpm run preview
+# Then visit: http://localhost:4321/sitemap-index.xml
 ```
 
-Tips:
+---
 
-- Keep `siteUrl` consistent with your deployed domain to ensure correct canonical and Open Graph URLs.
-- Place social preview images in `public/images` and reference them with absolute paths (e.g. `/images/social-preview.png`).
+## Contact Form
 
-## 🌐 Deployment
+The contact form is powered by [Web3Forms](https://web3forms.com) — no backend or domain verification required. Form submissions are delivered directly to the foundation's inbox.
 
-The production build creates static files with relative asset paths, making it easy to deploy to:
+To set it up:
 
-- **GitHub Pages**
-- **Netlify**
-- **Vercel**
-- **Any static hosting service**
+1. Go to [web3forms.com](https://web3forms.com) and enter the foundation's email
+2. Copy the access key sent to that inbox
+3. Add it to your `.env` file:
 
-Simply upload the contents of the `dist/` folder after running `pnpm run build`.
+```bash
+   VITE_WEB3FORMS_ACCESS_KEY=your-access-key-here
+```
 
-## Documentation 📚
+4. Add it to your Vercel environment variables under **Settings → Environment Variables**
 
-For comprehensive documentation, please visit [shadcn/studio documentation](https://shadcnstudio.com/docs/getting-started/shadcn-studio-template-astro).
+Spam protection is handled via a honeypot field — no CAPTCHA friction for users.
 
-## Community 🤝
+---
 
-Join the shadcn/studio community to discuss the library, ask questions, and share your experiences:
+## Deployment
 
-- 🐦 [Follow us on Twitter](https://x.com/ShadCNStudio)
-- 🎮 [Join us on Discord](https://discord.com/invite/kBHkY7DekX)
+The site is deployed on **Vercel** with automatic deployments on every push to `main`.
 
-## Useful Links 🎁
+**Live URL:** [https://mabecare-foundation.vercel.app](https://mabecare-foundation.vercel.app)
 
-- [Shadcn Blocks](https://shadcnstudio.com/blocks)
-- [Shadcn Templates](https://shadcnstudio.com/templates)
-- [Shadcn Figma UI Kit](https://shadcnstudio.com/figma)
-- [Shadcn Theme Generator](https://shadcnstudio.com/theme-generator)
-- [Shadcn MCP Server](https://shadcnstudio.com/mcp)
-- [Shadcn IDE Extension](https://shadcnstudio.com/ide-extension)
-- [Shadcn Components](https://shadcnstudio.com/components)
-- [Shadcn Figma to Code](https://shadcnstudio.com/figma-plugin)
+To deploy manually, push to the `main` branch or run:
 
-## Social Media :earth_africa:
+```bash
+pnpm run build
+# Upload contents of dist/ to any static host
+```
 
-- [x](https://x.com/ShadcnStudio)
-- [Discord](https://discord.com/invite/kBHkY7DekX)
-- [YouTube](https://www.youtube.com/@themeselection)
+The site works on any static hosting platform — Vercel, Netlify, Cloudflare Pages, or GitHub Pages.
+
+> When the custom domain is ready, update `site` in `astro.config.mjs` and `siteUrl` in `src/consts.ts`, then redeploy.
+
+---
+
+## Developer
+
+Built and maintained by **Samuel Dorkey**
+
+- 🌐 [sloanedev.vercel.app](https://sloanedev.vercel.app)
+- 🐙 [github.com/Sloane-J](https://github.com/Sloane-J)
+
+Built on top of the [shadcn/studio](https://shadcnstudio.com) Astro template.
+
+---
+
+© 2026 MabEcare Foundation. All rights reserved.

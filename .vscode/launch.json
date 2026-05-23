@@ -33,7 +33,7 @@
       "type": "chrome",
       "request": "launch",
       "name": "Chrome: Debug",
-      "url": "http://localhost:4321",
+      "url": "https://mabecare-foundation.vercel.app/",
       "webRoot": "${workspaceFolder}",
       "skipFiles": [
         "<node_internals>/**"

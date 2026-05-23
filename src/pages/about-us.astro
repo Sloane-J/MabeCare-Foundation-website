@@ -1,25 +1,25 @@
 ---
-import AboutSection from "@/components/blocks/about-section/about-section";
-import SmoothScroll from "@/components/SmoothScroll";
-import Layout from "@/layouts/Layout.astro";
+import AboutSection from '@/components/blocks/about-section/about-section'
+import SmoothScroll from '@/components/SmoothScroll'
+import Layout from '@/layouts/Layout.astro'
 
-const pageTitle = "About Us | MabeCare Foundation";
+const pageTitle = 'About Us | MabEcare Foundation'
 const pageDescription =
-  "Learn about MabeCare Foundation's mission, vision, team, and the impact we've made supporting mothers and children across Ghana.";
+  "Learn about MabEcare Foundation's mission, vision, team, and the impact we've made supporting mothers and children across Ghana."
 const pageKeywords =
-  "about mabecare foundation, our mission, our team, foundation story, maternal health Ghana, women empowerment, community outreach";
+  'about mabecare foundation, our mission, our team, foundation story, maternal health Ghana, women empowerment, community outreach'
 const schema = {
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  name: "About MabeCare Foundation",
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About MabEcare Foundation',
   description: pageDescription,
-  url: "https://mabecare-foundation.vercel.app/about-us",
+  url: 'https://mabecare-foundation.vercel.app/about-us',
   isPartOf: {
-    "@type": "NGO",
-    name: "MabeCare Foundation",
-    url: "https://mabecare-foundation.vercel.app",
-  },
-};
+    '@type': 'NGO',
+    name: 'MabEcare Foundation',
+    url: 'https://mabecare-foundation.vercel.app'
+  }
+}
 ---
 
 <Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>

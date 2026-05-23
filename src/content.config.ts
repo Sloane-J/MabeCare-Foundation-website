@@ -11,7 +11,7 @@ const blog = defineCollection({
     imageUrl: z.string().optional(),
     imageAlt: z.string().optional(),
     pubDate: z.string(),
-    author: z.string().default('shadcn Studio'),
+    author: z.string().default('MabEcare Foundation'),
     avatarUrl: z.string().optional(),
     category: z.string().default('General'),
     tags: z.array(z.string()).default([]),

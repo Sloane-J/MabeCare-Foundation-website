@@ -1,4 +1,4 @@
-# robots.txt for MabeCare Foundation
+# robots.txt for MabEcare Foundation
 # Production-ready configuration for search engine crawlers
 
 # Allow all crawlers full access

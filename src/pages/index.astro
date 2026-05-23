@@ -1,87 +1,87 @@
 ---
-import { menudata } from "@/assets/data/hero";
-import CallToAction from "@/components/blocks/call-to-action/call-to-action";
-import DonationProgrammesSection from "@/components/blocks/donation-programmes-section/donation-programmes-section";
-import GallerySection from "@/components/blocks/gallery-section/gallery-section";
-import HealthResourcesSection from "@/components/blocks/health-resources-section/health-resources-section";
-import HeroSectionPage from "@/components/blocks/hero-section/hero-section";
-import ImpactMetrics from "@/components/blocks/impact-metrics/impact-metrics";
-import ResultsSection from "@/components/blocks/results-section/results-section";
-import VolunteerImpactSection from "@/components/blocks/volunteer-impact-section/volunteer-impact-section";
-import WaysToHelpSection from "@/components/blocks/ways-to-help-section/ways-to-help-section";
-import SmoothScroll from "@/components/SmoothScroll";
-import Layout from "@/layouts/Layout.astro";
+import { menudata } from '@/assets/data/hero'
+import CallToAction from '@/components/blocks/call-to-action/call-to-action'
+import DonationProgrammesSection from '@/components/blocks/donation-programmes-section/donation-programmes-section'
+import GallerySection from '@/components/blocks/gallery-section/gallery-section'
+import HealthResourcesSection from '@/components/blocks/health-resources-section/health-resources-section'
+import HeroSectionPage from '@/components/blocks/hero-section/hero-section'
+import ImpactMetrics from '@/components/blocks/impact-metrics/impact-metrics'
+import ResultsSection from '@/components/blocks/results-section/results-section'
+import VolunteerImpactSection from '@/components/blocks/volunteer-impact-section/volunteer-impact-section'
+import WaysToHelpSection from '@/components/blocks/ways-to-help-section/ways-to-help-section'
+import SmoothScroll from '@/components/SmoothScroll'
+import Layout from '@/layouts/Layout.astro'
 
-const pageTitle = "MabeCare Foundation | Empowering Mothers & Children in Ghana";
+const pageTitle = 'MabEcare Foundation | Empowering Mothers & Children in Ghana'
 const pageDescription =
-  "MabeCare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Join us or donate today.";
+  'MabEcare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Join us or donate today.'
 const pageKeywords =
-  "mabecare foundation, charity Ghana, non-profit Ghana, maternal health Ghana, children welfare Ghana, women empowerment Ghana, community outreach Ho Volta Region, blood donation Ghana, early childhood education, special needs children Ghana, donate Ghana, volunteering Ghana, samuel dorkey, joanna yirenkyi, sloane dev";
+  'mabecare foundation, charity Ghana, non-profit Ghana, maternal health Ghana, children welfare Ghana, women empowerment Ghana, community outreach Ho Volta Region, blood donation Ghana, early childhood education, special needs children Ghana, donate Ghana, volunteering Ghana, samuel dorkey, joanna yirenkyi, sloane dev'
 
-const siteUrl = "https://mabecare-foundation.vercel.app";
+const siteUrl = 'https://mabecare-foundation.vercel.app'
 
 const schema = {
-  "@context": "https://schema.org",
-  "@type": "NGO",
-  name: "MabeCare Foundation",
+  '@context': 'https://schema.org',
+  '@type': 'NGO',
+  name: 'MabEcare Foundation',
   description: pageDescription,
   url: siteUrl,
   logo: `${siteUrl}/images/site-logo.png`,
   sameAs: [],
   contactPoint: {
-    "@type": "ContactPoint",
-    email: "mabecarefoundation@gmail.com",
-    contactType: "General Enquiries",
-    availableLanguage: "English",
-    areaServed: "GH",
+    '@type': 'ContactPoint',
+    email: 'mabecarefoundation@gmail.com',
+    contactType: 'General Enquiries',
+    availableLanguage: 'English',
+    areaServed: 'GH'
   },
   founder: {
-    "@type": "Organization",
-    name: "Joanna Yirenkyi",
-    url: "https://mabecare-foundation.vercel.app",
+    '@type': 'Organization',
+    name: 'Joanna Yirenkyi',
+    url: 'https://mabecare-foundation.vercel.app'
   },
   developer: {
-    "@type": "Organization",
-    name: "Samuel Dorkey",
-    url: "https://sloanedev.vercel.app",
+    '@type': 'Organization',
+    name: 'Samuel Dorkey',
+    url: 'https://sloanedev.vercel.app'
   },
   areaServed: {
-    "@type": "City",
-    name: "Ho",
+    '@type': 'City',
+    name: 'Ho',
     containedInPlace: {
-      "@type": "AdministrativeArea",
-      name: "Volta Region",
+      '@type': 'AdministrativeArea',
+      name: 'Volta Region',
       containedInPlace: {
-        "@type": "Country",
-        name: "Ghana",
-      },
-    },
+        '@type': 'Country',
+        name: 'Ghana'
+      }
+    }
   },
   knowsAbout: [
-    "Maternal Health",
-    "Children Welfare",
-    "Women Empowerment",
-    "Community Outreach",
-    "Blood Donation",
-    "Early Childhood Education",
-    "Special Needs Children",
-    "Maternal Mental Health",
-    "Nutrition Support",
+    'Maternal Health',
+    'Children Welfare',
+    'Women Empowerment',
+    'Community Outreach',
+    'Blood Donation',
+    'Early Childhood Education',
+    'Special Needs Children',
+    'Maternal Mental Health',
+    'Nutrition Support'
   ],
   hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Programmes",
+    '@type': 'OfferCatalog',
+    name: 'Programmes',
     itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Mother and Child Welfare Fund" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Women Skills Training Programme" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Children Outreach and Support" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Blood Donation Drive" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Maternal Mental Health" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Early Childhood Education" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Special Needs Children Welfare" } },
-    ],
-  },
-};
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mother and Child Welfare Fund' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Women Skills Training Programme' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Children Outreach and Support' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Blood Donation Drive' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Maternal Mental Health' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Early Childhood Education' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Special Needs Children Welfare' } }
+    ]
+  }
+}
 ---
 
 <Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>

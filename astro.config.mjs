@@ -11,10 +11,7 @@ export default defineConfig({
     react(),
     mdx(),
     sitemap({
-      filter: page =>
-        !page.includes('/admin/') &&
-        !page.includes('/private/') &&
-        !page.includes('/404'),
+      filter: page => !page.includes('/admin/') && !page.includes('/private/') && !page.includes('/404'),
       serialize(item) {
         const url = item.url
 
@@ -24,43 +21,43 @@ export default defineConfig({
           item.changefreq = 'daily'
           item.priority = 1.0
 
-        // About Us — important, changes occasionally
+          // About Us — important, changes occasionally
         } else if (url.includes('/about-us')) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'monthly'
           item.priority = 0.9
 
-        // Contact Us
+          // Contact Us
         } else if (url.includes('/contact-us')) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'monthly'
           item.priority = 0.8
 
-        // Donate page — high priority, drives conversions
+          // Donate page — high priority, drives conversions
         } else if (url.includes('/donate')) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'monthly'
           item.priority = 0.9
 
-        // Blog listing
+          // Blog listing
         } else if (url.includes('/blog') && !url.includes('/blog/')) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'daily'
           item.priority = 0.8
 
-        // Individual blog posts
+          // Individual blog posts
         } else if (url.includes('/blog/')) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'weekly'
           item.priority = 0.7
 
-        // Tags and categories
+          // Tags and categories
         } else if (url.includes('/tags/') || url.includes('/categories/')) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'weekly'
           item.priority = 0.6
 
-        // Everything else
+          // Everything else
         } else {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'monthly'

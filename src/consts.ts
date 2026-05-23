@@ -1,7 +1,7 @@
 // Site Configuration
 // Centralized configuration for site metadata, SEO, and branding
 
-export const SITE_TITLE = 'MabeCare Foundation'
+export const SITE_TITLE = 'MabEcare Foundation'
 export const SITE_DESCRIPTION =
   'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.'
 
@@ -10,7 +10,7 @@ export const SITE_URL = 'https://shadcnstudio.com/'
 
 export const SITE_METADATA = {
   title: {
-    default: 'MabeCare Foundation'
+    default: 'MabEcare Foundation'
   },
   description:
     'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
@@ -32,9 +32,9 @@ export const SITE_METADATA = {
     'performance',
     'typescript'
   ],
-  authors: [{ name: 'shadcn Studio', url: SITE_URL }],
-  creator: 'shadcn Studio',
-  publisher: 'shadcn Studio',
+  authors: [{ name: 'MabEcare Foundation', url: SITE_URL }],
+  creator: 'MabEcare Foundation',
+  publisher: 'MabEcare Foundation',
   robots: {
     index: true,
     follow: true
@@ -55,8 +55,8 @@ export const SITE_METADATA = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'MabeCare Foundation',
-    title: 'MabeCare Foundation',
+    siteName: 'MabEcare Foundation',
+    title: 'MabEcare Foundation',
     description:
       'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
     images: [
@@ -64,16 +64,16 @@ export const SITE_METADATA = {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'MabeCare Foundation',
+        alt: 'MabEcare Foundation',
         type: 'image/png'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@shadcnstudio',
-    creator: '@shadcnstudio',
-    title: 'MabeCare Foundation',
+    site: '@mabecarefoundation',
+    creator: '@mabecarefoundation',
+    title: 'MabEcare Foundation',
     description:
       'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
     images: ['/images/og-image.png']
@@ -95,8 +95,8 @@ export const SOCIAL_LINKS = {
 
 // Company information for structured data
 export const COMPANY_INFO = {
-  name: 'shadcn Studio',
-  legalName: 'shadcn Studio Inc.',
+  name: 'MabEcare Foundation',
+  legalName: 'MabEcare Foundation Inc.',
   url: SITE_URL,
   logo: `/images/site-logo.png`,
   foundingDate: '2024',
@@ -110,7 +110,7 @@ export const COMPANY_INFO = {
   contactPoint: {
     telephone: '+1-555-123-4567',
     contactType: 'customer support',
-    email: 'support@shadcnstudio.com'
+    email: 'support@mabecarefoundation.com'
   },
   sameAs: Object.values(SOCIAL_LINKS)
 }
