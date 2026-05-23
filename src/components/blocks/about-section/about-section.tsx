@@ -99,7 +99,7 @@ const impacts = [
 
 const team = [
   {
-    name: 'Miss Joana Ewurama Sarfoa Yirekyi',
+    name: 'Miss Joana Ewurama Sarfoa Yirenkyi',
     role: 'Founder',
     image: '/images/about-us/Joanna Yirenkyi.jpg',
     twitter: '#',
@@ -107,7 +107,7 @@ const team = [
     email: 'mailto:jhaycraig.ama@gmail.com'
   },
   {
-    name: 'Miss Joanitta Yirekyi',
+    name: 'Miss Joanitta Yirenkyi',
     role: 'Executive Director',
     image: '/images/about-us/Joannita Yirenky.jpg',
     twitter: '#',

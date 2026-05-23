@@ -5,32 +5,33 @@ export const SITE_TITLE = 'MabEcare Foundation'
 export const SITE_DESCRIPTION =
   'MabEcare Foundation is dedicated to improving healthcare access and supporting communities through charitable programs, donations, and volunteer initiatives.'
 
-export const GITHUB_URL = 'https://github.com/yourusername/shadcn-astro-bistro-landing-page'
-export const SITE_URL = 'https://shadcnstudio.com/'
+export const GITHUB_URL = 'https://github.com/Sloane-J/MabeCare-Foundation-website'
+export const SITE_URL = 'https://mabecare-foundation.vercel.app/'
 
 export const SITE_METADATA = {
   title: {
-    default: 'MabEcare Foundation'
+    default: 'MabeCare Foundation | Empowering Mothers & Children in Ghana'
   },
   description:
-    'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
+    'MabeCare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
   keywords: [
-    'Astro',
-    'astro template',
-    'astro theme',
-    'astro starter',
-    'shadcn template',
-    'shadcn ui',
-    'shadcn/ui components',
-    'tailwind template',
-    'tailwind css',
-    'react components',
-    'SEO optimized',
-    'web development',
-    'static site generator',
-    'modern web apps',
-    'performance',
-    'typescript'
+    'MabeCare Foundation',
+    'charity Ghana',
+    'non-profit Ghana',
+    'maternal health Ghana',
+    'children welfare Ghana',
+    'women empowerment Ghana',
+    'community outreach Ho Volta Region',
+    'blood donation Ghana',
+    'early childhood education Ghana',
+    'special needs children Ghana',
+    'donate Ghana',
+    'volunteer Ghana',
+    'maternal mental health',
+    'mothers support Ghana',
+    'foundation Ho Ghana',
+    'samuel dorkey',
+    'sloane jnr'
   ],
   authors: [{ name: 'MabEcare Foundation', url: SITE_URL }],
   creator: 'MabEcare Foundation',
@@ -39,8 +40,8 @@ export const SITE_METADATA = {
     index: true,
     follow: true
   },
-  language: 'en-US',
-  locale: 'en_US',
+  language: 'en-UK',
+  locale: 'en_UK',
   icons: {
     icon: [
       { url: '/favicon/favicon.ico', sizes: '48x48' },
@@ -55,16 +56,16 @@ export const SITE_METADATA = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'MabEcare Foundation',
-    title: 'MabEcare Foundation',
+    siteName: 'MabeCare Foundation',
+    title: 'MabeCare Foundation | Empowering Mothers & Children in Ghana',
     description:
-      'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
+      'MabeCare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
     images: [
       {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'MabEcare Foundation',
+        alt: 'MabeCare Foundation — Empowering Mothers & Children in Ghana',
         type: 'image/png'
       }
     ]
@@ -73,9 +74,9 @@ export const SITE_METADATA = {
     card: 'summary_large_image',
     site: '@mabecarefoundation',
     creator: '@mabecarefoundation',
-    title: 'MabEcare Foundation',
+    title: 'MabeCare Foundation | Empowering Mothers & Children in Ghana',
     description:
-      'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.',
+      'MabeCare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
     images: ['/images/og-image.png']
   },
   verification: {
@@ -88,29 +89,29 @@ export const SITE_METADATA = {
 // Social media links
 export const SOCIAL_LINKS = {
   github: GITHUB_URL,
-  twitter: 'https://twitter.com/shadcnstudio',
-  linkedin: 'https://linkedin.com/company/shadcnstudio',
-  discord: 'https://discord.gg/shadcnstudio'
+  twitter: '#',
+  linkedin: 'https://www.linkedin.com/in/joana-yirenkyi-019a55385',
+  discord: '#'
 }
 
 // Company information for structured data
 export const COMPANY_INFO = {
-  name: 'MabEcare Foundation',
-  legalName: 'MabEcare Foundation Inc.',
+  name: 'MabeCare Foundation',
+  legalName: 'MabeCare Foundation',
   url: SITE_URL,
   logo: `/images/site-logo.png`,
-  foundingDate: '2024',
+  foundingDate: '2026',
   address: {
-    streetAddress: '123 Web Dev Street',
-    addressLocality: 'San Francisco',
-    addressRegion: 'CA',
-    postalCode: '94102',
-    addressCountry: 'US'
+    streetAddress: 'Ho',
+    addressLocality: 'Ho',
+    addressRegion: 'Volta Region',
+    postalCode: '',
+    addressCountry: 'GH'
   },
   contactPoint: {
-    telephone: '+1-555-123-4567',
-    contactType: 'customer support',
-    email: 'support@mabecarefoundation.com'
+    telephone: '+233545784681',
+    contactType: 'General Enquiries',
+    email: 'mabecarefoundation@gmail.com'
   },
   sameAs: Object.values(SOCIAL_LINKS)
 }
