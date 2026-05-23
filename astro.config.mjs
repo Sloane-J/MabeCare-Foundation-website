@@ -1,59 +1,70 @@
 // @ts-check
-import { defineConfig } from 'astro/config'
-import tailwindcss from '@tailwindcss/vite'
-import sitemap from '@astrojs/sitemap'
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
+import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'astro/config'
 
 export default defineConfig({
-  site: 'http://localhost:4321/',
+  site: 'https://mabecare-foundation.vercel.app',
   integrations: [
     react(),
     mdx(),
     sitemap({
-      filter: page => !page.includes('/admin/') && !page.includes('/private/'),
-      customPages: [],
+      filter: page =>
+        !page.includes('/admin/') &&
+        !page.includes('/private/') &&
+        !page.includes('/404'),
       serialize(item) {
-        // Homepage - highest priority
-        if (item.url === 'http://localhost:4321/') {
+        const url = item.url
+
+        // Homepage
+        if (url === 'https://mabecare-foundation.vercel.app/') {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'daily'
           item.priority = 1.0
-        }
 
-        // Blog listing pages - high priority
-        else if (item.url.includes('/blog') && !item.url.includes('/blog/')) {
+        // About Us — important, changes occasionally
+        } else if (url.includes('/about-us')) {
+          // @ts-expect-error - Valid sitemap changefreq value
+          item.changefreq = 'monthly'
+          item.priority = 0.9
+
+        // Contact Us
+        } else if (url.includes('/contact-us')) {
+          // @ts-expect-error - Valid sitemap changefreq value
+          item.changefreq = 'monthly'
+          item.priority = 0.8
+
+        // Donate page — high priority, drives conversions
+        } else if (url.includes('/donate')) {
+          // @ts-expect-error - Valid sitemap changefreq value
+          item.changefreq = 'monthly'
+          item.priority = 0.9
+
+        // Blog listing
+        } else if (url.includes('/blog') && !url.includes('/blog/')) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'daily'
-          item.priority = 0.9
-        }
-
-        // Individual blog posts - medium-high priority
-        else if (item.url.includes('/blog/')) {
-          // @ts-expect-error - Valid sitemap changefreq value
-          item.changefreq = 'weekly'
           item.priority = 0.8
-        }
 
-        // Tag/category pages - medium priority
-        else if (item.url.includes('/tags/') || item.url.includes('/categories/')) {
+        // Individual blog posts
+        } else if (url.includes('/blog/')) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'weekly'
           item.priority = 0.7
-        }
 
-        // Static pages - medium-low priority
-        else if (item.url.includes('/login') || item.url.includes('/register')) {
-          // @ts-expect-error - Valid sitemap changefreq value
-          item.changefreq = 'monthly'
-          item.priority = 0.5
-        }
-
-        // All other pages
-        else {
+        // Tags and categories
+        } else if (url.includes('/tags/') || url.includes('/categories/')) {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'weekly'
           item.priority = 0.6
+
+        // Everything else
+        } else {
+          // @ts-expect-error - Valid sitemap changefreq value
+          item.changefreq = 'monthly'
+          item.priority = 0.5
         }
 
         return item

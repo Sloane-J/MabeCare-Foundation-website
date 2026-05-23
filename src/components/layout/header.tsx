@@ -188,7 +188,7 @@ const Header = ({ pathname }: HeaderProps) => {
               className="hidden sm:flex rounded-full px-6 bg-primary hover:bg-primary/90 text-white text-sm font-semibold"
               asChild
             >
-              <a href="/#donation-programmes">Donate</a>
+              <a href="/#ways-to-help-section">Donate</a>
             </Button>
 
             <button

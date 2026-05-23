@@ -40,8 +40,8 @@ const contactDetails = [
   {
     icon: <PhoneIcon className="size-5 text-primary" />,
     label: 'Phone',
-    value: '+233 50 000 0000',
-    href: 'tel:+233500000000',
+    value: '+233 54 578 4681',
+    href: 'tel:+233545784681',
   },
   {
     icon: <MailIcon className="size-5 text-primary" />,
