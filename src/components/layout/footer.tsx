@@ -95,7 +95,7 @@ const Footer = () => {
             >
               <img src='/images/site-logo.png' alt='Logo' className='h-8 w-auto' width={32} height={32} />
               <div className='flex flex-col leading-none'>
-                <span className='text-sm font-bold uppercase'>MabeCare</span>
+                <span className='text-sm font-bold uppercase'>MabEcare</span>
                 <span className='text-primary text-xs uppercase'>Foundation</span>
               </div>
             </a>

@@ -3,7 +3,7 @@
 
 export const SITE_TITLE = 'MabEcare Foundation'
 export const SITE_DESCRIPTION =
-  'Enjoy fresh ingredients, thoughtfully prepared meals, and a welcoming space designed for memorable moments. Experience bistro dining made simple and delicious.'
+  'MabEcare Foundation is dedicated to improving healthcare access and supporting communities through charitable programs, donations, and volunteer initiatives.'
 
 export const GITHUB_URL = 'https://github.com/yourusername/shadcn-astro-bistro-landing-page'
 export const SITE_URL = 'https://shadcnstudio.com/'

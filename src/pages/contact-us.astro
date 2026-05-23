@@ -4,21 +4,24 @@ import CallToAction from '@/components/blocks/call-to-action/call-to-action'
 import SmoothScroll from '@/components/SmoothScroll'
 import Layout from '@/layouts/Layout.astro'
 
-const pageTitle = 'Contact Us | MabEcare Foundation'
+const pageTitle = 'Contact Us | MabeCare Foundation'
 const pageDescription =
-  'Get in touch with MabEcare Foundation. Whether you want to donate, volunteer, or partner with us, we would love to hear from you.'
+  'Get in touch with MabeCare Foundation. Whether you want to donate, volunteer, or partner with us, we would love to hear from you.'
 const pageKeywords =
   'contact mabecare foundation, get in touch, volunteer Ghana, donate Ghana, maternal health foundation contact'
+
+const siteUrl = 'https://mabecare-foundation.vercel.app'
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
-  name: 'Contact MabEcare Foundation',
+  name: 'Contact MabeCare Foundation',
   description: pageDescription,
-  url: 'https://mabecarefoundation.org/contact-us',
+  url: `${siteUrl}/contact-us`,
   isPartOf: {
     '@type': 'NGO',
-    name: 'MabEcare Foundation',
-    url: 'https://mabecarefoundation.org'
+    name: 'MabeCare Foundation',
+    url: siteUrl
   }
 }
 ---

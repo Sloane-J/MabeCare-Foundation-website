@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/public/images/site-logo.png" alt="MabEcare Foundation Logo" width="60px" height="auto" />
+  <img src="public/images/site-logo.png" alt="MabEcare Foundation Logo" width="60px" height="auto" />
 </p>
 
 <h1 align="center">MabEcare Foundation</h1>
@@ -16,8 +16,8 @@
   <img src="https://img.shields.io/badge/built%20with-Astro-FF5D01" alt="Built with Astro" />
   <img src="https://img.shields.io/badge/styled%20with-Tailwind%20CSS%20v4-38BDF8" alt="Tailwind CSS" />
 </p>
-
----
+- 🌐 [https://sloanedev.vercel.app](https://sloanedev.vercel.app)
+- 🐙 [https://github.com/Sloane-J](https://github.com/Sloane-J)
 
 ## About the Foundation
 
@@ -134,11 +134,6 @@ mabecare-foundation/
 
 1. **Clone the repository:**
 
-```bash
-   git clone https://github.com/Sloane-J/MabeCare-Foundation-website
-   cd foundation
-```
-
 2. **Install dependencies:**
 
 ```bash
@@ -179,15 +174,15 @@ The site will be available at `http://localhost:4321`
 
 ## Available Commands
 
-| Command             | Action                                                    |
-| :------------------ | :-------------------------------------------------------- |
-| `pnpm run dev`      | Start local development server at `http://localhost:4321` |
-| `pnpm run build`    | Build for production, output to `dist/`                   |
-| `pnpm run preview`  | Preview the production build locally                      |
-| `pnpm run lint`     | Run ESLint across the codebase                            |
-| `pnpm run lint:fix` | Run ESLint and auto-fix issues                            |
-| `pnpm run format`   | Format all files with Prettier                            |
-| `pnpm check-types`  | Run TypeScript type checking                              |
+| Command                | Action                                                    |
+| :--------------------- | :-------------------------------------------------------- |
+| `pnpm run dev`         | Start local development server at `http://localhost:4321` |
+| `pnpm run build`       | Build for production, output to `dist/`                   |
+| `pnpm run preview`     | Preview the production build locally                      |
+| `pnpm run lint`        | Run ESLint across the codebase                            |
+| `pnpm run lint:fix`    | Run ESLint and auto-fix issues                            |
+| `pnpm run format`      | Format all files with Prettier                            |
+| `pnpm run check-types` | Run TypeScript type checking                              |
 
 ---
 

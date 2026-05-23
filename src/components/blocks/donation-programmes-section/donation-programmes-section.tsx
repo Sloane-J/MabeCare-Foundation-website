@@ -41,7 +41,7 @@ const originalProgrammes: Programme[] = [
   },
   {
     image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80',
-    alt: 'Children supported through MabeCare outreach programme',
+    alt: 'Children supported through MabEcare outreach programme',
     category: 'Child Support',
     title: 'Children Outreach and Support',
     description:

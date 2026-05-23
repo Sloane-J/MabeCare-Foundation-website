@@ -145,7 +145,7 @@ const Header = ({ pathname }: HeaderProps) => {
               height={36}
             />
             <div className='flex flex-col leading-none'>
-              <span className='text-foreground text-sm font-bold tracking-widest uppercase sm:text-base'>MabeCare</span>
+              <span className='text-foreground text-sm font-bold tracking-widest uppercase sm:text-base'>MabEcare</span>
               <span className='text-primary text-[10px] font-medium tracking-[0.2em] uppercase sm:text-xs'>
                 Foundation
               </span>
@@ -156,6 +156,7 @@ const Header = ({ pathname }: HeaderProps) => {
           <nav className='hidden items-center gap-8 lg:flex' aria-label='Main navigation'>
             {navLinks.map(link => {
               const isActive = isLinkActive(link.href)
+
               return (
                 <a
                   key={link.href}
@@ -211,6 +212,7 @@ const Header = ({ pathname }: HeaderProps) => {
         <nav className='mt-6 flex flex-col gap-1' aria-label='Mobile navigation'>
           {navLinks.map(link => {
             const isActive = isLinkActive(link.href)
+            
             return (
               <a
                 key={link.href}
@@ -233,7 +235,7 @@ const Header = ({ pathname }: HeaderProps) => {
             className='bg-primary hover:bg-primary/90 w-full rounded-full py-5 text-base font-semibold text-white'
             asChild
           >
-            <a href='/#donation-programmes' onClick={() => setMobileOpen(false)}>
+            <a href='/#ways-to-help-section' onClick={() => setMobileOpen(false)}>
               Donate Now
             </a>
           </Button>

@@ -16,7 +16,7 @@ export default defineConfig({
         const url = item.url
 
         // Homepage
-        if (url === 'https://mabecare-foundation.vercel.app/') {
+        if (new URL(url).pathname === '/') {
           // @ts-expect-error - Valid sitemap changefreq value
           item.changefreq = 'daily'
           item.priority = 1.0
