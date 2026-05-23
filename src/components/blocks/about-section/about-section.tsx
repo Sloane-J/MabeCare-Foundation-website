@@ -4,15 +4,7 @@ import { Button } from '@/components/ui/button'
 
 // — Icons —
 const AboutIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
+  <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
     <circle cx='12' cy='12' r='10' />
     <line x1='12' y1='8' x2='12' y2='12' />
     <line x1='12' y1='16' x2='12.01' y2='16' />
@@ -20,29 +12,13 @@ const AboutIcon = ({ className }: { className?: string }) => (
 )
 
 const ImpactIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
+  <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
     <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2' />
   </svg>
 )
 
 const TeamIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
+  <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
     <path d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2' />
     <circle cx='9' cy='7' r='4' />
     <path d='M23 21v-2a4 4 0 0 0-3-3.87' />
@@ -51,49 +27,44 @@ const TeamIcon = ({ className }: { className?: string }) => (
 )
 
 const EmpathyIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
+  <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
     <path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z' />
   </svg>
 )
 
 const SustainIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
+  <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
     <path d='M12 22V12' />
     <path d='M12 12C12 12 7 9 7 5a5 5 0 0 1 10 0c0 4-5 7-5 7z' />
   </svg>
 )
 
 const CollabIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
+  <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
     <circle cx='18' cy='5' r='3' />
     <circle cx='6' cy='12' r='3' />
     <circle cx='18' cy='19' r='3' />
     <line x1='8.59' y1='13.51' x2='15.42' y2='17.49' />
     <line x1='15.41' y1='6.51' x2='8.59' y2='10.49' />
+  </svg>
+)
+
+const XIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox='0 0 24 24' fill='currentColor'>
+    <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z' />
+  </svg>
+)
+
+const LinkedInIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox='0 0 24 24' fill='currentColor'>
+    <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' />
+  </svg>
+)
+
+const MailIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+    <path d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z' />
+    <polyline points='22,6 12,13 2,6' />
   </svg>
 )
 
@@ -109,7 +80,7 @@ const values = [
     icon: <SustainIcon className='size-5 text-white' />,
     iconBg: 'bg-[#facc15]',
     title: 'Sustainability',
-    description: 'Transparency and accountability are at the heart of MabEcare. We are committed to lasting change.'
+    description: 'Transparency and accountability are at the heart of MabeCare. We are committed to lasting change.'
   },
   {
     icon: <CollabIcon className='size-5 text-white' />,
@@ -130,22 +101,34 @@ const team = [
   {
     name: 'Miss Joana Ewurama Sarfoa Yirekyi',
     role: 'Founder',
-    image: '/images/about-us/Joanna Yirenkyi.jpg'
+    image: '/images/about-us/Joanna Yirenkyi.jpg',
+    twitter: '#',
+    linkedin: 'https://www.linkedin.com/in/joana-yirenkyi-019a55385',
+    email: 'mailto:jhaycraig.ama@gmail.com'
   },
   {
     name: 'Miss Joanitta Yirekyi',
     role: 'Executive Director',
-    image: '/images/about-us/Joannita Yirenky.jpg'
+    image: '/images/about-us/Joannita Yirenky.jpg',
+    twitter: '#',
+    linkedin: '#',
+    email: 'mailto:joanitta071@gmail.com'
   },
   {
     name: 'Efua Boateng',
     role: 'Community Outreach Lead',
-    image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80'
+    image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80',
+    twitter: '#',
+    linkedin: '#',
+    email: 'mailto:#'
   },
   {
     name: 'Kofi Darko',
     role: 'Finance & Operations',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+    twitter: '#',
+    linkedin: '#',
+    email: 'mailto:#'
   }
 ]
 
@@ -156,7 +139,6 @@ const AboutSection = () => {
       {/* ── 1. MISSION / HERO ── */}
       <section aria-labelledby='about-heading' className='py-12 sm:py-20 lg:py-28'>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-          {/* Top row */}
           <div className='mb-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-2'>
             <div className='flex flex-col gap-4'>
               <Badge variant='outline' className='w-fit gap-2 px-4 py-1.5 text-sm font-normal'>
@@ -167,7 +149,6 @@ const AboutSection = () => {
                 Know about our mission, vision, and journey
               </h2>
             </div>
-
             <div className='flex flex-col gap-5 lg:pt-16'>
               <p className='text-muted-foreground text-base leading-relaxed sm:text-lg'>
                 Together, we can make a real impact in communities around the world. Help us bring hope and support to
@@ -179,7 +160,6 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Wide image */}
           <div className='overflow-hidden rounded-3xl'>
             <img
               src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1400&q=80'
@@ -219,11 +199,10 @@ const AboutSection = () => {
               Our Impacts
             </Badge>
             <h2 id='impact-heading' className='max-w-2xl text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl'>
-              Since our founding, MabEcare has made an extensive impact
+              Since our founding, MabeCare has made an extensive impact
             </h2>
           </div>
 
-          {/* Yellow stats card */}
           <div className='rounded-3xl bg-[#F5D547] px-8 py-10 sm:px-12 sm:py-12'>
             <div className='grid grid-cols-2 gap-8 lg:grid-cols-4'>
               {impacts.map((item, i) => (
@@ -241,16 +220,15 @@ const AboutSection = () => {
       <section aria-labelledby='mission-heading' className='pb-12 sm:pb-20 lg:pb-28'>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
           <div className='grid grid-cols-1 items-center gap-12 lg:grid-cols-2'>
-            {/* Image with floating chart */}
             <div className='relative'>
               <div className='overflow-hidden rounded-3xl'>
                 <img
                   src='https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=700&q=80'
-                  alt='MabEcare volunteers working together in the community'
-                  className='h-[400px] w-full object-cover sm:h-[480px]' />
+                  alt='MabeCare volunteers working together in the community'
+                  className='h-[400px] w-full object-cover sm:h-[480px]'
+                />
               </div>
 
-              {/* Floating chart card */}
               <div className='dark:bg-card absolute right-4 bottom-6 w-52 rounded-2xl bg-white p-5 shadow-lg sm:right-[-20px] sm:w-60'>
                 <p className='text-foreground mb-0.5 text-sm font-semibold'>Donation chart</p>
                 <p className='text-muted-foreground mb-4 text-xs'>Donations received in past years</p>
@@ -259,10 +237,7 @@ const AboutSection = () => {
                     <div key={i} className='flex-1'>
                       <div
                         className='w-full rounded-t-sm'
-                        style={{
-                          height: `${h}%`,
-                          backgroundColor: i === 4 ? '#ff1493' : '#86efac'
-                        }}
+                        style={{ height: `${h}%`, backgroundColor: i === 4 ? '#ff1493' : '#86efac' }}
                       />
                     </div>
                   ))}
@@ -277,13 +252,12 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* Text */}
             <div className='flex flex-col gap-6'>
               <Badge variant='outline' className='w-fit px-4 py-1.5 text-sm font-normal'>
                 Our Mission
               </Badge>
               <h3 id='mission-heading' className='text-2xl leading-snug font-bold sm:text-3xl'>
-                MabEcare's work is made possible by a dedicated community
+                MabeCare's work is made possible by a dedicated community
               </h3>
               <p className='text-muted-foreground text-base leading-relaxed'>
                 We value transparency and keep our supporters informed about the tangible outcomes of their
@@ -316,14 +290,52 @@ const AboutSection = () => {
           <div className='grid grid-cols-2 gap-6 sm:grid-cols-4'>
             {team.map((member, i) => (
               <div key={i} className='flex flex-col items-center gap-3'>
-                <div className='bg-muted aspect-[3/4] w-full overflow-hidden rounded-2xl'>
+                {/* Image with hover overlay */}
+                <div className='group bg-muted relative aspect-[3/4] w-full overflow-hidden rounded-2xl'>
                   <img
                     src={member.image}
-                    alt={`${member.name}, ${member.role} at MabEcare Foundation`}
-                    className='h-full w-full object-cover object-top grayscale transition-all duration-500 hover:grayscale-0'
+                    alt={`${member.name}, ${member.role} at MabeCare Foundation`}
+                    className='h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
                     loading='lazy'
                   />
+
+                  {/* Overlay — slides up on hover */}
+                  <div className='absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0'>
+                    <div className='bg-gradient-to-t from-black/80 to-black/40 px-4 py-5'>
+                      <div className='flex items-center justify-center gap-3'>
+                        <a
+                          href={member.twitter}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          aria-label={`${member.name} on X (Twitter)`}
+                          className='flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25'
+                        >
+                          <XIcon className='size-3.5' />
+                        </a>
+
+                        <a
+                          href={member.linkedin}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          aria-label={`${member.name} on LinkedIn`}
+                          className='flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25'
+                        >
+                          <LinkedInIcon className='size-3.5' />
+                        </a>
+
+                        <a
+                          href={member.email}
+                          aria-label={`Email ${member.name}`}
+                          className='flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25'
+                        >
+                          <MailIcon className='size-3.5' />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Name and role below image */}
                 <div className='text-center'>
                   <p className='text-foreground text-sm font-semibold'>{member.name}</p>
                   <p className='text-muted-foreground text-xs'>{member.role}</p>
@@ -334,7 +346,7 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* ── 6. CTA (reusable) ── */}
+      {/* ── 6. CTA ── */}
       <CallToAction />
     </div>
   )
