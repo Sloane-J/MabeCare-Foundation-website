@@ -162,7 +162,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                         src={heroImage.userAvatar}
                         className='h-10 w-10 flex-shrink-0 rounded-full object-cover'
                         alt='Donor'
-                        loading='lazy'
+                        loading='eager'
                         width={40}
                         height={40}
                       />

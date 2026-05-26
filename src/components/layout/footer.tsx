@@ -93,7 +93,7 @@ const Footer = () => {
               className='focus-visible:ring-primary flex items-center gap-3 rounded-sm focus:outline-none focus-visible:ring-2'
               aria-label='MabEcare Foundation home'
             >
-              <img src='/images/site-logo.png' alt='Logo' className='h-8 w-auto' width={32} height={32} />
+              <img src='/images/site-logo.png' alt='Logo' loading="lazy" className='h-8 w-auto' width={32} height={32} />
               <div className='flex flex-col leading-none'>
                 <span className='text-sm font-bold uppercase'>MabEcare</span>
                 <span className='text-primary text-xs uppercase'>Foundation</span>
@@ -166,16 +166,19 @@ const Footer = () => {
         {/* Bottom */}
         <div className='mt-8 flex flex-col items-center justify-between gap-6 sm:flex-row'>
           <p className='text-muted-foreground text-sm'>
-            © {new Date().getFullYear()} All Rights Reserved by{' '}
-            <a
-              href='https://sloanedev.vercel.app/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-foreground hover:underline'
-            >
-              Sloane.Dev
-            </a>
-          </p>
+  © {new Date().getFullYear()} MabEcare Foundation. All Rights Reserved.
+</p>
+<p className='text-muted-foreground/50 text-xs mt-1'>
+  Site by{' '}
+  <a
+    href='https://samuel-dorkey.vercel.app/'
+    target='_blank'
+    rel='noopener noreferrer'
+    className='hover:text-muted-foreground transition-colors'
+  >
+    Samuel Dorkey Jr
+  </a>
+</p>
 
           <div className='flex items-center gap-6'>
             {socials.map(social => (

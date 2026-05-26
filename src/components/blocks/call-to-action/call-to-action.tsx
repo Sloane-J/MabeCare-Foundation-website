@@ -125,6 +125,7 @@ const CallToAction = () => {
                       key={i}
                       src={src}
                       alt="Volunteer"
+                      loading="lazy"
                       className="w-8 h-8 rounded-full object-cover border-2 border-white/20 grayscale"
                     />
                   ))}
