@@ -1,4 +1,8 @@
+'use client'
+
+import { useRef } from 'react'
 import { Badge } from '@/components/ui/badge'
+import { motion, useInView } from 'framer-motion'
 
 const SparkleIcon = ({ className }: { className?: string }) => (
   <svg
@@ -84,10 +88,43 @@ const newProgrammes: Programme[] = [
   }
 ]
 
-const ProgrammeCard = ({ programme, imageHeight }: { programme: Programme; imageHeight: string }) => (
-  <div className='border-border bg-card flex flex-col overflow-hidden rounded-3xl border transition-shadow duration-300 hover:shadow-md'>
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }
+  })
+}
+
+const ProgrammeCard = ({
+  programme,
+  imageHeight,
+  delay,
+  inView
+}: {
+  programme: Programme
+  imageHeight: string
+  delay: number
+  inView: boolean
+}) => (
+  <motion.div
+    variants={fadeUp}
+    initial='hidden'
+    animate={inView ? 'visible' : 'hidden'}
+    custom={delay}
+    whileHover={{ y: -4, transition: { duration: 0.2 } }}
+    className='border-border bg-card flex cursor-default flex-col overflow-hidden rounded-3xl border transition-shadow duration-300 hover:shadow-md'
+  >
     <div className='m-3 mb-0 overflow-hidden rounded-2xl'>
-      <img src={programme.image} alt={programme.alt} loading='lazy' className={`w-full ${imageHeight} object-cover`} />
+      <motion.img
+        src={programme.image}
+        alt={programme.alt}
+        loading='lazy'
+        className={`w-full ${imageHeight} object-cover`}
+        whileHover={{ scale: 1.04 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      />
     </div>
     <div className='flex flex-col gap-3 p-5'>
       <Badge variant='outline' className='w-fit rounded-full px-3 py-1 text-xs font-normal'>
@@ -98,38 +135,78 @@ const ProgrammeCard = ({ programme, imageHeight }: { programme: Programme; image
         <p className='text-muted-foreground text-sm leading-relaxed'>{programme.description}</p>
       </div>
     </div>
-  </div>
+  </motion.div>
 )
 
 const DonationProgramsSection = () => {
+  const headerRef = useRef(null)
+  const topGridRef = useRef(null)
+  const bottomGridRef = useRef(null)
+
+  const headerInView = useInView(headerRef, { once: true, margin: '-80px' })
+  const topGridInView = useInView(topGridRef, { once: true, margin: '-80px' })
+  const bottomGridInView = useInView(bottomGridRef, { once: true, margin: '-80px' })
+
   return (
     <section id='donation-programmes' className='py-12 sm:py-20 lg:py-28'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-        <div className='mx-auto mb-12 flex max-w-2xl flex-col items-center justify-center space-y-4 text-center sm:mb-16'>
-          <Badge variant='outline' className='gap-2 px-4 py-1.5 text-sm font-normal'>
-            <SparkleIcon className='text-primary size-4' />
-            Our Programmes
-          </Badge>
-          <h2 className='text-3xl font-normal tracking-tight md:text-4xl lg:text-5xl'>
+        {/* Header */}
+        <div
+          ref={headerRef}
+          className='mx-auto mb-12 flex max-w-2xl flex-col items-center justify-center space-y-4 text-center sm:mb-16'
+        >
+          <motion.div variants={fadeUp} initial='hidden' animate={headerInView ? 'visible' : 'hidden'} custom={0}>
+            <Badge variant='outline' className='gap-2 px-4 py-1.5 text-sm font-normal'>
+              <SparkleIcon className='text-primary size-4' />
+              Our Programmes
+            </Badge>
+          </motion.div>
+
+          <motion.h2
+            variants={fadeUp}
+            initial='hidden'
+            animate={headerInView ? 'visible' : 'hidden'}
+            custom={0.1}
+            className='text-3xl font-normal tracking-tight md:text-4xl lg:text-5xl'
+          >
             Make a meaningful <span className='text-primary'>donation</span> today
-          </h2>
-          <p className='text-muted-foreground max-w-xl text-base sm:text-lg'>
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            initial='hidden'
+            animate={headerInView ? 'visible' : 'hidden'}
+            custom={0.2}
+            className='text-muted-foreground max-w-xl text-base sm:text-lg'
+          >
             Every contribution goes directly into the hands of mothers and children who need it most. Help us keep
             going.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Original 3 programmes — larger cards */}
-        <div className='mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+        {/* Original 3 programmes */}
+        <div ref={topGridRef} className='mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
           {originalProgrammes.map((programme, index) => (
-            <ProgrammeCard key={index} programme={programme} imageHeight='h-52' />
+            <ProgrammeCard
+              key={index}
+              programme={programme}
+              imageHeight='h-52'
+              delay={index * 0.1}
+              inView={topGridInView}
+            />
           ))}
         </div>
 
-        {/* New 4 programmes — slightly smaller cards */}
-        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
+        {/* New 4 programmes */}
+        <div ref={bottomGridRef} className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
           {newProgrammes.map((programme, index) => (
-            <ProgrammeCard key={index} programme={programme} imageHeight='h-40' />
+            <ProgrammeCard
+              key={index}
+              programme={programme}
+              imageHeight='h-40'
+              delay={index * 0.08}
+              inView={bottomGridInView}
+            />
           ))}
         </div>
       </div>
