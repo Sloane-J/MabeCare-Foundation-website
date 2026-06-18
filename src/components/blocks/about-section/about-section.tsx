@@ -80,7 +80,7 @@ const values = [
     icon: <SustainIcon className='size-5 text-white' />,
     iconBg: 'bg-[#facc15]',
     title: 'Sustainability',
-    description: 'Transparency and accountability are at the heart of MabeCare. We are committed to lasting change.'
+    description: 'Transparency and accountability are at the heart of MabEcare. We are committed to lasting change.'
   },
   {
     icon: <CollabIcon className='size-5 text-white' />,
@@ -199,7 +199,7 @@ const AboutSection = () => {
               Our Impacts
             </Badge>
             <h2 id='impact-heading' className='max-w-2xl text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl'>
-              Since our founding, MabeCare has made an extensive impact
+              Since our founding, MabEcare has made an extensive impact
             </h2>
           </div>
 
@@ -224,7 +224,7 @@ const AboutSection = () => {
               <div className='overflow-hidden rounded-3xl'>
                 <img
                   src='https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=700&q=80'
-                  alt='MabeCare volunteers working together in the community'
+                  alt='MabEcare volunteers working together in the community'
                   className='h-[400px] w-full object-cover sm:h-[480px]'
                 />
               </div>
@@ -257,7 +257,7 @@ const AboutSection = () => {
                 Our Mission
               </Badge>
               <h3 id='mission-heading' className='text-2xl leading-snug font-bold sm:text-3xl'>
-                MabeCare's work is made possible by a dedicated community
+                MabEcare's work is made possible by a dedicated community
               </h3>
               <p className='text-muted-foreground text-base leading-relaxed'>
                 We value transparency and keep our supporters informed about the tangible outcomes of their
@@ -294,7 +294,7 @@ const AboutSection = () => {
                 <div className='group bg-muted relative aspect-[3/4] w-full overflow-hidden rounded-2xl'>
                   <img
                     src={member.image}
-                    alt={`${member.name}, ${member.role} at MabeCare Foundation`}
+                    alt={`${member.name}, ${member.role} at MabEcare Foundation`}
                     className='h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
                     loading='lazy'
                   />
