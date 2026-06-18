@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/built%20with-Astro-FF5D01" alt="Built with Astro" />
   <img src="https://img.shields.io/badge/styled%20with-Tailwind%20CSS%20v4-38BDF8" alt="Tailwind CSS" />
 </p>
-- 🌐 [https://sloanedev.vercel.app](https://sloanedev.vercel.app)
+- 🌐 [https://samuel-dorkey.vercel.app](https://samuel-dorkey.vercel.app)
 - 🐙 [https://github.com/Sloane-J](https://github.com/Sloane-J)
 
 ## About the Foundation
@@ -280,7 +280,7 @@ The site works on any static hosting platform — Vercel, Netlify, Cloudflare Pa
 
 Built and maintained by **Samuel Dorkey**
 
-- 🌐 [sloanedev.vercel.app](https://sloanedev.vercel.app)
+- 🌐 [sloanedev.vercel.app](https://samuel-dorkey.vercel.app)
 - 🐙 [github.com/Sloane-J](https://github.com/Sloane-J)
 
 Built on top of the [shadcn/studio](https://shadcnstudio.com) Astro template.
