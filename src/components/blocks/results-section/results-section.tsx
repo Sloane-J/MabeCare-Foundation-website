@@ -147,27 +147,25 @@ const ResultsSection = () => {
                 {[40, 55, 65, 80, 100].map((height, i) => (
                   <motion.div
                     key={i}
-                    className='flex flex-1 flex-col items-center gap-1'
-                    initial={{ scaleY: 0, originY: 1 }}
-                    animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-                    transition={{ duration: 0.5, ease: 'easeOut', delay: 0.6 + i * 0.07 }}
-                    style={{ transformOrigin: 'bottom' }}
-                  >
-                    <div
-                      className='w-full rounded-t-sm'
-                      style={{
-                        height: `${height}%`,
-                        backgroundColor: i === 4 ? '#ff1493' : '#86efac'
-                      }}
-                    />
-                  </motion.div>
+                    initial={{ height: 0 }}
+                    animate={isInView ? { height: `${height}%` } : { height: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: 'easeOut',
+                      delay: 0.6 + i * 0.08
+                    }}
+                    className='flex-1 self-end rounded-t-sm'
+                    style={{
+                      backgroundColor: i === 4 ? '#ff1493' : '#86efac'
+                    }}
+                  />
                 ))}
               </div>
 
               <div className='mt-2 flex gap-2'>
-                {['2020', '2021', '2022', '2023', '2024'].map(yr => (
-                  <span key={yr} className='text-muted-foreground flex-1 text-center text-[10px]'>
-                    {yr}
+                {['2020', '2021', '2022', '2023', '2024'].map(year => (
+                  <span key={year} className='text-muted-foreground flex-1 text-center text-[10px]'>
+                    {year}
                   </span>
                 ))}
               </div>

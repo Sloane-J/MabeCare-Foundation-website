@@ -1,4 +1,8 @@
+'use client'
+
+import { useRef } from 'react'
 import { Badge } from '@/components/ui/badge'
+import { motion, useInView } from 'framer-motion'
 
 const HandshakeIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -45,12 +49,29 @@ const features = [
   },
 ]
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay }
+  })
+}
+
 const VolunteerImpactSection = () => {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
   return (
     <section id="volunteer-impact" className="py-12 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl bg-[#f5f5f5] dark:bg-[#722f37] px-8 py-12 sm:px-12 sm:py-16">
-
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 32 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="relative overflow-hidden rounded-3xl bg-[#f5f5f5] dark:bg-[#722f37] px-8 py-12 sm:px-12 sm:py-16"
+        >
           {/* Subtle grid texture */}
           <div
             className="absolute inset-0 opacity-[0.06] pointer-events-none"
@@ -65,12 +86,24 @@ const VolunteerImpactSection = () => {
 
           {/* Top row */}
           <div className="relative z-10 grid grid-cols-1 gap-6 sm:grid-cols-2 mb-10 sm:mb-14 items-start">
-            <h2 className="text-3xl sm:text-4xl font-normal text-foreground leading-snug">
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              custom={0.1}
+              className="text-3xl sm:text-4xl font-normal text-foreground leading-snug"
+            >
               Volunteer With Us and Help Shape Better Futures
-            </h2>
-            <p className="text-muted-foreground text-base sm:text-lg sm:text-right leading-relaxed">
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              custom={0.2}
+              className="text-muted-foreground text-base sm:text-lg sm:text-right leading-relaxed"
+            >
               You do not need to be an expert to make a difference. Show up, share what you know, and help us support mothers and children across Ghana.
-            </p>
+            </motion.p>
           </div>
 
           {/* Bottom row */}
@@ -79,9 +112,14 @@ const VolunteerImpactSection = () => {
             {/* Feature cards */}
             <div className="flex flex-col gap-4">
               {features.map((feature, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="bg-white dark:bg-card rounded-2xl px-6 py-5 flex flex-col gap-2 shadow-sm border border-border"
+                  variants={fadeUp}
+                  initial="hidden"
+                  animate={inView ? 'visible' : 'hidden'}
+                  custom={0.3 + index * 0.1}
+                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  className="bg-white dark:bg-card rounded-2xl px-6 py-5 flex flex-col gap-2 shadow-sm border border-border cursor-default"
                 >
                   <div className="flex items-center gap-3">
                     {feature.icon}
@@ -90,7 +128,7 @@ const VolunteerImpactSection = () => {
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {feature.description}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -98,7 +136,12 @@ const VolunteerImpactSection = () => {
             <div className="relative flex items-end justify-center lg:justify-end">
 
               {/* Watch story reel pill */}
-              <div className="absolute left-0 bottom-8 z-20 flex items-center gap-3 bg-white dark:bg-card rounded-full pl-4 pr-2 py-2 shadow-md border border-border">
+              <motion.div
+                initial={{ opacity: 0, x: -16 }}
+                animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -16 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
+                className="absolute left-0 bottom-8 z-20 flex items-center gap-3 bg-white dark:bg-card rounded-full pl-4 pr-2 py-2 shadow-md border border-border"
+              >
                 <span className="text-sm font-medium text-foreground whitespace-nowrap leading-tight">
                   Watch our<br />story reel
                 </span>
@@ -109,20 +152,30 @@ const VolunteerImpactSection = () => {
                 >
                   <PlayIcon className="size-3.5 text-background ml-0.5" />
                 </button>
-              </div>
+              </motion.div>
 
               {/* Badge */}
-              <div className="absolute top-4 right-0 z-20">
+              <motion.div
+                initial={{ opacity: 0, x: 16 }}
+                animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 16 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
+                className="absolute top-4 right-0 z-20"
+              >
                 <Badge
                   variant="outline"
                   className="bg-white dark:bg-card text-foreground shadow-md text-xs font-medium px-4 py-2 rounded-full border-border"
                 >
                   Real Mothers Changed by Your Support
                 </Badge>
-              </div>
+              </motion.div>
 
               {/* Image */}
-              <div className="relative mt-8 lg:mt-0 w-full">
+              <motion.div
+                className="relative mt-8 lg:mt-0 w-full"
+                initial={{ scale: 0.97, opacity: 0 }}
+                animate={inView ? { scale: 1, opacity: 1 } : { scale: 0.97, opacity: 0 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
+              >
                 <img
                   src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=700&q=80"
                   alt="Volunteers spending time with mothers and children in the community"
@@ -130,11 +183,11 @@ const VolunteerImpactSection = () => {
                   className="relative z-10 w-full h-72 sm:h-96 object-cover rounded-2xl"
                   style={{ maskImage: 'linear-gradient(to top, transparent 0%, black 15%)' }}
                 />
-              </div>
+              </motion.div>
             </div>
 
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
