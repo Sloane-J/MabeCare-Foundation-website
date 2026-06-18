@@ -1,22 +1,24 @@
-# robots.txt for MabEcare Foundation
-# Production-ready configuration for search engine crawlers
+# Robots.txt for MabEcare Foundation
+# Optimized for full indexing and rendering
 
-# Allow all crawlers full access
 User-agent: *
 Allow: /
 
-# Disallow admin and private areas
+# Block sensitive/private areas only
 Disallow: /admin/
 Disallow: /private/
-Disallow: /_astro/
 
-# Disallow search result pages (if you add search)
+# If search pages exist, prevent indexing of duplicate content
+Disallow: /search
 Disallow: /search?
-Disallow: /*?q=
 
-# Allow CSS and JS files for rendering
+# Allow all assets required for rendering (important for Astro / SPA rendering)
+Allow: /_astro/
 Allow: /*.css$
 Allow: /*.js$
+Allow: /*.mjs$
+Allow: /*.woff$
+Allow: /*.woff2$
 
-# Sitemap location
+# Sitemaps
 Sitemap: https://mabecare-foundation.vercel.app/sitemap-index.xml
