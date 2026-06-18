@@ -140,7 +140,7 @@ const Header = ({ pathname }: HeaderProps) => {
             <img
               src='/images/site-logo.png'
               alt='MabEcare Foundation Logo'
-              className='h-9 w-auto object-contain'
+              className='h-12 w-auto object-contain'
               width={36}
               height={36}
             />
@@ -212,7 +212,7 @@ const Header = ({ pathname }: HeaderProps) => {
         <nav className='mt-6 flex flex-col gap-1' aria-label='Mobile navigation'>
           {navLinks.map(link => {
             const isActive = isLinkActive(link.href)
-            
+
             return (
               <a
                 key={link.href}
