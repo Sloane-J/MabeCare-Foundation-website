@@ -47,6 +47,9 @@ build/
 # jetbrains setting folder
 .idea/
 
+# plannint modules
+modules/
+
 foundationwebsitechat.txt
 
 shadcn-astro-bistro-landing-page-free-main/
