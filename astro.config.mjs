@@ -12,7 +12,6 @@ export default defineConfig({
   integrations: [
     react(),
     mdx(),
-    vercel(),
     sitemap({
       filter: page => !page.includes('/admin/') && !page.includes('/private/') && !page.includes('/404'),
       serialize(item) {
@@ -71,6 +70,7 @@ export default defineConfig({
       }
     })
   ],
+  adapter: vercel(),
   output: 'server',
   compressHTML: true,
   build: {
@@ -82,12 +82,14 @@ export default defineConfig({
       cssMinify: true,
       minify: 'esbuild',
       rollupOptions: {
-        output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom']
-          }
-        }
+  output: {
+    manualChunks(id) {
+      if (id.includes('react') || id.includes('react-dom')) {
+        return 'react-vendor'
       }
+    }
+  }
+}
     },
     ssr: {
       noExternal: ['@radix-ui/*']
