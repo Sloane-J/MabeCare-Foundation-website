@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://mabecare-foundation.vercel.app" target="_blank">
+  <a href="https://mabecare-foundation.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/live-mabecare--foundation.vercel.app-green" alt="Live Site" />
   </a>
   <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" />
@@ -197,7 +197,7 @@ export const SITE_METADATA = {
   },
   description:
     'MabEcare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach.',
-  siteUrl: 'https://mabecare-foundation.vercel.app',
+  siteUrl: 'https://mabecare-foundation.vercel.app/',
   locale: 'en_US',
   language: 'en-US',
   creator: 'Samuel Dorkey',
@@ -261,7 +261,7 @@ Spam protection is handled via a honeypot field — no CAPTCHA friction for user
 
 The site is deployed on **Vercel** with automatic deployments on every push to `main`.
 
-**Live URL:** [https://mabecare-foundation.vercel.app](https://mabecare-foundation.vercel.app)
+**Live URL:** [https://mabecare-foundation.vercel.app/](https://mabecare-foundation.vercel.app/)
 
 To deploy manually, push to the `main` branch or run:
 

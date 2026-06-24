@@ -6,7 +6,9 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
-  site: 'https://mabecare-foundation.vercel.app',
+  site: 'https://mabecare-foundation.vercel.app/',
+  base: "/",
+  trailingSlash: "always",
   integrations: [
     react(),
     mdx(),
@@ -68,7 +70,7 @@ export default defineConfig({
       }
     })
   ],
-  output: 'static',
+  output: 'server',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto'
