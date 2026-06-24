@@ -7,7 +7,7 @@ export const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: import.meta.env.PROD,
   sameSite: 'lax' as const,
-  path: '/admin',
+  path: '/',
   maxAge: 60 * 60 * 8, // 8 hours
 }
 
