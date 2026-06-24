@@ -1,5 +1,6 @@
 ---
 export const prerender = false
+
 import { getSession } from '../../lib/auth/session'
 
 const session = await getSession(Astro.cookies)
@@ -13,64 +14,435 @@ if (session) return Astro.redirect('/admin/dashboard')
     <meta name="robots" content="noindex, nofollow" />
     <title>Admin Login — MabEcare Foundation</title>
     <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Performance and Resource Hints -->
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//fonts.gstatic.com' />
+<link rel='preconnect' href='https://fonts.googleapis.com' />
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin='anonymous' />
+
+<!-- Google Fonts — non-blocking load -->
+<link
+  rel='preload'
+  as='style'
+  href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+/>
+<link
+  href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+  rel='stylesheet'
+  media='print'
+  onload="this.media='all'"
+/>
+<noscript>
+  <link
+    href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+    rel='stylesheet'
+  />
+</noscript>
+    <style>
+      /* ── Page shell ── */
+      .auth-page {
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: 1fr;
+        background: var(--background);
+        overflow: hidden;
+      }
+
+      @media (min-width: 1024px) {
+        .auth-page { grid-template-columns: 1fr 1fr; }
+      }
+
+      /* ── Left brand panel ── */
+      .brand-panel {
+        display: none;
+        position: relative;
+        background: linear-gradient(135deg, #1a0010 0%, #2d0020 40%, #0d0d0d 100%);
+        overflow: hidden;
+      }
+
+      @media (min-width: 1024px) {
+        .brand-panel { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3rem; }
+      }
+
+      /* Animated blobs */
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.35;
+        animation: drift 12s ease-in-out infinite alternate;
+      }
+      .blob-1 {
+        width: 420px; height: 420px;
+        background: #ff1493;
+        top: -120px; left: -80px;
+        animation-delay: 0s;
+      }
+      .blob-2 {
+        width: 300px; height: 300px;
+        background: #c0006e;
+        bottom: -60px; right: -60px;
+        animation-delay: -4s;
+      }
+      .blob-3 {
+        width: 200px; height: 200px;
+        background: #ff69b4;
+        top: 50%; left: 60%;
+        animation-delay: -8s;
+      }
+
+      @keyframes drift {
+        from { transform: translate(0, 0) scale(1); }
+        to   { transform: translate(30px, 20px) scale(1.08); }
+      }
+
+      .brand-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        color: #fff;
+      }
+
+      .brand-logo {
+        width: 64px; height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff1493, #ff69b4);
+        box-shadow: 0 0 40px rgba(255,20,147,0.5);
+        margin: 0 auto 2rem;
+        display: flex; align-items: center; justify-content: center;
+      }
+
+      .brand-logo svg { width: 32px; height: 32px; color: #fff; }
+
+      .brand-title {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.75rem;
+      }
+
+      .brand-sub {
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.55);
+        max-width: 280px;
+        line-height: 1.6;
+      }
+
+      .brand-badge {
+        margin-top: 3rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        backdrop-filter: blur(12px);
+        border-radius: 100px;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        color: rgba(255,255,255,0.7);
+      }
+
+      .badge-dot {
+        width: 7px; height: 7px;
+        background: #4ade80;
+        border-radius: 50%;
+        box-shadow: 0 0 6px #4ade80;
+        animation: pulse-dot 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+
+      /* ── Right login panel ── */
+      .login-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 1.5rem;
+        background: var(--background);
+      }
+
+      .login-box {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      /* Mobile logo (shown only when brand panel is hidden) */
+      .mobile-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2.5rem;
+        gap: 0.75rem;
+      }
+
+      @media (min-width: 1024px) {
+        .mobile-logo { display: none; }
+      }
+
+      .mobile-logo-mark {
+        width: 48px; height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff1493, #ff69b4);
+        box-shadow: 0 0 24px rgba(255,20,147,0.35);
+      }
+
+      /* Headings */
+      .login-heading {
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--foreground);
+        margin-bottom: 0.375rem;
+      }
+
+      .login-sub {
+        font-size: 0.85rem;
+        color: var(--muted-foreground);
+        margin-bottom: 2rem;
+      }
+
+      /* Form */
+      .field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+
+      .field label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--foreground);
+        letter-spacing: 0.01em;
+      }
+
+      .input-wrap { position: relative; }
+
+      .input-icon {
+        position: absolute;
+        left: 0.85rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted-foreground);
+        pointer-events: none;
+        transition: color 0.2s;
+      }
+
+      .field-input {
+        width: 100%;
+        padding: 0.7rem 0.85rem 0.7rem 2.5rem;
+        border-radius: 0.6rem;
+        border: 1.5px solid var(--border);
+        background: var(--input);
+        color: var(--foreground);
+        font-size: 0.875rem;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        box-sizing: border-box;
+      }
+
+      .field-input::placeholder { color: var(--muted-foreground); opacity: 0.6; }
+
+      .field-input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(255,20,147,0.12);
+      }
+
+      .field-input:focus + .input-icon,
+      .input-wrap:focus-within .input-icon {
+        color: var(--primary);
+      }
+
+      /* Error */
+      .error-box {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(239,68,68,0.08);
+        border: 1px solid rgba(239,68,68,0.2);
+        border-radius: 0.5rem;
+        padding: 0.65rem 0.85rem;
+        font-size: 0.8rem;
+        color: var(--destructive);
+        margin-bottom: 1.1rem;
+      }
+      .error-box.visible { display: flex; }
+
+      /* Submit button */
+      .submit-btn {
+        width: 100%;
+        padding: 0.8rem;
+        border-radius: 0.6rem;
+        border: none;
+        background: linear-gradient(135deg, #ff1493, #e0006a);
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+        box-shadow: 0 4px 20px rgba(255,20,147,0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .submit-btn:hover:not(:disabled) {
+        opacity: 0.92;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 28px rgba(255,20,147,0.45);
+      }
+
+      .submit-btn:active:not(:disabled) { transform: translateY(0); }
+
+      .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+      /* Spinner */
+      .spinner {
+        display: none;
+        width: 16px; height: 16px;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      .submit-btn.loading .spinner { display: block; }
+      .submit-btn.loading .btn-text { opacity: 0.7; }
+
+      /* Footer */
+      .login-footer {
+        margin-top: 2rem;
+        text-align: center;
+        font-size: 0.72rem;
+        color: var(--muted-foreground);
+      }
+    </style>
   </head>
-  <body class="bg-background text-foreground min-h-screen flex items-center justify-center p-4">
-    <div class="w-full max-w-sm">
-      <div class="mb-8 text-center">
-        <div class="mx-auto mb-4 h-10 w-10 rounded-full bg-primary"></div>
-        <h1 class="text-2xl font-semibold">MabEcare Admin</h1>
-        <p class="mt-1 text-sm text-muted-foreground">Sign in to your dashboard</p>
+
+  <body class="auth-page">
+
+    <!-- ── Left Brand Panel ─────────────────── -->
+    <aside class="brand-panel" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+
+      <div class="brand-content">
+        <div class="brand-logo">
+          <!-- Heart / care icon -->
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 21.593c-.525-.444-3.75-3.143-5.999-5.568C3.896 13.695 2 11.39 2 8.961 2 6.03 4.03 4 6.961 4c1.607 0 3.123.804 4.039 2.031A4.964 4.964 0 0 1 15.039 4C17.97 4 20 6.03 20 8.961c0 2.43-1.896 4.734-4.001 7.064-2.249 2.425-5.474 5.124-5.999 5.568z"/>
+          </svg>
+        </div>
+
+        <h1 class="brand-title">MabEcare<br/>Foundation</h1>
+        <p class="brand-sub">Manage donations, in-kind contributions, and impact reports.</p>
+
       </div>
+    </aside>
 
-      <form id="login-form" class="space-y-4">
-        <div class="space-y-1.5">
-          <label for="email" class="text-sm font-medium">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            autocomplete="email"
-            class="w-full rounded-lg border border-border bg-input px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring"
-            placeholder="admin@mabecare-foundation.org"
-          />
+    <!-- ── Right Login Panel ────────────────── -->
+    <main class="login-panel">
+      <div class="login-box">
+
+        <!-- Mobile-only logo -->
+        <div class="mobile-logo" aria-hidden="true">
+          <div class="mobile-logo-mark"></div>
         </div>
 
-        <div class="space-y-1.5">
-          <label for="password" class="text-sm font-medium">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            autocomplete="current-password"
-            class="w-full rounded-lg border border-border bg-input px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring"
-            placeholder="••••••••"
-          />
-        </div>
+        <h1 class="login-heading">Welcome back</h1>
+        <p class="login-sub">Sign in to your admin dashboard</p>
 
-        <div id="error-msg" class="hidden rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive"></div>
+        <form id="login-form" novalidate>
 
-        <button
-          type="submit"
-          id="submit-btn"
-          class="w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
-        >
-          Sign in
-        </button>
-      </form>
-    </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <div class="input-wrap">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+                class="field-input"
+                placeholder="admin@example.org"
+              />
+              <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                autocomplete="current-password"
+                class="field-input"
+                placeholder="••••••••"
+              />
+              <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+          </div>
+
+          <div id="error-msg" class="error-box" role="alert">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>
+            </svg>
+            <span id="error-text"></span>
+          </div>
+
+          <button type="submit" id="submit-btn" class="submit-btn">
+            <div class="spinner" id="spinner" aria-hidden="true"></div>
+            <span class="btn-text">Sign in</span>
+          </button>
+
+        </form>
+
+        <p class="login-footer">MabEcare Foundation &copy; {new Date().getFullYear()} &mdash; Admin access only</p>
+      </div>
+    </main>
 
     <script>
       const form = document.getElementById('login-form') as HTMLFormElement
       const errorMsg = document.getElementById('error-msg') as HTMLDivElement
+      const errorText = document.getElementById('error-text') as HTMLSpanElement
       const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement
+      const spinner = document.getElementById('spinner') as HTMLDivElement
+
+      function setLoading(loading: boolean) {
+        submitBtn.disabled = loading
+        submitBtn.classList.toggle('loading', loading)
+        const btnText = submitBtn.querySelector('.btn-text') as HTMLSpanElement
+        btnText.textContent = loading ? 'Signing in…' : 'Sign in'
+      }
+
+      function showError(msg: string) {
+        errorText.textContent = msg
+        errorMsg.classList.add('visible')
+      }
+
+      function hideError() {
+        errorMsg.classList.remove('visible')
+      }
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault()
-        errorMsg.classList.add('hidden')
-        submitBtn.disabled = true
-        submitBtn.textContent = 'Signing in...'
+        hideError()
+        setLoading(true)
 
         const email = (document.getElementById('email') as HTMLInputElement).value
         const password = (document.getElementById('password') as HTMLInputElement).value
@@ -86,15 +458,12 @@ if (session) return Astro.redirect('/admin/dashboard')
             window.location.href = '/admin/dashboard'
           } else {
             const data = await res.json()
-            errorMsg.textContent = data.error ?? 'Invalid credentials'
-            errorMsg.classList.remove('hidden')
+            showError(data.error ?? 'Invalid credentials')
           }
         } catch {
-          errorMsg.textContent = 'Something went wrong. Please try again.'
-          errorMsg.classList.remove('hidden')
+          showError('Something went wrong. Please try again.')
         } finally {
-          submitBtn.disabled = false
-          submitBtn.textContent = 'Sign in'
+          setLoading(false)
         }
       })
     </script>

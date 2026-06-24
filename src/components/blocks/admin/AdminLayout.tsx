@@ -89,6 +89,7 @@ export default function AdminLayout({
         {/* Logout */}
         <div className="border-t border-border p-3">
           <button
+            type="button"
             onClick={handleLogout}
             className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
           >
@@ -105,6 +106,7 @@ export default function AdminLayout({
           <span className="font-semibold text-foreground">MabEcare Admin</span>
         </div>
         <button
+          type="button"
           onClick={() => setSidebarOpen(true)}
           className="rounded-md p-1.5 text-muted-foreground hover:bg-muted"
           aria-label="Open menu"
@@ -117,8 +119,10 @@ export default function AdminLayout({
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/50"
+          <button
+            type="button"
+            aria-label="Close menu"
+            className="absolute inset-0 bg-black/50 cursor-default"
             onClick={() => setSidebarOpen(false)}
           />
           {/* Drawer */}
@@ -129,6 +133,7 @@ export default function AdminLayout({
                 <span className="font-semibold">MabEcare Admin</span>
               </div>
               <button
+                type="button"
                 onClick={() => setSidebarOpen(false)}
                 className="rounded-md p-1.5 text-muted-foreground hover:bg-muted"
                 aria-label="Close menu"
@@ -148,6 +153,7 @@ export default function AdminLayout({
             </nav>
             <div className="border-t border-border p-3">
               <button
+                type="button"
                 onClick={handleLogout}
                 className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
               >
@@ -180,6 +186,7 @@ export default function AdminLayout({
   )
 })}
         <button
+          type="button"
           onClick={handleLogout}
           className="flex flex-col items-center gap-1 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-destructive"
         >

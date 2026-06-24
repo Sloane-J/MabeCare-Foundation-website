@@ -1,139 +1,33 @@
 {
-  // Editor Settings
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // ── Existing settings (unchanged) ──────────────────────────────────────
+  "files.autoSave": "afterDelay",
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.wordWrap": "on",
+  "extensions.autoCheckUpdates": false,
+  "update.mode": "none",
+  "editor.fontSize": 13,
+  "workbench.activityBar.location": "top",
+  "editor.minimap.size": "fit",
+  "workbench.colorTheme": "Tokyo Night",
+
+  // ── Font & Rendering ────────────────────────────────────────────────────
+  "editor.fontLigatures": true,               // JetBrains Mono has great ligatures
+  "editor.fontWeight": "400",
+  "editor.lineHeight": 1.7,
+  "editor.letterSpacing": 0.3,
+  "editor.renderWhitespace": "trailing",      // catch accidental trailing spaces
+  "editor.smoothScrolling": true,
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": "on",
+
+  // ── Formatting ──────────────────────────────────────────────────────────
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never",
-    "source.fixAll.stylelint": "explicit"
-  },
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "editor.linkedEditing": true,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.quickSuggestions": {
-    "strings": true
-  },
-  // File Settings
-  "files.eol": "\n",
-  "files.trimTrailingWhitespace": true,
-  "files.insertFinalNewline": true,
-  "files.associations": {
-    "*.astro": "astro",
-    "*.css": "tailwindcss"
-  },
-  "files.exclude": {
-    "**/.git": true,
-    "**/.DS_Store": true,
-    "**/node_modules": true,
-    "**/.astro": true,
-    "**/dist": true
-  },
-  // Astro Settings
-  "astro.trace.server": "messages",
-  "astro.typescript.allowArbitraryAttributes": true,
-  // TypeScript Settings
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.suggest.autoImports": true,
-  "typescript.preferences.quoteStyle": "single",
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "javascript.preferences.quoteStyle": "single",
-  // ESLint Settings
-  "eslint.enable": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "astro"
-  ],
-  "eslint.format.enable": true,
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ],
-  // Prettier Settings
-  "prettier.requireConfig": true,
-  "prettier.useEditorConfig": true,
-  "prettier.documentSelectors": [
-    "**/*.astro"
-  ],
-  // Tailwind CSS Settings
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "classList",
-    "ngClass"
-  ],
-  "tailwindCSS.experimental.classRegex": [
-    [
-      "cva\\(([^)]*)\\)",
-      "[\"'`]([^\"'`]*).*?[\"'`]"
-    ],
-    [
-      "cx\\(([^)]*)\\)",
-      "(?:'|\"|`)([^']*)(?:'|\"|`)"
-    ],
-    [
-      "cn\\(([^)]*)\\)",
-      "(?:'|\"|`)([^']*)(?:'|\"|`)"
-    ]
-  ],
-  "tailwindCSS.includeLanguages": {
-    "typescript": "javascript",
-    "typescriptreact": "javascript",
-    "astro": "html"
-  },
-  // CSS Settings
-  "css.validate": false,
-  "scss.validate": false,
-  // Emmet Settings
-  "emmet.includeLanguages": {
-    "astro": "html",
-    "javascript": "javascriptreact",
-    "typescript": "typescriptreact"
-  },
-  // Git Settings
-  "git.rebaseWhenSync": true,
-  "git.autofetch": true,
-  "git.enableSmartCommit": true,
-  "git.ignoreLimitWarning": true,
-  // Search Settings
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/dist": true,
-    "**/.astro": true,
-    "**/pnpm-lock.yaml": true
-  },
-  // Path Intellisense Settings
-  "path-intellisense.mappings": {
-    "@": "${workspaceFolder}/src"
-  },
-  // Code Spell Checker Settings
-  "cSpell.words": [
-    "Astro",
-    "astro",
-    "shadcn",
-    "tailwindcss",
-    "clsx",
-    "pnpm",
-    "webmanifest",
-    "crossorigin"
-  ],
-  // Markdown Settings
-  "markdown.extension.toc.updateOnSave": false,
-  // Language-Specific Settings
-  "[astro]": {
+  "editor.formatOnPaste": false,              // avoid surprise reformats on paste
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
@@ -142,16 +36,118 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+
+  // ── Code Actions on Save ────────────────────────────────────────────────
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",       // auto-fix ESLint issues on save
+    "source.organizeImports": "never"         // let Biome/Prettier handle imports
+  },
+
+  // ── TypeScript ──────────────────────────────────────────────────────────
+  "typescript.preferences.importModuleSpecifier": "shortest",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.variableTypes.enabled": false,  // too noisy
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+
+  // ── IntelliSense & Autocomplete ─────────────────────────────────────────
+  "editor.suggestSelection": "first",
+  "editor.acceptSuggestionOnCommitCharacter": false, // avoid accidental accepts
+  "editor.quickSuggestionsDelay": 50,
+  "editor.tabCompletion": "on",
+  "editor.inlineSuggest.enabled": true,
+
+  // ── Editor UI ───────────────────────────────────────────────────────────
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",    // highlight only the active pair
+  "editor.guides.indentation": true,
+  "editor.stickyScroll.enabled": true,       // pins class/function context at top
+  "editor.linkedEditing": true,              // rename HTML open/close tags together
+  "editor.occurrencesHighlight": "singleFile",
+  "editor.minimap.enabled": true,
+  "editor.minimap.renderCharacters": false,  // blocks look cleaner than characters
+
+  // ── Tabs & Indentation ──────────────────────────────────────────────────
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,         // always use tabSize, not file-guessed
+  "editor.insertSpaces": true,
+  "files.eol": "\n",                         // LF everywhere (matches Prettier config)
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  // ── Explorer ────────────────────────────────────────────────────────────
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.astro":       "${capture}.test.ts, ${capture}.test.tsx",
+    "*.tsx":         "${capture}.test.tsx, ${capture}.stories.tsx",
+    "*.ts":          "${capture}.test.ts, ${capture}.d.ts",
+    "package.json":  "package-lock.json, pnpm-lock.yaml, .npmrc, .nvmrc, pnpm-workspace.yaml",
+    "astro.config.*": "tsconfig.json, tailwind.config.*",
+    ".env":          ".env.*, .env.example",
+    "biome.json":    ".prettierrc*, .eslintrc*, eslint.config.*",
+    ".editorconfig": ".prettierignore, .gitignore, .gitattributes"
+  },
+  "explorer.sortOrder": "type",
+  "explorer.compactFolders": false,          // always show full folder tree
+
+  // ── Search ──────────────────────────────────────────────────────────────
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.astro": true,
+    "**/pnpm-lock.yaml": true
+  },
+
+  // ── Git ─────────────────────────────────────────────────────────────────
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,             // stage all if nothing staged
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.currentLine.enabled": true,
+
+  // ── Terminal ────────────────────────────────────────────────────────────
+  "terminal.integrated.fontFamily": "JetBrains Mono",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.cursorBlinking": true,
+
+  // ── Workbench ───────────────────────────────────────────────────────────
+  "workbench.editor.labelFormat": "short",
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.tree.indent": 14,
+  "workbench.list.smoothScrolling": true,
+  "breadcrumbs.enabled": true,
+
+  // ── Tailwind ────────────────────────────────────────────────────────────
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "tailwindCSS.validate": true,
+  "tailwindCSS.includeLanguages": {
+    "astro": "html"
+  },
+
+  // ── ESLint ──────────────────────────────────────────────────────────────
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "astro"],
+  "eslint.run": "onType",
+
+  // ── Biome ───────────────────────────────────────────────────────────────
+  "biome.lspBin": "./node_modules/@biomejs/biome/bin/biome",
+
+  // ── Misc ────────────────────────────────────────────────────────────────
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.accessibilitySupport": "off"       // disables accessibility mode overhead
 }

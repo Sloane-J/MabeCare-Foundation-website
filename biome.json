@@ -1,12 +1,57 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.1/schema.json",
+
   "formatter": {
-    "enabled": true
+    "enabled": false
   },
-  "linter": {
-    "enabled": true
-  },
+
   "assist": {
-    "enabled": true
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+
+      "correctness": {
+        "noUnusedVariables": "warn",
+        "noUnusedImports": "warn",
+        "useExhaustiveDependencies": "warn",
+        "noConstantCondition": "error"
+      },
+
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noConsole": "warn",
+        "noDuplicateObjectKeys": "error",
+        "noDoubleEquals": "error"
+      },
+
+      "style": {
+        "useConst": "error",
+        "useTemplate": "warn",
+        "useSelfClosingElements": "warn"
+      },
+
+      "performance": {
+        "noDelete": "warn"
+      }
+    }
+  },
+
+  "files": {
+    "includes": [
+      "**",
+      "!node_modules",
+      "!dist",
+      "!.astro",
+      "!**/*.min.js"
+    ]
   }
 }
