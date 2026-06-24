@@ -16,6 +16,11 @@ const NAV_ITEMS = [
   { label: 'In-Kind', href: '/admin/inkind', icon: Package },
   { label: 'Reports', href: '/admin/reports', icon: BarChart3 },
 ]
+type NavItem = {
+  label: string
+  href: string
+  icon: React.ElementType
+}
 
 function NavLink({
   item,
@@ -23,14 +28,15 @@ function NavLink({
   onClick,
   collapsed,
 }: {
-  item: (typeof NAV_ITEMS)[0]
+  item: NavItem
   active: boolean
   onClick?: () => void
   collapsed?: boolean
 }) {
   const Icon = item.icon
-  return (
 
+  return (
+    <a
       href={item.href}
       onClick={onClick}
       className={cn(
@@ -45,7 +51,6 @@ function NavLink({
     </a>
   )
 }
-
 async function handleLogout() {
   await fetch('/api/auth/logout', { method: 'POST' })
   window.location.href = '/admin'
@@ -157,22 +162,23 @@ export default function AdminLayout({
       {/* ── Bottom Nav (Mobile) ──────────────────────── */}
       <nav className="fixed inset-x-0 bottom-0 z-40 flex h-16 items-center justify-around border-t border-border bg-card lg:hidden">
         {NAV_ITEMS.map(item => {
-          const Icon = item.icon
-          const active = currentPath === item.href
-          return (
+  const Icon = item.icon
+  const active = currentPath === item.href
 
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'flex flex-col items-center gap-1 px-3 py-2 text-xs font-medium transition-colors',
-                active ? 'text-primary' : 'text-muted-foreground'
-              )}
-            >
-              <Icon className={cn('h-5 w-5', active && 'stroke-[2.5px]')} />
-              <span>{item.label}</span>
-            </a>
-          )
-        })}
+  return (
+    <a
+      key={item.href}
+      href={item.href}
+      className={cn(
+        'flex flex-col items-center gap-1 px-3 py-2 text-xs font-medium transition-colors',
+        active ? 'text-primary' : 'text-muted-foreground'
+      )}
+    >
+      <Icon className={cn('h-5 w-5', active && 'stroke-[2.5px]')} />
+      <span>{item.label}</span>
+    </a>
+  )
+})}
         <button
           onClick={handleLogout}
           className="flex flex-col items-center gap-1 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:text-destructive"
