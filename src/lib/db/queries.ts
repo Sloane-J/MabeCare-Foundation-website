@@ -188,19 +188,41 @@ export async function updateInkind(
 
 export async function getReportSummary(from?: string, to?: string) {
   let dateFilter = ''
-  const args: Record<string, string> = {}
+  const dateArgs: Record<string, string> = {}
 
   if (from) {
     dateFilter += ' AND date >= :from'
-    args.from = from
+    dateArgs.from = from
   }
   if (to) {
     dateFilter += ' AND date <= :to'
-    args.to = to
+    dateArgs.to = to
   }
 
-  const [totals, byChannel, byStatus, inkindByStatus] = await Promise.all([
-    db.execute({
-      sql: `SELECT COUNT(*) as count, SUM(amount) as total FROM donations WHERE 1=1${dateFilter}`,
-      args,
-    }),
+  const totals = await db.execute({
+    sql: `SELECT COUNT(*) as count, SUM(amount) as total FROM donations WHERE 1=1${dateFilter}`,
+    args: dateArgs,
+  })
+
+  const byChannel = await db.execute({
+    sql: `SELECT channel, COUNT(*) as count, SUM(amount) as total FROM donations WHERE 1=1${dateFilter} GROUP BY channel`,
+    args: dateArgs,
+  })
+
+  const byStatus = await db.execute({
+    sql: `SELECT status, COUNT(*) as count FROM donations WHERE 1=1${dateFilter} GROUP BY status`,
+    args: dateArgs,
+  })
+
+  const inkindByStatus = await db.execute({
+    sql: `SELECT status, COUNT(*) as count FROM inkind_submissions GROUP BY status`,
+    args: {},
+  })
+
+  return {
+    totals: totals.rows[0],
+    byChannel: byChannel.rows,
+    byStatus: byStatus.rows,
+    inkindByStatus: inkindByStatus.rows,
+  }
+}
