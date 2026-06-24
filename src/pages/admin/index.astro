@@ -1,0 +1,102 @@
+---
+export const prerender = false
+import { getSession } from '../../lib/auth/session'
+
+const session = await getSession(Astro.cookies)
+if (session) return Astro.redirect('/admin/dashboard')
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin Login — MabEcare Foundation</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="bg-background text-foreground min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-sm">
+      <div class="mb-8 text-center">
+        <div class="mx-auto mb-4 h-10 w-10 rounded-full bg-primary"></div>
+        <h1 class="text-2xl font-semibold">MabEcare Admin</h1>
+        <p class="mt-1 text-sm text-muted-foreground">Sign in to your dashboard</p>
+      </div>
+
+      <form id="login-form" class="space-y-4">
+        <div class="space-y-1.5">
+          <label for="email" class="text-sm font-medium">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            class="w-full rounded-lg border border-border bg-input px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring"
+            placeholder="admin@mabecare-foundation.org"
+          />
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="password" class="text-sm font-medium">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            autocomplete="current-password"
+            class="w-full rounded-lg border border-border bg-input px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring"
+            placeholder="••••••••"
+          />
+        </div>
+
+        <div id="error-msg" class="hidden rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive"></div>
+
+        <button
+          type="submit"
+          id="submit-btn"
+          class="w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+        >
+          Sign in
+        </button>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById('login-form') as HTMLFormElement
+      const errorMsg = document.getElementById('error-msg') as HTMLDivElement
+      const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        errorMsg.classList.add('hidden')
+        submitBtn.disabled = true
+        submitBtn.textContent = 'Signing in...'
+
+        const email = (document.getElementById('email') as HTMLInputElement).value
+        const password = (document.getElementById('password') as HTMLInputElement).value
+
+        try {
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+          })
+
+          if (res.ok) {
+            window.location.href = '/admin/dashboard'
+          } else {
+            const data = await res.json()
+            errorMsg.textContent = data.error ?? 'Invalid credentials'
+            errorMsg.classList.remove('hidden')
+          }
+        } catch {
+          errorMsg.textContent = 'Something went wrong. Please try again.'
+          errorMsg.classList.remove('hidden')
+        } finally {
+          submitBtn.disabled = false
+          submitBtn.textContent = 'Sign in'
+        }
+      })
+    </script>
+  </body>
+</html>
