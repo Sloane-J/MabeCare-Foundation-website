@@ -1,0 +1,41 @@
+---
+export const prerender = true
+import Layout from '../../layouts/Layout.astro'
+---
+
+<Layout title="Thank You — MabEcare Foundation">
+  <main class="flex min-h-screen items-center justify-center px-4 py-16">
+  <div class="mx-auto max-w-md text-center">
+    <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8 text-primary"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5 13l4 4L19 7"
+        />
+      </svg>
+    </div>
+
+    <h1 class="text-2xl font-bold">Thank you for your donation!</h1>
+
+    <p class="mt-3 text-muted-foreground">
+      Your contribution has been received and will go directly toward supporting
+      MabEcare Foundation's programmes.
+    </p>
+
+    <a
+      href="/"
+      class="mt-8 inline-block rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+    >
+      Back to Home
+    </a>
+  </div>
+</main>
+</Layout>

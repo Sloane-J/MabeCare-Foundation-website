@@ -1,0 +1,213 @@
+---
+export const prerender = true
+import Layout from '../../layouts/Layout.astro'
+---
+
+<Layout title="Donate — MabEcare Foundation">
+  <main class="min-h-screen bg-background">
+    <!-- Hero -->
+    <section class="border-b border-border bg-accent/30 px-4 py-16 text-center">
+      <div class="mx-auto max-w-2xl">
+        <span class="mb-4 inline-block rounded-full bg-accent px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
+          Make a Difference
+        </span>
+        <h1 class="mt-4 text-3xl font-bold leading-tight lg:text-5xl">
+          Your generosity changes lives
+        </h1>
+        <p class="mt-4 text-base text-muted-foreground lg:text-lg">
+          Choose how you'd like to support MabEcare Foundation. Every contribution — big or small — goes directly toward the communities we serve.
+        </p>
+      </div>
+    </section>
+
+    <!-- Choice Cards -->
+    <section class="px-4 py-16">
+      <div class="mx-auto grid max-w-3xl gap-6 md:grid-cols-2">
+
+  <a
+    href="#money"
+    class="group flex flex-col rounded-2xl border border-border bg-card p-8 shadow-md transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
+  >
+    <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-accent text-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+    <h2 class="text-xl font-bold">Donate Money</h2>
+    <p class="mt-2 flex-1 text-sm text-muted-foreground leading-relaxed">
+      Support us with a financial contribution via card, mobile money, bank transfer, or USSD. Fast, secure, and processed instantly.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      {['Card', 'Mobile Money', 'Bank Transfer', 'USSD'].map(method => (
+        <span key={method} class="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+          {method}
+        </span>
+      ))}
+    </div>
+    <div class="mt-6 flex items-center gap-2 text-sm font-semibold text-primary">
+      Donate now
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </div>
+  </a>
+
+  <a
+    href="/donate/inkind"
+    class="group flex flex-col rounded-2xl border border-border bg-card p-8 shadow-md transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
+  >
+    <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-accent text-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>
+    </div>
+    <h2 class="text-xl font-bold">Donate Items</h2>
+    <p class="mt-2 flex-1 text-sm text-muted-foreground leading-relaxed">
+      Send physical goods, supplies, or equipment to support our programmes. Fill out a short form and we'll coordinate the rest.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      {['Clothing', 'Medical Supplies', 'Food', 'Equipment'].map(item => (
+        <span key={item} class="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+          {item}
+        </span>
+      ))}
+    </div>
+    <div class="mt-6 flex items-center gap-2 text-sm font-semibold text-primary">
+      Submit items
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </div>
+  </a>
+
+</div>
+    </section>
+
+    <!-- Money Donation Section -->
+    <section id="money" class="border-t border-border bg-muted/30 px-4 py-16 scroll-mt-20">
+      <div class="mx-auto max-w-lg text-center">
+        <h2 class="text-2xl font-bold">Financial Donation</h2>
+        <p class="mt-3 text-sm text-muted-foreground">
+          Payments are processed securely via Paystack. Choose an amount or enter your own.
+        </p>
+
+        <!-- Amount Presets -->
+        <div class="mt-8 grid grid-cols-3 gap-3" id="amount-grid">
+          {[10, 20, 50, 100, 200, 500].map(amount => (
+            <button
+              data-amount={amount}
+              class="amount-btn rounded-xl border border-border bg-card px-4 py-3 text-sm font-semibold transition-all hover:border-primary hover:text-primary"
+            >
+              ₵{amount}
+            </button>
+          ))}
+        </div>
+
+        <!-- Custom Amount -->
+        <div class="mt-4">
+          <input
+            id="custom-amount"
+            type="number"
+            min="1"
+            placeholder="Enter custom amount (₵)"
+            class="w-full rounded-xl border border-border bg-card px-4 py-3 text-center text-sm outline-none focus:ring-2 focus:ring-ring"
+          />
+        </div>
+
+        <!-- Donor Info -->
+        <div class="mt-4 space-y-3 text-left">
+          <input
+            id="donor-name"
+            type="text"
+            placeholder="Full name (optional)"
+            class="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring"
+          />
+          <input
+            id="donor-email"
+            type="email"
+            placeholder="Email address (optional)"
+            class="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring"
+          />
+        </div>
+
+        <div id="donate-error" class="mt-3 hidden rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive"></div>
+
+        <button
+          id="donate-btn"
+          class="mt-6 w-full rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+        >
+          Donate Now
+        </button>
+
+        <p class="mt-3 text-xs text-muted-foreground">
+          Secured by Paystack. Your payment details are never stored on our servers.
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  let selectedAmount: number | null = null
+
+  // Amount preset buttons
+  document.querySelectorAll('.amount-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.amount-btn').forEach(b => {
+        b.classList.remove('border-primary', 'text-primary', 'bg-accent')
+      })
+      btn.classList.add('border-primary', 'text-primary', 'bg-accent')
+      selectedAmount = Number((btn as HTMLElement).dataset.amount)
+      ;(document.getElementById('custom-amount') as HTMLInputElement).value = ''
+    })
+  })
+
+  // Donate button
+  document.getElementById('donate-btn')?.addEventListener('click', async () => {
+    const customAmount = (document.getElementById('custom-amount') as HTMLInputElement).value
+    const amount = customAmount ? parseFloat(customAmount) : selectedAmount
+    const errorEl = document.getElementById('donate-error') as HTMLDivElement
+    const btn = document.getElementById('donate-btn') as HTMLButtonElement
+
+    errorEl.classList.add('hidden')
+
+    if (!amount || amount < 1) {
+      errorEl.textContent = 'Please select or enter an amount'
+      errorEl.classList.remove('hidden')
+      return
+    }
+
+    const email = (document.getElementById('donor-email') as HTMLInputElement).value
+    const name = (document.getElementById('donor-name') as HTMLInputElement).value
+
+    if (!email) {
+      errorEl.textContent = 'Email is required to process your payment'
+      errorEl.classList.remove('hidden')
+      return
+    }
+
+    btn.disabled = true
+    btn.textContent = 'Processing...'
+
+    try {
+      const res = await fetch('/api/paystack/initialize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount, email, name }),
+      })
+
+      const data = await res.json()
+
+      if (data.authorization_url) {
+        window.location.href = data.authorization_url
+      } else {
+        throw new Error(data.error ?? 'Failed to initialize payment')
+      }
+    } catch (e: any) {
+      errorEl.textContent = e.message
+      errorEl.classList.remove('hidden')
+      btn.disabled = false
+      btn.textContent = 'Donate Now'
+    }
+  })
+</script>

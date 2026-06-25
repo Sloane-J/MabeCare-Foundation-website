@@ -235,7 +235,7 @@ const Header = ({ pathname }: HeaderProps) => {
             className='bg-primary hover:bg-primary/90 w-full rounded-full py-5 text-base font-semibold text-white'
             asChild
           >
-            <a href='/#ways-to-help-section' onClick={() => setMobileOpen(false)}>
+            <a href='/donate' onClick={() => setMobileOpen(false)}>
               Donate Now
             </a>
           </Button>

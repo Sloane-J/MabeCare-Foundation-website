@@ -94,7 +94,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                 <div className='group flex items-center gap-0'>
                   {/* Pill Button */}
                   <a
-                    href='donate'
+                    href='/donate'
                     className='bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 py-4 text-lg font-normal transition-all'
                   >
                     Donate Now
