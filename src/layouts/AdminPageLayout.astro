@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string
+}
+const { title } = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel='dns-prefetch' href='//fonts.gstatic.com' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin='anonymous' />
+    <link
+      rel='preload'
+      as='style'
+      href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+    />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+      rel='stylesheet'
+      media='print'
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+        rel='stylesheet'
+      />
+    </noscript>
+  </head>
+  <body class="bg-background text-foreground">
+    <slot />
+  </body>
+</html>
