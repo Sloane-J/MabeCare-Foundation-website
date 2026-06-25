@@ -200,7 +200,9 @@ export default function AdminDashboard() {
       {/* ── Page header ───────────────────────────────── */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
+          <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, color: '#111827', fontFamily: "'Merriweather', serif" }}>
+            Dashboard
+          </h1>
           <p className="mt-0.5 text-sm text-gray-400">
             {totalActionItems > 0
               ? `${totalActionItems} item${totalActionItems !== 1 ? 's' : ''} need your attention`
