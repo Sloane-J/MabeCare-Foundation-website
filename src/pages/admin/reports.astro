@@ -1,0 +1,16 @@
+---
+export const prerender = false
+import { requireAuth } from '../../lib/auth/session'
+import AdminPageLayout from '../../layouts/AdminPageLayout.astro'
+import AdminLayout from '../../components/blocks/admin/AdminLayout'
+import ReportsDashboard from '../../components/blocks/admin/ReportsDashboard'
+
+await requireAuth(Astro.cookies)
+const currentPath = Astro.url.pathname
+---
+
+<AdminPageLayout title="Reports — MabEcare Admin">
+  <AdminLayout currentPath={currentPath} client:load>
+    <ReportsDashboard client:load />
+  </AdminLayout>
+</AdminPageLayout>

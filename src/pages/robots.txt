@@ -1,0 +1,31 @@
+import type { APIRoute } from 'astro'
+
+const getRobotsTxt = (sitemapURL: URL) => `\
+User-agent: *
+Allow: /
+
+# Block sensitive/private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Prevent indexing of duplicate content
+Disallow: /search
+Disallow: /search?
+
+# Allow assets required for rendering
+Allow: /_astro/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.mjs
+Allow: /*.woff2
+
+Sitemap: ${sitemapURL.href}
+`
+
+export const GET: APIRoute = ({ site }) => {
+  const sitemapURL = new URL('sitemap-index.xml', site)
+  return new Response(getRobotsTxt(sitemapURL), {
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+  })
+}

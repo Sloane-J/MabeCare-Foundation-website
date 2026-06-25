@@ -63,6 +63,8 @@ const schemaData = schema || defaultSchema
 <meta charset='utf-8' />
 <meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
 <meta name='generator' content={Astro.generator} />
+<meta name='format-detection' content='telephone=no, date=no, address=no, email=no' />
+<meta name='referrer' content='strict-origin-when-cross-origin' />
 
 <!-- Primary Meta Tags -->
 <title>{finalTitle}</title>
@@ -127,7 +129,7 @@ const schemaData = schema || defaultSchema
 <meta property='og:image:secure_url' content={imageURL} />
 <meta property='og:image:width' content={SITE_METADATA.openGraph.images[0].width.toString()} />
 <meta property='og:image:height' content={SITE_METADATA.openGraph.images[0].height.toString()} />
-<meta property='og:image:alt' content={finalTitle} />
+<meta property='og:image:alt' content={`${SITE_METADATA.openGraph.siteName} — social preview`} />
 <meta property='og:image:type' content={SITE_METADATA.openGraph.images[0].type} />
 {publishedTime && <meta property='article:published_time' content={publishedTime} />}
 {modifiedTime && <meta property='article:modified_time' content={modifiedTime} />}
@@ -154,7 +156,7 @@ const schemaData = schema || defaultSchema
 <link
   rel='preload'
   as='style'
-  href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+  href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
 />
 <link
   href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'

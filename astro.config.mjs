@@ -2,11 +2,13 @@
 import mdx from '@astrojs/mdx'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
+import vercel from '@astrojs/vercel'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
-  site: 'https://mabecare-foundation.vercel.app',
+  site: 'https://mabecare-foundation.vercel.app/',
+  base: "/",
   integrations: [
     react(),
     mdx(),
@@ -68,7 +70,8 @@ export default defineConfig({
       }
     })
   ],
-  output: 'static',
+  adapter: vercel(),
+  output: 'server',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto'
@@ -79,12 +82,14 @@ export default defineConfig({
       cssMinify: true,
       minify: 'esbuild',
       rollupOptions: {
-        output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom']
-          }
-        }
+  output: {
+    manualChunks(id) {
+      if (id.includes('react') || id.includes('react-dom')) {
+        return 'react-vendor'
       }
+    }
+  }
+}
     },
     ssr: {
       noExternal: ['@radix-ui/*']

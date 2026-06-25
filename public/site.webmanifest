@@ -1,7 +1,7 @@
 {
-  "name": "MabeCare Foundation | Empowering Mothers & Children",
-  "short_name": "MabeCare",
-  "description": "MabeCare Foundation supports pregnant women, empowers mothers, and protects children  through healthcare, education, and community outreach.",
+  "name": "MabEcare Foundation | Empowering Mothers & Children",
+  "short_name": "MabEcare",
+  "description": "MabEcare Foundation supports pregnant women, empowers mothers, and protects children  through healthcare, education, and community outreach.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -58,19 +58,19 @@
     {
       "name": "About Us",
       "short_name": "About",
-      "description": "Learn about MabeCare Foundation",
+      "description": "Learn about MabEcare Foundation",
       "url": "/about-us"
     },
     {
       "name": "Donate",
       "short_name": "Donate",
-      "description": "Make a donation to MabeCare Foundation",
+      "description": "Make a donation to MabEcare Foundation",
       "url": "/donate"
     },
     {
       "name": "Contact Us",
       "short_name": "Contact",
-      "description": "Get in touch with MabeCare Foundation",
+      "description": "Get in touch with MabEcare Foundation",
       "url": "/contact-us"
     }
   ]
