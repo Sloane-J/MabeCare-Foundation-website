@@ -15,38 +15,38 @@ if (session) return Astro.redirect('/admin/dashboard')
     <title>Admin Login — MabEcare Foundation</title>
     <link rel="stylesheet" href="/src/styles/global.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <!-- Performance and Resource Hints -->
-<link rel='dns-prefetch' href='//fonts.googleapis.com' />
-<link rel='dns-prefetch' href='//fonts.gstatic.com' />
-<link rel='preconnect' href='https://fonts.googleapis.com' />
-<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin='anonymous' />
 
-<!-- Google Fonts — non-blocking load -->
-<link
-  rel='preload'
-  as='style'
-  href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
-/>
-<link
-  href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
-  rel='stylesheet'
-  media='print'
-  onload="this.media='all'"
-/>
-<noscript>
-  <link
-    href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
-    rel='stylesheet'
-  />
-</noscript>
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel='dns-prefetch' href='//fonts.gstatic.com' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin='anonymous' />
+
+    <link
+      rel='preload'
+      as='style'
+      href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+    />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+      rel='stylesheet'
+      media='print'
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href='https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Kaushan+Script&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&display=swap'
+        rel='stylesheet'
+      />
+    </noscript>
     <style>
       /* ── Page shell ── */
       .auth-page {
         min-height: 100svh;
         display: grid;
         grid-template-columns: 1fr;
-        background: var(--background);
+        background: #F9F9FA;
         overflow: hidden;
+        font-family: 'Outfit', sans-serif;
       }
 
       @media (min-width: 1024px) {
@@ -57,7 +57,8 @@ if (session) return Astro.redirect('/admin/dashboard')
       .brand-panel {
         display: none;
         position: relative;
-        background: linear-gradient(135deg, #1a0010 0%, #2d0020 40%, #0d0d0d 100%);
+        background: #FFFFFF;
+        border-right: 1px solid #EAEAEA;
         overflow: hidden;
       }
 
@@ -65,95 +66,41 @@ if (session) return Astro.redirect('/admin/dashboard')
         .brand-panel { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3rem; }
       }
 
-      /* Animated blobs */
-      .blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(80px);
-        opacity: 0.35;
-        animation: drift 12s ease-in-out infinite alternate;
-      }
-      .blob-1 {
-        width: 420px; height: 420px;
-        background: #ff1493;
-        top: -120px; left: -80px;
-        animation-delay: 0s;
-      }
-      .blob-2 {
-        width: 300px; height: 300px;
-        background: #c0006e;
-        bottom: -60px; right: -60px;
-        animation-delay: -4s;
-      }
-      .blob-3 {
-        width: 200px; height: 200px;
-        background: #ff69b4;
-        top: 50%; left: 60%;
-        animation-delay: -8s;
-      }
-
-      @keyframes drift {
-        from { transform: translate(0, 0) scale(1); }
-        to   { transform: translate(30px, 20px) scale(1.08); }
-      }
-
       .brand-content {
         position: relative;
         z-index: 1;
         text-align: center;
-        color: #fff;
+        color: #1A1A1A;
       }
 
       .brand-logo {
-        width: 64px; height: 64px;
+        width: 64px;
+        height: 64px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #ff1493, #ff69b4);
-        box-shadow: 0 0 40px rgba(255,20,147,0.5);
+        background: #EDE7F6;
         margin: 0 auto 2rem;
-        display: flex; align-items: center; justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .brand-logo svg { width: 32px; height: 32px; color: #fff; }
+      .brand-logo svg { width: 32px; height: 32px; color: #4A148C; }
 
       .brand-title {
-        font-size: 2rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
+        font-family: 'Merriweather', serif;
+        font-size: 2.25rem;
+        font-weight: 900;
+        letter-spacing: -0.03em;
         margin-bottom: 0.75rem;
+        color: #000000;
+        line-height: 1.15;
       }
 
       .brand-sub {
-        font-size: 0.9rem;
-        color: rgba(255,255,255,0.55);
-        max-width: 280px;
+        font-size: 0.95rem;
+        color: #666666;
+        max-width: 290px;
         line-height: 1.6;
-      }
-
-      .brand-badge {
-        margin-top: 3rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.12);
-        backdrop-filter: blur(12px);
-        border-radius: 100px;
-        padding: 0.5rem 1rem;
-        font-size: 0.75rem;
-        color: rgba(255,255,255,0.7);
-      }
-
-      .badge-dot {
-        width: 7px; height: 7px;
-        background: #4ade80;
-        border-radius: 50%;
-        box-shadow: 0 0 6px #4ade80;
-        animation: pulse-dot 2s ease-in-out infinite;
-      }
-
-      @keyframes pulse-dot {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.4; }
       }
 
       /* ── Right login panel ── */
@@ -163,7 +110,7 @@ if (session) return Astro.redirect('/admin/dashboard')
         justify-content: center;
         align-items: center;
         padding: 2rem 1.5rem;
-        background: var(--background);
+        background: #F9F9FA;
       }
 
       .login-box {
@@ -187,54 +134,59 @@ if (session) return Astro.redirect('/admin/dashboard')
       .mobile-logo-mark {
         width: 48px; height: 48px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #ff1493, #ff69b4);
-        box-shadow: 0 0 24px rgba(255,20,147,0.35);
+        background: #EDE7F6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
+      .mobile-logo-mark svg { width: 24px; height: 24px; color: #4A148C; }
 
       /* Headings */
       .login-heading {
-        font-size: 1.6rem;
-        font-weight: 700;
+        font-family: 'Merriweather', serif;
+        font-size: 2rem;
+        font-weight: 900;
         letter-spacing: -0.02em;
-        color: var(--foreground);
-        margin-bottom: 0.375rem;
+        color: #000000;
+        margin-bottom: 0.5rem;
       }
 
       .login-sub {
-        font-size: 0.85rem;
-        color: var(--muted-foreground);
-        margin-bottom: 2rem;
+        font-size: 0.875rem;
+        color: #666666;
+        margin-bottom: 2.5rem;
       }
 
       /* Form */
-      .field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+      .field { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
 
       .field label {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--foreground);
-        letter-spacing: 0.01em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #666666;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
 
       .input-wrap { position: relative; }
 
       .input-icon {
         position: absolute;
-        left: 0.85rem;
+        left: 1rem;
         top: 50%;
         transform: translateY(-50%);
-        color: var(--muted-foreground);
+        color: #8A8A8A;
         pointer-events: none;
         transition: color 0.2s;
       }
 
       .field-input {
         width: 100%;
-        padding: 0.7rem 0.85rem 0.7rem 2.5rem;
-        border-radius: 0.6rem;
-        border: 1.5px solid var(--border);
-        background: var(--input);
-        color: var(--foreground);
+        padding: 0.85rem 1rem 0.85rem 2.75rem;
+        border-radius: 0.5rem;
+        border: 1px solid #EAEAEA;
+        background: #FFFFFF;
+        color: #1A1A1A;
         font-size: 0.875rem;
         font-family: inherit;
         outline: none;
@@ -242,16 +194,16 @@ if (session) return Astro.redirect('/admin/dashboard')
         box-sizing: border-box;
       }
 
-      .field-input::placeholder { color: var(--muted-foreground); opacity: 0.6; }
+      .field-input::placeholder { color: #8A8A8A; opacity: 0.6; }
 
       .field-input:focus {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(255,20,147,0.12);
+        border-color: #6A1B9A;
+        box-shadow: 0 0 0 3px rgba(106, 27, 154, 0.1);
       }
 
       .field-input:focus + .input-icon,
       .input-wrap:focus-within .input-icon {
-        color: var(--primary);
+        color: #6A1B9A;
       }
 
       /* Error */
@@ -259,32 +211,31 @@ if (session) return Astro.redirect('/admin/dashboard')
         display: none;
         align-items: center;
         gap: 0.5rem;
-        background: rgba(239,68,68,0.08);
-        border: 1px solid rgba(239,68,68,0.2);
+        background: #FDF2F2;
+        border: 1px solid #FDE8E8;
         border-radius: 0.5rem;
-        padding: 0.65rem 0.85rem;
+        padding: 0.75rem 1rem;
         font-size: 0.8rem;
-        color: var(--destructive);
-        margin-bottom: 1.1rem;
+        color: #DE350B;
+        margin-bottom: 1.25rem;
       }
       .error-box.visible { display: flex; }
 
       /* Submit button */
       .submit-btn {
         width: 100%;
-        padding: 0.8rem;
-        border-radius: 0.6rem;
-        border: none;
-        background: linear-gradient(135deg, #ff1493, #e0006a);
-        color: #fff;
-        font-size: 0.9rem;
+        padding: 0.85rem;
+        border-radius: 0.5rem;
+        border: 1px solid #EAEAEA;
+        background: #FFFFFF;
+        color: #1A1A1A;
+        font-size: 0.875rem;
         font-weight: 600;
         font-family: inherit;
         cursor: pointer;
         position: relative;
         overflow: hidden;
-        transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 20px rgba(255,20,147,0.35);
+        transition: background-color 0.2s, border-color 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -292,12 +243,9 @@ if (session) return Astro.redirect('/admin/dashboard')
       }
 
       .submit-btn:hover:not(:disabled) {
-        opacity: 0.92;
-        transform: translateY(-1px);
-        box-shadow: 0 6px 28px rgba(255,20,147,0.45);
+        background: #F9F9FA;
+        border-color: #D6D6D6;
       }
-
-      .submit-btn:active:not(:disabled) { transform: translateY(0); }
 
       .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
@@ -305,8 +253,8 @@ if (session) return Astro.redirect('/admin/dashboard')
       .spinner {
         display: none;
         width: 16px; height: 16px;
-        border: 2px solid rgba(255,255,255,0.3);
-        border-top-color: #fff;
+        border: 2px solid rgba(106, 27, 154, 0.2);
+        border-top-color: #6A1B9A;
         border-radius: 50%;
         animation: spin 0.7s linear infinite;
       }
@@ -314,47 +262,42 @@ if (session) return Astro.redirect('/admin/dashboard')
       @keyframes spin { to { transform: rotate(360deg); } }
 
       .submit-btn.loading .spinner { display: block; }
-      .submit-btn.loading .btn-text { opacity: 0.7; }
+      .submit-btn.loading .btn-text { color: #6A1B9A; }
 
       /* Footer */
       .login-footer {
-        margin-top: 2rem;
+        margin-top: 2.5rem;
         text-align: center;
-        font-size: 0.72rem;
-        color: var(--muted-foreground);
+        font-size: 0.75rem;
+        color: #8A8A8A;
       }
     </style>
   </head>
 
   <body class="auth-page">
 
-    <!-- ── Left Brand Panel ─────────────────── -->
     <aside class="brand-panel" aria-hidden="true">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-
       <div class="brand-content">
         <div class="brand-logo">
-          <!-- Heart / care icon -->
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 21.593c-.525-.444-3.75-3.143-5.999-5.568C3.896 13.695 2 11.39 2 8.961 2 6.03 4.03 4 6.961 4c1.607 0 3.123.804 4.039 2.031A4.964 4.964 0 0 1 15.039 4C17.97 4 20 6.03 20 8.961c0 2.43-1.896 4.734-4.001 7.064-2.249 2.425-5.474 5.124-5.999 5.568z"/>
           </svg>
         </div>
 
-        <h1 class="brand-title">MabEcare<br/>Foundation</h1>
+        <h1 class="brand-title">MabEcare<br/>Admin</h1>
         <p class="brand-sub">Manage donations, in-kind contributions, and impact reports.</p>
-
       </div>
     </aside>
 
-    <!-- ── Right Login Panel ────────────────── -->
     <main class="login-panel">
       <div class="login-box">
 
-        <!-- Mobile-only logo -->
         <div class="mobile-logo" aria-hidden="true">
-          <div class="mobile-logo-mark"></div>
+          <div class="mobile-logo-mark">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.593c-.525-.444-3.75-3.143-5.999-5.568C3.896 13.695 2 11.39 2 8.961 2 6.03 4.03 4 6.961 4c1.607 0 3.123.804 4.039 2.031A4.964 4.964 0 0 1 15.039 4C17.97 4 20 6.03 20 8.961c0 2.43-1.896 4.734-4.001 7.064-2.249 2.425-5.474 5.124-5.999 5.568z"/>
+            </svg>
+          </div>
         </div>
 
         <h1 class="login-heading">Welcome back</h1>
@@ -374,7 +317,7 @@ if (session) return Astro.redirect('/admin/dashboard')
                 class="field-input"
                 placeholder="admin@example.org"
               />
-              <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
               </svg>
             </div>
@@ -392,7 +335,7 @@ if (session) return Astro.redirect('/admin/dashboard')
                 class="field-input"
                 placeholder="••••••••"
               />
-              <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
             </div>

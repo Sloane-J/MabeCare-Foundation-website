@@ -1,6 +1,7 @@
 ---
 export const prerender = false
 import { requireAuth } from '../../lib/auth/session'
+import AdminPageLayout from '../../layouts/AdminPageLayout.astro'
 import AdminLayout from '../../components/blocks/admin/AdminLayout'
 import AdminDashboard from '../../components/blocks/admin/AdminDashboard'
 
@@ -8,17 +9,8 @@ await requireAuth(Astro.cookies)
 const currentPath = Astro.url.pathname
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>Dashboard — MabEcare Admin</title>
-    <link rel="stylesheet" href="/src/styles/global.css" />
-  </head>
-  <body class="bg-background text-foreground">
-    <AdminLayout currentPath={currentPath} client:load>
-      <AdminDashboard client:load />
-    </AdminLayout>
-  </body>
-</html>
+<AdminPageLayout title="Dashboard — MabEcare Admin">
+  <AdminLayout currentPath={currentPath} client:load>
+    <AdminDashboard client:load />
+  </AdminLayout>
+</AdminPageLayout>

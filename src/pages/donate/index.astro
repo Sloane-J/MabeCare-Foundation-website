@@ -85,65 +85,80 @@ import Layout from '../../layouts/Layout.astro'
 
     <!-- Money Donation Section -->
     <section id="money" class="border-t border-border bg-muted/30 px-4 py-16 scroll-mt-20">
-      <div class="mx-auto max-w-lg text-center">
-        <h2 class="text-2xl font-bold">Financial Donation</h2>
-        <p class="mt-3 text-sm text-muted-foreground">
-          Payments are processed securely via Paystack. Choose an amount or enter your own.
-        </p>
+  <div class="mx-auto max-w-lg text-center">
+    <h2 class="text-2xl font-bold">Make a Financial Donation</h2>
 
-        <!-- Amount Presets -->
-        <div class="mt-8 grid grid-cols-3 gap-3" id="amount-grid">
-          {[10, 20, 50, 100, 200, 500].map(amount => (
-            <button
-              data-amount={amount}
-              class="amount-btn rounded-xl border border-border bg-card px-4 py-3 text-sm font-semibold transition-all hover:border-primary hover:text-primary"
-            >
-              ₵{amount}
-            </button>
-          ))}
-        </div>
 
-        <!-- Custom Amount -->
-        <div class="mt-4">
-          <input
-            id="custom-amount"
-            type="number"
-            min="1"
-            placeholder="Enter custom amount (₵)"
-            class="w-full rounded-xl border border-border bg-card px-4 py-3 text-center text-sm outline-none focus:ring-2 focus:ring-ring"
-          />
-        </div>
+<p class="mt-3 text-sm text-muted-foreground">
+  Your contribution helps us support individuals and families in need.
+  Choose a donation amount below or enter your own.
+</p>
 
-        <!-- Donor Info -->
-        <div class="mt-4 space-y-3 text-left">
-          <input
-            id="donor-name"
-            type="text"
-            placeholder="Full name (optional)"
-            class="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring"
-          />
-          <input
-            id="donor-email"
-            type="email"
-            placeholder="Email address (optional)"
-            class="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring"
-          />
-        </div>
+<p class="mt-2 text-xs text-muted-foreground">
+  After clicking <strong>Donate Now</strong>, you will be redirected to Paystack
+  where you can complete your donation using Mobile Money, Visa, Mastercard,
+  bank transfer, and other supported payment methods.
+</p>
 
-        <div id="donate-error" class="mt-3 hidden rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive"></div>
+<!-- Amount Presets -->
+<div class="mt-8 grid grid-cols-3 gap-3" id="amount-grid">
+  {[10, 20, 50, 100, 200, 500].map(amount => (
+    <button
+      data-amount={amount}
+      class="amount-btn rounded-xl border border-border bg-card px-4 py-3 text-sm font-semibold transition-all hover:border-primary hover:text-primary"
+    >
+      ₵{amount}
+    </button>
+  ))}
+</div>
 
-        <button
-          id="donate-btn"
-          class="mt-6 w-full rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
-        >
-          Donate Now
-        </button>
+<!-- Custom Amount -->
+<div class="mt-4">
+  <input
+    id="custom-amount"
+    type="number"
+    min="1"
+    placeholder="Enter custom amount (₵)"
+    class="w-full rounded-xl border border-border bg-card px-4 py-3 text-center text-sm outline-none focus:ring-2 focus:ring-ring"
+  />
+</div>
 
-        <p class="mt-3 text-xs text-muted-foreground">
-          Secured by Paystack. Your payment details are never stored on our servers.
-        </p>
-      </div>
-    </section>
+<!-- Donor Information -->
+<div class="mt-4 space-y-3 text-left">
+  <input
+    id="donor-name"
+    type="text"
+    placeholder="Full name (optional)"
+    class="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring"
+  />
+
+  <input
+    id="donor-email"
+    type="email"
+    placeholder="Email address (optional)"
+    class="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring"
+  />
+</div>
+
+<div
+  id="donate-error"
+  class="mt-3 hidden rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive"
+></div>
+
+<button
+  id="donate-btn"
+  class="mt-6 w-full rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+>
+  Donate Now
+</button>
+
+<p class="mt-3 text-xs text-muted-foreground">
+  Secure payments powered by Paystack. Payment details are processed securely and are never stored on our servers.
+</p>
+
+  </div>
+</section>
+
   </main>
 </Layout>
 
