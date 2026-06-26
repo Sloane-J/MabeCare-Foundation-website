@@ -62,7 +62,7 @@ const footerLinks = {
     { label: 'Gallery', href: '/#gallery' }
   ],
   getInvolved: [
-    { label: 'Donate Now', href: '/#donation-programmes' },
+    { label: 'Donate Now', href: '/donate' },
     { label: 'Become a Volunteer', href: '/#volunteer-impact' },
     { label: 'Corporate Partnerships', href: '/#ways-to-help' },
     { label: 'Fundraise for Us', href: '/#ways-to-help' }
