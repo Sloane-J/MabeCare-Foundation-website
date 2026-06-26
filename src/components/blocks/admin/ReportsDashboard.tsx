@@ -191,7 +191,7 @@ export default function ReportsDashboard() {
       const url = URL.createObjectURL(blob)
       const a   = document.createElement('a')
       a.href    = url
-      a.download = `mabecae-donations-${Date.now()}.csv`
+      a.download = `mabecare-donations-report-${Date.now()}.csv`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)

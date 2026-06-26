@@ -138,7 +138,7 @@ const Header = ({ pathname }: HeaderProps) => {
             aria-label='MabEcare Foundation home'
           >
             <img
-              src='/images/site-logo.png'
+              src='/images/site-logo.webp'
               alt='MabEcare Foundation Logo'
               className='h-12 w-auto object-contain'
               width={36}

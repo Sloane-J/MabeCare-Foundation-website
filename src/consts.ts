@@ -99,7 +99,7 @@ export const COMPANY_INFO = {
   name: 'MabEcare Foundation',
   legalName: 'MabEcare Foundation',
   url: SITE_URL,
-  logo: `/images/site-logo.png`,
+  logo: `/images/site-logo.webp`,
   foundingDate: '2026',
   address: {
     streetAddress: 'Ho',

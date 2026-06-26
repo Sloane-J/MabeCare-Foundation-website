@@ -1,7 +1,7 @@
 export const menudata = [
   {
     id: 1,
-    img: 'images/hero-section/african-kids.jpg',
+    img: 'images/hero-section/african-kids.webp',
     imgAlt: 'Pregnant woman receiving a prenatal checkup',
     userComment: 'The support I received changed my life. The team is compassionate and truly cares about maternal health.',
     userAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop'
