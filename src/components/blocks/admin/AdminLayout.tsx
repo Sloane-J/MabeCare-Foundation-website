@@ -6,6 +6,7 @@ import {
   BarChart3,
   LogOut,
   X,
+  Download,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -90,6 +91,16 @@ export default function AdminLayout({
             />
           ))}
         </nav>
+
+        <button
+  id="pwa-install-btn"
+  onClick={() => (window as any).installPWA?.()}
+  style={{ display: 'none' }}
+  className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-primary"
+>
+  <Download className="h-5 w-5" />
+  <span>Install App</span>
+</button>
 
         {/* Logout */}
         <div className="border-t border-gray-100 px-2 py-3">

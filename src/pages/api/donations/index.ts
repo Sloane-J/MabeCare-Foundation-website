@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { json, error, unauthorized, serverError } from '../../../lib/api/response'
 import { requireAuth } from '../../../lib/auth/session'
 import { getDonations, createDonation } from '../../../lib/db/queries'
+import { sendDonationAlert } from '../../../lib/api/email'
 
 const CashDonationSchema = z.object({
   amount: z.number().positive(),
@@ -63,6 +64,15 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       date: data.date,
       note: data.note,
     })
+    
+    sendDonationAlert({
+  type: 'cash',
+  amount: data.amount,
+  currency: 'GHS',
+  donor_name: data.donor_name,
+  donor_email: data.donor_email,
+  date: data.date,
+}).catch(err => console.error('Donation alert failed:', err))
 
     return json({ success: true, id }, 201)
   } catch {

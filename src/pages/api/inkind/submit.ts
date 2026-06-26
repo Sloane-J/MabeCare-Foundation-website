@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro'
 import { z } from 'zod'
 import { json, error, serverError } from '../../../lib/api/response'
 import { createInkind } from '../../../lib/db/queries'
+import { sendInkindAlert } from '../../../lib/api/email'
 
 const InkindSchema = z.object({
   donor_name: z.string().min(2, 'Name is required'),
@@ -30,6 +31,16 @@ export const POST: APIRoute = async ({ request }) => {
       id,
       ...data,
     })
+    
+    sendInkindAlert({
+  donor_name: data.donor_name,
+  donor_email: data.donor_email,
+  country: data.country,
+  item_description: data.item_description,
+  estimated_value: data.estimated_value,
+  expected_ship_date: data.expected_ship_date,
+  message: data.message,
+}).catch(err => console.error('Inkind alert failed:', err))
 
     return json({ success: true, id }, 201)
   } catch {

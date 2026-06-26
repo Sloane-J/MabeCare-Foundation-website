@@ -81,15 +81,11 @@ export default defineConfig({
     build: {
       cssMinify: true,
       minify: 'esbuild',
-      rollupOptions: {
-  output: {
-    manualChunks(id) {
-      if (id.includes('react') || id.includes('react-dom')) {
-        return 'react-vendor'
+      rolldownOptions: {
+      output: {
+        codeSplitting: true,
       }
     }
-  }
-}
     },
     ssr: {
       noExternal: ['@radix-ui/*']

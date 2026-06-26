@@ -80,13 +80,13 @@ const schema = {
 <Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
   <SmoothScroll client:load>
     <HeroSectionPage menudata={menudata} client:load />
-    <ImpactMetrics client:load />
-    <ResultsSection client:load />
-    <HealthResourcesSection client:load />
-    <VolunteerImpactSection client:load />
-    <GallerySection client:load />
-    <DonationProgrammesSection client:load />
-    <WaysToHelpSection client:load />
-    <CallToAction client:load />
+      <ImpactMetrics client:visible />
+  <ResultsSection client:visible />
+  <HealthResourcesSection client:visible />
+  <VolunteerImpactSection client:visible />
+  <GallerySection client:visible />
+  <DonationProgrammesSection client:visible />
+  <WaysToHelpSection client:visible />
+  <CallToAction client:visible />
   </SmoothScroll>
 </Layout>
