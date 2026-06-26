@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro'
 import { createDonation } from '../../../lib/db/queries'
 import { json, error, serverError } from '../../../lib/api/response'
+import { sendDonationAlert } from '../../../lib/api/email'
 
 // Verify Paystack HMAC signature
 async function verifyPaystackSignature(
@@ -70,6 +71,18 @@ export const POST: APIRoute = async ({ request }) => {
       date: data.paid_at ?? new Date().toISOString(),
       reference: data.reference,
     })
+
+    sendDonationAlert({
+  type: 'paystack',
+  channel: data.channel,
+  amount: data.amount / 100,
+  currency: data.currency ?? 'GHS',
+  donor_name: data.customer?.name,
+  donor_email: data.customer?.email,
+  donor_phone: data.customer?.phone,
+  reference: data.reference,
+  date: data.paid_at ?? new Date().toISOString(),
+}).catch(err => console.error('Donation alert failed:', err))
 
     return json({ received: true })
   } catch {
