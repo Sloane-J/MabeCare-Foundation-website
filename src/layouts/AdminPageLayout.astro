@@ -5,6 +5,23 @@ interface Props {
 const { title } = Astro.props
 
 import "@/styles/global.css";
+
+import '@fontsource/outfit/100.css'
+import '@fontsource/outfit/300.css'
+import '@fontsource/outfit/400.css'
+import '@fontsource/outfit/500.css'
+import '@fontsource/outfit/600.css'
+import '@fontsource/outfit/700.css'
+import '@fontsource/outfit/800.css'
+import '@fontsource/outfit/900.css'
+import '@fontsource/merriweather/300.css'
+import '@fontsource/merriweather/400.css'
+import '@fontsource/merriweather/700.css'
+import '@fontsource/merriweather/900.css'
+import '@fontsource/geist-mono/400.css'
+import '@fontsource/geist-mono/500.css'
+import '@fontsource/geist-mono/600.css'
+import '@fontsource/kaushan-script/400.css'
 ---
 
 <html lang="en">
@@ -13,29 +30,6 @@ import "@/styles/global.css";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>{title} — MabEcare Admin</title>
-
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&family=Geist+Mono:wght@400;500;600&display=swap"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&family=Geist+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Outfit:wght@100..900&family=Geist+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
 
     <!-- Favicon & Icons -->
     <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" sizes="48x48" />

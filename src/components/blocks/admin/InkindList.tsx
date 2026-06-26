@@ -41,7 +41,7 @@ const STATUS_LABELS = {
 const STATUS_DESC = {
   submitted: 'Donor submitted, awaiting collection',
   in_transit: 'Items collected and on the way',
-  received: 'Items received by MabeCare',
+  received: 'Items received by MabEcare',
 }
 
 function fmt(v: number) {
@@ -147,7 +147,7 @@ export default function InkindList() {
           <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, color: '#111827', fontFamily: "'Merriweather', serif" }}>
             In-Kind Donations
           </h1>
-          <p className="mt-0.5 text-sm text-gray-400">Physical item contributions to MabeCare</p>
+          <p className="mt-0.5 text-sm text-gray-400">Physical item contributions to MabEcare</p>
         </div>
         <button
           onClick={fetchItems}
@@ -167,7 +167,7 @@ export default function InkindList() {
         </div>
         <StatCard label="Submitted" value={submitted} sub="Awaiting collection" />
         <StatCard label="In transit" value={inTransit} sub="On the way" />
-        <StatCard label="Received" value={received} sub="Delivered to MabeCare" />
+        <StatCard label="Received" value={received} sub="Delivered to MabEcare" />
       </div>
 
       {/* ── Filters + search ────────────────────────────── */}

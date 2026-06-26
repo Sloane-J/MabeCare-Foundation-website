@@ -93,7 +93,7 @@ const Footer = () => {
               className='focus-visible:ring-primary flex items-center gap-3 rounded-sm focus:outline-none focus-visible:ring-2'
               aria-label='MabEcare Foundation home'
             >
-              <img src='/images/site-logo.png' alt='Logo' loading="lazy" className='h-12 w-auto' width={32} height={32} />
+              <img src='/images/site-logo.webp' alt='Logo' loading="lazy" className='h-12 w-auto' width={32} height={32} />
               <div className='flex flex-col leading-none'>
                 <span className='text-sm font-bold uppercase'>MabEcare</span>
                 <span className='text-primary text-xs uppercase'>Foundation</span>

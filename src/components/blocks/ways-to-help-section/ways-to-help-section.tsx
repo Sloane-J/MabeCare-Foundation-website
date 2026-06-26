@@ -58,6 +58,7 @@ type WayToHelp = {
   title: string
   description: string
   cta: string
+  href: string
 }
 
 const ways: WayToHelp[] = [
@@ -67,6 +68,7 @@ const ways: WayToHelp[] = [
     title: 'Mobile Money',
     description: 'Send a donation instantly via MTN MoMo, Telecel Cash, or AirtelTigo Money — the easiest way to give locally.',
     cta: 'Donate Now',
+    href: '/donate',
   },
   {
     icon: <BankIcon className="size-5 text-white" />,
@@ -74,6 +76,7 @@ const ways: WayToHelp[] = [
     title: 'Bank Transfer',
     description: 'Make a direct transfer to our GCB, Absa, or Ecobank account for larger individual or business donations.',
     cta: 'Get Details',
+    href: '/donate',
   },
   {
     icon: <CardIcon className="size-5 text-white" />,
@@ -81,6 +84,7 @@ const ways: WayToHelp[] = [
     title: 'Paystack',
     description: 'Pay securely with your card or mobile money through Paystack — perfect for local and diaspora donors.',
     cta: 'Donate Now',
+    href: '/donate',
   },
   {
     icon: <GiftIcon className="size-5 text-white" />,
@@ -88,6 +92,7 @@ const ways: WayToHelp[] = [
     title: 'In-Kind Donations',
     description: 'Donate food, clothing, school materials, or baby items directly to mothers and children who need them most.',
     cta: 'Learn More',
+    href: '/donate',
   },
   {
     icon: <UsersIcon className="size-5 text-white" />,
@@ -95,6 +100,7 @@ const ways: WayToHelp[] = [
     title: 'Volunteer Your Time',
     description: 'Offer your skills as a teacher, trainer, or community worker. Your time and presence can change a mother\'s life.',
     cta: 'Get Involved',
+    href: '/donate',
   },
   {
     icon: <BellIcon className="size-5 text-white" />,
@@ -102,6 +108,7 @@ const ways: WayToHelp[] = [
     title: 'Diaspora Giving',
     description: 'Ghanaians abroad can easily send support via Paystack or mobile money top-up from anywhere in the world.',
     cta: 'Support',
+    href: '/donate',
   },
 ]
 
@@ -148,11 +155,12 @@ const WaysToHelpSection = () => {
 
                 {/* CTA */}
                 <Button
-                  variant="outline"
-                  className="w-full rounded-xl border-border hover:border-primary hover:text-primary transition-colors font-semibold mt-auto"
-                >
-                  {way.cta}
-                </Button>
+      variant="outline"
+      className="w-full rounded-xl border-border hover:border-primary hover:text-primary transition-colors font-semibold mt-auto"
+      onClick={() => window.location.href = way.href}
+    >
+      {way.cta}
+    </Button>
               </div>
             ))}
           </div>

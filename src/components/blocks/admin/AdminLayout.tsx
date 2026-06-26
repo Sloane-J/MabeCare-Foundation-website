@@ -74,7 +74,7 @@ export default function AdminLayout({
           <div className="flex h-7 w-7 items-center justify-center rounded-md bg-violet-600">
             <span className="text-xs font-bold text-white">M</span>
           </div>
-          <span className="text-sm font-semibold text-gray-800">MabeCare Admin</span>
+          <span className="text-sm font-semibold text-gray-800">MabEcare Admin</span>
         </div>
 
         {/* Nav group */}

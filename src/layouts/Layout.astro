@@ -1,22 +1,39 @@
 ---
 import "@/styles/global.css";
+
+import "@fontsource/outfit/100.css";
+import "@fontsource/outfit/300.css";
+import "@fontsource/outfit/400.css";
+import "@fontsource/outfit/500.css";
+import "@fontsource/outfit/600.css";
+import "@fontsource/outfit/700.css";
+import "@fontsource/outfit/800.css";
+import "@fontsource/outfit/900.css";
+import "@fontsource/merriweather/300.css";
+import "@fontsource/merriweather/400.css";
+import "@fontsource/merriweather/700.css";
+import "@fontsource/merriweather/900.css";
+import "@fontsource/geist-mono/400.css";
+import "@fontsource/geist-mono/500.css";
+import "@fontsource/geist-mono/600.css";
+import "@fontsource/kaushan-script/400.css";
 import { ClientRouter } from "astro:transitions";
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import HeadSeo from "@/layouts/HeadSeo.astro";
 
 interface Props {
-	title?: string;
-	description?: string;
-	image?: string;
-	type?: "website" | "article";
-	keywords?: string;
-	author?: string;
-	publishedTime?: string;
-	modifiedTime?: string;
-	noindex?: boolean;
-	nofollow?: boolean;
-	schema?: Record<string, any>;
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+  keywords?: string;
+  author?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  schema?: Record<string, any>;
 }
 
 const seoProps = Astro.props as Props;
@@ -24,30 +41,32 @@ const pathname = Astro.url.pathname;
 ---
 
 <!doctype html>
-<html lang='en' class='scroll-smooth'>
+<html lang="en" class="scroll-smooth">
   <head>
     <HeadSeo {...seoProps} />
     <ClientRouter />
     <script is:inline>
-      ;(function () {
+      (function () {
         const getTheme = () => {
-          if (typeof localStorage !== 'undefined') {
-            const stored = localStorage.getItem('theme')
-            if (stored === 'light' || stored === 'dark') return stored
+          if (typeof localStorage !== "undefined") {
+            const stored = localStorage.getItem("theme");
+            if (stored === "light" || stored === "dark") return stored;
           }
-          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        }
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        };
         const applyTheme = () => {
-          const theme = getTheme()
-          if (theme === 'dark') {
-            document.documentElement.classList.add('dark')
+          const theme = getTheme();
+          if (theme === "dark") {
+            document.documentElement.classList.add("dark");
           } else {
-            document.documentElement.classList.remove('dark')
+            document.documentElement.classList.remove("dark");
           }
-        }
-        applyTheme()
-        document.addEventListener('astro:page-load', applyTheme)
-      })()
+        };
+        applyTheme();
+        document.addEventListener("astro:page-load", applyTheme);
+      })();
     </script>
     <style>
       ::view-transition-group(*),
@@ -57,10 +76,10 @@ const pathname = Astro.url.pathname;
       }
     </style>
   </head>
-  <body class='flex min-h-full w-full flex-auto flex-col'>
-    <div class='flex flex-col'>
+  <body class="flex min-h-full w-full flex-auto flex-col">
+    <div class="flex flex-col">
       <Header pathname={pathname} client:load />
-      <main class='flex flex-col pt-17.5 *:scroll-mt-16'>
+      <main class="flex flex-col pt-17.5 *:scroll-mt-16">
         <slot />
       </main>
       <Footer client:load />

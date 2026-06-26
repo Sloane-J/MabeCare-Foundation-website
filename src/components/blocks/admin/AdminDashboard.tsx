@@ -368,7 +368,7 @@ export default function AdminDashboard() {
               {[
                 { key: 'submitted', label: 'Submitted', description: 'Donor has submitted, awaiting collection', color: 'bg-blue-100 text-blue-700' },
                 { key: 'in_transit', label: 'In transit', description: 'Items collected and on the way', color: 'bg-orange-100 text-orange-700' },
-                { key: 'delivered', label: 'Delivered', description: 'Items received by MabeCare', color: 'bg-green-100 text-green-700' },
+                { key: 'delivered', label: 'Delivered', description: 'Items received by MabEcare', color: 'bg-green-100 text-green-700' },
                 { key: 'cancelled', label: 'Cancelled', description: 'Submission was cancelled', color: 'bg-gray-100 text-gray-500' },
               ].map(({ key, label, description, color }) => {
                 const row = summary?.inkindByStatus?.find(s => s.status === key)

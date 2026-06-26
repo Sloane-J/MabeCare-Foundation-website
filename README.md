@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/images/site-logo.png" alt="MabEcare Foundation Logo" width="60px" height="auto" />
+  <img src="public/images/site-logo.webp" alt="MabEcare Foundation Logo" width="60px" height="auto" />
 </p>
 
 <h1 align="center">MabEcare Foundation</h1>
