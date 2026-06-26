@@ -72,7 +72,7 @@ const CallToAction = () => {
 
               {/* CTAs */}
               <div className='flex flex-wrap gap-3'>
-                <Button className='bg-primary hover:bg-primary/90 gap-2 rounded-full px-8 py-5 text-sm font-normal text-white'>
+                <Button onClick={() => location.href = '/donate'} className='bg-primary hover:bg-primary/90 gap-2 rounded-full px-8 py-5 text-sm font-normal text-white'>
                   Donate Now
                   <ArrowRightIcon className='size-4' />
                 </Button>
