@@ -28,7 +28,7 @@ const schema = {
 
 <Layout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={schema}>
   <SmoothScroll client:load>
-    <ContactUsSection client:load />
-    <CallToAction client:load />
+    <ContactUsSection client:visible />
+  <CallToAction client:visible />
   </SmoothScroll>
 </Layout>
