@@ -233,7 +233,7 @@ export default function DonationsList() {
           <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, color: '#111827', fontFamily: "'Merriweather', serif" }}>
             Donations
           </h1>
-          <p className="mt-0.5 text-sm text-gray-400">Financial contributions to MabeCare</p>
+          <p className="mt-0.5 text-sm text-gray-400">Financial contributions to MabEcare</p>
         </div>
         <div className="flex items-center gap-2">
           <button onClick={fetchDonations}
@@ -244,7 +244,7 @@ export default function DonationsList() {
           <button onClick={() => setShowForm(true)}
             className="flex items-center gap-1.5 rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-700 transition-colors">
             <Plus className="h-4 w-4" />
-            Record cash
+            Add Cash
           </button>
         </div>
       </div>
@@ -389,11 +389,11 @@ export default function DonationsList() {
         </div>
       )}
 
-      {/* ── Record Cash Dialog ───────────────────────────── */}
+      {/* ── Add Cash Dialog ───────────────────────────── */}
       <Dialog open={showForm} onOpenChange={setShowForm}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-base">Record cash donation</DialogTitle>
+            <DialogTitle className="text-base">Add Cash donation</DialogTitle>
           </DialogHeader>
           <CashDonationForm onSuccess={fetchDonations} onClose={() => setShowForm(false)} />
         </DialogContent>

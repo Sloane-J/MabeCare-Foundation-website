@@ -5,17 +5,17 @@ export const SITE_TITLE = 'MabEcare Foundation'
 export const SITE_DESCRIPTION =
   'MabEcare Foundation is dedicated to improving healthcare access and supporting communities through charitable programs, donations, and volunteer initiatives.'
 
-export const GITHUB_URL = 'https://github.com/Sloane-J/MabeCare-Foundation-website'
+export const GITHUB_URL = 'https://github.com/Sloane-J/MabEcare-Foundation-website'
 export const SITE_URL = 'https://mabecare-foundation.vercel.app/'
 
 export const SITE_METADATA = {
   title: {
-    default: 'MabeCare Foundation | Empowering Mothers & Children in Ghana'
+    default: 'MabEcare Foundation | Empowering Mothers & Children in Ghana'
   },
   description:
-    'MabeCare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
+    'MabEcare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
   keywords: [
-    'MabeCare Foundation',
+    'MabEcare Foundation',
     'charity Ghana',
     'non-profit Ghana',
     'maternal health Ghana',
@@ -56,16 +56,16 @@ export const SITE_METADATA = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'MabeCare Foundation',
-    title: 'MabeCare Foundation | Empowering Mothers & Children in Ghana',
+    siteName: 'MabEcare Foundation',
+    title: 'MabEcare Foundation | Empowering Mothers & Children in Ghana',
     description:
-      'MabeCare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
+      'MabEcare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
     images: [
       {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'MabeCare Foundation — Empowering Mothers & Children in Ghana',
+        alt: 'MabEcare Foundation — Empowering Mothers & Children in Ghana',
         type: 'image/png'
       }
     ]
@@ -74,9 +74,9 @@ export const SITE_METADATA = {
     card: 'summary_large_image',
     site: '@mabecarefoundation',
     creator: '@mabecarefoundation',
-    title: 'MabeCare Foundation | Empowering Mothers & Children in Ghana',
+    title: 'MabEcare Foundation | Empowering Mothers & Children in Ghana',
     description:
-      'MabeCare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
+      'MabEcare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
     images: ['/images/og-image.png']
   },
   verification: {
@@ -96,8 +96,8 @@ export const SOCIAL_LINKS = {
 
 // Company information for structured data
 export const COMPANY_INFO = {
-  name: 'MabeCare Foundation',
-  legalName: 'MabeCare Foundation',
+  name: 'MabEcare Foundation',
+  legalName: 'MabEcare Foundation',
   url: SITE_URL,
   logo: `/images/site-logo.png`,
   foundingDate: '2026',

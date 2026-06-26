@@ -29,20 +29,20 @@ export const GET: APIRoute = async ({ request, cookies }) => {
     ]
 
     const rows = donations.map((d: any) => [
-      d.id,
-      d.type,
-      d.channel ?? '',
-      d.amount,
-      d.currency,
-      d.donor_name ?? '',
-      d.donor_email ?? '',
-      d.donor_phone ?? '',
-      d.date,
-      d.reference ?? '',
-      d.status,
-      d.note ?? '',
-      d.created_at,
-    ])
+  d.id ?? '',
+  d.type ?? '',
+  d.channel ?? '',
+  d.amount ?? '',
+  d.currency ?? '',
+  d.donor_name ?? '',
+  d.donor_email ?? '',
+  d.donor_phone ?? '',
+  d.date ?? '',
+  d.reference ?? '',
+  d.status ?? '',
+  d.note ?? '',
+  d.created_at ?? '',
+])
 
     const csv = [headers, ...rows]
       .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
