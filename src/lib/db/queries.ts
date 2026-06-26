@@ -223,10 +223,28 @@ export async function getReportSummary(from?: string, to?: string) {
     args: [],
   })
 
+  const byType = await db.execute({
+  sql: `SELECT type, COUNT(*) as count, SUM(amount) as total FROM donations WHERE 1=1${dateFilter} GROUP BY type`,
+  args: dateArgs,
+})
+
+const cashTotal = await db.execute({
+  sql: `SELECT COUNT(*) as count, SUM(amount) as total FROM donations WHERE type = 'cash'${dateFilter}`,
+  args: dateArgs,
+})
+
+const paystackTotal = await db.execute({
+  sql: `SELECT COUNT(*) as count, SUM(amount) as total FROM donations WHERE type = 'paystack'${dateFilter}`,
+  args: dateArgs,
+})
+
   return {
-    totals: totals.rows[0] ? { ...totals.rows[0] } : { count: 0, total: 0 },
-    byChannel: byChannel.rows.map((row: any) => ({ ...row })),
-    byStatus: byStatus.rows.map((row: any) => ({ ...row })),
-    inkindByStatus: inkindByStatus.rows.map((row: any) => ({ ...row })),
-  }
+  totals: totals.rows[0],
+  byChannel: byChannel.rows,
+  byStatus: byStatus.rows,
+  inkindByStatus: inkindByStatus.rows,
+  byType: byType.rows,
+  cashTotal: cashTotal.rows[0],
+  paystackTotal: paystackTotal.rows[0],
+}
 }

@@ -211,7 +211,7 @@ import '@fontsource/kaushan-script/400.css'
   <body>
   <slot />
 
-  <!-- PWA Install Banner — slides in at top, above content -->
+  <!-- PWA Install Banner -->
   <div id="pwa-install-bar" style="
     display: none;
     position: fixed;
@@ -254,39 +254,36 @@ import '@fontsource/kaushan-script/400.css'
   </div>
 
   <script>
-    if (window.location.pathname.startsWith('/admin/')) {
-      const bar = document.getElementById('pwa-install-bar')
-      const installBtn = document.getElementById('pwa-install-btn')
-      const dismissBtn = document.getElementById('pwa-dismiss-btn')
-      let deferredPrompt = null
+    const bar = document.getElementById('pwa-install-bar') as HTMLDivElement
+    const installBtn = document.getElementById('pwa-install-btn') as HTMLButtonElement
+    const dismissBtn = document.getElementById('pwa-dismiss-btn') as HTMLButtonElement
+    let deferredPrompt: any = null
 
-      // Don't show if already dismissed this session
-      if (!sessionStorage.getItem('pwa-dismissed')) {
-        window.addEventListener('beforeinstallprompt', (e) => {
-          e.preventDefault()
-          deferredPrompt = e
-          bar.style.display = 'flex'
-        })
-      }
-
-      installBtn?.addEventListener('click', async () => {
-        if (!deferredPrompt) return
-        deferredPrompt.prompt()
-        const { outcome } = await deferredPrompt.userChoice
-        bar.style.display = 'none'
-        deferredPrompt = null
-      })
-
-      dismissBtn?.addEventListener('click', () => {
-        bar.style.display = 'none'
-        sessionStorage.setItem('pwa-dismissed', '1')
-      })
-
-      window.addEventListener('appinstalled', () => {
-        bar.style.display = 'none'
-        deferredPrompt = null
+    if (!sessionStorage.getItem('pwa-dismissed')) {
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault()
+        deferredPrompt = e
+        bar.style.display = 'flex'
       })
     }
+
+    installBtn?.addEventListener('click', async () => {
+      if (!deferredPrompt) return
+      deferredPrompt.prompt()
+      const { outcome } = await deferredPrompt.userChoice
+      bar.style.display = 'none'
+      deferredPrompt = null
+    })
+
+    dismissBtn?.addEventListener('click', () => {
+      bar.style.display = 'none'
+      sessionStorage.setItem('pwa-dismissed', '1')
+    })
+
+    window.addEventListener('appinstalled', () => {
+      bar.style.display = 'none'
+      deferredPrompt = null
+    })
   </script>
 
   <script>
