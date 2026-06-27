@@ -1,10 +1,11 @@
-const CACHE_NAME = 'mabecare-admin-v1'
+const CACHE_NAME = 'mabecare-admin-v2'
 
 const STATIC_ASSETS = [
   '/admin/dashboard',
   '/admin/donations',
   '/admin/inkind',
   '/admin/reports',
+  '/admin/offline',
   '/admin-manifest.json',
 ]
 
@@ -53,7 +54,7 @@ self.addEventListener('fetch', event => {
         if (cached) return cached
         // Offline fallback for navigation requests
         if (event.request.mode === 'navigate') {
-          return caches.match('/admin/dashboard')
+          return caches.match('/admin/offline')
         }
         return new Response('Offline', { status: 503 })
       }))

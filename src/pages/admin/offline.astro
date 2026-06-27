@@ -1,0 +1,327 @@
+---
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>No Connection — MabEcare Admin</title>
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" sizes="48x48" />
+    <link rel="manifest" href="/admin-manifest.json" />
+    <meta name="theme-color" content="#6A1B9A" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --accent:        #6A1B9A;
+        --accent-light:  #EDE7F6;
+        --accent-hover:  #4A148C;
+        --bg:            #F9F9FA;
+        --surface:       #FFFFFF;
+        --border:        #EAEAEA;
+        --text-primary:  #1A1A1A;
+        --text-secondary:#666666;
+        --text-muted:    #8A8A8A;
+        --radius-md:     8px;
+        --radius-lg:     12px;
+      }
+
+      html {
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--text-primary);
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+        user-select: none;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 32px 24px;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .icon-wrap {
+        width: 56px;
+        height: 56px;
+        background: var(--accent-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+      }
+
+      .icon-wrap svg {
+        width: 28px;
+        height: 28px;
+        color: var(--accent);
+      }
+
+      h1 {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+      }
+
+      .message {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+
+      .cached-links {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 12px;
+        margin-bottom: 24px;
+        text-align: left;
+      }
+
+      .cached-links p {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+      }
+
+      .cached-links a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: var(--radius-md);
+        color: var(--text-primary);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background 0.15s;
+      }
+
+      .cached-links a:hover {
+        background: var(--accent-light);
+        color: var(--accent);
+      }
+
+      .cached-links a svg {
+        width: 15px;
+        height: 15px;
+        color: var(--text-muted);
+        flex-shrink: 0;
+      }
+
+      .retry-btn {
+        width: 100%;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius-md);
+        padding: 11px 16px;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: background 0.15s;
+        user-select: none;
+      }
+
+      .retry-btn:hover { background: var(--accent-hover); }
+      .retry-btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .status {
+        margin-top: 16px;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #E53935;
+        flex-shrink: 0;
+      }
+
+      .status-dot.checking {
+        background: #FB8C00;
+        animation: pulse 1.2s ease-in-out infinite;
+      }
+
+      .status-dot.online {
+        background: #43A047;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+
+      .brand {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 32px;
+        font-weight: 500;
+      }
+
+      .brand span {
+        color: var(--accent);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <!-- Icon -->
+      <div class="icon-wrap" aria-hidden="true">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3 3l18 18M8.111 8.111A5.5 5.5 0 0112 7c1.657 0 3.156.733 4.172 1.899M6.343 6.343A8 8 0 0118.364 18.364M9.88 9.88A3 3 0 0112 9c.828 0 1.58.336 2.12.88M12 19.5a7.5 7.5 0 01-7.5-7.5" />
+        </svg>
+      </div>
+
+      <!-- Heading -->
+      <h1>You're not connected</h1>
+
+      <!-- Message -->
+      <p class="message">
+        Looks like your network connection dropped. Not to worry — your data is safe.
+        Any pending actions will sync automatically once you're back online.
+      </p>
+
+      <!-- Cached pages still accessible -->
+      <div class="cached-links" role="navigation" aria-label="Available offline pages">
+        <p>Still accessible</p>
+        <a href="/admin/dashboard">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="/admin/donations">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V6m0 12v-2M4.929 4.929l1.414 1.414M17.657 17.657l1.414 1.414M4.929 19.071l1.414-1.414M17.657 6.343l1.414-1.414" />
+          </svg>
+          Donations
+        </a>
+        <a href="/admin/inkind">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10" />
+          </svg>
+          In-Kind
+        </a>
+        <a href="/admin/reports">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          Reports
+        </a>
+      </div>
+
+      <!-- Retry button -->
+      <button class="retry-btn" id="retry-btn" type="button" aria-label="Try reconnecting">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+        Try again
+      </button>
+
+      <!-- Connection status -->
+      <div class="status" role="status" aria-live="polite">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">No connection</span>
+      </div>
+    </div>
+
+    <p class="brand"><span>MabEcare</span> Admin</p>
+
+    <script>
+      const dot = document.getElementById('status-dot')
+      const statusText = document.getElementById('status-text')
+      const retryBtn = document.getElementById('retry-btn')
+
+      function setChecking() {
+        dot.className = 'status-dot checking'
+        statusText.textContent = 'Checking connection…'
+        retryBtn.disabled = true
+      }
+
+      function setOffline() {
+        dot.className = 'status-dot'
+        statusText.textContent = 'No connection'
+        retryBtn.disabled = false
+      }
+
+      function setOnline() {
+        dot.className = 'status-dot online'
+        statusText.textContent = 'Back online — reloading…'
+        retryBtn.disabled = true
+        setTimeout(() => window.location.reload(), 1000)
+      }
+
+      // Manual retry
+      retryBtn.addEventListener('click', () => {
+        setChecking()
+        checkNetwork()
+      })
+
+      // Auto-reload when browser detects connection
+      window.addEventListener('online', () => {
+        setChecking()
+        checkNetwork()
+      })
+
+      // Poll server every 5 seconds
+      async function checkNetwork() {
+        try {
+          const res = await fetch('/admin/dashboard', { method: 'HEAD', cache: 'no-store' })
+          if (res.status >= 200 && res.status < 500) {
+            setOnline()
+            return
+          }
+        } catch {
+          // still offline
+        }
+        setOffline()
+        setTimeout(checkNetwork, 5000)
+      }
+
+      // Start polling
+      setTimeout(checkNetwork, 5000)
+    </script>
+  </body>
+</html>

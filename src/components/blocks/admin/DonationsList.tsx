@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Plus, RefreshCw, Search, X } from 'lucide-react'
+import { Plus, RefreshCw, Search, X, WifiOff } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 
@@ -163,32 +163,34 @@ function CashDonationForm({ onSuccess, onClose }: { onSuccess: () => void; onClo
   )
 }
 
-// ── Main ──────────────────────────────────────────────────────────────────────
 export default function DonationsList() {
   const [donations, setDonations] = useState<Donation[]>([])
-  const [loading, setLoading] = useState(true)
-  const [showForm, setShowForm] = useState(false)
-  const [selected, setSelected] = useState<Donation | null>(null)
-  const [statusFilter, setStatusFilter] = useState('all')
-  const [typeFilter, setTypeFilter] = useState('all')
-  const [search, setSearch] = useState('')
-  const [updating, setUpdating] = useState(false)
+const [loading, setLoading] = useState(true)
+const [error, setError] = useState<string | null>(null)  // add this
+const [showForm, setShowForm] = useState(false)
+const [selected, setSelected] = useState<Donation | null>(null)
+const [statusFilter, setStatusFilter] = useState('all')
+const [typeFilter, setTypeFilter] = useState('all')
+const [search, setSearch] = useState('')
+const [updating, setUpdating] = useState(false)
 
-  async function fetchDonations() {
-    setLoading(true)
-    try {
-      const params = new URLSearchParams()
-      if (statusFilter !== 'all') params.set('status', statusFilter)
-      if (typeFilter !== 'all') params.set('type', typeFilter)
-      const res = await fetch(`/api/donations?${params}`)
-      const data = await res.json()
-      setDonations(Array.isArray(data) ? data : [])
-    } catch {
-      setDonations([])
-    } finally {
-      setLoading(false)
-    }
+async function fetchDonations() {
+  setLoading(true)
+  setError(null)  // add this
+  try {
+    const params = new URLSearchParams()
+    if (statusFilter !== 'all') params.set('status', statusFilter)
+    if (typeFilter !== 'all') params.set('type', typeFilter)
+    const res = await fetch(`/api/donations?${params}`)
+    const data = await res.json()
+    setDonations(Array.isArray(data) ? data : [])
+  } catch {
+    setError('failed')  // add this
+    setDonations([])
+  } finally {
+    setLoading(false)
   }
+}
 
   useEffect(() => { fetchDonations() }, [statusFilter, typeFilter])
 
@@ -226,6 +228,29 @@ export default function DonationsList() {
 
   return (
     <div className="space-y-5 pb-10">
+      {/* ── Offline error state ─────────────────────────── */}
+    {error && (
+      <div className="flex min-h-[50vh] flex-col items-center justify-center p-6 text-center">
+        <img
+          src="/images/offline.svg"
+          alt="No connection"
+          className="mb-6 h-36 w-36 object-contain opacity-80"
+        />
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <WifiOff className="h-4 w-4 text-yellow-600" />
+          <p className="text-sm font-semibold text-gray-900">You're not connected</p>
+        </div>
+        <p className="text-xs text-gray-500 leading-relaxed max-w-xs">
+          Not to worry — your data is safe. This page will reload automatically once you're back online.
+        </p>
+        <button
+          onClick={fetchDonations}
+          className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-gray-800 transition-colors"
+        >
+          <RefreshCw className="h-3.5 w-3.5" /> Try again
+        </button>
+      </div>
+    )}
 
       {/* ── Header ──────────────────────────────────────── */}
       <div className="flex items-center justify-between">

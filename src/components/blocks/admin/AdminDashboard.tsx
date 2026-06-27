@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {
   Info, ArrowRight, AlertCircle, Package,
   TrendingUp, Download, Banknote, Wallet,
-  CheckCircle2, Clock, RefreshCw,
+  CheckCircle2, Clock, RefreshCw, WifiOff
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import {
@@ -193,12 +193,29 @@ export default function AdminDashboard() {
   if (loading) return <Skeleton />
 
   if (error) {
-    return (
-      <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-        {error}
+  return (
+    <div className="flex min-h-[50vh] flex-col items-center justify-center p-6 text-center">
+      <img
+        src="/images/no-internet.png"
+        alt="No connection"
+        className="mb-6 h-36 w-36 object-contain opacity-80"
+      />
+      <div className="flex items-center justify-center gap-2 mb-2">
+        <WifiOff className="h-4 w-4 text-yellow-600" />
+        <p className="text-sm font-semibold text-gray-900">You're not connected</p>
       </div>
-    )
-  }
+      <p className="text-xs text-gray-500 leading-relaxed max-w-xs">
+        Not to worry — your data is safe. This page will reload automatically once you're back online.
+      </p>
+      <button
+        onClick={fetchSummary}
+        className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-gray-800 transition-colors"
+      >
+        <RefreshCw className="h-3.5 w-3.5" /> Try again
+      </button>
+    </div>
+  )
+}
 
   // ── Derived values ─────────────────────────────────────────────────────────
   const total         = Number(summary?.totals?.total ?? 0)
