@@ -32,9 +32,9 @@
     }
   ],
   "shortcuts": [
-    { "name": "Dashboard", "url": "/admin/dashboard" },
-    { "name": "Donations", "url": "/admin/donations" },
-    { "name": "In-Kind",   "url": "/admin/inkind"    },
-    { "name": "Reports",   "url": "/admin/reports"   }
+    { "name": "Dashboard", "short_name": "Dashboard", "url": "/admin/dashboard", "icons": [{ "src": "/favicon/android-chrome-192x192.png", "sizes": "192x192" }] },
+    { "name": "Donations", "short_name": "Donations", "url": "/admin/donations", "icons": [{ "src": "/favicon/android-chrome-192x192.png", "sizes": "192x192" }] },
+    { "name": "In-Kind",   "short_name": "In-Kind",   "url": "/admin/inkind",    "icons": [{ "src": "/favicon/android-chrome-192x192.png", "sizes": "192x192" }] },
+    { "name": "Reports",   "short_name": "Reports",   "url": "/admin/reports",   "icons": [{ "src": "/favicon/android-chrome-192x192.png", "sizes": "192x192" }] }
   ]
 }

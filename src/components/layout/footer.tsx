@@ -70,7 +70,7 @@ const footerLinks = {
   legal: [
     { label: 'Privacy Policy', href: '#' },
     { label: 'Terms of Service', href: '#' },
-    { label: 'Contact Us', href: '/#contact-us' }
+    { label: 'Contact Us', href: '/contact-us' }
   ]
 }
 
