@@ -67,6 +67,13 @@ self.addEventListener('sync', event => {
   }
 })
 
+function promisifyRequest(request) {
+  return new Promise((resolve, reject) => {
+    request.onsuccess = () => resolve(request.result)
+    request.onerror = () => reject(request.error)
+  })
+}
+
 async function syncOfflineUpdates() {
   const db = await openQueue()
   const tx = db.transaction('queue', 'readwrite')
