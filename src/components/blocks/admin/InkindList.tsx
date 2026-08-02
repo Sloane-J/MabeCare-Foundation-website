@@ -19,17 +19,16 @@ type InkindSubmission = {
   received_at: string | null
   created_at: string
 }
-
 const STATUS_STYLES = {
-  submitted: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
-  in_transit: 'bg-blue-50 text-blue-700 border border-blue-200',
-  received: 'bg-green-50 text-green-700 border border-green-200',
+  submitted: 'bg-yellow-100 text-yellow-800 border border-yellow-300 rounded-lg',
+  in_transit: 'bg-blue-100 text-blue-800 border border-blue-300 rounded-lg',
+  received: 'bg-green-100 text-green-800 border border-green-300 rounded-lg',
 }
 
 const STATUS_DOT = {
-  submitted: 'bg-yellow-400',
-  in_transit: 'bg-blue-400',
-  received: 'bg-green-500',
+  submitted: 'bg-yellow-500',
+  in_transit: 'bg-blue-500',
+  received: 'bg-green-600',
 }
 
 const STATUS_LABELS = {
@@ -54,9 +53,9 @@ function fmtDate(d: string) {
 function StatCard({ label, value, sub }: { label: string; value: number; sub: string }) {
   return (
     <div className="rounded-xl border border-gray-200 bg-white px-5 py-4">
-      <p className="text-xs font-medium uppercase tracking-wide text-gray-400">{label}</p>
+      <p className="text-xs font-medium uppercase tracking-wide text-gray-500">{label}</p>
       <p className="mt-1 text-2xl font-bold tracking-tight text-gray-900">{value}</p>
-      <p className="mt-0.5 text-xs text-gray-400">{sub}</p>
+      <p className="mt-0.5 text-xs text-gray-500">{sub}</p>
     </div>
   )
 }
@@ -145,13 +144,13 @@ export default function InkindList() {
       <div className="flex items-center justify-between">
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, color: '#111827', fontFamily: "'Merriweather', serif" }}>
-            In-Kind Donations
+            Material Donations
           </h1>
-          <p className="mt-0.5 text-sm text-gray-400">Physical item contributions to MabEcare</p>
+          <p className="mt-0.5 text-sm text-gray-500">Physical item contributions to MabEcare</p>
         </div>
         <button
           onClick={fetchItems}
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-400 transition-colors hover:text-gray-700"
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 transition-colors hover:text-gray-700"
           aria-label="Refresh"
         >
           <RefreshCw className="h-4 w-4" />
@@ -161,9 +160,9 @@ export default function InkindList() {
       {/* ── Stat cards ──────────────────────────────────── */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <div className="rounded-xl border border-gray-200 bg-white px-5 py-4">
-          <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Est. total value</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Est. total value</p>
           <p className="mt-1 text-2xl font-bold tracking-tight text-violet-600">{fmt(totalValue)}</p>
-          <p className="mt-0.5 text-xs text-gray-400">{items.length} submission{items.length !== 1 ? 's' : ''}</p>
+          <p className="mt-0.5 text-xs text-gray-500">{items.length} submission{items.length !== 1 ? 's' : ''}</p>
         </div>
         <StatCard label="Submitted" value={submitted} sub="Awaiting collection" />
         <StatCard label="In transit" value={inTransit} sub="On the way" />
@@ -183,7 +182,7 @@ export default function InkindList() {
           ))}
         </div>
         <div className="relative w-full sm:w-56">
-          <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-gray-500" />
           <input
             type="text"
             value={search}
@@ -193,7 +192,7 @@ export default function InkindList() {
           />
           {search && (
             <button onClick={() => setSearch('')}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600">
               <X className="h-3.5 w-3.5" />
             </button>
           )}
@@ -210,7 +209,7 @@ export default function InkindList() {
       ) : filtered.length === 0 ? (
         <div className="rounded-xl border border-dashed border-gray-200 py-14 text-center">
           <Package className="mx-auto mb-2 h-8 w-8 text-gray-200" />
-          <p className="text-sm font-medium text-gray-400">No submissions found</p>
+          <p className="text-sm font-medium text-gray-500">No submissions found</p>
           {search && (
             <button onClick={() => setSearch('')}
               className="mt-2 text-xs text-violet-600 hover:underline">
@@ -221,7 +220,7 @@ export default function InkindList() {
       ) : (
         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
           {/* Desktop header */}
-          <div className="hidden grid-cols-[1fr_auto_auto_auto] gap-4 border-b border-gray-100 px-5 py-2.5 text-xs font-medium uppercase tracking-wide text-gray-400 lg:grid">
+          <div className="hidden grid-cols-[1fr_auto_auto_auto] gap-4 border-b border-gray-100 px-5 py-2.5 text-xs font-medium uppercase tracking-wide text-gray-500 lg:grid">
             <span>Donor / Items</span>
             <span>Location</span>
             <span>Submitted</span>
@@ -245,8 +244,8 @@ export default function InkindList() {
                     <div className={cn('h-1.5 w-1.5 shrink-0 rounded-full', STATUS_DOT[item.status])} />
                     <p className="truncate text-sm font-medium text-gray-900">{item.donor_name}</p>
                   </div>
-                  <p className="ml-3.5 mt-0.5 truncate text-xs text-gray-400">{item.item_description}</p>
-                  <p className="ml-3.5 mt-0.5 text-xs text-gray-400">
+                  <p className="ml-3.5 mt-0.5 truncate text-xs text-gray-500">{item.item_description}</p>
+                  <p className="ml-3.5 mt-0.5 text-xs text-gray-500">
                     {item.country ?? 'Unknown'} · {fmtDate(item.created_at)}
                   </p>
                 </div>
@@ -254,7 +253,7 @@ export default function InkindList() {
                   {item.estimated_value ? (
                     <p className="text-sm font-bold text-gray-900">{fmt(item.estimated_value)}</p>
                   ) : (
-                    <p className="text-xs text-gray-400">No value</p>
+                    <p className="text-xs text-gray-500">No value</p>
                   )}
                   <span className={cn('mt-1 inline-block rounded px-1.5 py-0.5 text-[10px] font-medium', STATUS_STYLES[item.status])}>
                     {STATUS_LABELS[item.status]}
@@ -272,7 +271,7 @@ export default function InkindList() {
                       {STATUS_LABELS[item.status]}
                     </span>
                   </div>
-                  <p className="ml-3.5 mt-0.5 truncate text-xs text-gray-400">{item.item_description}</p>
+                  <p className="ml-3.5 mt-0.5 truncate text-xs text-gray-500">{item.item_description}</p>
                 </div>
                 <span className="text-xs text-gray-500">{item.country ?? '—'}</span>
                 <span className="text-xs text-gray-500">{fmtDate(item.created_at)}</span>
@@ -300,7 +299,7 @@ export default function InkindList() {
                 {selected.estimated_value && (
                   <p className="mt-0.5 text-2xl font-bold text-violet-600">{fmt(selected.estimated_value)}</p>
                 )}
-                <p className="mt-1 text-xs text-gray-400">{fmtDate(selected.created_at)}</p>
+                <p className="mt-1 text-xs text-gray-500">{fmtDate(selected.created_at)}</p>
                 <span className={cn('mt-2 inline-block rounded-md px-3 py-0.5 text-xs font-medium', STATUS_STYLES[selected.status])}>
                   {STATUS_LABELS[selected.status]}
                 </span>
@@ -309,32 +308,32 @@ export default function InkindList() {
               {/* Detail grid */}
               <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
                 <div>
-                  <p className="text-xs text-gray-400">Donor</p>
+                  <p className="text-xs text-gray-500">Donor</p>
                   <p className="mt-0.5 font-medium text-gray-800">{selected.donor_name}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400">Country</p>
+                  <p className="text-xs text-gray-500">Country</p>
                   <p className="mt-0.5 font-medium text-gray-800">{selected.country ?? '—'}</p>
                 </div>
                 <div className="col-span-2">
-                  <p className="text-xs text-gray-400">Email</p>
+                  <p className="text-xs text-gray-500">Email</p>
                   <p className="mt-0.5 font-medium text-gray-800">{selected.donor_email}</p>
                 </div>
                 {selected.expected_ship_date && (
                   <div>
-                    <p className="text-xs text-gray-400">Expected ship date</p>
+                    <p className="text-xs text-gray-500">Expected ship date</p>
                     <p className="mt-0.5 font-medium text-gray-800">{fmtDate(selected.expected_ship_date)}</p>
                   </div>
                 )}
                 {selected.received_at && (
                   <div>
-                    <p className="text-xs text-gray-400">Received at</p>
+                    <p className="text-xs text-gray-500">Received at</p>
                     <p className="mt-0.5 font-medium text-gray-800">{fmtDate(selected.received_at)}</p>
                   </div>
                 )}
                 {selected.message && (
                   <div className="col-span-2">
-                    <p className="text-xs text-gray-400">Message from donor</p>
+                    <p className="text-xs text-gray-500">Message from donor</p>
                     <p className="mt-0.5 italic text-gray-600">"{selected.message}"</p>
                   </div>
                 )}
@@ -343,7 +342,7 @@ export default function InkindList() {
               {/* Photos */}
               {parsePhotos(selected.photos).length > 0 && (
                 <div>
-                  <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-400">Photos</p>
+                  <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">Photos</p>
                   <div className="grid grid-cols-3 gap-2">
                     {parsePhotos(selected.photos).map(url => (
                       <a key={url} href={url} target="_blank" rel="noopener noreferrer"
@@ -358,7 +357,7 @@ export default function InkindList() {
 
               {/* Admin note */}
               <div className="space-y-1.5">
-                <label className="text-xs font-medium uppercase tracking-wide text-gray-400">Admin note</label>
+                <label className="text-xs font-medium uppercase tracking-wide text-gray-500">Admin note</label>
                 <textarea
                   value={adminNote}
                   onChange={e => setAdminNote(e.target.value)}
@@ -370,7 +369,7 @@ export default function InkindList() {
 
               {/* Status update */}
               <div className="space-y-2 border-t border-gray-100 pt-4">
-                <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Update status</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Update status</p>
                 <div className="flex gap-2">
                   {(['submitted', 'in_transit', 'received'] as const).map(s => (
                     <button
@@ -389,11 +388,11 @@ export default function InkindList() {
                     </button>
                   ))}
                 </div>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-gray-500">
                   {STATUS_DESC[selected.status]}
                 </p>
                 {selected.status !== 'received' && (
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-gray-500">
                     Marking as <span className="font-medium text-green-700">Received</span> will send a confirmation email to the donor.
                   </p>
                 )}

@@ -57,9 +57,9 @@ const RANGE_OPTIONS: { label: string; value: Range }[] = [
 ]
 
 const TYPE_COLORS = {
-  paystack: '#6A1B9A',
+  online: '#6A1B9A',
   cash:     '#F59E0B',
-  inkind:   '#10B981',
+  material:   '#10B981',
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -240,17 +240,17 @@ export default function ReportsDashboard() {
     const seeds = [0.08, 0.12, 0.09, 0.18, 0.14, 0.21, 0.18]
     return weeks.map((w, i) => ({
       week: w,
-      paystack: Math.round(paystackTotal * seeds[i]),
+      online: Math.round(paystackTotal * seeds[i]),
       cash:     Math.round(cashTotal * seeds[i]),
-      inkind:   Math.round((inkindReceived * 500) * seeds[i]), // estimated value proxy
+      material:   Math.round((inkindReceived * 500) * seeds[i]), // estimated value proxy
     }))
   })() : []
 
   // Type breakdown bar data
   const typeBarData = [
-    { name: 'Paystack', amount: paystackTotal, count: paystackCount, color: TYPE_COLORS.paystack },
+    { name: 'Online', amount: paystackTotal, count: paystackCount, color: TYPE_COLORS.online },
     { name: 'Cash',     amount: cashTotal,     count: cashCount,     color: TYPE_COLORS.cash     },
-    { name: 'In-Kind',  amount: inkindReceived * 500, count: inkindReceived, color: TYPE_COLORS.inkind },
+    { name: 'Material',  amount: inkindReceived * 500, count: inkindReceived, color: TYPE_COLORS.material },
   ]
 
   const statusDonutData = (summary?.byStatus ?? []).map(r => ({
@@ -364,7 +364,7 @@ export default function ReportsDashboard() {
               icon={TrendingUp}
             />
             <StatCard
-              label="Paystack"
+              label="Online"
               value={fmt(paystackTotal)}
               sub={`${paystackCount} transaction${paystackCount !== 1 ? 's' : ''}`}
               color="#6A1B9A"
@@ -378,7 +378,7 @@ export default function ReportsDashboard() {
               icon={Banknote}
             />
             <StatCard
-              label="In-Kind"
+              label="Material"
               value={`${inkindTotal} submission${inkindTotal !== 1 ? 's' : ''}`}
               sub={`${inkindReceived} received`}
               color="#10B981"
@@ -392,9 +392,9 @@ export default function ReportsDashboard() {
               <SectionLabel>Donation trend — all types</SectionLabel>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 {[
-                  { label: 'Paystack', color: TYPE_COLORS.paystack },
+                  { label: 'Online', color: TYPE_COLORS.online },
                   { label: 'Cash',     color: TYPE_COLORS.cash     },
-                  { label: 'In-Kind',  color: TYPE_COLORS.inkind   },
+                  { label: 'Material',  color: TYPE_COLORS.material   },
                 ].map(l => (
                   <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
                     <div style={{ width: 8, height: 8, borderRadius: '50%', background: l.color }} />
@@ -413,9 +413,9 @@ export default function ReportsDashboard() {
                     contentStyle={{ border: '1px solid #EAEAEA', borderRadius: 8, fontSize: 12 }}
                     formatter={(v: number, name: string) => [fmt(v), name.charAt(0).toUpperCase() + name.slice(1)]}
                   />
-                  <Line type="monotone" dataKey="paystack" stroke={TYPE_COLORS.paystack} strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} />
+                  <Line type="monotone" dataKey="online" stroke={TYPE_COLORS.online} strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} />
                   <Line type="monotone" dataKey="cash"     stroke={TYPE_COLORS.cash}     strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} />
-                  <Line type="monotone" dataKey="inkind"   stroke={TYPE_COLORS.inkind}   strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} strokeDasharray="4 2" />
+                  <Line type="monotone" dataKey="material"   stroke={TYPE_COLORS.material}   strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} strokeDasharray="4 2" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -458,10 +458,10 @@ export default function ReportsDashboard() {
             </div>
           </div>
 
-          {/* ── Row 4: Paystack Channels ── */}
+          {/* ── Row 4: Financial donation Channels ── */}
           <div style={card}>
             <div style={{ ...cardPad, paddingBottom: 0 }}>
-              <SectionLabel>Paystack channels</SectionLabel>
+              <SectionLabel>Financial donation channels</SectionLabel>
             </div>
             {!summary?.byChannel?.length ? (
               <p style={{ padding: '12px 24px', fontSize: 13, color: '#9CA3AF' }}>No channel data yet</p>
@@ -499,7 +499,7 @@ export default function ReportsDashboard() {
             )}
           </div>
 
-          {/* ── Row 5: Status + In-Kind ── */}
+          {/* ── Row 5: Status + Material ── */}
           <div className="rpt-bottom-grid">
 
             <div style={card}>
@@ -525,14 +525,14 @@ export default function ReportsDashboard() {
 
             <div style={card}>
               <div style={cardPad}>
-                <SectionLabel>In-kind contributions</SectionLabel>
+                <SectionLabel>Material contributions</SectionLabel>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 14 }}>
                   <DonutChart data={inkindDonutData} total={inkindDonutTotal} />
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
                     {inkindDonutTotal === 0 && (
                       <div style={{ textAlign: 'center' }}>
                         <Package style={{ width: 20, height: 20, color: '#E5E7EB', margin: '0 auto 6px' }} />
-                        <p style={{ fontSize: 12, color: '#9CA3AF' }}>No in-kind data</p>
+                        <p style={{ fontSize: 12, color: '#9CA3AF' }}>No material data</p>
                       </div>
                     )}
                     {(summary?.inkindByStatus ?? []).map(row => (
@@ -546,7 +546,7 @@ export default function ReportsDashboard() {
                     ))}
                   </div>
                 </div>
-                {/* In-kind quick stats */}
+                {/* material quick stats */}
                 <div style={{
                   display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1,
                   marginTop: 16, borderTop: '1px solid #F3F4F6', paddingTop: 16,
@@ -571,9 +571,9 @@ export default function ReportsDashboard() {
             <div className="rpt-metrics-grid">
               {[
                 { label: 'Average donation',     value: count > 0 ? fmt(total / count) : '₵0.00',          sub: 'per transaction'       },
-                { label: 'Paystack avg',          value: paystackCount > 0 ? fmt(paystackTotal / paystackCount) : '₵0.00', sub: 'per Paystack txn' },
+                { label: 'Online avg',          value: paystackCount > 0 ? fmt(paystackTotal / paystackCount) : '₵0.00', sub: 'per Online txn' },
                 { label: 'Cash avg',              value: cashCount > 0 ? fmt(cashTotal / cashCount) : '₵0.00', sub: 'per cash entry'    },
-                { label: 'In-kind receipt rate',  value: inkindDonutTotal > 0 ? `${Math.round((inkindReceived / inkindDonutTotal) * 100)}%` : '0%', sub: 'submissions received' },
+                { label: 'Material receipt rate',  value: inkindDonutTotal > 0 ? `${Math.round((inkindReceived / inkindDonutTotal) * 100)}%` : '0%', sub: 'submissions received' },
               ].map((m, i) => (
                 <div key={i} style={{
                   padding: '14px 0',

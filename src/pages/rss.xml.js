@@ -4,12 +4,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts'
 
 export async function GET(context) {
   let posts = []
-
+  
   try {
-    posts = await getCollection('blog')
+    const allPosts = await getCollection('blog')
+    
+    posts = allPosts
+      .filter(post => !post.data.draft)
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    // Collection is empty or doesn't exist
     console.log('No blog posts found, generating empty RSS feed')
   }
 

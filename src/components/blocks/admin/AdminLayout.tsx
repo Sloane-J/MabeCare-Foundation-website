@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  LayoutDashboard,
+  Home,
   Wallet,
   Package,
   BarChart3,
@@ -11,9 +11,9 @@ import {
 import { cn } from '@/lib/utils'
 
 const NAV_ITEMS = [
-  { label: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-  { label: 'Donations', href: '/admin/donations', icon: Wallet },
-  { label: 'In-Kind', href: '/admin/inkind', icon: Package },
+  { label: 'Home', href: '/admin/dashboard', icon: Home },
+  { label: 'Financial Donations', href: '/admin/donations', icon: Wallet },
+  { label: 'Material Donations', href: '/admin/inkind', icon: Package },
   { label: 'Reports', href: '/admin/reports', icon: BarChart3 },
 ]
 
@@ -38,13 +38,13 @@ function NavLink({
       href={item.href}
       onClick={onClick}
       className={cn(
-        'flex items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors',
+        'flex items-center gap-2.5 rounded-md px-3 py-3 text-sm transition-colors',
         active
           ? 'bg-violet-50 text-violet-700 font-medium'
-          : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800 font-normal'
+          : 'text-gray-800 hover:bg-gray-100 hover:text-gray-800 font-normal'
       )}
     >
-      <Icon className={cn('h-4 w-4 shrink-0', active ? 'text-violet-600' : 'text-gray-400')} />
+      <Icon className={cn('h-4 w-4 shrink-0', active ? 'text-violet-600' : 'text-gray-800')} />
       <span>{item.label}</span>
     </a>
   )
@@ -72,15 +72,15 @@ export default function AdminLayout({
       <aside className="fixed inset-y-0 left-0 z-50 hidden w-56 flex-col border-r border-gray-200 bg-white lg:flex">
         {/* Brand */}
         <div className="flex h-14 items-center gap-2 px-4 border-b border-gray-100">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-violet-600">
-            <span className="text-xs font-bold text-white">M</span>
+          <div className="flex h-7 w-7 items-center justify-center">
+            <img src='/images/site-logo.webp' loading="eager" alt='Logo' className='h-12 w-auto' width={32} height={32} />
           </div>
-          <span className="text-sm font-semibold text-gray-800">MabEcare Admin</span>
+          <span className="text-sm font-semibold text-gray-800 " style={{ fontFamily: "'Merriweather', serif" }}>MabEcare Admin</span>
         </div>
 
         {/* Nav group */}
         <nav className="flex flex-1 flex-col gap-0.5 px-2 py-3">
-          <p className="mb-1 px-3 text-[10px] font-semibold uppercase tracking-widest text-gray-400">
+          <p className="mb-1 px-3 text-[10px] font-bold uppercase tracking-widest text-gray-400">
             Overview
           </p>
           {NAV_ITEMS.map(item => (
@@ -107,7 +107,7 @@ export default function AdminLayout({
           <button
             type="button"
             onClick={handleLogout}
-            className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm text-gray-400 transition-colors hover:bg-red-50 hover:text-red-600"
+            className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-sm text-gray-800 transition-colors hover:bg-red-50 hover:text-red-600"
           >
             <LogOut className="h-4 w-4 shrink-0" />
             <span>Logout</span>
@@ -129,7 +129,7 @@ export default function AdminLayout({
               href={item.href}
               className={cn(
                 'flex flex-col items-center gap-1 px-3 py-2 text-[11px] font-medium transition-colors',
-                active ? 'text-violet-600' : 'text-gray-400'
+                active ? 'text-violet-600' : 'text-gray-800'
               )}
             >
               <Icon className={cn('h-5 w-5', active && 'stroke-[2.5px]')} />
@@ -140,7 +140,7 @@ export default function AdminLayout({
         <button
           type="button"
           onClick={handleLogout}
-          className="flex flex-col items-center gap-1 px-3 py-2 text-[11px] font-medium text-gray-400 hover:text-red-500"
+          className="flex flex-col items-center gap-1 px-3 py-2 text-[11px] font-medium text-gray-800 hover:text-red-500"
         >
           <LogOut className="h-5 w-5" />
           <span>Logout</span>

@@ -66,7 +66,7 @@ function Panel({
         <div className="flex items-start justify-between border-b border-gray-100 px-5 py-3.5">
           <div>
             <span className="text-sm font-semibold text-gray-800">{title}</span>
-            {subtitle && <p className="mt-0.5 text-xs text-gray-400">{subtitle}</p>}
+            {subtitle && <p className="mt-0.5 text-xs text-gray-600">{subtitle}</p>}
           </div>
           {action}
         </div>
@@ -83,15 +83,15 @@ function StatCard({
   color: string; icon: React.ElementType
 }) {
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4 flex flex-col gap-3">
+    <div className="rounded-lg border border-gray-200 bg-white p-4 flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">{label}</span>
+        <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">{label}</span>
         <div className="flex h-7 w-7 items-center justify-center rounded-lg" style={{ background: `${color}18` }}>
           <Icon className="h-3.5 w-3.5" style={{ color }} />
         </div>
       </div>
       <p className="text-2xl font-bold text-gray-900 leading-none">{value}</p>
-      {sub && <p className="text-xs text-gray-400">{sub}</p>}
+      {sub && <p className="text-xs text-gray-500">{sub}</p>}
     </div>
   )
 }
@@ -103,7 +103,7 @@ function MiniBar({ label, value, total, color }: { label: string; value: number;
       <div className="mb-1.5 flex items-center justify-between">
         <span className="text-xs font-medium text-gray-700">{label}</span>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-gray-400">{value}</span>
+          <span className="text-xs text-gray-500">{value}</span>
           <span className="text-xs font-semibold text-gray-900">{pct}%</span>
         </div>
       </div>
@@ -130,7 +130,7 @@ function ActionRow({
         </div>
         <div>
           <p className="text-sm font-medium text-gray-800">{label}</p>
-          <p className="text-xs text-gray-400">{description}</p>
+          <p className="text-xs text-gray-500">{description}</p>
         </div>
       </div>
       <ArrowRight className="h-4 w-4 text-gray-300 transition-colors group-hover:text-violet-500" />
@@ -142,7 +142,7 @@ function EmptyState({ message }: { message: string }) {
   return (
     <div className="flex flex-col items-center gap-2 py-6 text-center">
       <AlertCircle className="h-7 w-7 text-gray-200" />
-      <p className="text-sm text-gray-400">{message}</p>
+      <p className="text-sm text-gray-500">{message}</p>
     </div>
   )
 }
@@ -242,7 +242,7 @@ export default function AdminDashboard() {
 
   // Bar chart data — donation type comparison
   const typeBarData = [
-    { name: 'Paystack', amount: paystackTotal, count: paystackCount, fill: TYPE_COLORS.paystack },
+    { name: 'Online', amount: paystackTotal, count: paystackCount, fill: TYPE_COLORS.paystack },
     { name: 'Cash',     amount: cashTotal,     count: cashCount,     fill: TYPE_COLORS.cash     },
     { name: 'In-Kind',  amount: inkindReceived * 500, count: inkindReceived, fill: TYPE_COLORS.inkind },
   ]
@@ -256,7 +256,7 @@ export default function AdminDashboard() {
           <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, color: '#111827', fontFamily: "'Merriweather', serif" }}>
             Dashboard
           </h1>
-          <p className="mt-0.5 text-sm text-gray-400">
+          <p className="mt-0.5 text-sm text-gray-500">
             {totalActionItems > 0
               ? `${totalActionItems} item${totalActionItems !== 1 ? 's' : ''} need your attention`
               : 'Everything is up to date'}
@@ -265,14 +265,14 @@ export default function AdminDashboard() {
         <div className="flex items-center gap-2">
           <button
             onClick={fetchSummary}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-400 transition-colors hover:text-gray-700"
+            className="flex h-8 w-8 items-center justify-center rounded-md border border-gray-200 bg-white text-gray-500 transition-colors hover:text-gray-700"
             aria-label="Refresh"
           >
             <RefreshCw className="h-3.5 w-3.5" />
           </button>
           <a
             href="/admin/reports"
-            className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-violet-300 hover:text-violet-700"
+            className="flex items-center gap-1.5 rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-violet-300 hover:text-violet-700"
           >
             <Download className="h-3.5 w-3.5" />
             Export
@@ -290,7 +290,7 @@ export default function AdminDashboard() {
           icon={TrendingUp}
         />
         <StatCard
-          label="Paystack"
+          label="Online"
           value={fmt(paystackTotal)}
           sub={`${paystackCount} transaction${paystackCount !== 1 ? 's' : ''}`}
           color="#6A1B9A"
@@ -304,7 +304,7 @@ export default function AdminDashboard() {
           icon={Banknote}
         />
         <StatCard
-          label="In-Kind"
+          label="Material"
           value={`${inkindTotal} item${inkindTotal !== 1 ? 's' : ''}`}
           sub={`${inkindReceived} received`}
           color="#10B981"
@@ -317,30 +317,30 @@ export default function AdminDashboard() {
 
         {/* Financial summary */}
         <Panel
-          title="Financial summary"
-          subtitle="Paystack + cash donations"
+          title="Financial Summary"
+          subtitle="Online + Cash Donations"
           className="lg:col-span-2"
         >
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Average</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Average</p>
               <p className="mt-1 text-2xl font-bold text-violet-600">{fmt(avg)}</p>
-              <p className="mt-0.5 text-xs text-gray-400">per donation</p>
+              <p className="mt-0.5 text-xs text-gray-500">per donation</p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Pending</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Pending</p>
               <p className="mt-1 text-2xl font-bold text-yellow-500">{pending}</p>
-              <p className="mt-0.5 text-xs text-gray-400">need review</p>
+              <p className="mt-0.5 text-xs text-gray-500">need review</p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Confirmed</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Confirmed</p>
               <p className="mt-1 text-2xl font-bold text-gray-900">{confirmed}</p>
-              <p className="mt-0.5 text-xs text-gray-400">verified</p>
+              <p className="mt-0.5 text-xs text-gray-500">verified</p>
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Reconciled</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Reconciled</p>
               <p className="mt-1 text-2xl font-bold text-green-600">{reconciled}</p>
-              <p className="mt-0.5 text-xs text-gray-400">closed</p>
+              <p className="mt-0.5 text-xs text-gray-500">closed</p>
             </div>
           </div>
 
@@ -355,7 +355,7 @@ export default function AdminDashboard() {
         </Panel>
 
         {/* In-kind pipeline */}
-        <Panel title="In-kind pipeline" subtitle="Physical item donations">
+        <Panel title="Material Donations Pipeline" subtitle="Material item donations">
           <div className="space-y-3">
             {[
               { key: 'submitted',  label: 'Submitted',  count: inkindSubmitted, color: INKIND_COLORS.submitted  },
@@ -418,10 +418,10 @@ export default function AdminDashboard() {
       {/* ── Row 4: Channel breakdown + type bar chart ──── */}
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
 
-        {/* Paystack channels */}
-        <Panel title="Paystack channels" subtitle="Breakdown of online payment methods">
+        {/* financial donation channels */}
+        <Panel title="Financial channels" subtitle="Breakdown of financial donation methods">
           {!summary?.byChannel?.length ? (
-            <EmptyState message="No Paystack donations recorded yet." />
+            <EmptyState message="No financial donations recorded yet." />
           ) : (
             <div className="space-y-4">
               {summary.byChannel.map(row => (
@@ -431,7 +431,7 @@ export default function AdminDashboard() {
                       {CHANNEL_LABELS[row.channel] ?? row.channel}
                     </span>
                     <div className="flex items-center gap-3">
-                      <span className="text-xs text-gray-400">{row.count} txn{row.count !== 1 ? 's' : ''}</span>
+                      <span className="text-xs text-gray-500">{row.count} txn{row.count !== 1 ? 's' : ''}</span>
                       <span className="text-xs font-semibold text-gray-900">
                         {fmt(Number(row.total))}
                       </span>
@@ -453,7 +453,7 @@ export default function AdminDashboard() {
         </Panel>
 
         {/* Donation type bar chart */}
-        <Panel title="By donation type" subtitle="Paystack vs cash vs in-kind">
+        <Panel title="By donation type" subtitle="Online vs cash vs in-kind">
           <ResponsiveContainer width="100%" height={180}>
             <BarChart data={typeBarData} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
               <CartesianGrid stroke="#F9F9FA" vertical={false} />
@@ -473,9 +473,9 @@ export default function AdminDashboard() {
             {typeBarData.map(t => (
               <div key={t.name} className="text-center">
                 <div className="mx-auto mb-1 h-2 w-2 rounded-full" style={{ background: t.fill }} />
-                <p className="text-xs text-gray-400">{t.name}</p>
+                <p className="text-xs text-gray-500">{t.name}</p>
                 <p className="text-sm font-bold text-gray-900">{fmtShort(t.amount)}</p>
-                <p className="text-xs text-gray-400">{t.count} entr{t.count !== 1 ? 'ies' : 'y'}</p>
+                <p className="text-xs text-gray-500">{t.count} entr{t.count !== 1 ? 'ies' : 'y'}</p>
               </div>
             ))}
           </div>

@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 
 type Donation = {
   id: string
-  type: 'paystack' | 'cash'
+  type: 'online' | 'cash'
   channel: string | null
   amount: number
   currency: string
@@ -54,11 +54,11 @@ function StatCard({ label, value, sub, accent }: {
 }) {
   return (
     <div className="rounded-xl border border-gray-200 bg-white px-5 py-4">
-      <p className="text-xs font-medium uppercase tracking-wide text-gray-400">{label}</p>
+      <p className="text-xs font-medium uppercase tracking-wide text-gray-500">{label}</p>
       <p className={cn('mt-1 text-2xl font-bold tracking-tight', accent ? 'text-violet-600' : 'text-gray-900')}>
         {value}
       </p>
-      {sub && <p className="mt-0.5 text-xs text-gray-400">{sub}</p>}
+      {sub && <p className="mt-0.5 text-xs text-gray-500">{sub}</p>}
     </div>
   )
 }
@@ -256,18 +256,18 @@ async function fetchDonations() {
       <div className="flex items-center justify-between">
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, color: '#111827', fontFamily: "'Merriweather', serif" }}>
-            Donations
+            Financial Donations
           </h1>
-          <p className="mt-0.5 text-sm text-gray-400">Financial contributions to MabEcare</p>
+          <p className="mt-0.5 text-sm text-gray-500">Financial contributions to MabEcare Foundation</p>
         </div>
         <div className="flex items-center gap-2">
           <button onClick={fetchDonations}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-400 hover:text-gray-700 transition-colors"
+            className="flex h-9 w-9 items-center justify-center rounded-md border border-gray-200 bg-white text-gray-500 hover:text-gray-700 transition-colors"
             aria-label="Refresh">
             <RefreshCw className="h-4 w-4" />
           </button>
           <button onClick={() => setShowForm(true)}
-            className="flex items-center gap-1.5 rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-700 transition-colors">
+            className="flex items-center gap-1.5 rounded-md bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-700 transition-colors">
             <Plus className="h-4 w-4" />
             Add Cash
           </button>
@@ -301,7 +301,7 @@ async function fetchDonations() {
           ))}
           <div className="h-5 w-px bg-gray-200 self-center" />
           {/* Type filters */}
-          {(['all', 'paystack', 'cash'] as const).map(t => (
+          {(['all', 'online', 'cash'] as const).map(t => (
             <FilterPill
               key={t}
               label={t === 'all' ? 'All types' : t.charAt(0).toUpperCase() + t.slice(1)}
@@ -313,7 +313,7 @@ async function fetchDonations() {
 
         {/* Search */}
         <div className="relative w-full sm:w-56">
-          <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-gray-500" />
           <input
             type="text"
             value={search}
@@ -323,7 +323,7 @@ async function fetchDonations() {
           />
           {search && (
             <button onClick={() => setSearch('')}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600">
               <X className="h-3.5 w-3.5" />
             </button>
           )}
@@ -339,7 +339,7 @@ async function fetchDonations() {
         </div>
       ) : filtered.length === 0 ? (
         <div className="rounded-xl border border-dashed border-gray-200 py-14 text-center">
-          <p className="text-sm font-medium text-gray-400">No donations found</p>
+          <p className="text-sm font-medium text-gray-500">No donations found</p>
           {search && (
             <button onClick={() => setSearch('')}
               className="mt-2 text-xs text-violet-600 hover:underline">
@@ -350,7 +350,7 @@ async function fetchDonations() {
       ) : (
         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
           {/* Table header — desktop only */}
-          <div className="hidden grid-cols-[1fr_auto_auto_auto] gap-4 border-b border-gray-100 px-5 py-2.5 text-xs font-medium uppercase tracking-wide text-gray-400 lg:grid">
+          <div className="hidden grid-cols-[1fr_auto_auto_auto] gap-4 border-b border-gray-100 px-5 py-2.5 text-xs font-medium uppercase tracking-wide text-gray-500 lg:grid">
             <span>Donor</span>
             <span>Channel</span>
             <span>Date</span>
@@ -375,7 +375,7 @@ async function fetchDonations() {
                       {d.donor_name ?? 'Anonymous'}
                     </p>
                   </div>
-                  <p className="mt-0.5 truncate text-xs text-gray-400">
+                  <p className="mt-0.5 truncate text-xs text-gray-500">
                     {d.channel ? CHANNEL_LABELS[d.channel] ?? d.channel : 'Cash'} · {fmtDate(d.date)}
                   </p>
                 </div>
@@ -400,7 +400,7 @@ async function fetchDonations() {
                     </span>
                   </div>
                   {d.donor_email && (
-                    <p className="ml-3.5 mt-0.5 truncate text-xs text-gray-400">{d.donor_email}</p>
+                    <p className="ml-3.5 mt-0.5 truncate text-xs text-gray-500">{d.donor_email}</p>
                   )}
                 </div>
                 <span className="text-xs text-gray-500">
@@ -435,7 +435,7 @@ async function fetchDonations() {
               {/* Amount hero */}
               <div className="rounded-xl bg-gray-50 px-5 py-4 text-center">
                 <p className="text-3xl font-bold text-gray-900">{fmt(selected.amount)}</p>
-                <p className="mt-1 text-xs text-gray-400">{fmtDate(selected.date)}</p>
+                <p className="mt-1 text-xs text-gray-500">{fmtDate(selected.date)}</p>
                 <span className={cn('mt-2 inline-block rounded-md px-3 py-0.5 text-xs font-medium capitalize', STATUS_STYLES[selected.status])}>
                   {selected.status}
                 </span>
@@ -444,36 +444,36 @@ async function fetchDonations() {
               {/* Detail grid */}
               <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
                 <div>
-                  <p className="text-xs text-gray-400">Type</p>
+                  <p className="text-xs text-gray-500">Type</p>
                   <p className="mt-0.5 font-medium capitalize text-gray-800">{selected.type}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400">Channel</p>
+                  <p className="text-xs text-gray-500">Channel</p>
                   <p className="mt-0.5 font-medium text-gray-800">
                     {selected.channel ? CHANNEL_LABELS[selected.channel] ?? selected.channel : 'Cash'}
                   </p>
                 </div>
                 {selected.donor_name && (
                   <div>
-                    <p className="text-xs text-gray-400">Donor</p>
+                    <p className="text-xs text-gray-500">Donor</p>
                     <p className="mt-0.5 font-medium text-gray-800">{selected.donor_name}</p>
                   </div>
                 )}
                 {selected.donor_email && (
                   <div className="col-span-2">
-                    <p className="text-xs text-gray-400">Email</p>
+                    <p className="text-xs text-gray-500">Email</p>
                     <p className="mt-0.5 font-medium text-gray-800">{selected.donor_email}</p>
                   </div>
                 )}
                 {selected.reference && (
                   <div className="col-span-2">
-                    <p className="text-xs text-gray-400">Reference</p>
+                    <p className="text-xs text-gray-500">Reference</p>
                     <p className="mt-0.5 font-mono text-xs text-gray-600">{selected.reference}</p>
                   </div>
                 )}
                 {selected.note && (
                   <div className="col-span-2">
-                    <p className="text-xs text-gray-400">Note</p>
+                    <p className="text-xs text-gray-500">Note</p>
                     <p className="mt-0.5 text-gray-800">{selected.note}</p>
                   </div>
                 )}
@@ -481,7 +481,7 @@ async function fetchDonations() {
 
               {/* Status update */}
               <div className="space-y-2 border-t border-gray-100 pt-4">
-                <p className="text-xs font-medium uppercase tracking-wide text-gray-400">Update status</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Update status</p>
                 <div className="flex gap-2">
                   {(['pending', 'confirmed', 'reconciled'] as const).map(s => (
                     <button
