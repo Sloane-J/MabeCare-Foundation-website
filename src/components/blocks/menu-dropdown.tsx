@@ -1,9 +1,6 @@
 'use client'
-
 import type { ReactNode } from 'react'
-
 import { ChevronRightIcon, CircleSmallIcon } from 'lucide-react'
-
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
   DropdownMenu,
@@ -12,18 +9,32 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-
 import { cn } from '@/lib/utils'
 
-// Inline scroll function
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId)
+// Handles both same-page section scrolling and real page navigation
+const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const isSectionAnchor = href.startsWith('#')
 
+  if (!isSectionAnchor) {
+    // Real route (e.g. /blog) — let the browser navigate normally
+    return
+  }
+
+  e.preventDefault()
+  const sectionId = href.replace('#', '')
+  const isOnHomepage = window.location.pathname === '/'
+
+  if (!isOnHomepage) {
+    // Section lives on the homepage but we're on another page (e.g. /blog)
+    window.location.href = `/${href}`
+    return
+  }
+
+  const element = document.getElementById(sectionId)
   if (element) {
     const headerHeight = 80
     const elementPosition = element.getBoundingClientRect().top
     const offsetPosition = elementPosition + window.pageYOffset - headerHeight
-
     window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
   }
 }
@@ -61,18 +72,15 @@ const MenuDropdown = ({ trigger, navigationData, activeSection, align = 'start' 
       <DropdownMenuContent className='mt-1 w-[min(93vw,800px)]' align={align}>
         {navigationData.map(navItem => {
           if (navItem.href) {
-            // Extract section ID from href
-            const sectionId = navItem.href.replace('#', '')
-            const isActive = activeSection === sectionId && activeSection !== ''
+            const isSectionAnchor = navItem.href.startsWith('#')
+            const sectionId = isSectionAnchor ? navItem.href.replace('#', '') : ''
+            const isActive = isSectionAnchor && activeSection === sectionId && activeSection !== ''
 
             return (
               <DropdownMenuItem key={navItem.title} asChild>
-                <a
+                
                   href={navItem.href}
-                  onClick={e => {
-                    e.preventDefault()
-                    scrollToSection(sectionId)
-                  }}
+                  onClick={e => handleNavClick(e, navItem.href!)}
                   className={cn(
                     'transition-colors duration-200',
                     'hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary',
@@ -85,7 +93,6 @@ const MenuDropdown = ({ trigger, navigationData, activeSection, align = 'start' 
               </DropdownMenuItem>
             )
           }
-
           return (
             <Collapsible key={navItem.title} asChild>
               <DropdownMenuGroup>
@@ -99,7 +106,7 @@ const MenuDropdown = ({ trigger, navigationData, activeSection, align = 'start' 
                 <CollapsibleContent className='pl-2'>
                   {navItem.items?.map(item => (
                     <DropdownMenuItem key={item.title} asChild>
-                      <a href={item.href}>
+                      <a href={item.href} onClick={e => handleNavClick(e, item.href)}>
                         <CircleSmallIcon />
                         <span>{item.title}</span>
                       </a>

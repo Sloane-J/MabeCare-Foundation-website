@@ -1,0 +1,97 @@
+---
+export const prerender = true
+
+import { getCollection, render } from 'astro:content'
+import Layout from '@/layouts/layout.astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft)
+
+  return posts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post }
+  }))
+}
+
+const { post } = Astro.props
+const { Content } = await render(post)
+
+const formattedDate = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+}).format(post.data.pubDate)
+---
+
+<Layout title={post.data.title}>
+  <div class="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-10">
+    <!-- Site header -->
+    <div class="flex items-center gap-3">
+      <img src="/logo.svg" alt="MabEcare Foundation" class="h-8 w-auto" />
+      <span class="font-sans text-sm font-semibold text-foreground">
+        MabEcare Foundation
+      </span>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="text-sm text-muted-foreground">
+      <a href="/blog" class="hover:text-primary">Home</a>
+      <span class="mx-1">/</span>
+      <a href={`/blog?category=${encodeURIComponent(post.data.category)}`} class="hover:text-primary">
+        {post.data.category}
+      </a>
+      <span class="mx-1">/</span>
+      <span class="text-foreground">{post.data.title}</span>
+    </nav>
+
+    <!-- Featured image -->
+    {post.data.imageUrl && (
+      <img
+        src={post.data.imageUrl}
+        alt={post.data.imageAlt ?? post.data.title}
+        class="w-full rounded-lg object-cover"
+      />
+    )}
+
+    <!-- Title + subtitle -->
+    <div class="flex flex-col gap-2">
+      <h1 class="font-sans text-3xl font-bold text-foreground">
+        {post.data.title}
+      </h1>
+      {post.data.description && (
+        <p class="text-lg text-muted-foreground">{post.data.description}</p>
+      )}
+    </div>
+
+    <!-- Author + date -->
+    <div class="flex items-center gap-3 border-y border-border py-3">
+      {post.data.avatarUrl && (
+        <img
+          src={post.data.avatarUrl}
+          alt={post.data.author}
+          class="h-8 w-8 rounded-full object-cover"
+        />
+      )}
+      <div class="flex flex-col">
+        <span class="text-sm font-medium text-foreground">{post.data.author}</span>
+        <span class="text-xs text-muted-foreground">{formattedDate}</span>
+      </div>
+    </div>
+
+    <!-- Post content -->
+    <article class="prose prose-neutral dark:prose-invert max-w-none">
+      <Content />
+    </article>
+
+    <!-- Tags -->
+    {post.data.tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 border-t border-border pt-4">
+        {post.data.tags.map((tag) => (
+          <span class="rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+</Layout>

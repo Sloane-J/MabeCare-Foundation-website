@@ -1,0 +1,29 @@
+---
+export const prerender = true
+
+import { getCollection } from 'astro:content'
+import Layout from '@/layouts/layout.astro'
+import BlogSection from '@/components/blog/blog-section'
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft)
+
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)
+
+const posts = sortedPosts.map((post) => ({
+  slug: post.data.slug,
+  title: post.data.title,
+  description: post.data.description,
+  imageUrl: post.data.imageUrl,
+  imageAlt: post.data.imageAlt,
+  pubDate: post.data.pubDate.toISOString(),
+  author: post.data.author,
+  category: post.data.category,
+  tags: post.data.tags
+}))
+---
+
+<Layout title="Blog">
+  <BlogSection posts={posts} client:load />
+</Layout>

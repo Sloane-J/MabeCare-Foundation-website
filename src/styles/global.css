@@ -1,6 +1,6 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 @import 'tw-animate-css';
-
 @import 'lenis/dist/lenis.css';
 
 @custom-variant dark (&:is(.dark *));
@@ -75,7 +75,7 @@
   --popover-foreground: #0a0a0a;
 
   /* PRIMARY BRAND (Pink) */
-  --primary: #a81360;
+  --primary: #DC143C;
   --primary-foreground: #FDFDFD;
 
   /* Secondary (Black system) */
@@ -88,7 +88,7 @@
 
   /* Soft brand usage */
   --accent: #ffe4f1;
-  --accent-foreground: #ff1493;
+  --accent-foreground: #DC143C;
   --accent-secondary:#86cfac;
 
   /* States */
@@ -97,7 +97,7 @@
   /* Inputs */
   --border: #e5e7eb;
   --input: #e5e7eb;
-  --ring: #ff1493;
+  --ring: #DC143C;
 
   /* Shadows */
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08);
@@ -118,7 +118,7 @@
   --popover-foreground: #fafafa;
 
   /* Pink stays brand anchor */
-  --primary: #ff1493;
+  --primary: #DC143C;
   --primary-foreground: #FDFDFD;
 
   --secondary: #fafafa;
@@ -129,13 +129,13 @@
 
   /* Dark-friendly pink tone */
   --accent: #3a1d2b;
-  --accent-foreground: #ff1493;
+  --accent-foreground: #DC143C;
 
   --destructive: #f87171;
 
   --border: #262626;
   --input: #262626;
-  --ring: #ff1493;
+  --ring: #DC143C;
 }
 
 /* -----------------------------

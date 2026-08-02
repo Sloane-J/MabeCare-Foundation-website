@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,18 +8,32 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu'
-
 import { cn } from '@/lib/utils'
 
-// Inline scroll function
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId)
+// Handles both same-page section scrolling and real page navigation
+const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const isSectionAnchor = href.startsWith('#')
 
+  if (!isSectionAnchor) {
+    // Real route (e.g. /blog) — let the browser navigate normally
+    return
+  }
+
+  e.preventDefault()
+  const sectionId = href.replace('#', '')
+  const isOnHomepage = window.location.pathname === '/'
+
+  if (!isOnHomepage) {
+    // Section lives on the homepage but we're on another page (e.g. /blog)
+    window.location.href = `/${href}`
+    return
+  }
+
+  const element = document.getElementById(sectionId)
   if (element) {
     const headerHeight = 80
     const elementPosition = element.getBoundingClientRect().top
     const offsetPosition = elementPosition + window.pageYOffset - headerHeight
-
     window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
   }
 }
@@ -56,19 +69,15 @@ const MenuNavigation = ({ navigationData, activeSection, className }: MenuNaviga
       <NavigationMenuList className='flex-wrap justify-start gap-0'>
         {navigationData.map(navItem => {
           if (navItem.href) {
-            // Extract section ID from href
-            const sectionId = navItem.href.replace('#', '')
-            const isActive = activeSection === sectionId && activeSection !== ''
+            const isSectionAnchor = navItem.href.startsWith('#')
+            const sectionId = isSectionAnchor ? navItem.href.replace('#', '') : ''
+            const isActive = isSectionAnchor && activeSection === sectionId && activeSection !== ''
 
-            // Root link item
             return (
               <NavigationMenuItem key={navItem.title}>
                 <NavigationMenuLink
                   href={navItem.href}
-                  onClick={e => {
-                    e.preventDefault()
-                    scrollToSection(sectionId)
-                  }}
+                  onClick={e => handleNavClick(e, navItem.href!)}
                   className={cn(
                     navigationMenuTriggerStyle(),
                     'rounded-full bg-transparent px-3 py-1.5 text-base! font-normal transition-colors duration-200',
@@ -82,8 +91,6 @@ const MenuNavigation = ({ navigationData, activeSection, className }: MenuNaviga
               </NavigationMenuItem>
             )
           }
-
-          // Section with dropdown
           return (
             <NavigationMenuItem key={navItem.title}>
               <NavigationMenuTrigger className='text-muted-foreground hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10 focus:text-primary focus:bg-primary/5 dark:focus:bg-primary/10 data-[state=open]:text-primary data-[state=open]:bg-primary/5 dark:data-[state=open]:bg-primary/10 data-[state=open]:hover:bg-primary/5 dark:data-[state=open]:hover:bg-primary/10 bg-transparent px-3 py-1.5 text-base [&>svg]:size-4'>

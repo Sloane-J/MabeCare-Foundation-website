@@ -42,6 +42,7 @@ const homeNavLinks = [
   { label: 'About Us', href: '/about-us' },
   { label: 'Programmes', href: '#donation-programmes' },
   { label: 'Impact', href: '#impact-metrics' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact-us' }
 ]
 
@@ -49,6 +50,7 @@ const aboutNavLinks = [
   { label: 'Home', href: '/' },
   { label: 'Programmes', href: '/#donation-programmes' },
   { label: 'Impact', href: '/#impact-metrics' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/#contact-us' }
 ]
 
@@ -56,7 +58,8 @@ const contactNavLinks = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about-us' },
   { label: 'Programmes', href: '/#donation-programmes' },
-  { label: 'Impact', href: '/#impact-metrics' }
+  { label: 'Impact', href: '/#impact-metrics' },
+  { label: 'Blog', href: '/blog' }
 ]
 
 type HeaderProps = {
@@ -117,8 +120,9 @@ const Header = ({ pathname }: HeaderProps) => {
   const isLinkActive = (href: string) => {
     if (href.startsWith('#')) return activeSection === href.replace('#', '')
     if (href === '/about-us') return pathname === '/about-us'
+    if (href === '/blog') return pathname.startsWith('/blog')
     if (href === '/') return pathname === '/'
-
+  
     return false
   }
 
