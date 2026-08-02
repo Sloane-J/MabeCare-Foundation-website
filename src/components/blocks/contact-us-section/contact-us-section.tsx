@@ -113,18 +113,18 @@ const ContactUsSection = () => {
   }
 
   return (
-    <div id='contact-us' className='flex flex-col'>
-      <section aria-labelledby='contact-heading' className='py-12 sm:py-20 lg:py-28'>
+    <div id='contact-us' className='flex flex-col bg-background'>
+      <section aria-labelledby='contact-heading' className='py-16 sm:py-24 lg:py-32'>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-          <div className='mx-auto mb-12 flex max-w-2xl flex-col items-center justify-center space-y-4 text-center sm:mb-16'>
-            <Badge variant='outline' className='gap-2 px-4 py-1.5 text-sm font-normal'>
+          <div className='mx-auto mb-16 flex max-w-2xl flex-col items-center justify-center space-y-5 text-center'>
+            <Badge variant='outline' className='gap-2 px-4 py-1.5 text-sm font-medium border-border/60 bg-muted/30'>
               <MailIcon className='text-primary size-4' />
               Contact Us
             </Badge>
-            <h1 id='contact-heading' className='text-3xl font-normal tracking-tight md:text-4xl lg:text-5xl'>
+            <h1 id='contact-heading' className='text-3xl font-bold tracking-tight text-foreground md:text-5xl'>
               We would love to <span className='text-primary'>hear</span> from you
             </h1>
-            <p className='text-muted-foreground max-w-xl text-base sm:text-lg'>
+            <p className='text-muted-foreground max-w-xl text-base sm:text-lg leading-relaxed'>
               Whether you want to donate, volunteer, partner with us, or simply learn more about our work, we are here
               and happy to talk.
             </p>
@@ -132,30 +132,29 @@ const ContactUsSection = () => {
 
           <div className='grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16'>
             {/* Left — contact info */}
-            <div className='flex flex-col gap-8'>
+            <div className='flex flex-col gap-10'>
               <div className='flex flex-col gap-3'>
-                <h2 className='text-foreground text-xl font-semibold'>Get in touch</h2>
+                <h2 className='text-foreground text-2xl font-bold tracking-tight'>Get in touch</h2>
                 <p className='text-muted-foreground text-base leading-relaxed'>
                   Reach out to us through any of the channels below. We typically respond within one to two business
                   days.
                 </p>
               </div>
 
-              <div className='flex flex-col gap-4'>
+              <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1'>
                 {contactDetails.map((detail, i) => (
-                  <div key={i} className='border-border bg-card flex items-start gap-4 rounded-2xl border p-5'>
-                    <div className='bg-accent flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full'>
+                  <div key={i} className='group flex items-center gap-5 rounded-2xl border border-border bg-card p-5 shadow-sm transition-all hover:shadow-md hover:border-primary/30'>
+                    <div className='flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20'>
                       {detail.icon}
                     </div>
-                    <div className='flex flex-col gap-0.5'>
-                      <p className='text-muted-foreground text-xs tracking-wider uppercase'>{detail.label}</p>
-
+                    <div className='flex flex-col gap-1'>
+                      <p className='text-muted-foreground text-xs font-semibold tracking-wider uppercase'>{detail.label}</p>
                       {detail.href ? (
                         <a
                           href={detail.href}
                           target={detail.href.startsWith('http') ? '_blank' : undefined}
                           rel={detail.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className='text-foreground hover:text-primary focus-visible:ring-primary rounded-sm text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2'
+                          className='text-foreground text-sm font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
                         >
                           {detail.value}
                         </a>
@@ -167,47 +166,55 @@ const ContactUsSection = () => {
                 ))}
               </div>
 
-              <div className='bg-muted/50 flex flex-col gap-2 rounded-2xl px-6 py-5'>
-                <p className='text-foreground text-sm font-semibold'>Office Hours</p>
-                <p className='text-muted-foreground text-sm'>Monday to Friday, 8:00 AM to 5:00 PM GMT</p>
-                <p className='text-muted-foreground text-sm'>Saturday, 9:00 AM to 1:00 PM GMT</p>
+              <div className='flex flex-col gap-3 rounded-2xl bg-muted p-6 border border-border/50'>
+                <h3 className='text-foreground text-base font-bold'>Office Hours</h3>
+                <div className='space-y-1.5'>
+                  <p className='text-muted-foreground text-sm flex justify-between'>
+                    <span>Monday &ndash; Friday</span>
+                    <span className='font-medium text-foreground'>8:00 AM &ndash; 5:00 PM GMT</span>
+                  </p>
+                  <p className='text-muted-foreground text-sm flex justify-between'>
+                    <span>Saturday</span>
+                    <span className='font-medium text-foreground'>9:00 AM &ndash; 1:00 PM GMT</span>
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Right — form */}
-            <div className='border-border bg-card flex flex-col gap-6 rounded-3xl border p-8 sm:p-10'>
-              <div className='flex flex-col gap-1'>
-                <h2 className='text-foreground text-xl font-semibold'>Send us a message</h2>
-                <p className='text-muted-foreground text-sm'>Fill in the form below and we will get back to you.</p>
+            <div className='flex flex-col gap-8 rounded-3xl border border-border bg-card p-8 shadow-xl sm:p-10'>
+              <div className='flex flex-col gap-2'>
+                <h2 className='text-foreground text-2xl font-bold tracking-tight'>Send us a message</h2>
+                <p className='text-muted-foreground text-sm leading-relaxed'>Fill in the form below and we will get back to you.</p>
               </div>
 
               {formState === 'success' ? (
-                <div className='flex flex-col items-center justify-center gap-4 py-12 text-center'>
-                  <div className='bg-primary/10 flex h-14 w-14 items-center justify-center rounded-full'>
+                <div className='flex flex-col items-center justify-center gap-5 py-16 text-center animate-in fade-in zoom-in duration-500'>
+                  <div className='flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
                     <svg
-                      className='text-primary size-7'
+                      className='size-8 text-green-600 dark:text-green-400'
                       viewBox='0 0 24 24'
                       fill='none'
                       stroke='currentColor'
-                      strokeWidth='2'
+                      strokeWidth='2.5'
                       strokeLinecap='round'
                       strokeLinejoin='round'
                     >
                       <polyline points='20 6 9 17 4 12' />
                     </svg>
                   </div>
-                  <div className='flex flex-col gap-1'>
-                    <p className='text-foreground text-base font-semibold'>Message sent!</p>
-                    <p className='text-muted-foreground text-sm'>
+                  <div className='flex flex-col gap-2'>
+                    <p className='text-foreground text-xl font-bold'>Message sent!</p>
+                    <p className='text-muted-foreground text-sm max-w-[280px] mx-auto leading-relaxed'>
                       Thank you for reaching out. We will get back to you within one to two business days.
                     </p>
                   </div>
-                  <Button variant='outline' className='mt-2 rounded-full' onClick={() => setFormState('idle')}>
+                  <Button variant='outline' className='mt-4 w-full sm:w-auto font-semibold' onClick={() => setFormState('idle')}>
                     Send another message
                   </Button>
                 </div>
               ) : (
-                <form className='flex flex-col gap-5' onSubmit={handleSubmit}>
+                <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
                   {/* Web3Forms access key — replace with your own from web3forms.com */}
                   <input type='hidden' name='access_key' value={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
                   <input type='hidden' name='subject' value='New message from MabEcare Foundation website' />
@@ -215,9 +222,9 @@ const ContactUsSection = () => {
                   {/* Honeypot spam protection */}
                   <input type='checkbox' name='botcheck' className='hidden' />
 
-                  <div className='grid grid-cols-1 gap-5 sm:grid-cols-2'>
-                    <div className='flex flex-col gap-2'>
-                      <label htmlFor='full-name' className='text-foreground text-sm font-medium'>
+                  <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
+                    <div className='flex flex-col gap-2.5'>
+                      <label htmlFor='full-name' className='text-foreground text-sm font-semibold'>
                         Full Name <span className='text-primary'>*</span>
                       </label>
                       <input
@@ -226,13 +233,13 @@ const ContactUsSection = () => {
                         type='text'
                         required
                         autoComplete='name'
-                        placeholder='Joana Ewurama Safoa Yirenkyi'
-                        className='border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-primary/30 focus:border-primary w-full rounded-xl border px-4 py-3 text-sm transition-all outline-none focus:ring-2'
+                        placeholder='Joana Ewurama Safoa'
+                        className='w-full rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
                       />
                     </div>
 
-                    <div className='flex flex-col gap-2'>
-                      <label htmlFor='email' className='text-foreground text-sm font-medium'>
+                    <div className='flex flex-col gap-2.5'>
+                      <label htmlFor='email' className='text-foreground text-sm font-semibold'>
                         Email Address <span className='text-primary'>*</span>
                       </label>
                       <input
@@ -241,35 +248,42 @@ const ContactUsSection = () => {
                         type='email'
                         required
                         autoComplete='email'
-                        placeholder='joana.yirenkyi@example.com'
-                        className='border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-primary/30 focus:border-primary w-full rounded-xl border px-4 py-3 text-sm transition-all outline-none focus:ring-2'
+                        placeholder='joana@example.com'
+                        className='w-full rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
                       />
                     </div>
                   </div>
 
-                  <div className='flex flex-col gap-2'>
-                    <label htmlFor='subject-select' className='text-foreground text-sm font-medium'>
+                  <div className='flex flex-col gap-2.5'>
+                    <label htmlFor='subject-select' className='text-foreground text-sm font-semibold'>
                       Subject <span className='text-primary'>*</span>
                     </label>
-                    <select
-                      id='subject-select'
-                      name='subject_type'
-                      required
-                      className='border-border bg-background text-foreground focus:ring-primary/30 focus:border-primary w-full cursor-pointer appearance-none rounded-xl border px-4 py-3 text-sm transition-all outline-none focus:ring-2'
-                    >
-                      <option value='' disabled>
-                        Select a subject
-                      </option>
-                      <option value='General Enquiry'>General Enquiry</option>
-                      <option value='Volunteering'>Volunteering</option>
-                      <option value='Donation'>Donation</option>
-                      <option value='Partnership'>Partnership</option>
-                      <option value='Other'>Other</option>
-                    </select>
+                    <div className="relative">
+                      <select
+                        id='subject-select'
+                        name='subject_type'
+                        required
+                        className='w-full appearance-none rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-colors cursor-pointer focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
+                      >
+                        <option value='' disabled defaultValue="">
+                          Select a subject
+                        </option>
+                        <option value='General Enquiry'>General Enquiry</option>
+                        <option value='Volunteering'>Volunteering</option>
+                        <option value='Donation'>Donation</option>
+                        <option value='Partnership'>Partnership</option>
+                        <option value='Other'>Other</option>
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
+                        <svg className="size-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className='flex flex-col gap-2'>
-                    <label htmlFor='message' className='text-foreground text-sm font-medium'>
+                  <div className='flex flex-col gap-2.5'>
+                    <label htmlFor='message' className='text-foreground text-sm font-semibold'>
                       Message <span className='text-primary'>*</span>
                     </label>
                     <textarea
@@ -278,25 +292,35 @@ const ContactUsSection = () => {
                       required
                       rows={5}
                       placeholder='Tell us how we can help or how you would like to get involved...'
-                      className='border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-primary/30 focus:border-primary w-full resize-none rounded-xl border px-4 py-3 text-sm transition-all outline-none focus:ring-2'
+                      className='w-full resize-none rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
                     />
                   </div>
 
                   {formState === 'error' && (
-                    <p className='text-destructive bg-destructive/10 rounded-xl px-4 py-3 text-sm'>
-                      Something went wrong. Please try again or contact us directly by email.
-                    </p>
+                    <div className='rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-3.5'>
+                      <p className='text-sm text-destructive font-medium'>
+                        Something went wrong. Please try again or contact us directly by email.
+                      </p>
+                    </div>
                   )}
 
                   <Button
                     type='submit'
                     disabled={formState === 'submitting'}
-                    className='bg-primary hover:bg-primary/90 w-full rounded-full py-5 text-sm font-semibold text-white'
+                    className='w-full rounded-xl py-6 text-base font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none'
                   >
-                    {formState === 'submitting' ? 'Sending...' : 'Send Message'}
+                    {formState === 'submitting' ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin -ml-1 mr-2 size-4 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : 'Send Message'}
                   </Button>
 
-                  <p className='text-muted-foreground text-center text-xs'>
+                  <p className='text-center text-xs font-medium text-muted-foreground'>
                     We respect your privacy. Your information will never be shared with third parties.
                   </p>
                 </form>

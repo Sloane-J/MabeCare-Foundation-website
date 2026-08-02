@@ -15,6 +15,7 @@ type FocusArea = {
 	pillBg: string;
 	pillText: string;
 	icon: React.ReactNode;
+	overlayGradient: string;
 };
 
 const TimerIcon = ({ className }: { className?: string }) => (
@@ -108,8 +109,10 @@ const focusAreas: FocusArea[] = [
 		bg: "bg-[#F28B5F]",
 		textColor: "text-white",
 		pillBg: "bg-white/90",
-		pillText: "text-[#0a0a0a]",
+		pillText: "text-[#171717]",
 		icon: <HeartIcon className="size-5 text-white" />,
+		overlayGradient:
+			"from-[#F28B5F]/70 via-[#F28B5F]/40 to-[#F28B5F]/30",
 	},
 	{
 		stat: "150+",
@@ -125,8 +128,10 @@ const focusAreas: FocusArea[] = [
 		bg: "bg-[#171717]",
 		textColor: "text-white",
 		pillBg: "bg-white/90",
-		pillText: "text-[#0a0a0a]",
+		pillText: "text-[#171717]",
 		icon: <BookIcon className="size-5 text-white" />,
+		overlayGradient:
+			"from-[#171717]/70 via-[#171717]/40 to-[#171717]/40",
 	},
 	{
 		stat: "300+",
@@ -140,14 +145,15 @@ const focusAreas: FocusArea[] = [
 			"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=500&q=80",
 		alt: "Children benefiting from foundation programs",
 		bg: "bg-[#F5D547]",
-		textColor: "text-[#0a0a0a]",
+		textColor: "text-[#171717]",
 		pillBg: "bg-white/90",
-		pillText: "text-[#0a0a0a]",
-		icon: <UsersIcon className="size-5 text-[#0a0a0a]" />,
+		pillText: "text-[#171717]",
+		icon: <UsersIcon className="size-5 text-[#171717]" />,
+		overlayGradient:
+			"from-[#F5D547]/70 via-[#F5D547]/40 to-[#F5D547]/35",
 	},
 ];
 
-// Animation variants
 const fadeUp = {
 	hidden: { opacity: 0, y: 24 },
 	show: { opacity: 1, y: 0 },
@@ -162,7 +168,6 @@ const stagger = {
 	},
 };
 
-// Reusable animated section wrapper
 const AnimatedSection = ({
 	children,
 	className,
@@ -225,24 +230,41 @@ const ImpactMetrics = () => {
 							key={index}
 							variants={fadeUp}
 							transition={{ duration: 0.5, ease: "easeOut" }}
-							className={`relative overflow-hidden rounded-3xl ${area.bg} p-6 sm:p-8 flex flex-col justify-between min-h-[360px] sm:min-h-[400px] group`}
+							className={`relative overflow-hidden rounded-3xl ${area.bg} p-6 sm:p-8 flex flex-col justify-between min-h-[420px] group`}
 						>
-							{/* Top: icon + stat */}
+							{/* Background Cover Image */}
+							<img
+								src={area.image}
+								alt={area.alt}
+								loading="lazy"
+								className="absolute inset-0 w-full h-full object-cover grayscale mix-blend-multiply opacity-90 transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
+							/>
+
+							{/* Gradient Overlay for Legibility */}
+							<div
+								className={`absolute inset-0 bg-gradient-to-t ${area.overlayGradient} pointer-events-none`}
+							/>
+
+							{/* Top Content: icon + stat */}
 							<div className="flex flex-col gap-3 z-10 relative">
 								<div
-									className={`w-10 h-10 rounded-full flex items-center justify-center ${area.bg === "bg-[#171717]" ? "bg-white/10" : "bg-black/10"}`}
+									className={`w-10 h-10 rounded-full flex items-center justify-center ${
+										area.bg === "bg-[#171717]"
+											? "bg-white/10"
+											: "bg-black/10"
+									}`}
 								>
 									{area.icon}
 								</div>
 
 								<p
-									className={`text-5xl sm:text-6xl font-md leading-none ${area.textColor}`}
+									className={`text-5xl sm:text-6xl font-bold leading-none ${area.textColor}`}
 								>
 									{area.stat}
 								</p>
 
 								<p
-									className={`text-sm font-normal uppercase tracking-widest ${area.textColor} opacity-75`}
+									className={`text-sm font-semibold uppercase tracking-widest ${area.textColor} opacity-90`}
 								>
 									{area.label}
 								</p>
@@ -251,7 +273,7 @@ const ImpactMetrics = () => {
 									{area.pills.map((pill, i) => (
 										<span
 											key={i}
-											className={`inline-flex w-fit rounded-full px-3.5 py-1.5 text-sm font-medium ${area.pillBg} ${area.pillText} shadow-sm`}
+											className={`inline-flex w-fit rounded-full px-3.5 py-1.5 text-sm font-medium ${area.pillBg} ${area.pillText} shadow-sm backdrop-blur-sm`}
 										>
 											{pill}
 										</span>
@@ -259,31 +281,21 @@ const ImpactMetrics = () => {
 								</div>
 							</div>
 
-							{/* Arrow button */}
-							<button
-								type="button"
-								aria-label={`Learn more about ${area.label}`}
-								className={`z-10 relative mt-6 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200
-                  ${
-										area.bg === "bg-[#171717]"
-											? "bg-white/15 hover:bg-white/25"
-											: "bg-black/10 hover:bg-black/20"
-									}`}
-							>
-								<ArrowRightIcon className={`size-4 ${area.textColor}`} />
-							</button>
-
-							{/* Bleeding image */}
-							<img
-								src={area.image}
-								alt={area.alt}
-								loading="lazy"
-								className="absolute bottom-0 right-0 h-52 sm:h-60 w-auto max-w-[55%] object-cover object-top grayscale opacity-50 pointer-events-none select-none"
-								style={{
-									maskImage:
-										"linear-gradient(to top, black 60%, transparent 100%)",
-								}}
-							/>
+							{/* Action Button */}
+							<div className="z-10 relative mt-6 flex justify-end">
+								<button
+									type="button"
+									aria-label={`Learn more about ${area.label}`}
+									className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200
+										${
+											area.bg === "bg-[#171717]"
+												? "bg-white/15 hover:bg-white/25"
+												: "bg-black/10 hover:bg-black/20"
+										}`}
+								>
+									<ArrowRightIcon className={`size-4 ${area.textColor}`} />
+								</button>
+							</div>
 						</motion.div>
 					))}
 				</motion.div>
