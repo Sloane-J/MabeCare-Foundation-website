@@ -2,7 +2,7 @@
 export const prerender = true
 
 import { getCollection } from 'astro:content'
-import Layout from '@/layouts/layout.astro'
+import Layout from '@/layouts/Layout.astro'
 import BlogSection from '@/components/blog/blog-section'
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft)
