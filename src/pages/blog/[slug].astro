@@ -3,6 +3,7 @@ export const prerender = true
 
 import { getCollection, render } from 'astro:content'
 import Layout from '@/layouts/layout.astro'
+import BlogCard from '@/components/blog/blog-card'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft)
@@ -21,17 +22,52 @@ const formattedDate = new Intl.DateTimeFormat('en-GB', {
   month: 'long',
   year: 'numeric'
 }).format(post.data.pubDate)
+
+// Gather all published posts, sorted newest-first, for related + prev/next logic
+const allPosts = await getCollection('blog', ({ data }) => !data.draft)
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)
+
+const currentIndex = sortedPosts.findIndex((p) => p.data.slug === post.data.slug)
+const previousPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null
+const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null
+
+// Related posts: score by shared category/tags, fallback to most recent others
+const otherPosts = sortedPosts.filter((p) => p.data.slug !== post.data.slug)
+
+const scoredPosts = otherPosts.map((p) => {
+  let score = 0
+  if (p.data.category === post.data.category) score += 2
+  const sharedTags = p.data.tags.filter((tag) => post.data.tags.includes(tag))
+  score += sharedTags.length
+  return { post: p, score }
+})
+
+const hasAnyMatch = scoredPosts.some((entry) => entry.score > 0)
+
+const relatedPosts = hasAnyMatch
+  ? scoredPosts
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3)
+      .map((entry) => entry.post)
+  : otherPosts.slice(0, 3)
+
+const relatedPostSummaries = relatedPosts.map((p) => ({
+  slug: p.data.slug,
+  title: p.data.title,
+  description: p.data.description,
+  imageUrl: p.data.imageUrl,
+  imageAlt: p.data.imageAlt,
+  pubDate: p.data.pubDate.toISOString(),
+  author: p.data.author,
+  category: p.data.category,
+  tags: p.data.tags
+}))
 ---
 
 <Layout title={post.data.title}>
   <div class="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-10">
-    <!-- Site header -->
-    <div class="flex items-center gap-3">
-      <img src="/logo.svg" alt="MabEcare Foundation" class="h-8 w-auto" />
-      <span class="font-sans text-sm font-semibold text-foreground">
-        MabEcare Foundation
-      </span>
-    </div>
 
     <!-- Breadcrumb -->
     <nav class="text-sm text-muted-foreground">
@@ -91,6 +127,34 @@ const formattedDate = new Intl.DateTimeFormat('en-GB', {
             #{tag}
           </span>
         ))}
+      </div>
+    )}
+
+    <!-- Previous / next post navigation -->
+    {(previousPost || nextPost) && (
+      <div class="flex items-center justify-between gap-4 border-t border-border pt-6">
+        {previousPost ? (
+          <a href={`/blog/${previousPost.data.slug}/`} class="text-sm text-muted-foreground hover:text-primary">
+            ← {previousPost.data.title}
+          </a>
+        ) : <span />}
+        {nextPost && (
+          <a href={`/blog/${nextPost.data.slug}/`} class="text-right text-sm text-muted-foreground hover:text-primary">
+            {nextPost.data.title} →
+          </a>
+        )}
+      </div>
+    )}
+
+    <!-- Related posts -->
+    {relatedPostSummaries.length > 0 && (
+      <div class="flex flex-col gap-4 border-t border-border pt-8">
+        <h2 class="font-sans text-xl font-semibold text-foreground">Related posts</h2>
+        <div class="grid grid-cols-1 gap-6 min-[420px]:grid-cols-2 lg:grid-cols-3">
+          {relatedPostSummaries.map((relatedPost) => (
+            <BlogCard post={relatedPost} client:visible />
+          ))}
+        </div>
       </div>
     )}
   </div>

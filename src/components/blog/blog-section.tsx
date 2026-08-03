@@ -80,7 +80,6 @@ export default function BlogSection({ posts }: BlogSectionProps) {
       {/* Left column: logo, tagline, category filters */}
       <aside className="flex w-full flex-col gap-6 lg:w-1/5">
         <div>
-          <img src="/logo.svg" alt="MabEcare Foundation" className="h-10 w-auto" />
           <p className="mt-2 text-sm text-muted-foreground">
             Stories, updates, and events from MabEcare Foundation.
           </p>
