@@ -80,7 +80,7 @@ export const SITE_METADATA = {
     images: ['/images/og-image.png']
   },
   verification: {
-    google: '', // Add your Google verification code
+    google: '<meta name="google-site-verification" content="fddrbsDZ_322DqjgRITMr12w_5qUiif3e7PALOa1NFw" />', // Add your Google verification code
     yandex: '', // Add your Yandex verification code
     bing: '' // Add your Bing verification code
   }
