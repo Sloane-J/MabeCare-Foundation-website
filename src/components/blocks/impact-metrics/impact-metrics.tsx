@@ -104,8 +104,8 @@ const focusAreas: FocusArea[] = [
 			"in their most vulnerable moments.",
 		],
 		image:
-			"https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=500&q=80",
-		alt: "Mother receiving community support",
+			"/images/metrics/mother-braiding-hair.webp",
+		alt: "mother-braiding-hair",
 		bg: "bg-[#F28B5F]",
 		textColor: "text-white",
 		pillBg: "bg-white/90",
@@ -123,7 +123,7 @@ const focusAreas: FocusArea[] = [
 			"grow, and become independent.",
 		],
 		image:
-			"https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=500&q=80",
+			"/images/metrics/working-woman.webp",
 		alt: "Women participating in skills training",
 		bg: "bg-[#171717]",
 		textColor: "text-white",
@@ -142,7 +142,7 @@ const focusAreas: FocusArea[] = [
 			"within their communities.",
 		],
 		image:
-			"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=500&q=80",
+			"/images/metrics/smiling-children.webp",
 		alt: "Children benefiting from foundation programs",
 		bg: "bg-[#F5D547]",
 		textColor: "text-[#171717]",

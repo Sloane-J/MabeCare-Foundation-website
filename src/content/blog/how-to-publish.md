@@ -5,8 +5,8 @@ description: "A quick guide for adding and publishing new posts yourself."
 imageUrl: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&q=80"
 imageAlt: "A laptop open on a desk"
 pubDate: "2026-08-09"
-author: "MabeCare Foundation"
-avatarUrl: ""
+author: "MabEcare Team"
+avatarUrl: "/images/site-logo.webp"
 category: "General"
 tags: ["guide"]
 featured: false

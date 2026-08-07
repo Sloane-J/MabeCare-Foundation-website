@@ -18,35 +18,32 @@ export default function BlogCard({ post }: BlogCardProps) {
   const formattedDate = new Intl.DateTimeFormat('en-GB', {
     day: 'numeric',
     month: 'long',
-    year: 'numeric'
+    year: 'numeric',
   }).format(new Date(post.pubDate))
 
-  const topTags = post.tags.slice(0, 2)
+  const topTag = post.tags[0]
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+      <a
+        href={`/blog/${post.slug}/`}
+        className="relative aspect-[4/3] w-full overflow-hidden rounded-lg block"
+      >
         {post.imageUrl && (
           <img
             src={post.imageUrl}
             alt={post.imageAlt ?? post.title}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
           />
         )}
-        {topTags.length > 0 && (
-          <div className="absolute top-2 left-2 flex gap-1">
-            {topTags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-accent px-2 py-1 text-xs font-medium text-accent-foreground"
-              >
-                {tag}
-              </span>
-            ))}
+        {topTag && (
+          <div className="absolute top-2 left-2">
+            <span className="rounded-full bg-accent px-2 py-1 text-xs font-medium text-accent-foreground">
+              {topTag}
+            </span>
           </div>
         )}
-      </div>
-
+      </a>
       <div className="flex flex-col gap-2">
         <h3 className="font-sans text-lg font-semibold text-foreground">
           {post.title}

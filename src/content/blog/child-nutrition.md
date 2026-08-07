@@ -5,8 +5,8 @@ description: "Practical guidelines on breastfeeding, weaning foods, and key micr
 imageUrl: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=80"
 imageAlt: "A variety of fresh, nutritious fruits and vegetables representing healthy childhood development"
 pubDate: "2026-08-05"
-author: "MabEcare Foundation Pediatric Team"
-avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+author: "MabEcare Team"
+avatarUrl: "/images/site-logo.webp"
 category: "Child Welfare"
 tags: ["child-nutrition", "pediatric-health", "preventative-care", "parenting"]
 featured: false

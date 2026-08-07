@@ -5,8 +5,8 @@ description: "Understanding postpartum depression, breaking the stigma, and buil
 imageUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80"
 imageAlt: "A mother smiling and cradling her healthy newborn baby"
 pubDate: "2026-08-04"
-author: "MabEcare Foundation Clinical Team"
-avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+author: "MabEcare Team"
+avatarUrl: "/images/site-logo.webp"
 category: "Maternal Health"
 tags: ["maternal-health", "mental-health", "support", "community"]
 featured: false

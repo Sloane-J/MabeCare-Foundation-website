@@ -5,8 +5,8 @@ description: "MabEcare Foundation is hosting a targeted maternal care and equipm
 imageUrl: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80"
 imageAlt: "Clinical medical supplies prepared for delivery to local health clinics"
 pubDate: "2026-08-08"
-author: "MabEcare Foundation"
-avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+author: "MabEcare Team"
+avatarUrl: "/images/site-logo.webp"
 category: "Events"
 tags: ["donation-drive", "community-health", "maternal-welfare", "ghana"]
 featured: true

@@ -28,7 +28,7 @@ type Programme = {
 
 const originalProgrammes: Programme[] = [
   {
-    image: 'https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=600&q=80',
+    image: '/images/programmes/mother-welfare.webp',
     alt: 'Mother receiving welfare support from MabEcare Foundation',
     category: 'Welfare',
     title: 'Mother and Child Welfare Fund',
@@ -36,7 +36,7 @@ const originalProgrammes: Programme[] = [
       'Providing basic needs support, home visits, and care packages to vulnerable mothers and their children across our community.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=600&q=80',
+    image: '/images/programmes/mother-welfare.webp',
     alt: 'Women participating in a skills training workshop',
     category: 'Skills Training',
     title: 'Women Skills Training Programme',
@@ -44,7 +44,7 @@ const originalProgrammes: Programme[] = [
       'Equipping mothers with practical vocational skills in trades like baking, sewing, and soap making to help them earn a sustainable income.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80',
+    image: '/images/programmes/mother-welfare.webp',
     alt: 'Children supported through MabEcare outreach programme',
     category: 'Child Support',
     title: 'Children Outreach and Support',
@@ -55,7 +55,7 @@ const originalProgrammes: Programme[] = [
 
 const newProgrammes: Programme[] = [
   {
-    image: 'https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=600&q=80',
+    image: '/images/programmes/mother-welfare.webp',
     alt: 'Blood donation drive with medical volunteers',
     category: 'Blood Donation',
     title: 'Blood Donation Drive',
@@ -63,7 +63,7 @@ const newProgrammes: Programme[] = [
       'Organising community blood drives to ensure a steady, safe supply for mothers and newborns requiring emergency transfusions during and after childbirth.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1573495804664-b1c0849525af?w=600&q=80',
+    image: '/images/programmes/mother-welfare.webp',
     alt: 'Mother receiving mental health counselling',
     category: 'Mental Health',
     title: 'Maternal Mental Health',
@@ -71,7 +71,7 @@ const newProgrammes: Programme[] = [
       'Providing counselling sessions, peer support groups, and community-based care to help mothers navigate postpartum depression, anxiety, and emotional burnout.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&q=80',
+    image: '/images/programmes/mother-welfare.webp',
     alt: 'Young children learning in an early education classroom',
     category: 'Education',
     title: 'Early Childhood Education',
@@ -79,7 +79,7 @@ const newProgrammes: Programme[] = [
       'Equipping children aged 0–6 with foundational learning through play-based programmes, trained caregivers, and access to educational materials.'
   },
   {
-    image: 'https://plus.unsplash.com/premium_photo-1664477077517-61ed80da0d6e?w=600&q=80',
+    image: '/images/programmes/mother-welfare.webp',
     alt: 'Child with special needs receiving dedicated support',
     category: 'Special Needs',
     title: 'Special Needs Children Welfare',

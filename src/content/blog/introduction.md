@@ -5,8 +5,8 @@ description: "Master Markdown from basic syntax and text hierarchy to embedding 
 imageUrl: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80"
 imageAlt: "Computer screen showing clean code and markdown documentation"
 pubDate: "2026-08-03"
-author: "MabEcare Foundation Technical Team"
-avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+author: "MabEcare Team"
+avatarUrl: "/images/site-logo.webp"
 category: "Technical Writing"
 tags: ["markdown", "blogging", "web-development", "content-creation", "tutorial"]
 featured: true
