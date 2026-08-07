@@ -9,6 +9,10 @@ import { defineConfig } from 'astro/config'
 export default defineConfig({
   site: 'https://mabecare-foundation.vercel.app/',
   base: "/",
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover'
+  },
   integrations: [
     react(),
     mdx(),
@@ -82,10 +86,10 @@ export default defineConfig({
       cssMinify: true,
       minify: 'esbuild',
       rolldownOptions: {
-      output: {
-        codeSplitting: true,
+        output: {
+          codeSplitting: true,
+        }
       }
-    }
     },
     ssr: {
       noExternal: ['@radix-ui/*']
