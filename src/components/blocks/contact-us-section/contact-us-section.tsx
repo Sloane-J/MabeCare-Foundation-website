@@ -1,52 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import {
+  MapPin, Phone, Mail, Clock, Loader2, CheckCircle2, ChevronDown,
+} from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-
-const MapPinIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
-    <path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z' />
-    <circle cx='12' cy='10' r='3' />
-  </svg>
-)
-
-const PhoneIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
-    <path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l.98-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z' />
-  </svg>
-)
-
-const MailIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-  >
-    <path d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z' />
-    <polyline points='22,6 12,13 2,6' />
-  </svg>
-)
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox='0 0 24 24' fill='currentColor'>
@@ -56,29 +15,29 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 const contactDetails = [
   {
-    icon: <MapPinIcon className='text-primary size-5' />,
+    icon: MapPin,
     label: 'Address',
-    value: 'Ho, Volta Region, Ghana',
-    href: null
+    value: 'Accra, Greater Accra Region, Ghana',
+    href: null,
   },
   {
-    icon: <PhoneIcon className='text-primary size-5' />,
+    icon: Phone,
     label: 'Phone',
-    value: '+233 54 578 4681',
-    href: 'tel:+233545784681'
+    value: '+233 54 578 4681 / +233 20 720 5960',
+    href: 'tel:0545784681',
   },
   {
-    icon: <MailIcon className='text-primary size-5' />,
+    icon: Mail,
     label: 'Email',
     value: 'mabecarefoundation@gmail.com',
-    href: 'mailto:mabecarefoundation@gmail.com'
+    href: 'mailto:mabecarefoundation@gmail.com',
   },
   {
-    icon: <WhatsAppIcon className='text-primary size-5' />,
+    icon: WhatsAppIcon,
     label: 'WhatsApp',
     value: '+233 54 578 4681',
-    href: 'https://wa.me/233545784681'
-  }
+    href: 'https://wa.me/233545784681',
+  },
 ]
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
@@ -96,7 +55,7 @@ const ContactUsSection = () => {
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: data
+        body: data,
       })
 
       const json = await res.json()
@@ -113,218 +72,235 @@ const ContactUsSection = () => {
   }
 
   return (
-    <div id='contact-us' className='flex flex-col bg-background'>
-      <section aria-labelledby='contact-heading' className='py-16 sm:py-24 lg:py-32'>
+    <div id='contact-us' className='relative flex flex-col bg-background overflow-hidden'>
+      <section aria-labelledby='contact-heading' className='relative py-20 sm:py-28 lg:py-36'>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-          <div className='mx-auto mb-16 flex max-w-2xl flex-col items-center justify-center space-y-5 text-center'>
-            <Badge variant='outline' className='gap-2 px-4 py-1.5 text-sm font-medium border-border/60 bg-muted/30'>
-              <MailIcon className='text-primary size-4' />
+          {/* Header */}
+          <div className='mx-auto mb-16 flex max-w-2xl flex-col items-center justify-center space-y-6 text-center sm:mb-20'>
+            <Badge
+              variant='outline'
+              className='gap-2 rounded-full px-5 py-2 text-sm font-medium border-primary/20 bg-primary/5 text-primary'
+            >
+              <Mail className='size-4' />
               Contact Us
             </Badge>
-            <h1 id='contact-heading' className='text-3xl font-bold tracking-tight text-foreground md:text-5xl'>
+            <h1
+              id='contact-heading'
+              className='text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl'
+            >
               We would love to <span className='text-primary'>hear</span> from you
             </h1>
-            <p className='text-muted-foreground max-w-xl text-base sm:text-lg leading-relaxed'>
+            <p className='text-muted-foreground max-w-lg text-lg leading-relaxed'>
               Whether you want to donate, volunteer, partner with us, or simply learn more about our work, we are here
               and happy to talk.
             </p>
           </div>
 
-          <div className='grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16'>
+          <div className='grid grid-cols-1 items-start gap-16 lg:grid-cols-12 lg:gap-12'>
             {/* Left — contact info */}
-            <div className='flex flex-col gap-10'>
-              <div className='flex flex-col gap-3'>
-                <h2 className='text-foreground text-2xl font-bold tracking-tight'>Get in touch</h2>
+            <div className='flex flex-col gap-10 lg:col-span-5'>
+              <div className='flex flex-col gap-4'>
+                <h2 className='text-foreground text-2xl font-bold tracking-tight sm:text-3xl'>Get in touch</h2>
                 <p className='text-muted-foreground text-base leading-relaxed'>
-                  Reach out to us through any of the channels below. We typically respond within one to two business
-                  days.
+                  Reach out through any of the channels below. We typically respond within one to two business days.
                 </p>
               </div>
 
-              <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-1'>
-                {contactDetails.map((detail, i) => (
-                  <div key={i} className='group flex items-center gap-5 rounded-2xl border border-border bg-card p-5 shadow-sm transition-all hover:shadow-md hover:border-primary/30'>
-                    <div className='flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20'>
-                      {detail.icon}
+              <div className='flex flex-col gap-4'>
+                {contactDetails.map((detail, i) => {
+                  const Icon = detail.icon
+                  return (
+                    <div
+                      key={i}
+                      className='group flex items-start gap-5 rounded-2xl border border-border/80 bg-card p-5 transition-all duration-200 hover:border-primary/40 hover:shadow-md'
+                    >
+                      <div className='flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground'>
+                        <Icon className='size-5' />
+                      </div>
+                      <div className='flex flex-col gap-1 pt-0.5'>
+                        <p className='text-muted-foreground text-xs font-semibold tracking-wider uppercase'>
+                          {detail.label}
+                        </p>
+                        {detail.href ? (
+                          <a
+                            href={detail.href}
+                            target={detail.href.startsWith('http') ? '_blank' : undefined}
+                            rel={detail.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                            className='text-foreground text-sm font-semibold transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded'
+                          >
+                            {detail.value}
+                          </a>
+                        ) : (
+                          <p className='text-foreground text-sm font-semibold'>{detail.value}</p>
+                        )}
+                      </div>
                     </div>
-                    <div className='flex flex-col gap-1'>
-                      <p className='text-muted-foreground text-xs font-semibold tracking-wider uppercase'>{detail.label}</p>
-                      {detail.href ? (
-                        <a
-                          href={detail.href}
-                          target={detail.href.startsWith('http') ? '_blank' : undefined}
-                          rel={detail.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className='text-foreground text-sm font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
-                        >
-                          {detail.value}
-                        </a>
-                      ) : (
-                        <p className='text-foreground text-sm font-medium'>{detail.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
 
-              <div className='flex flex-col gap-3 rounded-2xl bg-muted p-6 border border-border/50'>
-                <h3 className='text-foreground text-base font-bold'>Office Hours</h3>
-                <div className='space-y-1.5'>
-                  <p className='text-muted-foreground text-sm flex justify-between'>
-                    <span>Monday &ndash; Friday</span>
-                    <span className='font-medium text-foreground'>8:00 AM &ndash; 5:00 PM GMT</span>
-                  </p>
-                  <p className='text-muted-foreground text-sm flex justify-between'>
-                    <span>Saturday</span>
-                    <span className='font-medium text-foreground'>9:00 AM &ndash; 1:00 PM GMT</span>
-                  </p>
+              {/* Office Hours */}
+              <div className='rounded-2xl bg-muted/50 border border-border p-6'>
+                <div className='flex items-center gap-3 mb-5'>
+                  <div className='flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10'>
+                    <Clock className='size-5 text-primary' />
+                  </div>
+                  <h3 className='text-foreground text-base font-bold'>Office Hours</h3>
+                </div>
+                <div className='space-y-3'>
+                  <div className='flex items-center justify-between text-sm'>
+                    <span className='text-muted-foreground'>Monday &ndash; Friday</span>
+                    <span className='font-semibold text-foreground'>8:00 AM &ndash; 5:00 PM GMT</span>
+                  </div>
+                  <div className='h-px bg-border' />
+                  <div className='flex items-center justify-between text-sm'>
+                    <span className='text-muted-foreground'>Saturday</span>
+                    <span className='font-semibold text-foreground'>9:00 AM &ndash; 1:00 PM GMT</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Right — form */}
-            <div className='flex flex-col gap-8 rounded-3xl border border-border bg-card p-8 shadow-xl sm:p-10'>
-              <div className='flex flex-col gap-2'>
-                <h2 className='text-foreground text-2xl font-bold tracking-tight'>Send us a message</h2>
-                <p className='text-muted-foreground text-sm leading-relaxed'>Fill in the form below and we will get back to you.</p>
-              </div>
-
-              {formState === 'success' ? (
-                <div className='flex flex-col items-center justify-center gap-5 py-16 text-center animate-in fade-in zoom-in duration-500'>
-                  <div className='flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
-                    <svg
-                      className='size-8 text-green-600 dark:text-green-400'
-                      viewBox='0 0 24 24'
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth='2.5'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    >
-                      <polyline points='20 6 9 17 4 12' />
-                    </svg>
-                  </div>
-                  <div className='flex flex-col gap-2'>
-                    <p className='text-foreground text-xl font-bold'>Message sent!</p>
-                    <p className='text-muted-foreground text-sm max-w-[280px] mx-auto leading-relaxed'>
-                      Thank you for reaching out. We will get back to you within one to two business days.
-                    </p>
-                  </div>
-                  <Button variant='outline' className='mt-4 w-full sm:w-auto font-semibold' onClick={() => setFormState('idle')}>
-                    Send another message
-                  </Button>
+            <div className='lg:col-span-7'>
+              <div className='flex flex-col gap-8 rounded-3xl border border-border bg-card p-8 shadow-lg sm:p-10 lg:p-12'>
+                <div className='flex flex-col gap-2'>
+                  <h2 className='text-foreground text-2xl font-bold tracking-tight sm:text-3xl'>Send us a message</h2>
+                  <p className='text-muted-foreground text-sm leading-relaxed'>
+                    Fill in the form below and we will get back to you as soon as possible.
+                  </p>
                 </div>
-              ) : (
-                <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
-                  {/* Web3Forms access key — replace with your own from web3forms.com */}
-                  <input type='hidden' name='access_key' value={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
-                  <input type='hidden' name='subject' value='New message from MabEcare Foundation website' />
-                  <input type='hidden' name='from_name' value='MabEcare Foundation Website' />
-                  {/* Honeypot spam protection */}
-                  <input type='checkbox' name='botcheck' className='hidden' />
 
-                  <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
-                    <div className='flex flex-col gap-2.5'>
-                      <label htmlFor='full-name' className='text-foreground text-sm font-semibold'>
-                        Full Name <span className='text-primary'>*</span>
-                      </label>
-                      <input
-                        id='full-name'
-                        name='name'
-                        type='text'
-                        required
-                        autoComplete='name'
-                        placeholder='Joana Ewurama Safoa'
-                        className='w-full rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
-                      />
+                {formState === 'success' ? (
+                  <div className='flex flex-col items-center justify-center gap-6 py-16 text-center animate-in fade-in zoom-in duration-500'>
+                    <div className='flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30'>
+                      <CheckCircle2 className='size-10 text-green-600 dark:text-green-400' strokeWidth={2.5} />
                     </div>
-
-                    <div className='flex flex-col gap-2.5'>
-                      <label htmlFor='email' className='text-foreground text-sm font-semibold'>
-                        Email Address <span className='text-primary'>*</span>
-                      </label>
-                      <input
-                        id='email'
-                        name='email'
-                        type='email'
-                        required
-                        autoComplete='email'
-                        placeholder='joana@example.com'
-                        className='w-full rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
-                      />
-                    </div>
-                  </div>
-
-                  <div className='flex flex-col gap-2.5'>
-                    <label htmlFor='subject-select' className='text-foreground text-sm font-semibold'>
-                      Subject <span className='text-primary'>*</span>
-                    </label>
-                    <div className="relative">
-                      <select
-                        id='subject-select'
-                        name='subject_type'
-                        required
-                        className='w-full appearance-none rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-colors cursor-pointer focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
-                      >
-                        <option value='' disabled defaultValue="">
-                          Select a subject
-                        </option>
-                        <option value='General Enquiry'>General Enquiry</option>
-                        <option value='Volunteering'>Volunteering</option>
-                        <option value='Donation'>Donation</option>
-                        <option value='Partnership'>Partnership</option>
-                        <option value='Other'>Other</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-                        <svg className="size-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className='flex flex-col gap-2.5'>
-                    <label htmlFor='message' className='text-foreground text-sm font-semibold'>
-                      Message <span className='text-primary'>*</span>
-                    </label>
-                    <textarea
-                      id='message'
-                      name='message'
-                      required
-                      rows={5}
-                      placeholder='Tell us how we can help or how you would like to get involved...'
-                      className='w-full resize-none rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
-                    />
-                  </div>
-
-                  {formState === 'error' && (
-                    <div className='rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-3.5'>
-                      <p className='text-sm text-destructive font-medium'>
-                        Something went wrong. Please try again or contact us directly by email.
+                    <div className='flex flex-col gap-2'>
+                      <p className='text-foreground text-2xl font-bold'>Message sent!</p>
+                      <p className='text-muted-foreground text-sm max-w-xs mx-auto leading-relaxed'>
+                        Thank you for reaching out. We will get back to you within one to two business days.
                       </p>
                     </div>
-                  )}
+                    <Button
+                      variant='outline'
+                      className='mt-2 w-full sm:w-auto font-semibold rounded-xl px-8'
+                      onClick={() => setFormState('idle')}
+                    >
+                      Send another message
+                    </Button>
+                  </div>
+                ) : (
+                  <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
+                    {/* Web3Forms access key */}
+                    <input type='hidden' name='access_key' value={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
+                    <input type='hidden' name='subject' value='New message from MabEcare Foundation website' />
+                    <input type='hidden' name='from_name' value='MabEcare Foundation Website' />
+                    {/* Honeypot */}
+                    <input type='checkbox' name='botcheck' className='hidden' />
 
-                  <Button
-                    type='submit'
-                    disabled={formState === 'submitting'}
-                    className='w-full rounded-xl py-6 text-base font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none'
-                  >
-                    {formState === 'submitting' ? (
-                      <span className="flex items-center gap-2">
-                        <svg className="animate-spin -ml-1 mr-2 size-4 text-white" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Sending...
-                      </span>
-                    ) : 'Send Message'}
-                  </Button>
+                    <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
+                      <div className='flex flex-col gap-2.5'>
+                        <label htmlFor='full-name' className='text-foreground text-sm font-semibold'>
+                          Full Name <span className='text-primary'>*</span>
+                        </label>
+                        <input
+                          id='full-name'
+                          name='name'
+                          type='text'
+                          required
+                          autoComplete='name'
+                          placeholder='Joana Ewurama Safoa'
+                          className='w-full rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-all placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary/15'
+                        />
+                      </div>
 
-                  <p className='text-center text-xs font-medium text-muted-foreground'>
-                    We respect your privacy. Your information will never be shared with third parties.
-                  </p>
-                </form>
-              )}
+                      <div className='flex flex-col gap-2.5'>
+                        <label htmlFor='email' className='text-foreground text-sm font-semibold'>
+                          Email Address <span className='text-primary'>*</span>
+                        </label>
+                        <input
+                          id='email'
+                          name='email'
+                          type='email'
+                          required
+                          autoComplete='email'
+                          placeholder='joana@example.com'
+                          className='w-full rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-all placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary/15'
+                        />
+                      </div>
+                    </div>
+
+                    <div className='flex flex-col gap-2.5'>
+                      <label htmlFor='subject-select' className='text-foreground text-sm font-semibold'>
+                        Subject <span className='text-primary'>*</span>
+                      </label>
+                      <div className='relative'>
+                        <select
+                          id='subject-select'
+                          name='subject_type'
+                          required
+                          defaultValue=''
+                          className='w-full appearance-none rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-all cursor-pointer focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary/15'
+                        >
+                          <option value='' disabled>
+                            Select a subject
+                          </option>
+                          <option value='General Enquiry'>General Enquiry</option>
+                          <option value='Volunteering'>Volunteering</option>
+                          <option value='Donation'>Donation</option>
+                          <option value='Partnership'>Partnership</option>
+                          <option value='Other'>Other</option>
+                        </select>
+                        <div className='pointer-events-none absolute inset-y-0 right-4 flex items-center'>
+                          <ChevronDown className='size-4 text-muted-foreground' />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='flex flex-col gap-2.5'>
+                      <label htmlFor='message' className='text-foreground text-sm font-semibold'>
+                        Message <span className='text-primary'>*</span>
+                      </label>
+                      <textarea
+                        id='message'
+                        name='message'
+                        required
+                        rows={5}
+                        placeholder='Tell us how we can help or how you would like to get involved...'
+                        className='w-full resize-none rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-all placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary/15'
+                      />
+                    </div>
+
+                    {formState === 'error' && (
+                      <div className='rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-3.5'>
+                        <p className='text-sm text-destructive font-medium'>
+                          Something went wrong. Please try again or contact us directly by email.
+                        </p>
+                      </div>
+                    )}
+
+                    <Button
+                      type='submit'
+                      disabled={formState === 'submitting'}
+                      className='w-full rounded-xl py-6 text-base font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:shadow-md disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-lg'
+                    >
+                      {formState === 'submitting' ? (
+                        <span className='flex items-center justify-center gap-2'>
+                          <Loader2 className='size-5 animate-spin' />
+                          Sending...
+                        </span>
+                      ) : (
+                        'Send Message'
+                      )}
+                    </Button>
+
+                    <p className='text-center text-xs font-medium text-muted-foreground/80'>
+                      We respect your privacy. Your information will never be shared with third parties.
+                    </p>
+                  </form>
+                )}
+              </div>
             </div>
           </div>
         </div>

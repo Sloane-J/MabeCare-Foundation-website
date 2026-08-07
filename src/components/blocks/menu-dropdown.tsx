@@ -78,7 +78,7 @@ const MenuDropdown = ({ trigger, navigationData, activeSection, align = 'start' 
 
             return (
               <DropdownMenuItem key={navItem.title} asChild>
-                
+                <a
                   href={navItem.href}
                   onClick={e => handleNavClick(e, navItem.href!)}
                   className={cn(

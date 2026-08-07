@@ -176,7 +176,7 @@ const Footer = () => {
     rel='noopener noreferrer'
     className='hover:text-muted-foreground transition-colors'
   >
-    Samuel Dorkey Jr
+    Samuel Dorkey
   </a>
 </p>
 

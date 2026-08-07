@@ -115,11 +115,11 @@ const team = [
     email: 'mailto:joanitta071@gmail.com'
   },
   {
-    name: 'Efua Boateng',
-    role: 'Community Outreach Lead',
-    image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80',
+    name: 'Dr. Amu Hubert (PhD)',
+    role: 'Patron & Chairperson of Advisory Board',
+    image: '/images/about-us/dr-amu-hubert.jpg',
     twitter: '#',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/hubert-amu-phd-a0a43892/',
     email: 'mailto:#'
   },
   {
