@@ -180,7 +180,7 @@ const VolunteerImpactSection = () => {
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
               >
                 <img
-                  src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=700&q=80"
+                  src="/images/charity-volunteer.webp"
                   alt="Volunteers spending time with mothers and children in the community"
                   loading="lazy"
                   className="relative z-10 w-full h-72 sm:h-96 object-cover rounded-2xl shadow-md border border-zinc-200/50 dark:border-zinc-800/50"

@@ -5,8 +5,8 @@ description: "Understanding the critical link between voluntary blood donations 
 imageUrl: "https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=1200&q=80"
 imageAlt: "A healthcare professional holding a blood bag prepared for a life-saving transfusion"
 pubDate: "2026-08-07"
-author: "MabEcare Foundation Health Team"
-avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+author: "MabEcare Team"
+avatarUrl: "/images/site-logo.webp"
 category: "Blood Drive"
 tags: ["blood-donation", "maternal-mortality", "healthcare", "saving-lives"]
 featured: false

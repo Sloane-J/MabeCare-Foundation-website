@@ -13,43 +13,43 @@ const CameraIcon = ({ className }: { className?: string }) => (
 
 const galleryItems = [
   {
-    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80',
+    image: '/images/gallery/community-having-fun.webp',
     alt: 'Children receiving support',
     title: 'Children Welfare',
     description: 'Giving every child a chance to thrive.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80',
+    image: '/images/gallery/proud-mother.webp',
     alt: 'Volunteers working together',
     title: 'Community Outreach',
     description: 'Reaching the most vulnerable in our communities.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=600&q=80',
+    image: '/images/gallery/smiling-girl.webp',
     alt: 'Maternal care support',
     title: 'Maternal Health',
     description: 'Safe delivery and care for every mother.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=600&q=80',
+    image: '/images/gallery/kids-at-lunch.webp',
     alt: 'Education programs',
     title: 'Education Programs',
     description: 'Building brighter futures through learning.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80',
+    image: '/images/gallery/school-kid.webp',
     alt: 'Volunteer programs',
     title: 'Volunteer Programs',
     description: 'Join hands and make a real difference.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&q=80',
+    image: '/images/gallery/mother-with-child.webp',
     alt: 'Medical aid distribution',
     title: 'Medical Aid',
     description: 'Healthcare is a right, not a privilege.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=600&q=80',
+    image: '/images/metrics/smiling-children.webp',
     alt: 'Women empowerment',
     title: 'Women Empowerment',
     description: 'Uplifting women to lead and inspire.',

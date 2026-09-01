@@ -5,8 +5,8 @@ description: "Free health screenings, donations drop-off, and family activities 
 imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80"
 imageAlt: "Volunteers and healthcare personnel at a community health event"
 pubDate: "2026-08-02"
-author: "MabEcare Foundation"
-avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+author: "MabEcare Team"
+avatarUrl: "/images/site-logo.webp"
 category: "Events"
 tags: ["events", "health", "community"]
 featured: true

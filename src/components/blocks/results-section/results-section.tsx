@@ -104,7 +104,7 @@ const ResultsSection = () => {
             custom={0.2}
             className='text-muted-foreground max-w-xl text-base sm:text-lg'
           >
-            Every step we take is measured by the real difference we make in the lives of mothers and children across
+            Every step we take is measured by the real difference we make in the lives of mothers  and children across
             Ghana.
           </motion.p>
         </div>
@@ -126,8 +126,8 @@ const ResultsSection = () => {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
             >
               <img
-                src='https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=700&q=80'
-                alt='MabEcare volunteers supporting mothers in the community'
+                src='/images/woman-working.webp'
+                alt='A working woman'
                 loading='lazy'
                 className='h-[420px] w-full object-cover sm:h-[500px]'
               />

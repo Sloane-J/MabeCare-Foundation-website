@@ -5,8 +5,8 @@ description: "An in-depth look at our skills training programme helping mothers 
 imageUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80"
 imageAlt: "A collaborative group of women learning business skills and craft basics together"
 pubDate: "2026-08-06"
-author: "MabEcare Foundation Outreach Team"
-avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+author: "MabEcare Team"
+avatarUrl: "/images/site-logo.webp"
 category: "Women Empowerment"
 tags: ["skills-training", "empowerment", "sustainable-livelihoods", "social-impact"]
 featured: false
