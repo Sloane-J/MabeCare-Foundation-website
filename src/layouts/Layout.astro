@@ -79,11 +79,11 @@ const pathname = Astro.url.pathname;
   </head>
   <body class="flex min-h-full w-full flex-auto flex-col">
     <div class="flex flex-col">
-      <Header pathname={pathname} client:load />
+      <Header pathname={pathname} />
       <main class="flex flex-col pt-17.5 *:scroll-mt-16">
         <slot />
       </main>
-      <Footer client:load />
+      <Footer />
     </div>
   </body>
 </html>
