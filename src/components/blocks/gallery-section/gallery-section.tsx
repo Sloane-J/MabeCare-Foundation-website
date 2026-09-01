@@ -7,7 +7,6 @@ import { Badge } from '@/components/ui/badge'
 type GalleryItem = {
   image: string
   alt: string
-  category: string
   title: string
   description: string
   colSpan: string
@@ -64,7 +63,6 @@ const galleryItems: GalleryItem[] = [
   {
     image: '/images/gallery/community-having-fun.webp',
     alt: 'Children receiving support and playing together in community event',
-    category: 'Child Welfare',
     title: 'Joy & Community Support',
     description: 'Nurturing safe, joyful environments where every child can laugh, learn, and grow.',
     colSpan: 'col-span-12 md:col-span-7',
@@ -73,7 +71,6 @@ const galleryItems: GalleryItem[] = [
   {
     image: '/images/gallery/proud-mother.webp',
     alt: 'Volunteers and mothers working together during outreach',
-    category: 'Community Outreach',
     title: 'Grassroots Direct Relief',
     description: 'Connecting essential supplies directly to mothers and infants in underserved areas.',
     colSpan: 'col-span-12 md:col-span-5',
@@ -82,7 +79,6 @@ const galleryItems: GalleryItem[] = [
   {
     image: '/images/gallery/smiling-girl.webp',
     alt: 'Young girl benefiting from maternal and child health programs',
-    category: 'Maternal Health',
     title: 'Pre & Postnatal Care',
     description: 'Dignified healthcare support ensuring safe delivery and healthy beginnings.',
     colSpan: 'col-span-12 sm:col-span-6 md:col-span-4',
@@ -91,7 +87,6 @@ const galleryItems: GalleryItem[] = [
   {
     image: '/images/gallery/kids-at-lunch.webp',
     alt: 'Children enjoying nutritious lunch provided by education programs',
-    category: 'Youth Education',
     title: 'Nourishment & Learning',
     description: 'Combining daily nutritional security with interactive classroom education.',
     colSpan: 'col-span-12 sm:col-span-6 md:col-span-4',
@@ -100,7 +95,6 @@ const galleryItems: GalleryItem[] = [
   {
     image: '/images/gallery/school-kid.webp',
     alt: 'School child wearing uniform supported by outreach programs',
-    category: 'Volunteer Action',
     title: 'Uniting Hearts & Hands',
     description: 'Mobilizing passionate volunteers to create lasting local impact.',
     colSpan: 'col-span-12 sm:col-span-12 md:col-span-4',
@@ -109,7 +103,6 @@ const galleryItems: GalleryItem[] = [
   {
     image: '/images/gallery/mother-with-child.webp',
     alt: 'Mother holding child receiving medical aid distribution',
-    category: 'Medical Relief',
     title: 'Essential Healthcare Aid',
     description: 'Ensuring critical medical resources and wellness checks are always accessible.',
     colSpan: 'col-span-12 md:col-span-5',
@@ -118,7 +111,6 @@ const galleryItems: GalleryItem[] = [
   {
     image: '/images/metrics/smiling-children.webp',
     alt: 'Empowered women and children thriving in foundation programs',
-    category: 'Women Empowerment',
     title: 'Sustainable Independence',
     description: 'Uplifting women with practical vocational skills to build self-reliant futures.',
     colSpan: 'col-span-12 md:col-span-7',
@@ -212,13 +204,7 @@ const GallerySection = () => {
               {/* Gradient overlay for perfect legibility on hover & default */}
               <div className='absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-300 group-hover:from-black/95 group-hover:via-black/40' />
 
-              {/* Category Badge - Top Left */}
-              <div className='absolute top-4 left-4 z-10'>
-                <Badge className='border border-white/20 bg-black/40 px-3 py-1 text-xs font-medium text-white backdrop-blur-md transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground'>
-                  {item.category}
-                </Badge>
-              </div>
-
+              
               {/* Interactive Icon - Top Right */}
               <div className='absolute top-4 right-4 z-10 flex size-9 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md border border-white/20 opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:bg-white group-hover:text-black group-hover:scale-110'>
                 <ArrowUpRightIcon className='size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
