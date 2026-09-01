@@ -31,7 +31,7 @@ const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =>
 
   const element = document.getElementById(sectionId)
   if (element) {
-    const headerHeight = 80
+    const headerHeight = 56 // Updated to match shorter header height
     const elementPosition = element.getBoundingClientRect().top
     const offsetPosition = elementPosition + window.pageYOffset - headerHeight
     window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
@@ -66,7 +66,7 @@ type MenuNavigationProps = {
 const MenuNavigation = ({ navigationData, activeSection, className }: MenuNavigationProps) => {
   return (
     <NavigationMenu viewport={false} className={className}>
-      <NavigationMenuList className='flex-wrap justify-start gap-0'>
+      <NavigationMenuList className='flex-wrap justify-start gap-1'>
         {navigationData.map(navItem => {
           if (navItem.href) {
             const isSectionAnchor = navItem.href.startsWith('#')
@@ -80,10 +80,9 @@ const MenuNavigation = ({ navigationData, activeSection, className }: MenuNaviga
                   onClick={e => handleNavClick(e, navItem.href!)}
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    'rounded-full bg-transparent px-3 py-1.5 text-base! font-normal transition-colors duration-200',
-                    'hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10',
-                    'focus:text-primary focus:bg-primary/5 dark:focus:bg-primary/10',
-                    isActive ? 'text-primary bg-primary/5 dark:bg-primary/10' : 'text-muted-foreground'
+                    'bg-transparent px-2.5 py-1 text-xs font-semibold transition-colors duration-200',
+                    'hover:text-primary focus:text-primary',
+                    isActive ? 'text-primary' : 'text-muted-foreground'
                   )}
                 >
                   {navItem.title}
@@ -93,14 +92,14 @@ const MenuNavigation = ({ navigationData, activeSection, className }: MenuNaviga
           }
           return (
             <NavigationMenuItem key={navItem.title}>
-              <NavigationMenuTrigger className='text-muted-foreground hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10 focus:text-primary focus:bg-primary/5 dark:focus:bg-primary/10 data-[state=open]:text-primary data-[state=open]:bg-primary/5 dark:data-[state=open]:bg-primary/10 data-[state=open]:hover:bg-primary/5 dark:data-[state=open]:hover:bg-primary/10 bg-transparent px-3 py-1.5 text-base [&>svg]:size-4'>
+              <NavigationMenuTrigger className='bg-transparent px-2.5 py-1 text-xs font-semibold text-muted-foreground hover:text-primary focus:text-primary data-[state=open]:text-primary [&>svg]:size-3.5'>
                 {navItem.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent className='data-[motion=from-start]:slide-in-from-left-30! data-[motion=to-start]:slide-out-to-left-30! data-[motion=from-end]:slide-in-from-right-30! data-[motion=to-end]:slide-out-to-right-30! absolute w-auto'>
-                <ul className='grid w-38 gap-4'>
+                <ul className='grid w-36 gap-2 p-1'>
                   <li>
                     {navItem.items?.map(item => (
-                      <NavigationMenuLink key={item.title} href={item.href}>
+                      <NavigationMenuLink key={item.title} href={item.href} className='px-2 py-1 text-xs font-semibold'>
                         {item.title}
                       </NavigationMenuLink>
                     ))}

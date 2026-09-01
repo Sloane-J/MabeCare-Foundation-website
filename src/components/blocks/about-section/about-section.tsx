@@ -162,7 +162,7 @@ const AboutSection = () => {
 
           <div className='overflow-hidden rounded-3xl'>
             <img
-              src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1400&q=80'
+              src='/images/about-us/about-us-banner.jpg'
               alt='Donation packages being prepared for communities in need'
               className='h-64 w-full object-cover sm:h-80 lg:h-[480px]'
               loading='lazy'

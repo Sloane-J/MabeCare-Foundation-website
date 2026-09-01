@@ -1,0 +1,310 @@
+---
+import ThemeToggle from '@/components/layout/theme-toggle';
+import { Button } from '@/components/ui/button';
+
+const pathname = Astro.url.pathname;
+
+const homeNavLinks = [
+  { label: 'About Us', href: '/about-us' },
+  { label: 'Programmes', href: '#donation-programmes' },
+  { label: 'Impact', href: '#impact-metrics' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact-us' }
+];
+
+const aboutNavLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Programmes', href: '/#donation-programmes' },
+  { label: 'Impact', href: '/#impact-metrics' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/#contact-us' }
+];
+
+const contactNavLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about-us' },
+  { label: 'Programmes', href: '/#donation-programmes' },
+  { label: 'Impact', href: '/#impact-metrics' },
+  { label: 'Blog', href: '/blog' }
+];
+
+const isAbout = pathname === '/about-us';
+const isContact = pathname === '/contact-us';
+
+const navLinks = isContact
+  ? contactNavLinks
+  : isAbout
+  ? aboutNavLinks
+  : homeNavLinks;
+
+const isLinkActive = (href: string) => {
+  if (href === '/about-us') return pathname === '/about-us';
+  if (href === '/blog') return pathname.startsWith('/blog');
+  if (href === '/') return pathname === '/';
+  if (href === '/contact-us') return pathname === '/contact-us';
+  return false;
+};
+---
+
+<header class="fixed inset-x-0 top-3 z-50 px-3 sm:px-6">
+  <div
+    id="header-container"
+    class="mx-auto flex h-20 max-w-6xl items-center rounded-full border border-border/30 bg-background px-4 shadow-md transition-[border-color,box-shadow] duration-300 sm:px-6"
+  >
+    <!-- Logo -->
+    <a
+      href="/"
+      class="flex shrink-0 items-center gap-2.5 rounded-full px-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      aria-label="MabEcare Foundation home"
+    >
+      <img
+        src="/images/site-logo.webp"
+        alt="MabEcare Foundation Logo"
+        class="h-11 w-auto object-contain"
+        width="40"
+        height="40"
+      />
+
+      <div class="hidden flex-col leading-none sm:flex">
+        <span class="text-foreground text-sm font-bold tracking-widest uppercase">
+          MabEcare
+        </span>
+
+        <span class="text-primary text-[10px] font-medium tracking-[0.2em] uppercase">
+          Foundation
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav
+      class="mx-auto hidden items-center gap-8 lg:flex"
+      aria-label="Main navigation"
+    >
+      {
+        navLinks.map((link) => {
+          const isActive = isLinkActive(link.href);
+          return (
+            <a
+              href={link.href}
+              data-nav-link
+              data-href={link.href}
+              aria-current={isActive ? 'page' : undefined}
+              class={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                isActive
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Actions -->
+    <div class="ml-auto flex items-center gap-2.5">
+      <ThemeToggle client:load />
+
+      <Button
+        className="hidden rounded-full px-6 py-5 text-sm font-semibold sm:flex"
+        asChild
+      >
+        <a href="/donate">Donate</a>
+      </Button>
+
+      <button
+        type="button"
+        id="menu-toggle-btn"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="text-foreground hover:text-primary flex h-10 w-10 items-center justify-center rounded-full transition-colors lg:hidden"
+      >
+        <svg
+          id="menu-icon"
+          class="size-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+
+        <svg
+          id="close-icon"
+          class="hidden size-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div
+  id="mobile-menu"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobile navigation menu"
+  class="bg-background pointer-events-none fixed inset-0 z-40 flex flex-col px-6 pb-8 pt-28 opacity-0 invisible transition-[opacity,visibility] duration-200 lg:hidden"
+>
+  <nav class="flex flex-col" aria-label="Mobile navigation">
+    {
+      navLinks.map((link) => {
+        const isActive = isLinkActive(link.href);
+        return (
+          <a
+            href={link.href}
+            data-nav-link
+            data-href={link.href}
+            aria-current={isActive ? 'page' : undefined}
+            class={`border-border/50 border-b py-5 text-2xl font-semibold transition-colors duration-150 ${
+              isActive ? 'text-primary' : 'text-foreground hover:text-primary'
+            }`}
+          >
+            {link.label}
+          </a>
+        );
+      })
+    }
+  </nav>
+
+  <div class="mt-auto">
+    <Button
+      className="w-full rounded-full py-6 text-base font-semibold"
+      asChild
+    >
+      <a href="/donate" data-mobile-close>
+        Donate Now
+      </a>
+    </Button>
+  </div>
+</div>
+
+<script>
+  // Dynamic behavior implementation
+  const headerContainer = document.getElementById('header-container');
+  const toggleBtn = document.getElementById('menu-toggle-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+  const mobileCloseTriggers = document.querySelectorAll('[data-mobile-close]');
+
+  let mobileOpen = false;
+
+  // 1. Scroll shadow toggle
+  const handleScroll = () => {
+    if (window.scrollY > 24) {
+      headerContainer?.classList.add('border-border/60', 'shadow-lg');
+      headerContainer?.classList.remove('border-border/30', 'shadow-md');
+    } else {
+      headerContainer?.classList.add('border-border/30', 'shadow-md');
+      headerContainer?.classList.remove('border-border/60', 'shadow-lg');
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  // 2. Mobile Menu Toggle Logic
+  const setMobileMenuState = (open: boolean) => {
+    mobileOpen = open;
+    if (open) {
+      mobileMenu?.classList.remove('pointer-events-none', 'invisible', 'opacity-0');
+      mobileMenu?.classList.add('visible', 'opacity-100');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      toggleBtn?.setAttribute('aria-expanded', 'true');
+      toggleBtn?.setAttribute('aria-label', 'Close menu');
+    } else {
+      mobileMenu?.classList.add('pointer-events-none', 'invisible', 'opacity-0');
+      mobileMenu?.classList.remove('visible', 'opacity-100');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      document.body.style.overflow = '';
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+      toggleBtn?.setAttribute('aria-label', 'Open menu');
+    }
+  };
+
+  toggleBtn?.addEventListener('click', () => setMobileMenuState(!mobileOpen));
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => setMobileMenuState(false));
+  });
+
+  mobileCloseTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => setMobileMenuState(false));
+  });
+
+  // 3. Intersection Observer for Hash Scroll Links
+  const hashLinks = Array.from(navLinks).filter(link => 
+    link.dataset.href?.startsWith('#')
+  );
+
+  const targets = hashLinks
+    .map(link => {
+      const id = link.dataset.href?.slice(1);
+      return id ? document.getElementById(id) : null;
+    })
+    .filter((el): el is HTMLElement => el !== null);
+
+  if (targets.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length === 0) return;
+
+        const top = visible.reduce((current, entry) =>
+          entry.intersectionRatio > current.intersectionRatio ? entry : current
+        );
+
+        const activeId = `#${top.target.id}`;
+
+        hashLinks.forEach(link => {
+          const isTarget = link.dataset.href === activeId;
+          if (isTarget) {
+            link.setAttribute('aria-current', 'page');
+            if (link.classList.contains('py-5')) {
+              link.className = 'border-border/50 border-b py-5 text-2xl font-semibold transition-colors duration-150 text-primary';
+            } else {
+              link.className = 'rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary bg-primary/10 text-primary';
+            }
+          } else if (!link.dataset.href?.startsWith('/')) {
+            link.removeAttribute('aria-current');
+            if (link.classList.contains('py-5')) {
+              link.className = 'border-border/50 border-b py-5 text-2xl font-semibold transition-colors duration-150 text-foreground hover:text-primary';
+            } else {
+              link.className = 'rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary text-muted-foreground hover:text-foreground';
+            }
+          }
+        });
+      },
+      {
+        threshold: [0.1, 0.5],
+        rootMargin: '-80px 0px -50% 0px',
+      }
+    );
+
+    targets.forEach(target => observer.observe(target));
+  }
+</script>
