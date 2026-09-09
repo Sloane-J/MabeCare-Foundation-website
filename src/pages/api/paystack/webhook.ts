@@ -18,7 +18,7 @@ async function verifyPaystackSignature(
     ['sign']
   )
   const signatureBuffer = await crypto.subtle.sign(
-    'HMAC',
+    'HMAC',s
     key,
     encoder.encode(payload)
   )
