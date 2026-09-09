@@ -3,7 +3,6 @@ import { createDonation } from '../../../lib/db/queries'
 import { json, error } from '../../../lib/api/response'
 import { sendDonationAlert } from '../../../lib/api/email'
 
-// Verify Paystack HMAC signature
 async function verifyPaystackSignature(
   payload: string,
   signature: string,
@@ -34,41 +33,12 @@ async function verifyPaystackSignature(
   return diff === 0
 }
 
-// Process the donation after acknowledging the webhook
-async function processDonation(data: any) {
-  try {
-    await createDonation({
-      id: crypto.randomUUID(),
-      type: 'paystack',
-      channel: data.channel ?? null,
-      amount: data.amount / 100,
-      currency: data.currency ?? 'GHS',
-      donor_name: data.customer?.name ?? null,
-      donor_email: data.customer?.email ?? null,
-      donor_phone: data.customer?.phone ?? null,
-      date: data.paid_at ?? new Date().toISOString(),
-      reference: data.reference,
-    })
-
-    sendDonationAlert({
-      type: 'paystack',
-      channel: data.channel,
-      amount: data.amount / 100,
-      currency: data.currency ?? 'GHS',
-      donor_name: data.customer?.name,
-      donor_email: data.customer?.email,
-      donor_phone: data.customer?.phone,
-      reference: data.reference,
-      date: data.paid_at ?? new Date().toISOString(),
-    }).catch(err => console.error('Donation alert failed:', err))
-  } catch (err) {
-    console.error('Failed to process donation:', err)
-  }
-}
-
 export const POST: APIRoute = async ({ request }) => {
   const signature = request.headers.get('x-paystack-signature')
-  if (!signature) return error('Missing signature', 401)
+  if (!signature) {
+    console.log('Webhook rejected: missing signature header')
+    return error('Missing signature', 401)
+  }
 
   const rawBody = await request.text()
 
@@ -78,22 +48,60 @@ export const POST: APIRoute = async ({ request }) => {
     import.meta.env.TEST_SECRET_KEY
   )
 
-  if (!valid) return error('Invalid signature', 401)
+  if (!valid) {
+    console.log('Webhook rejected: invalid signature')
+    return error('Invalid signature', 401)
+  }
 
   let event: any
   try {
     event = JSON.parse(rawBody)
   } catch {
+    console.log('Webhook rejected: invalid JSON payload')
     return error('Invalid payload', 400)
   }
 
-  // Acknowledge immediately — Paystack only needs a fast 200 OK
-  const response = json({ received: true })
+  console.log('Webhook event received:', event.event, JSON.stringify(event.data?.reference))
 
-  // Process the donation after responding, without blocking Paystack
   if (event.event === 'charge.success') {
-    processDonation(event.data)
+    const data = event.data
+
+    try {
+      console.log('Attempting to save donation, reference:', data.reference)
+
+      await createDonation({
+        id: crypto.randomUUID(),
+        type: 'paystack',
+        channel: data.channel ?? null,
+        amount: data.amount / 100,
+        currency: data.currency ?? 'GHS',
+        donor_name: data.customer?.name ?? null,
+        donor_email: data.customer?.email ?? null,
+        donor_phone: data.customer?.phone ?? null,
+        date: data.paid_at ?? new Date().toISOString(),
+        reference: data.reference,
+      })
+
+      console.log('Donation saved successfully, reference:', data.reference)
+
+      await sendDonationAlert({
+        type: 'paystack',
+        channel: data.channel,
+        amount: data.amount / 100,
+        currency: data.currency ?? 'GHS',
+        donor_name: data.customer?.name,
+        donor_email: data.customer?.email,
+        donor_phone: data.customer?.phone,
+        reference: data.reference,
+        date: data.paid_at ?? new Date().toISOString(),
+      }).catch(err => console.error('Donation alert email failed:', err))
+    } catch (err) {
+      console.error('Failed to save donation to database:', err)
+      return error('Failed to process donation', 500)
+    }
+  } else {
+    console.log('Webhook ignored — event type not charge.success:', event.event)
   }
 
-  return response
+  return json({ received: true })
 }
