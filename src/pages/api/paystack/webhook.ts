@@ -44,7 +44,7 @@ export const POST: APIRoute = async ({ request }) => {
   const valid = await verifyPaystackSignature(
     rawBody,
     signature,
-    import.meta.env.PAYSTACK_SECRET_KEY
+    import.meta.env.TEST_SECRET_KEY
   )
 
   if (!valid) return error('Invalid signature', 401)
