@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro'
 import { createDonation } from '../../../lib/db/queries'
-import { json, error, serverError } from '../../../lib/api/response'
+import { json, error } from '../../../lib/api/response'
 import { sendDonationAlert } from '../../../lib/api/email'
 
 // Verify Paystack HMAC signature
@@ -26,13 +26,44 @@ async function verifyPaystackSignature(
     .map(b => b.toString(16).padStart(2, '0'))
     .join('')
 
-  // Timing-safe comparison
   if (computed.length !== signature.length) return false
   let diff = 0
   for (let i = 0; i < computed.length; i++) {
     diff |= computed.charCodeAt(i) ^ signature.charCodeAt(i)
   }
   return diff === 0
+}
+
+// Process the donation after acknowledging the webhook
+async function processDonation(data: any) {
+  try {
+    await createDonation({
+      id: crypto.randomUUID(),
+      type: 'paystack',
+      channel: data.channel ?? null,
+      amount: data.amount / 100,
+      currency: data.currency ?? 'GHS',
+      donor_name: data.customer?.name ?? null,
+      donor_email: data.customer?.email ?? null,
+      donor_phone: data.customer?.phone ?? null,
+      date: data.paid_at ?? new Date().toISOString(),
+      reference: data.reference,
+    })
+
+    sendDonationAlert({
+      type: 'paystack',
+      channel: data.channel,
+      amount: data.amount / 100,
+      currency: data.currency ?? 'GHS',
+      donor_name: data.customer?.name,
+      donor_email: data.customer?.email,
+      donor_phone: data.customer?.phone,
+      reference: data.reference,
+      date: data.paid_at ?? new Date().toISOString(),
+    }).catch(err => console.error('Donation alert failed:', err))
+  } catch (err) {
+    console.error('Failed to process donation:', err)
+  }
 }
 
 export const POST: APIRoute = async ({ request }) => {
@@ -49,43 +80,20 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (!valid) return error('Invalid signature', 401)
 
+  let event: any
   try {
-    const event = JSON.parse(rawBody)
-
-    // Only process successful charge events
-    if (event.event !== 'charge.success') {
-      return json({ received: true })
-    }
-
-    const data = event.data
-
-    await createDonation({
-      id: crypto.randomUUID(),
-      type: 'paystack',
-      channel: data.channel ?? null,
-      amount: data.amount / 100, // Paystack sends amount in pesewas
-      currency: data.currency ?? 'GHS',
-      donor_name: data.customer?.name ?? null,
-      donor_email: data.customer?.email ?? null,
-      donor_phone: data.customer?.phone ?? null,
-      date: data.paid_at ?? new Date().toISOString(),
-      reference: data.reference,
-    })
-
-    sendDonationAlert({
-  type: 'paystack',
-  channel: data.channel,
-  amount: data.amount / 100,
-  currency: data.currency ?? 'GHS',
-  donor_name: data.customer?.name,
-  donor_email: data.customer?.email,
-  donor_phone: data.customer?.phone,
-  reference: data.reference,
-  date: data.paid_at ?? new Date().toISOString(),
-}).catch(err => console.error('Donation alert failed:', err))
-
-    return json({ received: true })
+    event = JSON.parse(rawBody)
   } catch {
-    return serverError()
+    return error('Invalid payload', 400)
   }
+
+  // Acknowledge immediately — Paystack only needs a fast 200 OK
+  const response = json({ received: true })
+
+  // Process the donation after responding, without blocking Paystack
+  if (event.event === 'charge.success') {
+    processDonation(event.data)
+  }
+
+  return response
 }
