@@ -1,11 +1,12 @@
 import {
-  Activity,
-  BarChart3,
   LayoutDashboard,
+  Wallet,
+  Package,
+  BarChart3,
+  Activity,
+  UserCircle,
   LogOut,
   Menu,
-  Package,
-  Wallet,
   X,
 } from 'lucide-react'
 import { useState } from 'react'
@@ -17,6 +18,7 @@ const NAV_ITEMS = [
   { label: 'In-Kind', href: '/admin/inkind', icon: Package },
   { label: 'Reports', href: '/admin/reports', icon: BarChart3 },
   { label: 'Logs', href: '/admin/logs', icon: Activity },
+  { label: 'Profile', href: '/admin/profile', icon: UserCircle },
 ]
 
 type NavItem = {

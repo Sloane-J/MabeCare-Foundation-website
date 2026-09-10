@@ -1,0 +1,16 @@
+---
+export const prerender = false
+import { requireAuth } from '../../lib/auth/session'
+import AdminPageLayout from '../../layouts/AdminPageLayout.astro'
+import AdminLayout from '../../components/blocks/admin/AdminLayout'
+import ProfileSettings from '../../components/blocks/admin/ProfileSettings'
+
+const session = await requireAuth(Astro.cookies)
+const currentPath = Astro.url.pathname
+---
+
+<AdminPageLayout title="Profile Settings — MabEcare Admin">
+  <AdminLayout currentPath={currentPath} client:load>
+    <ProfileSettings currentEmail={session.email} client:load />
+  </AdminLayout>
+</AdminPageLayout>

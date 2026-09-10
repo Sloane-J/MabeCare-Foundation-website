@@ -366,3 +366,49 @@ export async function sendPasswordResetEmail(data: {
     `,
   })
 }
+
+// ─── Email change confirmation ────────────────────────────────
+
+export async function sendEmailChangeConfirmation(data: {
+  to: string
+  confirmUrl: string
+}) {
+  await resend.emails.send({
+    from: 'MabEcare Admin <onboarding@resend.dev>',
+    to: data.to,
+    subject: 'Confirm your new MabEcare Admin email',
+    html: `
+      <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+
+        <div style="background: linear-gradient(135deg, #1a0010 0%, #2d0020 60%, #0d0d0d 100%); padding: 36px 32px; position: relative;">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ff1493, #ff69b4);"></div>
+          <h1 style="color: #ffffff; font-size: 22px; font-weight: 700; margin: 0;">Confirm Email Change</h1>
+          <p style="color: rgba(255,255,255,0.5); font-size: 13px; margin: 8px 0 0;">MabEcare Admin Dashboard</p>
+        </div>
+
+        <div style="padding: 32px;">
+          <p style="color: #374151; font-size: 15px; line-height: 1.7; margin: 0 0 20px;">
+            You requested to change the email address for your MabEcare admin account to this address. Click below to confirm the change.
+          </p>
+
+          <div style="text-align: center; margin: 0 0 24px;">
+            <a href="${data.confirmUrl}" style="display: inline-block; background: linear-gradient(135deg, #ff1493, #e0006a); color: #ffffff; font-size: 14px; font-weight: 700; padding: 14px 36px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 14px rgba(255,20,147,0.35);">
+              Confirm Email Change
+            </a>
+          </div>
+
+          <p style="color: #9ca3af; font-size: 12px; line-height: 1.6; margin: 0;">
+            This link expires in 1 hour. If you didn't request this change, you can safely ignore this email.
+          </p>
+        </div>
+
+        <div style="background: #fafafa; border-top: 1px solid #f3f4f6; padding: 20px 32px; text-align: center;">
+          <p style="font-size: 11px; color: #d1d5db; margin: 0;">
+            MabEcare Foundation Admin · Automated email, do not reply
+          </p>
+        </div>
+
+      </div>
+    `,
+  })
+}
