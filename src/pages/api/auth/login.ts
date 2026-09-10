@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro'
 import { signToken } from '../../../lib/auth/jwt'
 import { verifyPassword } from '../../../lib/auth/password'
 import { COOKIE_NAME, COOKIE_OPTIONS } from '../../../lib/auth/session'
-import { getAdminByEmail } from '../../../lib/db/queries'
+import { getAdminByEmail, logActivity } from '../../../lib/db/queries'
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   try {
@@ -36,6 +36,12 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
     const token = await signToken({ email: admin.email as string, role: 'admin' })
     cookies.set(COOKIE_NAME, token, COOKIE_OPTIONS)
+
+    logActivity({
+      admin_email: admin.email as string,
+      action: 'login',
+      ip_address: request.headers.get('x-forwarded-for') ?? undefined,
+    })
 
     return new Response(
       JSON.stringify({ success: true }),

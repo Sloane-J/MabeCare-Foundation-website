@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro'
 import { z } from 'zod'
 import { json, error, unauthorized, notFound, serverError } from '../../../lib/api/response'
 import { requireAuth } from '../../../lib/auth/session'
-import { getInkindById, updateInkind } from '../../../lib/db/queries'
+import { getInkindById, updateInkind, logActivity } from '../../../lib/db/queries'
 import { sendInkindConfirmation } from '../../../lib/api/email'
 
 const UpdateSchema = z.object({
@@ -30,8 +30,9 @@ export const GET: APIRoute = async ({ params, cookies }) => {
 }
 
 export const PATCH: APIRoute = async ({ params, request, cookies }) => {
+  let session
   try {
-    await requireAuth(cookies)
+    session = await requireAuth(cookies)
   } catch {
     return unauthorized()
   }
@@ -58,7 +59,6 @@ export const PATCH: APIRoute = async ({ params, request, cookies }) => {
     if (parsed.data.status === 'received' && existing.status !== 'received') {
       updateData.received_at = new Date().toISOString()
 
-      // Fire confirmation email — non-blocking, don't fail the request if email fails
       sendInkindConfirmation({
         donor_name: existing.donor_name as string,
         donor_email: existing.donor_email as string,
@@ -68,6 +68,13 @@ export const PATCH: APIRoute = async ({ params, request, cookies }) => {
     }
 
     await updateInkind(id, updateData)
+
+    logActivity({
+      admin_email: session.email,
+      action: 'inkind_status_update',
+      details: `In-kind ${id} → ${parsed.data.status ?? 'note updated'}`,
+    })
+
     return json({ success: true })
   } catch {
     return serverError()

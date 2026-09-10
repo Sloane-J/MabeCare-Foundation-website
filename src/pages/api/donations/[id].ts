@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro'
 import { z } from 'zod'
 import { json, error, unauthorized, notFound, serverError } from '../../../lib/api/response'
 import { requireAuth } from '../../../lib/auth/session'
-import { getDonationById, updateDonation } from '../../../lib/db/queries'
+import { getDonationById, logActivity, updateDonation } from '../../../lib/db/queries'
 
 const UpdateSchema = z.object({
   status: z.enum(['pending', 'confirmed', 'reconciled']).optional(),
@@ -10,8 +10,9 @@ const UpdateSchema = z.object({
 })
 
 export const PATCH: APIRoute = async ({ params, request, cookies }) => {
+  let session
   try {
-    await requireAuth(cookies)
+    session = await requireAuth(cookies)
   } catch {
     return unauthorized()
   }
@@ -31,6 +32,13 @@ export const PATCH: APIRoute = async ({ params, request, cookies }) => {
     }
 
     await updateDonation(id, parsed.data)
+
+    logActivity({
+      admin_email: session.email,
+      action: 'donation_status_update',
+      details: `Donation ${id} → ${parsed.data.status ?? 'note updated'}`,
+    })
+
     return json({ success: true })
   } catch {
     return serverError()
