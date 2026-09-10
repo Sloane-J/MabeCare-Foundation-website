@@ -1,5 +1,5 @@
+import { CheckSquare, Plus, RefreshCw, Search, Square, WifiOff, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Plus, RefreshCw, Search, X, WifiOff } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 
@@ -40,7 +40,6 @@ const STATUS_ACTIVE = {
   reconciled: 'bg-violet-500',
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
 function fmt(amount: number) {
   return `₵${Number(amount).toLocaleString('en-GH', { minimumFractionDigits: 2 })}`
 }
@@ -48,7 +47,6 @@ function fmtDate(d: string) {
   return new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
-// ── Stat card (same Panel/Metric pattern as dashboard) ────────────────────────
 function StatCard({ label, value, sub, accent }: {
   label: string; value: string | number; sub?: string; accent?: boolean
 }) {
@@ -63,7 +61,6 @@ function StatCard({ label, value, sub, accent }: {
   )
 }
 
-// ── Filter pill ───────────────────────────────────────────────────────────────
 function FilterPill({ label, active, onClick }: {
   label: string; active: boolean; onClick: () => void
 }) {
@@ -82,7 +79,6 @@ function FilterPill({ label, active, onClick }: {
   )
 }
 
-// ── Cash form ─────────────────────────────────────────────────────────────────
 function CashDonationForm({ onSuccess, onClose }: { onSuccess: () => void; onClose: () => void }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -165,34 +161,41 @@ function CashDonationForm({ onSuccess, onClose }: { onSuccess: () => void; onClo
 
 export default function DonationsList() {
   const [donations, setDonations] = useState<Donation[]>([])
-const [loading, setLoading] = useState(true)
-const [error, setError] = useState<string | null>(null)  // add this
-const [showForm, setShowForm] = useState(false)
-const [selected, setSelected] = useState<Donation | null>(null)
-const [statusFilter, setStatusFilter] = useState('all')
-const [typeFilter, setTypeFilter] = useState('all')
-const [search, setSearch] = useState('')
-const [updating, setUpdating] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [showForm, setShowForm] = useState(false)
+  const [selected, setSelected] = useState<Donation | null>(null)
+  const [statusFilter, setStatusFilter] = useState('all')
+  const [typeFilter, setTypeFilter] = useState('all')
+  const [search, setSearch] = useState('')
+  const [updating, setUpdating] = useState(false)
 
-async function fetchDonations() {
-  setLoading(true)
-  setError(null)  // add this
-  try {
-    const params = new URLSearchParams()
-    if (statusFilter !== 'all') params.set('status', statusFilter)
-    if (typeFilter !== 'all') params.set('type', typeFilter)
-    const res = await fetch(`/api/donations?${params}`)
-    const data = await res.json()
-    setDonations(Array.isArray(data) ? data : [])
-  } catch {
-    setError('failed')  // add this
-    setDonations([])
-  } finally {
-    setLoading(false)
+  // Bulk select state
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [bulkUpdating, setBulkUpdating] = useState(false)
+
+  async function fetchDonations() {
+    setLoading(true)
+    setError(null)
+    try {
+      const params = new URLSearchParams()
+      if (statusFilter !== 'all') params.set('status', statusFilter)
+      if (typeFilter !== 'all') params.set('type', typeFilter)
+      const res = await fetch(`/api/donations?${params}`)
+      const data = await res.json()
+      setDonations(Array.isArray(data) ? data : [])
+    } catch {
+      setError('failed')
+      setDonations([])
+    } finally {
+      setLoading(false)
+    }
   }
-}
 
   useEffect(() => { fetchDonations() }, [statusFilter, typeFilter])
+
+  // Clear selection whenever the filtered list changes
+  useEffect(() => { setSelectedIds(new Set()) }, [statusFilter, typeFilter, search])
 
   async function updateStatus(id: string, status: string) {
     setUpdating(true)
@@ -209,6 +212,39 @@ async function fetchDonations() {
     }
   }
 
+  async function bulkUpdateStatus(status: string) {
+    if (selectedIds.size === 0) return
+    setBulkUpdating(true)
+    try {
+      await fetch('/api/donations/bulk', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: Array.from(selectedIds), status }),
+      })
+      await fetchDonations()
+      setSelectedIds(new Set())
+    } finally {
+      setBulkUpdating(false)
+    }
+  }
+
+  function toggleSelect(id: string) {
+    setSelectedIds(prev => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  function toggleSelectAll() {
+    if (selectedIds.size === filtered.length) {
+      setSelectedIds(new Set())
+    } else {
+      setSelectedIds(new Set(filtered.map(d => d.id)))
+    }
+  }
+
   // Client-side search filter
   const filtered = donations.filter(d => {
     if (!search) return true
@@ -220,37 +256,38 @@ async function fetchDonations() {
     )
   })
 
-  // Stats derived from full list (unfiltered)
   const total = donations.reduce((s, d) => s + Number(d.amount), 0)
   const pending = donations.filter(d => d.status === 'pending').length
   const confirmed = donations.filter(d => d.status === 'confirmed').length
   const reconciled = donations.filter(d => d.status === 'reconciled').length
 
+  const allSelected = filtered.length > 0 && selectedIds.size === filtered.length
+
   return (
     <div className="space-y-5 pb-10">
       {/* ── Offline error state ─────────────────────────── */}
-    {error && (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center p-6 text-center">
-        <img
-          src="/images/offline.svg"
-          alt="No connection"
-          className="mb-6 h-36 w-36 object-contain opacity-80"
-        />
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <WifiOff className="h-4 w-4 text-yellow-600" />
-          <p className="text-sm font-semibold text-gray-900">You're not connected</p>
+      {error && (
+        <div className="flex min-h-[50vh] flex-col items-center justify-center p-6 text-center">
+          <img
+            src="/images/offline.svg"
+            alt="No connection"
+            className="mb-6 h-36 w-36 object-contain opacity-80"
+          />
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <WifiOff className="h-4 w-4 text-yellow-600" />
+            <p className="text-sm font-semibold text-gray-900">You're not connected</p>
+          </div>
+          <p className="text-xs text-gray-500 leading-relaxed max-w-xs">
+            Not to worry — your data is safe. This page will reload automatically once you're back online.
+          </p>
+          <button
+            onClick={fetchDonations}
+            className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-gray-800 transition-colors"
+          >
+            <RefreshCw className="h-3.5 w-3.5" /> Try again
+          </button>
         </div>
-        <p className="text-xs text-gray-500 leading-relaxed max-w-xs">
-          Not to worry — your data is safe. This page will reload automatically once you're back online.
-        </p>
-        <button
-          onClick={fetchDonations}
-          className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-gray-800 transition-colors"
-        >
-          <RefreshCw className="h-3.5 w-3.5" /> Try again
-        </button>
-      </div>
-    )}
+      )}
 
       {/* ── Header ──────────────────────────────────────── */}
       <div className="flex items-center justify-between">
@@ -290,7 +327,6 @@ async function fetchDonations() {
       {/* ── Filters + search ────────────────────────────── */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap gap-2">
-          {/* Status filters */}
           {(['all', 'pending', 'confirmed', 'reconciled'] as const).map(s => (
             <FilterPill
               key={s}
@@ -300,7 +336,6 @@ async function fetchDonations() {
             />
           ))}
           <div className="h-5 w-px bg-gray-200 self-center" />
-          {/* Type filters */}
           {(['all', 'online', 'cash'] as const).map(t => (
             <FilterPill
               key={t}
@@ -311,7 +346,6 @@ async function fetchDonations() {
           ))}
         </div>
 
-        {/* Search */}
         <div className="relative w-full sm:w-56">
           <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-gray-500" />
           <input
@@ -329,6 +363,36 @@ async function fetchDonations() {
           )}
         </div>
       </div>
+
+      {/* ── Bulk action bar ─────────────────────────────── */}
+      {selectedIds.size > 0 && (
+        <div className="flex items-center justify-between rounded-xl border border-violet-200 bg-violet-50 px-4 py-3">
+          <span className="text-xs font-medium text-violet-700">
+            {selectedIds.size} selected
+          </span>
+          <div className="flex items-center gap-2">
+            {(['pending', 'confirmed', 'reconciled'] as const).map(s => (
+              <button
+                key={s}
+                disabled={bulkUpdating}
+                onClick={() => bulkUpdateStatus(s)}
+                className={cn(
+                  'rounded-lg px-3 py-1.5 text-xs font-medium capitalize transition-colors border disabled:opacity-50',
+                  STATUS_STYLES[s]
+                )}
+              >
+                Mark {s}
+              </button>
+            ))}
+            <button
+              onClick={() => setSelectedIds(new Set())}
+              className="rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-500 hover:bg-gray-50"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── List ────────────────────────────────────────── */}
       {loading ? (
@@ -350,7 +414,12 @@ async function fetchDonations() {
       ) : (
         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
           {/* Table header — desktop only */}
-          <div className="hidden grid-cols-[1fr_auto_auto_auto] gap-4 border-b border-gray-100 px-5 py-2.5 text-xs font-medium uppercase tracking-wide text-gray-500 lg:grid">
+          <div className="hidden grid-cols-[auto_1fr_auto_auto_auto] items-center gap-4 border-b border-gray-100 px-5 py-2.5 text-xs font-medium uppercase tracking-wide text-gray-500 lg:grid">
+            <button onClick={toggleSelectAll} className="flex items-center" aria-label="Select all">
+              {allSelected
+                ? <CheckSquare className="h-4 w-4 text-violet-600" />
+                : <Square className="h-4 w-4 text-gray-400" />}
+            </button>
             <span>Donor</span>
             <span>Channel</span>
             <span>Date</span>
@@ -358,58 +427,70 @@ async function fetchDonations() {
           </div>
 
           {filtered.map((d, i) => (
-            <button
+            <div
               key={d.id}
-              onClick={() => setSelected(d)}
               className={cn(
-                'w-full px-5 py-3.5 text-left transition-colors hover:bg-gray-50',
+                'flex items-center gap-3 px-5 py-3.5 transition-colors hover:bg-gray-50',
                 i !== filtered.length - 1 && 'border-b border-gray-100'
               )}
             >
-              {/* Mobile layout */}
-              <div className="flex items-center justify-between gap-3 lg:hidden">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <div className={cn('h-1.5 w-1.5 shrink-0 rounded-full', STATUS_ACTIVE[d.status])} />
-                    <p className="truncate text-sm font-medium text-gray-900">
-                      {d.donor_name ?? 'Anonymous'}
+              {/* Checkbox — desktop only */}
+              <button
+                onClick={() => toggleSelect(d.id)}
+                className="hidden shrink-0 items-center lg:flex"
+                aria-label="Select donation"
+              >
+                {selectedIds.has(d.id)
+                  ? <CheckSquare className="h-4 w-4 text-violet-600" />
+                  : <Square className="h-4 w-4 text-gray-400" />}
+              </button>
+
+              <button onClick={() => setSelected(d)} className="min-w-0 flex-1 text-left">
+                {/* Mobile layout */}
+                <div className="flex items-center justify-between gap-3 lg:hidden">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <div className={cn('h-1.5 w-1.5 shrink-0 rounded-full', STATUS_ACTIVE[d.status])} />
+                      <p className="truncate text-sm font-medium text-gray-900">
+                        {d.donor_name ?? 'Anonymous'}
+                      </p>
+                    </div>
+                    <p className="mt-0.5 truncate text-xs text-gray-500">
+                      {d.channel ? CHANNEL_LABELS[d.channel] ?? d.channel : 'Cash'} · {fmtDate(d.date)}
                     </p>
                   </div>
-                  <p className="mt-0.5 truncate text-xs text-gray-500">
-                    {d.channel ? CHANNEL_LABELS[d.channel] ?? d.channel : 'Cash'} · {fmtDate(d.date)}
-                  </p>
-                </div>
-                <div className="shrink-0 text-right">
-                  <p className="text-sm font-bold text-gray-900">{fmt(d.amount)}</p>
-                  <span className={cn('mt-1 inline-block rounded px-1.5 py-0.5 text-[10px] font-medium capitalize', STATUS_STYLES[d.status])}>
-                    {d.status}
-                  </span>
-                </div>
-              </div>
-
-              {/* Desktop layout */}
-              <div className="hidden grid-cols-[1fr_auto_auto_auto] items-center gap-4 lg:grid">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <div className={cn('h-1.5 w-1.5 shrink-0 rounded-full', STATUS_ACTIVE[d.status])} />
-                    <p className="truncate text-sm font-medium text-gray-900">
-                      {d.donor_name ?? 'Anonymous'}
-                    </p>
-                    <span className={cn('rounded px-1.5 py-0.5 text-[10px] font-medium capitalize', STATUS_STYLES[d.status])}>
+                  <div className="shrink-0 text-right">
+                    <p className="text-sm font-bold text-gray-900">{fmt(d.amount)}</p>
+                    <span className={cn('mt-1 inline-block rounded px-1.5 py-0.5 text-[10px] font-medium capitalize', STATUS_STYLES[d.status])}>
                       {d.status}
                     </span>
                   </div>
-                  {d.donor_email && (
-                    <p className="ml-3.5 mt-0.5 truncate text-xs text-gray-500">{d.donor_email}</p>
-                  )}
                 </div>
-                <span className="text-xs text-gray-500">
-                  {d.channel ? CHANNEL_LABELS[d.channel] ?? d.channel : 'Cash'}
-                </span>
-                <span className="text-xs text-gray-500">{fmtDate(d.date)}</span>
-                <span className="text-sm font-bold text-gray-900">{fmt(d.amount)}</span>
-              </div>
-            </button>
+
+                {/* Desktop layout */}
+                <div className="hidden grid-cols-[1fr_auto_auto_auto] items-center gap-4 lg:grid">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <div className={cn('h-1.5 w-1.5 shrink-0 rounded-full', STATUS_ACTIVE[d.status])} />
+                      <p className="truncate text-sm font-medium text-gray-900">
+                        {d.donor_name ?? 'Anonymous'}
+                      </p>
+                      <span className={cn('rounded px-1.5 py-0.5 text-[10px] font-medium capitalize', STATUS_STYLES[d.status])}>
+                        {d.status}
+                      </span>
+                    </div>
+                    {d.donor_email && (
+                      <p className="ml-3.5 mt-0.5 truncate text-xs text-gray-500">{d.donor_email}</p>
+                    )}
+                  </div>
+                  <span className="text-xs text-gray-500">
+                    {d.channel ? CHANNEL_LABELS[d.channel] ?? d.channel : 'Cash'}
+                  </span>
+                  <span className="text-xs text-gray-500">{fmtDate(d.date)}</span>
+                  <span className="text-sm font-bold text-gray-900">{fmt(d.amount)}</span>
+                </div>
+              </button>
+            </div>
           ))}
         </div>
       )}
@@ -432,7 +513,6 @@ async function fetchDonations() {
           </DialogHeader>
           {selected && (
             <div className="space-y-5">
-              {/* Amount hero */}
               <div className="rounded-xl bg-gray-50 px-5 py-4 text-center">
                 <p className="text-3xl font-bold text-gray-900">{fmt(selected.amount)}</p>
                 <p className="mt-1 text-xs text-gray-500">{fmtDate(selected.date)}</p>
@@ -441,7 +521,6 @@ async function fetchDonations() {
                 </span>
               </div>
 
-              {/* Detail grid */}
               <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
                 <div>
                   <p className="text-xs text-gray-500">Type</p>
@@ -479,7 +558,6 @@ async function fetchDonations() {
                 )}
               </div>
 
-              {/* Status update */}
               <div className="space-y-2 border-t border-gray-100 pt-4">
                 <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Update status</p>
                 <div className="flex gap-2">

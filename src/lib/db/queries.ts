@@ -281,42 +281,6 @@ export async function updateAdminEmail(id: string, email: string) {
   })
 }
 
-// ─── Email Change Tokens ─────────────────────────────────────
-
-export async function createEmailChangeToken(data: {
-  admin_id: string
-  new_email: string
-  token: string
-  expires_at: string
-}) {
-  await getDb().execute({
-    sql: `INSERT INTO email_change_tokens (id, admin_id, new_email, token, expires_at)
-          VALUES (:id, :admin_id, :new_email, :token, :expires_at)`,
-    args: {
-      id: crypto.randomUUID(),
-      admin_id: data.admin_id,
-      new_email: data.new_email,
-      token: data.token,
-      expires_at: data.expires_at,
-    },
-  })
-}
-
-export async function getEmailChangeToken(token: string) {
-  const result = await getDb().execute({
-    sql: 'SELECT * FROM email_change_tokens WHERE token = ? AND used = 0',
-    args: [token],
-  })
-  return result.rows[0] ?? null
-}
-
-export async function markEmailChangeTokenUsed(id: string) {
-  await getDb().execute({
-    sql: 'UPDATE email_change_tokens SET used = 1 WHERE id = ?',
-    args: [id],
-  })
-}
-
 // ─── Activity Logs ───────────────────────────────────────────
 
 export async function logActivity(data: {
@@ -402,5 +366,54 @@ export async function markPasswordResetTokenUsed(id: string) {
   await getDb().execute({
     sql: 'UPDATE password_reset_tokens SET used = 1 WHERE id = ?',
     args: [id],
+  })
+}
+
+// ─── Email Change Tokens ───────────────────────────────────
+
+export async function createEmailChangeToken(data: {
+  admin_id: string
+  new_email: string
+  token: string
+  expires_at: string
+}) {
+  await getDb().execute({
+    sql: `INSERT INTO email_change_tokens (id, admin_id, new_email, token, expires_at)
+          VALUES (:id, :admin_id, :new_email, :token, :expires_at)`,
+    args: {
+      id: crypto.randomUUID(),
+      admin_id: data.admin_id,
+      new_email: data.new_email,
+      token: data.token,
+      expires_at: data.expires_at,
+    },
+  })
+}
+
+export async function getEmailChangeToken(token: string) {
+  const result = await getDb().execute({
+    sql: 'SELECT * FROM email_change_tokens WHERE token = ? AND used = 0',
+    args: [token],
+  })
+  return result.rows[0] ?? null
+}
+
+export async function markEmailChangeTokenUsed(id: string) {
+  await getDb().execute({
+    sql: 'UPDATE email_change_tokens SET used = 1 WHERE id = ?',
+    args: [id],
+  })
+}
+
+export async function bulkUpdateDonationStatus(ids: string[], status: string) {
+  if (ids.length === 0) return
+
+  const placeholders = ids.map((_, i) => `:id${i}`).join(', ')
+  const args: Record<string, string> = { status }
+  ids.forEach((id, i) => { args[`id${i}`] = id })
+
+  await getDb().execute({
+    sql: `UPDATE donations SET status = :status WHERE id IN (${placeholders})`,
+    args,
   })
 }
