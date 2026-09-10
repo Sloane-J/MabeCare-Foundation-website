@@ -316,3 +316,57 @@ export async function markEmailChangeTokenUsed(id: string) {
     args: [id],
   })
 }
+
+// ─── Activity Logs ───────────────────────────────────────────
+
+export async function logActivity(data: {
+  admin_email: string
+  action: string
+  details?: string
+  ip_address?: string
+}) {
+  try {
+    await getDb().execute({
+      sql: `INSERT INTO activity_logs (id, admin_email, action, details, ip_address)
+            VALUES (:id, :admin_email, :action, :details, :ip_address)`,
+      args: {
+        id: crypto.randomUUID(),
+        admin_email: data.admin_email,
+        action: data.action,
+        details: data.details ?? null,
+        ip_address: data.ip_address ?? null,
+      },
+    })
+  } catch (err) {
+    // Never let logging failure break the actual operation
+    console.error('Failed to log activity:', err)
+  }
+}
+
+export async function getActivityLogs(page: number = 1, pageSize: number = 20) {
+  // Auto-cleanup: delete logs older than 90 days
+  await getDb().execute({
+    sql: `DELETE FROM activity_logs WHERE created_at < datetime('now', '-90 days')`,
+    args: {},
+  })
+
+  const offset = (page - 1) * pageSize
+
+  const [rows, countResult] = await Promise.all([
+    getDb().execute({
+      sql: `SELECT * FROM activity_logs ORDER BY created_at DESC LIMIT :limit OFFSET :offset`,
+      args: { limit: pageSize, offset },
+    }),
+    getDb().execute({
+      sql: `SELECT COUNT(*) as count FROM activity_logs`,
+      args: {},
+    }),
+  ])
+
+  return {
+    logs: rows.rows,
+    total: Number(countResult.rows[0]?.count ?? 0),
+    page,
+    pageSize,
+  }
+}
