@@ -1,12 +1,13 @@
 import {
-  LayoutDashboard,
-  Wallet,
-  Package,
-  BarChart3,
   Activity,
-  UserCircle,
+  BarChart3,
+  Download,
+  LayoutDashboard,
   LogOut,
   Menu,
+  Package,
+  UserCircle,
+  Wallet,
   X,
 } from 'lucide-react'
 import { useState } from 'react'
