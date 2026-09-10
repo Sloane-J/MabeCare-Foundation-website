@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro'
-import { createDonation } from '../../../lib/db/queries'
-import { json, error } from '../../../lib/api/response'
 import { sendDonationAlert } from '../../../lib/api/email'
+import { json, error } from '../../../lib/api/response'
+import { createDonation } from '../../../lib/db/queries'
 
 async function verifyPaystackSignature(
   payload: string,

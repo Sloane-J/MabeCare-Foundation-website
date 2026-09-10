@@ -248,3 +248,71 @@ const paystackTotal = await db.execute({
   paystackTotal: paystackTotal.rows[0],
 }
 }
+
+// ─── Admin Users ─────────────────────────────────────────────
+
+export async function getAdminByEmail(email: string) {
+  const result = await getDb().execute({
+    sql: 'SELECT * FROM admin_users WHERE email = ?',
+    args: [email],
+  })
+  return result.rows[0] ?? null
+}
+
+export async function getAdminById(id: string) {
+  const result = await getDb().execute({
+    sql: 'SELECT * FROM admin_users WHERE id = ?',
+    args: [id],
+  })
+  return result.rows[0] ?? null
+}
+
+export async function updateAdminPassword(id: string, passwordHash: string) {
+  await getDb().execute({
+    sql: `UPDATE admin_users SET password_hash = :password_hash, updated_at = strftime('%Y-%m-%dT%H:%M:%SZ', 'now') WHERE id = :id`,
+    args: { id, password_hash: passwordHash },
+  })
+}
+
+export async function updateAdminEmail(id: string, email: string) {
+  await getDb().execute({
+    sql: `UPDATE admin_users SET email = :email, updated_at = strftime('%Y-%m-%dT%H:%M:%SZ', 'now') WHERE id = :id`,
+    args: { id, email },
+  })
+}
+
+// ─── Email Change Tokens ─────────────────────────────────────
+
+export async function createEmailChangeToken(data: {
+  admin_id: string
+  new_email: string
+  token: string
+  expires_at: string
+}) {
+  await getDb().execute({
+    sql: `INSERT INTO email_change_tokens (id, admin_id, new_email, token, expires_at)
+          VALUES (:id, :admin_id, :new_email, :token, :expires_at)`,
+    args: {
+      id: crypto.randomUUID(),
+      admin_id: data.admin_id,
+      new_email: data.new_email,
+      token: data.token,
+      expires_at: data.expires_at,
+    },
+  })
+}
+
+export async function getEmailChangeToken(token: string) {
+  const result = await getDb().execute({
+    sql: 'SELECT * FROM email_change_tokens WHERE token = ? AND used = 0',
+    args: [token],
+  })
+  return result.rows[0] ?? null
+}
+
+export async function markEmailChangeTokenUsed(id: string) {
+  await getDb().execute({
+    sql: 'UPDATE email_change_tokens SET used = 1 WHERE id = ?',
+    args: [id],
+  })
+}
