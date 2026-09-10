@@ -91,6 +91,8 @@ export async function sendInkindConfirmation(data: {
 
 // ─── Internal alert to foundation on new donation ────────────
 
+// ─── Internal alert to foundation on new donation ────────────
+
 export async function sendDonationAlert(data: {
   type: 'paystack' | 'cash'
   channel?: string
@@ -125,105 +127,91 @@ export async function sendDonationAlert(data: {
     html: `
       <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
 
-  <!-- Header -->
-  <div style="background: linear-gradient(135deg, #1a0010 0%, #2d0020 60%, #0d0d0d 100%); padding: 36px 32px; position: relative;">
-    <!-- Pink accent bar -->
-    <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ff1493, #ff69b4);"></div>
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #1a0010 0%, #2d0020 60%, #0d0d0d 100%); padding: 36px 32px; position: relative;">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ff1493, #ff69b4);"></div>
 
-    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
-      <div>
-        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,20,147,0.15); border: 1px solid rgba(255,20,147,0.3); border-radius: 100px; padding: 4px 12px; margin-bottom: 14px;">
-          <div style="width: 6px; height: 6px; background: #ff1493; border-radius: 50%;"></div>
-          <span style="color: #ff69b4; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;">New In-Kind Submission</span>
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
+            <div>
+              <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,20,147,0.15); border: 1px solid rgba(255,20,147,0.3); border-radius: 100px; padding: 4px 12px; margin-bottom: 14px;">
+                <div style="width: 6px; height: 6px; background: #ff1493; border-radius: 50%;"></div>
+                <span style="color: #ff69b4; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;">New ${typeLabel} Donation</span>
+              </div>
+              <h1 style="color: #ffffff; font-size: 26px; font-weight: 700; margin: 0;">${amount}</h1>
+              <p style="color: rgba(255,255,255,0.5); font-size: 13px; margin: 4px 0 0;">via ${channel}</p>
+            </div>
+            <div style="width: 48px; height: 48px; background: rgba(255,20,147,0.15); border: 1px solid rgba(255,20,147,0.25); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <span style="font-size: 22px;">💝</span>
+            </div>
+          </div>
         </div>
-        <h1 style="color: #ffffff; font-size: 24px; font-weight: 700; margin: 0 0 4px; letter-spacing: -0.02em;">${data.donor_name}</h1>
-        <p style="color: rgba(255,255,255,0.5); font-size: 13px; margin: 0;">
-          📍 ${data.country ?? 'Location not provided'}
-        </p>
+
+        <!-- Body -->
+        <div style="padding: 32px;">
+
+          <div style="border: 1px solid #f3e8ff; border-radius: 12px; overflow: hidden; margin-bottom: 24px;">
+            <div style="background: linear-gradient(135deg, #fdf4ff, #fce7f3); padding: 14px 20px; border-bottom: 1px solid #f3e8ff;">
+              <p style="margin: 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #c084fc;">Transaction Details</p>
+            </div>
+            <table style="width: 100%; border-collapse: collapse; background: #ffffff;">
+              <tr style="border-bottom: 1px solid #faf5ff;">
+                <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; width: 38%; font-weight: 500;">Amount</td>
+                <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 700;">${amount}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #faf5ff;">
+                <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Type</td>
+                <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 600;">${typeLabel}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #faf5ff;">
+                <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Channel</td>
+                <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 600;">${channel}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #faf5ff;">
+                <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Date</td>
+                <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 600;">${date}</td>
+              </tr>
+              ${data.reference ? `
+              <tr style="border-bottom: 1px solid #faf5ff;">
+                <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Reference</td>
+                <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-family: monospace;">${data.reference}</td>
+              </tr>` : ''}
+              ${data.donor_name ? `
+              <tr style="border-bottom: 1px solid #faf5ff;">
+                <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Donor name</td>
+                <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 600;">${data.donor_name}</td>
+              </tr>` : ''}
+              ${data.donor_email ? `
+              <tr style="border-bottom: 1px solid #faf5ff;">
+                <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Donor email</td>
+                <td style="padding: 12px 20px; font-size: 13px; color: #ff1493;">${data.donor_email}</td>
+              </tr>` : ''}
+              ${data.donor_phone ? `
+              <tr>
+                <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Donor phone</td>
+                <td style="padding: 12px 20px; font-size: 13px; color: #111827;">${data.donor_phone}</td>
+              </tr>` : ''}
+            </table>
+          </div>
+
+          <div style="text-align: center;">
+            <a href="https://mabecare-foundation.vercel.app/admin/donations" style="display: inline-block; background: linear-gradient(135deg, #ff1493, #e0006a); color: #ffffff; font-size: 14px; font-weight: 700; padding: 14px 36px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 14px rgba(255,20,147,0.35);">
+              View in Dashboard →
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div style="background: #fafafa; border-top: 1px solid #f3f4f6; padding: 20px 32px; text-align: center;">
+          <p style="font-size: 12px; color: #9ca3af; margin: 0 0 4px;">
+            <strong style="color: #374151;">MabEcare Foundation</strong> &bull; Ho, Volta Region, Ghana
+          </p>
+          <p style="font-size: 11px; color: #d1d5db; margin: 0;">
+            Automated notification · Do not reply to this email
+          </p>
+        </div>
+
       </div>
-      <!-- Heart icon -->
-      <div style="width: 48px; height: 48px; background: rgba(255,20,147,0.15); border: 1px solid rgba(255,20,147,0.25); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-        <span style="font-size: 22px;">🎁</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Body -->
-  <div style="padding: 32px;">
-
-    <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin: 0 0 24px;">
-      A new in-kind donation has been submitted through the MabEcare website. Review the details below and update the status in your dashboard.
-    </p>
-
-    <!-- Details card -->
-    <div style="border: 1px solid #f3e8ff; border-radius: 12px; overflow: hidden; margin-bottom: 24px;">
-      <div style="background: linear-gradient(135deg, #fdf4ff, #fce7f3); padding: 14px 20px; border-bottom: 1px solid #f3e8ff;">
-        <p style="margin: 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #c084fc;">Submission Details</p>
-      </div>
-      <table style="width: 100%; border-collapse: collapse; background: #ffffff;">
-        <tr style="border-bottom: 1px solid #faf5ff;">
-          <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; width: 36%; font-weight: 500;">Donor name</td>
-          <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 600;">${data.donor_name}</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #faf5ff;">
-          <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Email</td>
-          <td style="padding: 12px 20px; font-size: 13px; color: #ff1493;">${data.donor_email}</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #faf5ff;">
-          <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Country</td>
-          <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 600;">${data.country ?? '—'}</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #faf5ff;">
-          <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Items donated</td>
-          <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 600;">${data.item_description}</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #faf5ff;">
-          <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Est. value</td>
-          <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 600;">${estValue}</td>
-        </tr>
-        <tr style="${data.message ? 'border-bottom: 1px solid #faf5ff;' : ''}">
-          <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500;">Expected ship</td>
-          <td style="padding: 12px 20px; font-size: 13px; color: #111827; font-weight: 600;">${shipDate}</td>
-        </tr>
-        ${data.message ? `
-        <tr>
-          <td style="padding: 12px 20px; font-size: 12px; color: #9ca3af; font-weight: 500; vertical-align: top;">Message</td>
-          <td style="padding: 12px 20px; font-size: 13px; color: #374151; font-style: italic; line-height: 1.6;">"${data.message}"</td>
-        </tr>` : ''}
-      </table>
-    </div>
-
-    <!-- Next steps -->
-    <div style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: 14px 18px; margin-bottom: 28px;">
-      <p style="margin: 0 0 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #f97316;">Next Steps</p>
-      <ol style="margin: 0; padding-left: 16px; color: #6b7280; font-size: 13px; line-height: 1.8;">
-        <li>Review the submission in your dashboard</li>
-        <li>Contact the donor to confirm shipping details</li>
-        <li>Update the status to <strong>In Transit</strong> once collected</li>
-        <li>Mark as <strong>Received</strong> when items arrive — this triggers a confirmation email to the donor</li>
-      </ol>
-    </div>
-
-    <!-- CTA -->
-    <div style="text-align: center;">
-      <a href="https://mabecare-foundation.vercel.app/admin/" style="display: inline-block; background: linear-gradient(135deg, #ff1493, #e0006a); color: #ffffff; font-size: 14px; font-weight: 700; padding: 14px 36px; border-radius: 10px; text-decoration: none; letter-spacing: 0.01em; box-shadow: 0 4px 14px rgba(255,20,147,0.35);">
-        View in Dashboard →
-      </a>
-    </div>
-
-  </div>
-
-  <!-- Footer -->
-  <div style="background: #fafafa; border-top: 1px solid #f3f4f6; padding: 20px 32px; text-align: center;">
-    <p style="font-size: 12px; color: #9ca3af; margin: 0 0 4px;">
-      <strong style="color: #374151;">MabEcare Foundation</strong> &bull; Ho, Volta Region, Ghana
-    </p>
-    <p style="font-size: 11px; color: #d1d5db; margin: 0;">
-      Automated notification · Do not reply to this email
-    </p>
-  </div>
-
-</div>
     `,
   })
 }

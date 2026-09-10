@@ -1,4 +1,4 @@
-import { db } from './client'
+import { getDb } from './client'
 
 // ─── Donations ───────────────────────────────────────────────
 
@@ -35,12 +35,12 @@ export async function getDonations(filters?: {
 
   query += ' ORDER BY created_at DESC'
 
-  const result = await db.execute({ sql: query, args })
+  const result = await getDb().execute({ sql: query, args })
   return result.rows.map((row: any) => ({ ...row }))
 }
 
 export async function getDonationById(id: string) {
-  const result = await db.execute({
+  const result = await getDb().execute({
     sql: 'SELECT * FROM donations WHERE id = ?',
     args: [id],
   })
@@ -60,7 +60,7 @@ export async function createDonation(data: {
   reference?: string
   note?: string
 }) {
-  await db.execute({
+  await getDb().execute({
     sql: `INSERT INTO donations (id, type, channel, amount, currency, donor_name, donor_email, donor_phone, date, reference, note)
           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     args: [
@@ -99,7 +99,7 @@ export async function updateDonation(
 
   args.push(id)
 
-  await db.execute({
+  await getDb().execute({
     sql: `UPDATE donations SET ${fields.join(', ')} WHERE id = ?`,
     args,
   })
@@ -118,12 +118,12 @@ export async function getInkindSubmissions(filters?: { status?: string }) {
 
   query += ' ORDER BY created_at DESC'
 
-  const result = await db.execute({ sql: query, args })
+  const result = await getDb().execute({ sql: query, args })
   return result.rows.map((row: any) => ({ ...row }))
 }
 
 export async function getInkindById(id: string) {
-  const result = await db.execute({
+  const result = await getDb().execute({
     sql: 'SELECT * FROM inkind_submissions WHERE id = ?',
     args: [id],
   })
@@ -141,7 +141,7 @@ export async function createInkind(data: {
   message?: string
   expected_ship_date?: string
 }) {
-  await db.execute({
+  await getDb().execute({
     sql: `INSERT INTO inkind_submissions (id, donor_name, donor_email, country, item_description, estimated_value, photos, message, expected_ship_date)
           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     args: [
@@ -182,7 +182,7 @@ export async function updateInkind(
 
   args.push(id)
 
-  await db.execute({
+  await getDb().execute({
     sql: `UPDATE inkind_submissions SET ${fields.join(', ')} WHERE id = ?`,
     args,
   })
@@ -203,50 +203,50 @@ export async function getReportSummary(from?: string, to?: string) {
     dateArgs.push(to)
   }
 
-  const totals = await db.execute({
+  const totals = await getDb().execute({
     sql: `SELECT COUNT(*) as count, SUM(amount) as total FROM donations WHERE 1=1${dateFilter}`,
     args: dateArgs,
   })
 
-  const byChannel = await db.execute({
+  const byChannel = await getDb().execute({
     sql: `SELECT channel, COUNT(*) as count, SUM(amount) as total FROM donations WHERE 1=1${dateFilter} GROUP BY channel`,
     args: dateArgs,
   })
 
-  const byStatus = await db.execute({
+  const byStatus = await getDb().execute({
     sql: `SELECT status, COUNT(*) as count FROM donations WHERE 1=1${dateFilter} GROUP BY status`,
     args: dateArgs,
   })
 
-  const inkindByStatus = await db.execute({
+  const inkindByStatus = await getDb().execute({
     sql: `SELECT status, COUNT(*) as count FROM inkind_submissions GROUP BY status`,
     args: [],
   })
 
-  const byType = await db.execute({
-  sql: `SELECT type, COUNT(*) as count, SUM(amount) as total FROM donations WHERE 1=1${dateFilter} GROUP BY type`,
-  args: dateArgs,
-})
+  const byType = await getDb().execute({
+    sql: `SELECT type, COUNT(*) as count, SUM(amount) as total FROM donations WHERE 1=1${dateFilter} GROUP BY type`,
+    args: dateArgs,
+  })
 
-const cashTotal = await db.execute({
-  sql: `SELECT COUNT(*) as count, SUM(amount) as total FROM donations WHERE type = 'cash'${dateFilter}`,
-  args: dateArgs,
-})
+  const cashTotal = await getDb().execute({
+    sql: `SELECT COUNT(*) as count, SUM(amount) as total FROM donations WHERE type = 'cash'${dateFilter}`,
+    args: dateArgs,
+  })
 
-const paystackTotal = await db.execute({
-  sql: `SELECT COUNT(*) as count, SUM(amount) as total FROM donations WHERE type = 'paystack'${dateFilter}`,
-  args: dateArgs,
-})
+  const paystackTotal = await getDb().execute({
+    sql: `SELECT COUNT(*) as count, SUM(amount) as total FROM donations WHERE type = 'paystack'${dateFilter}`,
+    args: dateArgs,
+  })
 
   return {
-  totals: totals.rows[0],
-  byChannel: byChannel.rows,
-  byStatus: byStatus.rows,
-  inkindByStatus: inkindByStatus.rows,
-  byType: byType.rows,
-  cashTotal: cashTotal.rows[0],
-  paystackTotal: paystackTotal.rows[0],
-}
+    totals: totals.rows[0],
+    byChannel: byChannel.rows,
+    byStatus: byStatus.rows,
+    inkindByStatus: inkindByStatus.rows,
+    byType: byType.rows,
+    cashTotal: cashTotal.rows[0],
+    paystackTotal: paystackTotal.rows[0],
+  }
 }
 
 // ─── Admin Users ─────────────────────────────────────────────
@@ -302,13 +302,11 @@ export async function logActivity(data: {
       },
     })
   } catch (err) {
-    // Never let logging failure break the actual operation
     console.error('Failed to log activity:', err)
   }
 }
 
 export async function getActivityLogs(page: number = 1, pageSize: number = 20) {
-  // Auto-cleanup: delete logs older than 90 days
   await getDb().execute({
     sql: `DELETE FROM activity_logs WHERE created_at < datetime('now', '-90 days')`,
     args: {},
