@@ -370,3 +370,37 @@ export async function getActivityLogs(page: number = 1, pageSize: number = 20) {
     pageSize,
   }
 }
+
+// ─── Password Reset Tokens ───────────────────────────────────
+
+export async function createPasswordResetToken(data: {
+  admin_id: string
+  token: string
+  expires_at: string
+}) {
+  await getDb().execute({
+    sql: `INSERT INTO password_reset_tokens (id, admin_id, token, expires_at)
+          VALUES (:id, :admin_id, :token, :expires_at)`,
+    args: {
+      id: crypto.randomUUID(),
+      admin_id: data.admin_id,
+      token: data.token,
+      expires_at: data.expires_at,
+    },
+  })
+}
+
+export async function getPasswordResetToken(token: string) {
+  const result = await getDb().execute({
+    sql: 'SELECT * FROM password_reset_tokens WHERE token = ? AND used = 0',
+    args: [token],
+  })
+  return result.rows[0] ?? null
+}
+
+export async function markPasswordResetTokenUsed(id: string) {
+  await getDb().execute({
+    sql: 'UPDATE password_reset_tokens SET used = 1 WHERE id = ?',
+    args: [id],
+  })
+}
