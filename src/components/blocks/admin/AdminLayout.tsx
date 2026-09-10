@@ -1,20 +1,22 @@
-import { useState } from 'react'
 import {
-  Home,
-  Wallet,
-  Package,
+  Activity,
   BarChart3,
+  LayoutDashboard,
   LogOut,
+  Menu,
+  Package,
+  Wallet,
   X,
-  Download,
 } from 'lucide-react'
+import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
 const NAV_ITEMS = [
-  { label: 'Home', href: '/admin/dashboard', icon: Home },
-  { label: 'Financial Donations', href: '/admin/donations', icon: Wallet },
-  { label: 'Material Donations', href: '/admin/inkind', icon: Package },
+  { label: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
+  { label: 'Donations', href: '/admin/donations', icon: Wallet },
+  { label: 'In-Kind', href: '/admin/inkind', icon: Package },
   { label: 'Reports', href: '/admin/reports', icon: BarChart3 },
+  { label: 'Logs', href: '/admin/logs', icon: Activity },
 ]
 
 type NavItem = {
