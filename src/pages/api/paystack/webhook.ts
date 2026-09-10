@@ -35,10 +35,7 @@ async function verifyPaystackSignature(
 
 export const POST: APIRoute = async ({ request }) => {
   const signature = request.headers.get('x-paystack-signature')
-  if (!signature) {
-    console.log('Webhook rejected: missing signature header')
-    return error('Missing signature', 401)
-  }
+  if (!signature) return error('Missing signature', 401)
 
   const rawBody = await request.text()
 
@@ -48,27 +45,19 @@ export const POST: APIRoute = async ({ request }) => {
     import.meta.env.TEST_SECRET_KEY
   )
 
-  if (!valid) {
-    console.log('Webhook rejected: invalid signature')
-    return error('Invalid signature', 401)
-  }
+  if (!valid) return error('Invalid signature', 401)
 
   let event: any
   try {
     event = JSON.parse(rawBody)
   } catch {
-    console.log('Webhook rejected: invalid JSON payload')
     return error('Invalid payload', 400)
   }
-
-  console.log('Webhook event received:', event.event, JSON.stringify(event.data?.reference))
 
   if (event.event === 'charge.success') {
     const data = event.data
 
     try {
-      console.log('Attempting to save donation, reference:', data.reference)
-
       await createDonation({
         id: crypto.randomUUID(),
         type: 'paystack',
@@ -81,8 +70,6 @@ export const POST: APIRoute = async ({ request }) => {
         date: data.paid_at ?? new Date().toISOString(),
         reference: data.reference,
       })
-
-      console.log('Donation saved successfully, reference:', data.reference)
 
       await sendDonationAlert({
         type: 'paystack',
@@ -99,8 +86,6 @@ export const POST: APIRoute = async ({ request }) => {
       console.error('Failed to save donation to database:', err)
       return error('Failed to process donation', 500)
     }
-  } else {
-    console.log('Webhook ignored — event type not charge.success:', event.event)
   }
 
   return json({ received: true })
