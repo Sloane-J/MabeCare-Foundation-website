@@ -196,20 +196,20 @@ const ResultsSection = () => {
             </div>
 
             {/* Stat Cards */}
-            <div className='grid grid-cols-2 gap-3 sm:gap-4 pt-2'>
+            {/*<div className='grid grid-cols-2 gap-3 sm:gap-4 pt-2'>
               {[
                 {
                   icon: <UsersIcon className='size-4 text-emerald-600 dark:text-emerald-400' />,
                   bg: 'bg-emerald-500/10 dark:bg-emerald-500/20',
                   label: 'Mothers Supported',
-                  value: '200+',
+                  value: '50+',
                   delay: 0.4
                 },
                 {
                   icon: <BookIcon className='size-4 text-amber-600 dark:text-amber-400' />,
                   bg: 'bg-amber-500/10 dark:bg-amber-500/20',
                   label: 'Women in Training',
-                  value: '150+',
+                  value: '100+',
                   delay: 0.45
                 }
               ].map(({ icon, bg, label, value, delay }) => (
@@ -232,7 +232,7 @@ const ResultsSection = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </div>*/}
           </div>
 
         </div>

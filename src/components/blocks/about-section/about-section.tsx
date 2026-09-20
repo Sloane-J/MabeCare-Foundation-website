@@ -122,14 +122,14 @@ const team = [
     linkedin: 'https://www.linkedin.com/in/hubert-amu-phd-a0a43892/',
     email: 'mailto:#'
   },
-  {
-    name: 'Kofi Darko',
-    role: 'Finance & Operations',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    twitter: '#',
-    linkedin: '#',
-    email: 'mailto:#'
-  }
+  // {
+  //   name: 'Kofi Darko',
+  //   role: 'Finance & Operations',
+  //   image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+  //   twitter: '#',
+  //   linkedin: '#',
+  //   email: 'mailto:#'
+  // }
 ]
 
 // — Component —
@@ -191,7 +191,7 @@ const AboutSection = () => {
       </section>
 
       {/* ── 3. IMPACT STATS ── */}
-      <section aria-labelledby='impact-heading' className='pb-12 sm:pb-20 lg:pb-28'>
+      {/*<section aria-labelledby='impact-heading' className='pb-12 sm:pb-20 lg:pb-28'>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
           <div className='mb-12 flex flex-col items-center gap-4 text-center'>
             <Badge variant='outline' className='gap-2 px-4 py-1.5 text-sm font-normal'>
@@ -214,7 +214,7 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* ── 4. MISSION + CHART ── */}
       <section aria-labelledby='mission-heading' className='pb-12 sm:pb-20 lg:pb-28'>
@@ -264,7 +264,7 @@ const AboutSection = () => {
                 contributions. Together, we are creating a powerful movement of compassion and action across Ghana.
               </p>
               <Button asChild className='bg-foreground text-background hover:bg-foreground/90 w-fit rounded-full px-8'>
-                <a href='#donate'>Make A Quick Donation</a>
+                <a href='/donate'>Make A Quick Donation</a>
               </Button>
             </div>
           </div>
@@ -287,7 +287,7 @@ const AboutSection = () => {
             </p>
           </div>
 
-          <div className='grid grid-cols-2 gap-6 sm:grid-cols-4'>
+          <div className='grid grid-cols-2 gap-6 sm:grid-cols-3'>
             {team.map((member, i) => (
               <div key={i} className='flex flex-col items-center gap-3'>
                 {/* Image with hover overlay */}

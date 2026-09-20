@@ -85,14 +85,14 @@ const CallToAction = () => {
               </div>
 
               {/* Stats row */}
-              <div className='flex flex-wrap gap-8 border-t border-white/10 pt-4'>
+              {/*<div className='flex flex-wrap gap-8 border-t border-white/10 pt-4'>
                 {stats.map((stat, i) => (
                   <div key={i} className='flex flex-col gap-1'>
                     <span className='text-2xl font-normal text-white'>{stat.value}</span>
                     <span className='text-xs tracking-wider text-white/50 uppercase'>{stat.label}</span>
                   </div>
                 ))}
-              </div>
+              </div>*/}
             </div>
 
             {/* Right — image collage */}
@@ -114,7 +114,7 @@ const CallToAction = () => {
               </div>
 
               {/* Floating avatar stack card — bottom left */}
-              <div className='absolute bottom-10 left-6 flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/10 px-5 py-4 backdrop-blur-md'>
+              {/*<div className='absolute bottom-10 left-6 flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/10 px-5 py-4 backdrop-blur-md'>
                 <div className='flex -space-x-2'>
                   {[
                     'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80',
@@ -135,7 +135,7 @@ const CallToAction = () => {
                   <p className='text-sm font-normal text-white'>200+ Mothers</p>
                   <p className='text-xs text-white/50'>supported so far</p>
                 </div>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>

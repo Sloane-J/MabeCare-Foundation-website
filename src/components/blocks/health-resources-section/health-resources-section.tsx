@@ -101,7 +101,7 @@ const HealthResourcesSection = () => {
             </div>
 
             {/* Stat cards */}
-            <div className='grid grid-cols-2 gap-3 sm:gap-4 pt-2'>
+            {/*<div className='grid grid-cols-2 gap-3 sm:gap-4 pt-2'>
               {[
                 {
                   icon: <HandsIcon className='size-4 text-rose-600 dark:text-rose-400' />,
@@ -137,7 +137,7 @@ const HealthResourcesSection = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </div>*/}
           </div>
 
           {/* Right — image with floating chart card */}

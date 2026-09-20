@@ -57,24 +57,25 @@ const PlayIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
+// Shortened text descriptions to fit equal-width layout cleanly
 const features = [
   {
     icon: <HandshakeIcon className="size-5 text-primary" />,
-    title: 'Direct Family Mentorship',
+    title: 'Listen to Real Stories',
     description:
-      'Walk alongside mothers in your local community through compassionate check-ins, guidance, and dedicated companionship.',
+      'Connect directly with mothers to hear their personal journeys and experiences firsthand.',
   },
   {
     icon: <SkillIcon className="size-5 text-primary" />,
-    title: 'Skill-Sharing & Workshops',
+    title: 'Gather Key Learnings',
     description:
-      'Empower futures by leading practical vocational training, financial literacy sessions, or creative community workshops.',
+      'Gain valuable insights from lived experiences to better understand community needs.',
   },
   {
     icon: <MegaphoneIcon className="size-5 text-primary" />,
-    title: 'Advocate & Amplify',
+    title: 'Share & Amplify Voices',
     description:
-      'Be a champion for change. Raise awareness by sharing impact stories and mobilizing support within your network.',
+      'Spread these powerful stories across your network to drive real awareness and action.',
   },
 ]
 
@@ -127,12 +128,12 @@ const VolunteerImpactSection = () => {
                 variant="outline"
                 className="rounded-full border-primary/20 bg-primary/5 px-3.5 py-1 text-xs font-medium text-primary"
               >
-                Join Our Volunteer Network
+                Stories & Shared Insights
               </Badge>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground leading-tight tracking-tight">
-                Empower Families.{' '}
+                Listen to Stories.{' '}
                 <span className="text-primary underline decoration-primary/30 underline-offset-4">
-                  Transform Lives.
+                  Share the Journey.
                 </span>
               </h2>
             </motion.div>
@@ -143,15 +144,13 @@ const VolunteerImpactSection = () => {
               animate={inView ? 'visible' : 'hidden'}
               custom={0.2}
               className="text-muted-foreground text-base sm:text-lg sm:text-right leading-relaxed pt-2"
-            >
-              Every meaningful change starts with showing up. Share your time, teach a skill, or lend a voice to help mothers and children across Ghana thrive.
-            </motion.p>
+            >Every meaningful change starts with listening. Discover real stories, learn from lived experiences, and share these powerful voices to uplift mothers and children across Ghana.</motion.p>
           </div>
 
-          {/* Main Layout Grid */}
+          {/* Equal 50/50 Layout Grid */}
           <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-12 items-center">
-            {/* Left: Interactive Feature Cards */}
-            <div className="lg:col-span-7 flex flex-col gap-4">
+            {/* Left: Interactive Feature Cards (Takes up 6 cols) */}
+            <div className="lg:col-span-6 flex flex-col gap-3.5">
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
@@ -160,17 +159,17 @@ const VolunteerImpactSection = () => {
                   animate={inView ? 'visible' : 'hidden'}
                   custom={0.3 + index * 0.1}
                   whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                  className="group relative overflow-hidden rounded-2xl border border-border/70 bg-card/90 dark:bg-card/60 p-5 sm:p-6 shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-md"
+                  className="group relative overflow-hidden rounded-2xl border border-border/70 bg-card/90 dark:bg-card/60 p-4 sm:p-5 shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-md"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                  <div className="flex items-start gap-3.5">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                       {feature.icon}
                     </div>
-                    <div className="space-y-1">
-                      <h3 className="font-semibold text-foreground text-base sm:text-lg group-hover:text-primary transition-colors duration-200">
+                    <div className="space-y-0.5">
+                      <h3 className="font-semibold text-foreground text-base group-hover:text-primary transition-colors duration-200">
                         {feature.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
+                      <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -179,34 +178,35 @@ const VolunteerImpactSection = () => {
               ))}
             </div>
 
-            {/* Right: Media Showcase & Floating Elements */}
-            <div className="lg:col-span-5 relative flex items-center justify-center">
-              {/* Watch Story Reel Button */}
-              <motion.div
+            {/* Right: Media Showcase (Takes up 6 cols) */}
+            <div className="group lg:col-span-6 relative flex items-center justify-center w-full">
+               {/*Watch Story Reel Button (Visible on Hover) */}
+              <motion.a
+                href="https://www.youtube.com/watch?v=Ou58uHb9Piw"
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, x: -16 }}
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -16 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
-                className="absolute left-3 bottom-6 z-20 flex items-center gap-3 rounded-full border border-border/80 bg-background/90 backdrop-blur-md pl-4 pr-2 py-2 shadow-xl"
+                className="absolute left-3 bottom-6 z-30 flex items-center gap-3 rounded-full border border-border/80 bg-background/90 backdrop-blur-md pl-4 pr-2 py-2 shadow-xl opacity-0 pointer-events-none transition-all duration-300 group-hover:opacity-100 group-hover:pointer-events-auto hover:scale-105 active:scale-95"
               >
-                <span className="text-xs sm:text-sm font-medium text-foreground whitespace-nowrap leading-tight">
-                  Watch impact <br />
-                  <span className="text-muted-foreground font-normal">story reel</span>
+                <span className="text-xs sm:text-sm font-semibold text-foreground whitespace-nowrap">
+                  Watch Story
                 </span>
-                <button
-                  type="button"
+                <div
                   aria-label="Watch volunteer story reel"
-                  className="group flex size-9 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-transform duration-200 hover:scale-105 active:scale-95"
+                  className="flex size-9 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md"
                 >
-                  <PlayIcon className="size-3.5 ml-0.5 transition-transform duration-200 group-hover:scale-110" />
-                </button>
-              </motion.div>
+                  <PlayIcon className="size-3.5 ml-0.5" />
+                </div>
+              </motion.a>
 
               {/* Top Impact Tag */}
               <motion.div
                 initial={{ opacity: 0, x: 16 }}
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 16 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
-                className="absolute top-3 right-3 z-20"
+                className="absolute top-3 right-3 z-20 pointer-events-none"
               >
                 <Badge
                   variant="outline"
@@ -216,20 +216,20 @@ const VolunteerImpactSection = () => {
                 </Badge>
               </motion.div>
 
-              {/* Main Image Container */}
+              {/* Main Video Container with 16:9 Aspect Ratio */}
               <motion.div
-                className="relative w-full overflow-hidden rounded-2xl border border-border/60 bg-card shadow-lg"
+                className="relative w-full aspect-video overflow-hidden rounded-2xl border border-border/60 bg-card shadow-lg z-10"
                 initial={{ scale: 0.97, opacity: 0 }}
                 animate={inView ? { scale: 1, opacity: 1 } : { scale: 0.97, opacity: 0 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
               >
-                <img
-                  src="/images/charity-volunteer.webp"
-                  alt="Volunteers supporting mothers and children in community programs"
-                  loading="lazy"
-                  className="h-80 sm:h-96 w-full object-cover brightness-[0.98] contrast-[1.02] transition-transform duration-700 ease-out hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                <iframe
+                  src="https://www.youtube.com/embed/Ou58uHb9Piw?autoplay=0&mute=1&controls=1&loop=1&playlist=Ou58uHb9Piw&rel=0"
+                  title="Volunteers supporting mothers and children in community programs"
+                  className="absolute inset-0 size-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </motion.div>
             </div>
           </div>

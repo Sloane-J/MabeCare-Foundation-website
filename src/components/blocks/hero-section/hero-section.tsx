@@ -142,7 +142,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
               )}
 
               {/* Glassmorphism Testimonial */}
-              {heroImage && (
+              {/*{heroImage && (
                 <motion.figure
                   className='absolute top-6 left-6 sm:top-8 sm:left-8 max-w-[280px] rounded-2xl p-4 shadow-xl backdrop-blur-md bg-white/80 dark:bg-black/60 border border-white/30 dark:border-white/10'
                   initial={{ opacity: 0, x: -20 }}
@@ -163,7 +163,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                     </blockquote>
                   </div>
                 </motion.figure>
-              )}
+              )}*/}
 
               {/* Glassmorphism Bottom Card */}
               <motion.div
@@ -182,7 +182,7 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
                     <div className='h-7 w-7 rounded-full border-2 border-white dark:border-zinc-900 bg-blue-300 shadow-sm' />
                     <div className='h-7 w-7 rounded-full border-2 border-white dark:border-zinc-900 bg-yellow-300 shadow-sm' />
                   </div>
-                  <span className='text-foreground text-sm font-bold'>10K+</span>
+                  <span className='text-foreground text-sm font-bold'>100+</span>
                 </div>
               </motion.div>
             </div>
