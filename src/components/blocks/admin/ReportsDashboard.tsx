@@ -411,7 +411,7 @@ export default function ReportsDashboard() {
                   <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#9CA3AF' }} tickFormatter={fmtShort} width={44} />
                   <Tooltip
                     contentStyle={{ border: '1px solid #EAEAEA', borderRadius: 8, fontSize: 12 }}
-                    formatter={(v: number, name: string) => [fmt(v), name.charAt(0).toUpperCase() + name.slice(1)]}
+                    formatter={(v, name) => [fmt(Number(v)), String(name).charAt(0).toUpperCase() + String(name).slice(1)]}
                   />
                   <Line type="monotone" dataKey="online" stroke={TYPE_COLORS.online} strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} />
                   <Line type="monotone" dataKey="cash"     stroke={TYPE_COLORS.cash}     strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} />
@@ -434,7 +434,7 @@ export default function ReportsDashboard() {
                   <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#9CA3AF' }} tickFormatter={fmtShort} width={44} />
                   <Tooltip
                     contentStyle={{ border: '1px solid #EAEAEA', borderRadius: 8, fontSize: 12 }}
-                    formatter={(v: number) => [fmt(v), 'Amount']}
+                    formatter={(v) => [fmt(Number(v)), 'Amount']}
                   />
                   <Bar dataKey="amount" radius={[4, 4, 0, 0]}>
                     {typeBarData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
@@ -483,7 +483,7 @@ export default function ReportsDashboard() {
                         background: '#F9F9FA', border: '1px solid #EAEAEA',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                       }}>
-                        <Icon className="h-4 w-4" style={{ color: '#6B7280' }} />
+                        <Icon className="h-4 w-4 text-gray-500" />
                       </div>
                       <div style={{ textAlign: 'center' }}>
                         <p style={{ fontSize: 11, color: '#9CA3AF', marginBottom: 2 }}>{meta.label}</p>

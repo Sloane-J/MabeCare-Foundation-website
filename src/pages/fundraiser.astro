@@ -1,0 +1,63 @@
+---
+export const prerender = true
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout
+  title="Fundraise for Us — MabEcare Foundation"
+  description="Start your own fundraiser to support MabEcare Foundation's programmes for mothers and children in Ghana."
+>
+  <main class="px-4 py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl">
+
+      <div class="mb-12 text-center">
+        <h1 class="text-3xl font-bold text-foreground sm:text-4xl">Fundraise for Us</h1>
+        <p class="mt-4 text-base text-muted-foreground leading-relaxed">
+          Turn your birthday, event, or personal challenge into support for mothers and children in Ghana.
+        </p>
+      </div>
+
+      <div class="space-y-8 text-foreground">
+        <section>
+          <h2 class="text-xl font-bold">Why Fundraise for MabEcare</h2>
+          <p class="mt-3 text-muted-foreground leading-relaxed">
+            Every fundraiser, big or small, helps us reach more mothers and children with healthcare support, education, and community outreach. Whether you're marking a special occasion or simply want to rally your community around a cause you care about, your effort makes a real difference.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold">Ideas to Get Started</h2>
+          <ul class="mt-3 space-y-2 text-muted-foreground leading-relaxed list-disc pl-5">
+            <li>Ask for donations instead of gifts for your birthday or anniversary</li>
+            <li>Organise a bake sale, walk, or community event</li>
+            <li>Run a social media fundraising challenge among friends</li>
+            <li>Rally your school, church, or workplace around a giving day</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold">How It Works</h2>
+          <p class="mt-3 text-muted-foreground leading-relaxed">
+            Reach out to us to let us know about your fundraising plans. We'll support you with information about our programmes and help direct the funds you raise to where they're needed most. Once your fundraiser is complete, donations can be made directly through our donate page.
+          </p>
+        </section>
+      </div>
+
+      <div class="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <a
+          href="/contact-us"
+          class="inline-block rounded-xl bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
+        >
+          Tell Us Your Plans
+        </a>
+        <a
+          href="/donate"
+          class="inline-block rounded-xl border border-border px-8 py-3.5 text-sm font-bold text-foreground transition-colors hover:border-primary hover:text-primary"
+        >
+          Go to Donate Page
+        </a>
+      </div>
+
+    </div>
+  </main>
+</Layout>

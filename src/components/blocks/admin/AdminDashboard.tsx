@@ -461,7 +461,7 @@ export default function AdminDashboard() {
               <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#9CA3AF' }} tickFormatter={fmtShort} width={40} />
               <Tooltip
                 contentStyle={{ border: '1px solid #EAEAEA', borderRadius: 8, fontSize: 12 }}
-                formatter={(v: number) => [fmt(v), 'Amount']}
+                formatter={(v) => [fmt(Number(v)), 'Amount']}
               />
               <Bar dataKey="amount" radius={[4, 4, 0, 0]}>
                 {typeBarData.map((entry, i) => <Cell key={i} fill={entry.fill} />)}

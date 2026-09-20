@@ -26,7 +26,7 @@ const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =>
   if (!isOnHomepage) {
     // Section lives on the homepage but we're on another page (e.g. /blog)
     window.location.href = `/${href}`
-    returnnav
+    return
   }
 
   const element = document.getElementById(sectionId)
