@@ -34,7 +34,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           <img
             src={post.imageUrl}
             alt={post.imageAlt ?? post.title}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"n
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground text-xs">
