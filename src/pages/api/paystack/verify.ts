@@ -13,7 +13,7 @@ export const GET: APIRoute = async ({ url }) => {
       `https://api.paystack.co/transaction/verify/${encodeURIComponent(reference)}`,
       {
         headers: {
-          Authorization: `Bearer ${import.meta.env.TEST_SECRET_KEY}`,
+          Authorization: `Bearer ${import.meta.env.PAYSTACK_SECRET_KEY}`,
         },
       }
     )

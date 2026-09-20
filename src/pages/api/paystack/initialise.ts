@@ -22,7 +22,7 @@ export const POST: APIRoute = async ({ request }) => {
     const res = await fetch('https://api.paystack.co/transaction/initialize', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${import.meta.env.TEST_SECRET_KEY}`,
+        Authorization: `Bearer ${import.meta.env.PAYSTACK_SECRET_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
