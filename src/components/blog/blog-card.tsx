@@ -24,40 +24,57 @@ export default function BlogCard({ post }: BlogCardProps) {
   const topTag = post.tags[0]
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="group flex h-full flex-col overflow-hidden bg-card text-card-foreground transition-shadow hover:shadow-md">
+      {/* Image Header */}
       <a
         href={`/blog/${post.slug}/`}
-        className="relative aspect-[4/3] w-full overflow-hidden rounded-lg block"
+        className="relative block aspect-[4/3] w-full overflow-hidden bg-muted"
       >
-        {post.imageUrl && (
+        {post.imageUrl ? (
           <img
             src={post.imageUrl}
             alt={post.imageAlt ?? post.title}
-            className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground text-xs">
+            No image
+          </div>
         )}
         {topTag && (
-          <div className="absolute top-2 left-2">
-            <span className="rounded-full bg-accent px-2 py-1 text-xs font-medium text-accent-foreground">
-              {topTag}
+          <div className="absolute top-2 left-2 z-10">
+            <span className="rounded-full bg-accent/90 backdrop-blur-sm px-2.5 py-1 text-xs font-medium text-accent-foreground shadow-xs">
+              #{topTag}
             </span>
           </div>
         )}
       </a>
-      <div className="flex flex-col gap-2">
-        <h3 className="font-sans text-lg font-semibold text-foreground">
-          {post.title}
-        </h3>
-        <p className="text-sm text-muted-foreground line-clamp-3">
+
+      {/* Content Area - flex-1 expands to fill space, pushing mt-auto button to the bottom */}
+      <div className="flex flex-1 flex-col p-4">
+        <span className="mb-1 text-xs font-medium text-muted-foreground">
+          {formattedDate}
+        </span>
+
+        <a href={`/blog/${post.slug}/`} className="group-hover:text-primary transition-colors">
+          <h3 className="line-clamp-2 font-sans text-base font-semibold text-foreground sm:text-lg">
+            {post.title}
+          </h3>
+        </a>
+
+        <p className="mt-2 line-clamp-3 text-sm text-muted-foreground">
           {post.description}
         </p>
-        <span className="text-xs text-muted-foreground">{formattedDate}</span>
-        <a
-          href={`/blog/${post.slug}/`}
-          className="mt-1 inline-block w-fit rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
-        >
-          Read more
-        </a>
+
+        {/* Pinned Read More Link */}
+        <div className="mt-auto pt-4">
+          <a
+            href={`/blog/${post.slug}/`}
+            className="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring"
+          >
+            Read more
+          </a>
+        </div>
       </div>
     </div>
   )

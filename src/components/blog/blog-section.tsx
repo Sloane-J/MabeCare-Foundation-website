@@ -77,8 +77,8 @@ export default function BlogSection({ posts }: BlogSectionProps) {
 
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 lg:flex-row lg:items-start">
-      {/* Left column: logo, tagline, category filters */}
-      <aside className="flex w-full flex-col gap-6 lg:w-1/5">
+      {/* 1. Header & Categories */}
+      <aside className="order-1 flex w-full flex-col gap-6 lg:w-1/5">
         <div>
           <p className="mt-2 text-sm text-muted-foreground">
             Stories, updates, and events from MabEcare Foundation.
@@ -86,7 +86,7 @@ export default function BlogSection({ posts }: BlogSectionProps) {
         </div>
 
         {/* Mobile: accordion */}
-        <details className="lg:hidden rounded-md border border-border">
+        <details className="rounded-md border border-border lg:hidden">
           <summary className="cursor-pointer px-3 py-2 text-sm font-medium">
             Categories
           </summary>
@@ -97,9 +97,49 @@ export default function BlogSection({ posts }: BlogSectionProps) {
         <div className="hidden lg:block">{categoryList}</div>
       </aside>
 
-      {/* Middle column: grid */}
-      <main className="w-full lg:w-3/5">
-        <div className="grid grid-cols-1 gap-6 min-[420px]:grid-cols-2 lg:grid-cols-3">
+      {/* 2. Top Search & Tags bar on mobile / Right sidebar on desktop */}
+      <aside className="order-2 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:order-3 lg:w-1/5 lg:grid-cols-1 lg:gap-6">
+        <div>
+          <label htmlFor="search-input" className="mb-2 block text-sm font-semibold text-foreground lg:hidden">
+            Search
+          </label>
+          <input
+            id="search-input"
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search posts..."
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          />
+        </div>
+
+        <div>
+          <h4 className="mb-2 text-sm font-semibold text-foreground">Top tags</h4>
+          <ul className="flex flex-wrap gap-1.5 lg:flex-col lg:gap-1">
+            {topTags.map((tag) => {
+              const isActive = searchTerm.toLowerCase() === tag.toLowerCase()
+              return (
+                <li key={tag}>
+                  <button
+                    onClick={() => setSearchTerm(isActive ? '' : tag)}
+                    className={`rounded-md px-2 py-1 text-xs transition-colors lg:p-0 lg:bg-transparent lg:text-sm ${
+                      isActive
+                        ? 'bg-primary text-primary-foreground lg:text-primary'
+                        : 'bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground lg:bg-transparent lg:hover:text-primary'
+                    }`}
+                  >
+                    #{tag}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </aside>
+
+      {/* 3. Blog Posts Grid: 2 columns on mobile/tablet, 3 columns on desktop */}
+      <main className="order-3 w-full lg:order-2 lg:w-3/5">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
           {filteredPosts.map((post) => (
             <BlogCard key={post.slug} post={post} />
           ))}
@@ -110,32 +150,6 @@ export default function BlogSection({ posts }: BlogSectionProps) {
           </p>
         )}
       </main>
-
-      {/* Right column: search + tag cloud */}
-      <aside className="flex w-full flex-col gap-6 lg:w-1/5">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search posts..."
-          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground"
-        />
-        <div>
-          <h4 className="mb-2 text-sm font-semibold text-foreground">Top tags</h4>
-          <ul className="flex flex-col gap-1">
-            {topTags.map((tag) => (
-              <li key={tag}>
-                <button
-                  onClick={() => setSearchTerm(tag)}
-                  className="text-sm text-muted-foreground hover:text-primary"
-                >
-                  #{tag}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </aside>
     </div>
   )
 }
