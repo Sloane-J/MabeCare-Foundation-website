@@ -3,17 +3,17 @@
 
 export const SITE_TITLE = 'MabEcare Foundation'
 export const SITE_DESCRIPTION =
-  'MabEcare Foundation is dedicated to improving healthcare access and supporting communities through charitable programs, donations, and volunteer initiatives.'
+  'MabEcare Foundation is dedicated to mother and child welfare — improving healthcare access and supporting communities through charitable programs, donations, and volunteer initiatives.'
 
 export const GITHUB_URL = 'https://github.com/Sloane-J/MabEcare-Foundation-website'
 export const SITE_URL = 'https://mabecare-foundation.vercel.app/'
 
 export const SITE_METADATA = {
   title: {
-    default: 'MabEcare Foundation | Empowering Mothers & Children in Ghana'
+    default: 'MabEcare Foundation | Mother and Child Welfare'
   },
   description:
-    'MabEcare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
+    'Every mother deserves a safe birth. Every child deserves a healthy start. MabEcare Foundation is dedicated to mother and child welfare — providing healthcare, education, and a community that never lets them face it alone. Join us in building brighter beginnings.',
   keywords: [
     'MabEcare Foundation',
     'charity Ghana',
@@ -57,15 +57,15 @@ export const SITE_METADATA = {
     type: 'website',
     locale: 'en_US',
     siteName: 'MabEcare Foundation',
-    title: 'MabEcare Foundation | Empowering Mothers & Children in Ghana',
+    title: 'MabEcare Foundation | Mother and Child Welfare',
     description:
-      'MabEcare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
+      'Every mother deserves a safe birth. Every child deserves a healthy start. MabEcare Foundation is dedicated to mother and child welfare — providing healthcare, education, and a community that never lets them face it alone. Join us in building brighter beginnings.',
     images: [
       {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'MabEcare Foundation — Empowering Mothers & Children in Ghana',
+        alt: 'MabEcare Foundation — Mother and Child Welfare',
         type: 'image/png'
       }
     ]
@@ -74,9 +74,9 @@ export const SITE_METADATA = {
     card: 'summary_large_image',
     site: '@mabecarefoundation',
     creator: '@mabecarefoundation',
-    title: 'MabEcare Foundation | Empowering Mothers & Children in Ghana',
+    title: 'MabEcare Foundation | Mother and Child Welfare',
     description:
-      'MabEcare Foundation supports pregnant women, empowers mothers, and protects children in Ghana through healthcare, education, blood donation drives, and community outreach. Donate or volunteer today.',
+      'Every mother deserves a safe birth. Every child deserves a healthy start. MabEcare Foundation is dedicated to mother and child welfare — providing healthcare, education, and a community that never lets them face it alone. Join us in building brighter beginnings.',
     images: ['/images/og-image.png']
   },
   verification: {
