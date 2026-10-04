@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
-  site: 'https://mabecare-foundation.vercel.app/',
+  site: 'https://mabecarefoundation.vercel.app/',
   base: "/",
   prefetch: {
     prefetchAll: true,

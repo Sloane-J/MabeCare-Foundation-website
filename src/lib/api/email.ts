@@ -80,7 +80,7 @@ export async function sendInkindConfirmation(data: {
         <div style="padding: 20px 32px; text-align: center;">
           <p style="font-size: 11px; color: #9ca3af; margin: 0;">
             MabEcare Foundation &bull; Ho, Volta Region, Ghana<br/>
-            <a href="https://mabecare-foundation.vercel.app" style="color: #9ca3af;">mabecare-foundation.vercel.app</a>
+            <a href="https://mabecarefoundation.vercel.app" style="color: #9ca3af;">mabecarefoundation.vercel.app</a>
           </p>
         </div>
 
@@ -194,7 +194,7 @@ export async function sendDonationAlert(data: {
           </div>
 
           <div style="text-align: center;">
-            <a href="https://mabecare-foundation.vercel.app/admin/donations" style="display: inline-block; background: linear-gradient(135deg, #ff1493, #e0006a); color: #ffffff; font-size: 14px; font-weight: 700; padding: 14px 36px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 14px rgba(255,20,147,0.35);">
+            <a href="https://mabecarefoundation.vercel.app/admin/donations" style="display: inline-block; background: linear-gradient(135deg, #ff1493, #e0006a); color: #ffffff; font-size: 14px; font-weight: 700; padding: 14px 36px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 14px rgba(255,20,147,0.35);">
               View in Dashboard →
             </a>
           </div>
@@ -290,7 +290,7 @@ export async function sendInkindAlert(data: {
           </div>
 
           <div style="text-align: center;">
-            <a href="https://mabecare-foundation.vercel.app/admin/" style="display: inline-block; background: #10B981; color: #ffffff; font-size: 13px; font-weight: 600; padding: 12px 28px; border-radius: 8px; text-decoration: none;">
+            <a href="https://mabecarefoundation.vercel.app/admin/" style="display: inline-block; background: #10B981; color: #ffffff; font-size: 13px; font-weight: 600; padding: 12px 28px; border-radius: 8px; text-decoration: none;">
               View in Dashboard
             </a>
           </div>

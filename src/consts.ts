@@ -6,7 +6,7 @@ export const SITE_DESCRIPTION =
   'MabEcare Foundation is dedicated to mother and child welfare — improving healthcare access and supporting communities through charitable programs, donations, and volunteer initiatives.'
 
 export const GITHUB_URL = 'https://github.com/Sloane-J/MabEcare-Foundation-website'
-export const SITE_URL = 'https://mabecare-foundation.vercel.app/'
+export const SITE_URL = 'https://mabecarefoundation.vercel.app/'
 
 export const SITE_METADATA = {
   title: {
