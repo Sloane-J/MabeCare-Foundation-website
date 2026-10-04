@@ -92,9 +92,9 @@ const galleryItems: GalleryItem[] = [
   {
     image: '/images/gallery/mother-with-child.webp',
     alt: 'Mother holding her child during a healthcare outreach',
-    title: 'Essential Healthcare',
+    title: 'Health Screening',
     description:
-      'Making vital health resources and wellness support more accessible to families.',
+    'Providing accessible health screenings, education, and wellness support through outreach activities in schools, communities, workplaces, prisons, and other settings where people live, learn, and work.',
     colSpan: 'col-span-12 md:col-span-5',
     height: 'h-[290px] sm:h-[340px]'
   },
