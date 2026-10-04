@@ -68,11 +68,11 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               className='text-5xl leading-[1.05] font-semibold tracking-tight sm:text-6xl lg:text-7xl text-foreground'
             >
-              Empowering mothers,
+              Better Care. 
               <br className="hidden sm:block" />
-              {' '}nurturing every
+              {' '}Healthier Mothers.
               <br className="hidden sm:block" />
-              {' '}<span className='text-primary'>child's</span> future
+              {' '}<span className='text-primary'>Brighter</span> Futures
             </motion.h1>
 
             {/* Subtext */}
@@ -81,8 +81,10 @@ const HeroSection = ({ menudata }: { menudata: MenuData[] }) => {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               className='text-muted-foreground max-w-xl text-lg sm:text-xl leading-relaxed'
             >
-              MabEcare Foundation supports mothers and children across Ghana through welfare programs, skills training,
-              and community care — because every family deserves the chance to thrive.
+              MabEcare supports mothers, children, and families through every stage of the journey, from preconception and pregnancy to postnatal care, early childhood development, health screening, and beyond.
+              
+              Supporting families. Improving lives. Building healthier communities.
+
             </motion.p>
 
             {/* CTA Group */}
