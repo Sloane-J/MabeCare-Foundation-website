@@ -11,12 +11,6 @@ const AboutIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const ImpactIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
-    <polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2' />
-  </svg>
-)
-
 const TeamIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
     <path d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2' />
@@ -26,7 +20,7 @@ const TeamIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-const EmpathyIcon = ({ className }: { className?: string }) => (
+const HeartIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
     <path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z' />
   </svg>
@@ -49,6 +43,13 @@ const CollabIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const ArrowIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+    <path d='M5 12h14' />
+    <path d='m13 6 6 6-6 6' />
+  </svg>
+)
+
 const XIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox='0 0 24 24' fill='currentColor'>
     <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z' />
@@ -57,7 +58,7 @@ const XIcon = ({ className }: { className?: string }) => (
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox='0 0 24 24' fill='currentColor'>
-    <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' />
+    <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 24 0 22.222 0h.003z' />
   </svg>
 )
 
@@ -71,30 +72,57 @@ const MailIcon = ({ className }: { className?: string }) => (
 // — Data —
 const values = [
   {
-    icon: <EmpathyIcon className='size-5 text-white' />,
+    icon: <HeartIcon className='size-5 text-white' />,
     iconBg: 'bg-[#4ade80]',
     title: 'Empathy',
-    description: 'We approach each community with respect, listening to their stories and understanding their needs.'
+    description:
+      'We approach each community with respect, listening to their stories and understanding their needs. Every initiative begins with people, not assumptions.'
   },
   {
     icon: <SustainIcon className='size-5 text-white' />,
     iconBg: 'bg-[#facc15]',
     title: 'Sustainability',
-    description: 'Transparency and accountability are at the heart of MabEcare. We are committed to lasting change.'
+    description:
+      'Transparency and accountability are at the heart of MabEcare. We focus on solutions that create meaningful and lasting benefits for families and communities.'
   },
   {
     icon: <CollabIcon className='size-5 text-white' />,
     iconBg: 'bg-primary',
     title: 'Collaboration',
-    description: 'We believe change is a collective effort. By working hand-in-hand with local communities, we go further.'
-  },
+    description:
+      'We believe change is a collective effort. By working hand-in-hand with communities, volunteers, partners, and supporters, we can go further together.'
+  }
 ]
 
-const impacts = [
-  { stat: '5K+', label: 'Mothers supported from across Ghana' },
-  { stat: '300+', label: 'Outreach programs completed' },
-  { stat: '10K+', label: 'Individuals directly impacted' },
-  { stat: '₵2M+', label: 'Raised to support health and education' }
+const focusAreas = [
+  {
+    number: '01',
+    title: 'Maternal Health & Wellbeing',
+    description:
+      'Supporting mothers through pregnancy, childbirth, postpartum care, mental wellness, reproductive health education, and access to essential resources.',
+    image: '/images/programmes/post-maternal-care.webp'
+  },
+  {
+    number: '02',
+    title: 'Women’s Empowerment',
+    description:
+      'Equipping women with practical vocational skills and opportunities that can strengthen their independence, confidence, and ability to provide for their families.',
+    image: '/images/programmes/women-skill-training.webp'
+  },
+  {
+    number: '03',
+    title: 'Child Welfare & Education',
+    description:
+      'Supporting children in underserved communities through education, nutrition, learning resources, advocacy, and opportunities for healthy development.',
+    image: '/images/programmes/child-education.webp'
+  },
+  {
+    number: '04',
+    title: 'Community Outreach',
+    description:
+      'Taking essential support directly into communities through relief drives, health initiatives, blood donation campaigns, and other grassroots programs.',
+    image: '/images/programmes/donation-drives.jpg'
+  }
 ]
 
 const team = [
@@ -120,42 +148,47 @@ const team = [
     image: '/images/about-us/dr-amu-hubert.jpg',
     twitter: '#',
     linkedin: 'https://www.linkedin.com/in/hubert-amu-phd-a0a43892/',
-    email: 'mailto:#'
-  },
-  // {
-  //   name: 'Kofi Darko',
-  //   role: 'Finance & Operations',
-  //   image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-  //   twitter: '#',
-  //   linkedin: '#',
-  //   email: 'mailto:#'
-  // }
+    email: '#'
+  }
 ]
 
 // — Component —
 const AboutSection = () => {
   return (
     <div id='about' className='flex flex-col'>
-      {/* ── 1. MISSION / HERO ── */}
+      {/* ── 1. HERO ── */}
       <section aria-labelledby='about-heading' className='py-12 sm:py-20 lg:py-28'>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
           <div className='mb-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-2'>
             <div className='flex flex-col gap-4'>
-              <Badge variant='outline' className='w-fit gap-2 px-4 py-1.5 text-sm font-normal'>
-                <AboutIcon className='text-primary size-4' />
+              <Badge
+                variant='outline'
+                className='w-fit gap-2 px-4 py-1.5 text-sm font-normal'
+              >
+                <AboutIcon className='size-4 text-primary' />
                 About Us
               </Badge>
-              <h2 id='about-heading' className='text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl'>
+
+              <h1
+                id='about-heading'
+                className='text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl'
+              >
                 Know about our mission, vision, and journey
-              </h2>
+              </h1>
             </div>
+
             <div className='flex flex-col gap-5 lg:pt-16'>
-              <p className='text-muted-foreground text-base leading-relaxed sm:text-lg'>
-                Together, we can make a real impact in communities around the world. Help us bring hope and support to
-                every mother and child in Ghana.
+              <p className='text-base leading-relaxed text-muted-foreground sm:text-lg'>
+                Together, we can make a real impact in communities around the
+                world. Help us bring hope and support to every mother and child
+                in Ghana.
               </p>
-              <Button asChild className='bg-foreground text-background hover:bg-foreground/90 w-fit rounded-full px-8'>
-                <a href='#donation-programs'>Learn More</a>
+
+              <Button
+                asChild
+                className='w-fit rounded-full bg-foreground px-8 text-background hover:bg-foreground/90'
+              >
+                <a href='#our-work'>Learn More</a>
               </Button>
             </div>
           </div>
@@ -172,173 +205,209 @@ const AboutSection = () => {
       </section>
 
       {/* ── 2. VALUES ── */}
-      <section aria-labelledby='values-heading' className='pb-12 sm:pb-20 lg:pb-28'>
+      <section
+        aria-labelledby='values-heading'
+        className='pb-14 sm:pb-20 lg:pb-24'
+      >
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-          <div className='border-border overflow-hidden rounded-2xl border'>
-            <div className='divide-border grid grid-cols-1 divide-y sm:grid-cols-3 sm:divide-x sm:divide-y-0'>
-              {values.map((value, i) => (
-                <div key={i} className='flex flex-col items-center gap-4 p-8 text-center sm:p-10'>
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${value.iconBg}`}>
-                    {value.icon}
-                  </div>
-                  <h3 className='text-foreground text-base font-semibold'>{value.title}</h3>
-                  <p className='text-muted-foreground text-sm leading-relaxed'>{value.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. IMPACT STATS ── */}
-      {/*<section aria-labelledby='impact-heading' className='pb-12 sm:pb-20 lg:pb-28'>
-        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-          <div className='mb-12 flex flex-col items-center gap-4 text-center'>
-            <Badge variant='outline' className='gap-2 px-4 py-1.5 text-sm font-normal'>
-              <ImpactIcon className='text-primary size-4' />
-              Our Impacts
+          <div className='mb-10 max-w-2xl'>
+            <Badge
+              variant='outline'
+              className='mb-4 rounded-full border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary'
+            >
+              What Guides Us
             </Badge>
-            <h2 id='impact-heading' className='max-w-2xl text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl'>
-              Since our founding, MabEcare has made an extensive impact
+
+            <h2
+              id='values-heading'
+              className='text-3xl font-semibold tracking-tight sm:text-4xl'
+            >
+              The values behind every initiative
             </h2>
-          </div>
 
-          <div className='rounded-3xl bg-[#F5D547] px-8 py-10 sm:px-12 sm:py-12'>
-            <div className='grid grid-cols-2 gap-8 lg:grid-cols-4'>
-              {impacts.map((item, i) => (
-                <div key={i} className='flex flex-col gap-2'>
-                  <span className='text-3xl font-bold text-[#0a0a0a] sm:text-4xl'>{item.stat}</span>
-                  <span className='text-sm leading-snug text-[#0a0a0a]/70'>{item.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>*/}
-
-      {/* ── 4. MISSION + CHART ── */}
-      <section aria-labelledby='mission-heading' className='pb-12 sm:pb-20 lg:pb-28'>
-        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-          <div className='grid grid-cols-1 items-center gap-12 lg:grid-cols-2'>
-            <div className='relative'>
-              <div className='overflow-hidden rounded-3xl'>
-                <img
-                  src='https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=700&q=80'
-                  alt='MabEcare volunteers working together in the community'
-                  className='h-[400px] w-full object-cover sm:h-[480px]'
-                />
-              </div>
-
-              <div className='dark:bg-card absolute right-4 bottom-6 w-52 rounded-2xl bg-white p-5 shadow-lg sm:right-[-20px] sm:w-60'>
-                <p className='text-foreground mb-0.5 text-sm font-semibold'>Donation chart</p>
-                <p className='text-muted-foreground mb-4 text-xs'>Donations received in past years</p>
-                <div className='flex h-16 items-end gap-2'>
-                  {[35, 50, 65, 80, 100].map((h, i) => (
-                    <div key={i} className='flex-1'>
-                      <div
-                        className='w-full rounded-t-sm'
-                        style={{ height: `${h}%`, backgroundColor: i === 4 ? '#ff1493' : '#86efac' }}
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className='mt-2 flex gap-2'>
-                  {['2020', '2021', '2022', '2023', '2024'].map(yr => (
-                    <span key={yr} className='text-muted-foreground flex-1 text-center text-[10px]'>
-                      {yr}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className='flex flex-col gap-6'>
-              <Badge variant='outline' className='w-fit px-4 py-1.5 text-sm font-normal'>
-                Our Mission
-              </Badge>
-              <h3 id='mission-heading' className='text-2xl leading-snug font-bold sm:text-3xl'>
-                MabEcare's work is made possible by a dedicated community
-              </h3>
-              <p className='text-muted-foreground text-base leading-relaxed'>
-                We value transparency and keep our supporters informed about the tangible outcomes of their
-                contributions. Together, we are creating a powerful movement of compassion and action across Ghana.
-              </p>
-              <Button asChild className='bg-foreground text-background hover:bg-foreground/90 w-fit rounded-full px-8'>
-                <a href='/donate'>Make A Quick Donation</a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 5. TEAM ── */}
-      <section aria-labelledby='team-heading' className='pb-12 sm:pb-20 lg:pb-28'>
-        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-          <div className='mb-12 flex flex-col items-center gap-4 text-center'>
-            <Badge variant='outline' className='gap-2 px-4 py-1.5 text-sm font-normal'>
-              <TeamIcon className='text-primary size-4' />
-              Our Team
-            </Badge>
-            <h2 id='team-heading' className='text-3xl font-bold tracking-tight md:text-4xl'>
-              Meet our incredible team
-            </h2>
-            <p className='text-muted-foreground max-w-xl text-base sm:text-lg'>
-              Together, we can make a real impact in communities around the world. Help us bring hope and support.
+            <p className='mt-3 text-base leading-relaxed text-muted-foreground'>
+              Our work is grounded in how we treat people, how we use
+              resources, and how we build relationships with the communities
+              we serve.
             </p>
           </div>
 
-          <div className='grid grid-cols-2 gap-6 sm:grid-cols-3'>
-            {team.map((member, i) => (
-              <div key={i} className='flex flex-col items-center gap-3'>
-                {/* Image with hover overlay */}
-                <div className='group bg-muted relative aspect-[3/4] w-full overflow-hidden rounded-2xl'>
+          <div className='grid grid-cols-1 gap-5 md:grid-cols-3'>
+            {values.map((value, i) => (
+              <div
+                key={i}
+                className='group rounded-2xl border border-border/70 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg sm:p-7'
+              >
+                <div
+                  className={`mb-6 flex size-11 items-center justify-center rounded-xl ${value.iconBg}`}
+                >
+                  {value.icon}
+                </div>
+
+                <h3 className='text-lg font-semibold text-foreground'>
+                  {value.title}
+                </h3>
+
+                <p className='mt-3 text-sm leading-relaxed text-muted-foreground'>
+                  {value.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. MISSION & VISION ── */}
+      <section
+        aria-labelledby='mission-heading'
+        className='pb-14 sm:pb-20 lg:pb-24'
+      >
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='overflow-hidden rounded-3xl bg-slate-50 dark:bg-zinc-900'>
+            <div className='grid grid-cols-1 lg:grid-cols-2'>
+              <div className='relative min-h-[420px]'>
+                <img
+                  src='/images/about-us/about-us-banner.jpg'
+                  alt='MabEcare community support work'
+                  className='absolute inset-0 size-full object-cover'
+                  loading='lazy'
+                />
+
+                <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent' />
+
+                <div className='absolute bottom-7 left-7 right-7 text-white'>
+                  <p className='text-xs font-medium uppercase tracking-[0.18em] text-white/70'>
+                    Why we exist
+                  </p>
+
+                  <p className='mt-2 max-w-md text-2xl font-semibold leading-tight'>
+                    Healthier families begin with communities that care.
+                  </p>
+                </div>
+              </div>
+
+              <div className='flex flex-col justify-center p-7 sm:p-10 lg:p-14'>
+                <Badge
+                  variant='outline'
+                  className='w-fit rounded-full border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary'
+                >
+                  Our Mission
+                </Badge>
+
+                <h2
+                  id='mission-heading'
+                  className='mt-5 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl'
+                >
+                  Supporting people through care, opportunity, and action.
+                </h2>
+
+                <p className='mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                  MabEcare exists to support mothers, children, and families
+                  through practical programs that respond to real needs in
+                  communities across Ghana.
+                </p>
+
+                <p className='mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                  Our work brings together healthcare support, education,
+                  empowerment, welfare, outreach, and community participation
+                  to help create healthier and more resilient communities.
+                </p>
+
+                <div className='mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2'>
+                  <div className='rounded-2xl border border-border/70 bg-background p-5'>
+                    <p className='text-xs font-semibold uppercase tracking-wider text-primary'>
+                      Mission
+                    </p>
+                    <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
+                      Improve the wellbeing of mothers, children, and families
+                      through meaningful community support.
+                    </p>
+                  </div>
+
+                  <div className='rounded-2xl border border-border/70 bg-background p-5'>
+                    <p className='text-xs font-semibold uppercase tracking-wider text-primary'>
+                      Vision
+                    </p>
+                    <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
+                      Help build communities where families have the support
+                      and opportunities they need to thrive.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. WHAT WE DO ── */}
+      <section
+        id='our-work'
+        aria-labelledby='work-heading'
+        className='pb-14 sm:pb-20 lg:pb-24'
+      >
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between'>
+            <div className='max-w-2xl'>
+              <Badge
+                variant='outline'
+                className='mb-4 rounded-full border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary'
+              >
+                Our Work
+              </Badge>
+
+              <h2
+                id='work-heading'
+                className='text-3xl font-semibold tracking-tight sm:text-4xl'
+              >
+                Where care becomes action
+              </h2>
+            </div>
+
+            <p className='max-w-md text-sm leading-relaxed text-muted-foreground lg:text-right'>
+              From maternal wellbeing to child development and women’s
+              empowerment, our programs focus on practical support that can
+              make a difference in everyday lives.
+            </p>
+          </div>
+
+          <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
+            {focusAreas.map((area) => (
+              <div
+                key={area.number}
+                className='group overflow-hidden rounded-2xl border border-border/70 bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg'
+              >
+                <div className='relative h-56 overflow-hidden'>
                   <img
-                    src={member.image}
-                    alt={`${member.name}, ${member.role} at MabEcare Foundation`}
-                    className='h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
+                    src={area.image}
+                    alt={area.title}
+                    className='size-full object-cover transition-transform duration-500 group-hover:scale-105'
                     loading='lazy'
                   />
 
-                  {/* Overlay — slides up on hover */}
-                  <div className='absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0'>
-                    <div className='bg-gradient-to-t from-black/80 to-black/40 px-4 py-5'>
-                      <div className='flex items-center justify-center gap-3'>
-                        <a
-                          href={member.twitter}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          aria-label={`${member.name} on X (Twitter)`}
-                          className='flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25'
-                        >
-                          <XIcon className='size-3.5' />
-                        </a>
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent' />
 
-                        <a
-                          href={member.linkedin}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          aria-label={`${member.name} on LinkedIn`}
-                          className='flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25'
-                        >
-                          <LinkedInIcon className='size-3.5' />
-                        </a>
-
-                        <a
-                          href={member.email}
-                          aria-label={`Email ${member.name}`}
-                          className='flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25'
-                        >
-                          <MailIcon className='size-3.5' />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                  <span className='absolute bottom-4 left-4 text-xs font-semibold text-white'>
+                    {area.number}
+                  </span>
                 </div>
 
-                {/* Name and role below image */}
-                <div className='text-center'>
-                  <p className='text-foreground text-sm font-semibold'>{member.name}</p>
-                  <p className='text-muted-foreground text-xs'>{member.role}</p>
+                <div className='p-6'>
+                  <h3 className='text-lg font-semibold text-foreground'>
+                    {area.title}
+                  </h3>
+
+                  <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
+                    {area.description}
+                  </p>
+
+                  <a
+                    href='#donation-programs'
+                    className='mt-5 inline-flex items-center text-sm font-medium text-primary transition-colors hover:text-primary/80'
+                  >
+                    Explore our programs
+                    <ArrowIcon className='ml-2 size-4 transition-transform group-hover:translate-x-1' />
+                  </a>
                 </div>
               </div>
             ))}
@@ -346,7 +415,182 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* ── 6. CTA ── */}
+      {/* ── 5. OUR APPROACH ── */}
+      <section
+        aria-labelledby='approach-heading'
+        className='pb-14 sm:pb-20 lg:pb-24'
+      >
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='rounded-3xl border border-border/70 bg-card p-6 sm:p-8 lg:p-12'>
+            <div className='grid grid-cols-1 gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16'>
+              <div>
+                <Badge
+                  variant='outline'
+                  className='rounded-full border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary'
+                >
+                  Our Approach
+                </Badge>
+
+                <h2
+                  id='approach-heading'
+                  className='mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl'
+                >
+                  Listen. Understand. Act. Grow.
+                </h2>
+
+                <p className='mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                  Meaningful community work starts by understanding the people
+                  at the centre of it. We listen to experiences, identify
+                  needs, mobilize support, and work with communities to create
+                  practical responses.
+                </p>
+
+                <Button
+                  asChild
+                  className='mt-6 rounded-full px-6'
+                >
+                  <a href='/contact'>
+                    Work With Us
+                    <ArrowIcon className='ml-2 size-4' />
+                  </a>
+                </Button>
+              </div>
+
+              <div className='grid gap-4 sm:grid-cols-2'>
+                {[
+                  {
+                    title: 'Listen',
+                    text: 'We pay attention to the experiences and priorities of the communities we serve.'
+                  },
+                  {
+                    title: 'Understand',
+                    text: 'We learn about the challenges affecting mothers, children, and families.'
+                  },
+                  {
+                    title: 'Act',
+                    text: 'We turn resources and partnerships into practical programs and direct support.'
+                  },
+                  {
+                    title: 'Grow',
+                    text: 'We learn from every initiative and continue building stronger community solutions.'
+                  }
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className='rounded-2xl bg-muted/40 p-5'
+                  >
+                    <span className='text-xs font-semibold text-primary'>
+                      0{i + 1}
+                    </span>
+
+                    <h3 className='mt-3 text-base font-semibold'>
+                      {item.title}
+                    </h3>
+
+                    <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. TEAM ── */}
+      <section
+        aria-labelledby='team-heading'
+        className='pb-14 sm:pb-20 lg:pb-24'
+      >
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='mb-10 flex flex-col items-center text-center'>
+            <Badge
+              variant='outline'
+              className='gap-2 rounded-full border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary'
+            >
+              <TeamIcon className='size-4' />
+              Our Team
+            </Badge>
+
+            <h2
+              id='team-heading'
+              className='mt-4 text-3xl font-semibold tracking-tight sm:text-4xl'
+            >
+              The people behind MabEcare
+            </h2>
+
+            <p className='mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base'>
+              Dedicated people working together to turn compassion, resources,
+              and community action into meaningful support.
+            </p>
+          </div>
+
+          <div className='mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-3'>
+            {team.map((member, i) => (
+              <div key={i} className='group'>
+                <div className='relative aspect-[4/4.7] overflow-hidden rounded-2xl bg-muted'>
+                  <img
+                    src={member.image}
+                    alt={`${member.name}, ${member.role} at MabEcare Foundation`}
+                    className='size-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
+                    loading='lazy'
+                  />
+
+                  <div className='absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-black/85 to-transparent px-4 pb-5 pt-14 transition-transform duration-300 group-hover:translate-y-0'>
+                    <div className='flex justify-center gap-2'>
+                      {member.twitter !== '#' && (
+                        <a
+                          href={member.twitter}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          aria-label={`${member.name} on X`}
+                          className='flex size-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm hover:bg-white/25'
+                        >
+                          <XIcon className='size-3.5' />
+                        </a>
+                      )}
+
+                      {member.linkedin !== '#' && (
+                        <a
+                          href={member.linkedin}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          aria-label={`${member.name} on LinkedIn`}
+                          className='flex size-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm hover:bg-white/25'
+                        >
+                          <LinkedInIcon className='size-3.5' />
+                        </a>
+                      )}
+
+                      {member.email !== '#' && (
+                        <a
+                          href={member.email}
+                          aria-label={`Email ${member.name}`}
+                          className='flex size-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm hover:bg-white/25'
+                        >
+                          <MailIcon className='size-3.5' />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className='mt-4'>
+                  <p className='text-sm font-semibold text-foreground'>
+                    {member.name}
+                  </p>
+                  <p className='mt-1 text-xs text-muted-foreground'>
+                    {member.role}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 7. CTA ── */}
       <CallToAction />
     </div>
   )
