@@ -131,7 +131,7 @@ type WayToHelp = {
 
 const ways: WayToHelp[] = [
   {
-    icon: <PhoneIcon className='size-4.5 text-emerald-600 dark:text-emerald-400' />,
+    icon: <PhoneIcon className='size-4 text-emerald-600 dark:text-emerald-400' />,
     iconBg: 'bg-emerald-500/10 dark:bg-emerald-500/20',
     title: 'Mobile Money',
     description:
@@ -141,7 +141,7 @@ const ways: WayToHelp[] = [
     badge: 'Popular'
   },
   {
-    icon: <CardIcon className='size-4.5 text-primary' />,
+    icon: <CardIcon className='size-4 text-primary' />,
     iconBg: 'bg-primary/10 dark:bg-primary/20',
     title: 'Paystack Card Payment',
     description:
@@ -150,7 +150,7 @@ const ways: WayToHelp[] = [
     href: '/donate'
   },
   {
-    icon: <BankIcon className='size-4.5 text-amber-600 dark:text-amber-400' />,
+    icon: <BankIcon className='size-4 text-amber-600 dark:text-amber-400' />,
     iconBg: 'bg-amber-500/10 dark:bg-amber-500/20',
     title: 'Direct Bank Transfer',
     description:
@@ -159,7 +159,7 @@ const ways: WayToHelp[] = [
     href: '/donate'
   },
   {
-    icon: <GiftIcon className='size-4.5 text-orange-600 dark:text-orange-400' />,
+    icon: <GiftIcon className='size-4 text-orange-600 dark:text-orange-400' />,
     iconBg: 'bg-orange-500/10 dark:bg-orange-500/20',
     title: 'In-Kind Donations',
     description:
@@ -168,7 +168,7 @@ const ways: WayToHelp[] = [
     href: '/donate'
   },
   {
-    icon: <UsersIcon className='size-4.5 text-blue-600 dark:text-blue-400' />,
+    icon: <UsersIcon className='size-4 text-blue-600 dark:text-blue-400' />,
     iconBg: 'bg-blue-500/10 dark:bg-blue-500/20',
     title: 'Volunteer Your Time',
     description:
@@ -177,7 +177,7 @@ const ways: WayToHelp[] = [
     href: '/donate'
   },
   {
-    icon: <BellIcon className='size-4.5 text-rose-600 dark:text-rose-400' />,
+    icon: <BellIcon className='size-4 text-rose-600 dark:text-rose-400' />,
     iconBg: 'bg-rose-500/10 dark:bg-rose-500/20',
     title: 'Diaspora Giving',
     description:
@@ -188,24 +188,35 @@ const ways: WayToHelp[] = [
 ]
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay }
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+      delay
+    }
   })
 }
 
 const WaysToHelpSection = () => {
   const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' })
+  const isInView = useInView(sectionRef, {
+    once: true,
+    margin: '-80px'
+  })
 
   return (
-    <section id='ways-to-help' ref={sectionRef} className='py-12 sm:py-20 lg:py-28 overflow-hidden'>
-      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-        
+    <section
+      id='ways-to-help'
+      ref={sectionRef}
+      className='overflow-hidden py-14 sm:py-20 lg:py-24'
+    >
+      <div className='mx-auto max-w-6xl px-4 sm:px-6 lg:px-8'>
+
         {/* Header */}
-        <div className='mx-auto mb-12 flex max-w-2xl flex-col items-center text-center sm:mb-16 space-y-3'>
+        <div className='mx-auto mb-10 flex max-w-2xl flex-col items-center space-y-3 text-center sm:mb-12'>
           <motion.div
             variants={fadeUp}
             initial='hidden'
@@ -214,9 +225,9 @@ const WaysToHelpSection = () => {
           >
             <Badge
               variant='outline'
-              className='gap-2 rounded-full border-primary/20 bg-primary/5 px-3.5 py-1 text-xs font-medium text-primary'
+              className='gap-2 rounded-full border-primary/20 bg-primary/5 px-3 py-1 text-[11px] font-medium text-primary'
             >
-              <BellIcon className='size-3.5' />
+              <BellIcon className='size-3' />
               How You Can Help
             </Badge>
           </motion.div>
@@ -226,7 +237,7 @@ const WaysToHelpSection = () => {
             initial='hidden'
             animate={isInView ? 'visible' : 'hidden'}
             custom={0.1}
-            className='text-2xl font-semibold tracking-tight sm:text-4xl lg:text-5xl text-foreground'
+            className='text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl'
           >
             Ways You Can <span className='text-primary'>Make a Difference</span>
           </motion.h2>
@@ -236,33 +247,36 @@ const WaysToHelpSection = () => {
             initial='hidden'
             animate={isInView ? 'visible' : 'hidden'}
             custom={0.2}
-            className='text-muted-foreground text-sm sm:text-base max-w-xl leading-relaxed'
+            className='max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base'
           >
             There are many ways to support mothers and children in Ghana. Find the method that works best for you and help us create lasting impact.
           </motion.p>
         </div>
 
-        {/* Feature Cards Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6'>
+        {/* Cards */}
+        <div className='mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
           {ways.map((way, index) => (
             <motion.div
               key={way.title}
               variants={fadeUp}
               initial='hidden'
               animate={isInView ? 'visible' : 'hidden'}
-              custom={0.1 + index * 0.08}
-              whileHover={{ y: -4 }}
+              custom={0.1 + index * 0.07}
+              whileHover={{ y: -3 }}
               transition={{ duration: 0.2 }}
-              className='group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-6 sm:p-7 shadow-sm hover:shadow-md hover:border-primary/30 transition-all'
+              className='group relative flex flex-col justify-between rounded-xl border border-border/70 bg-card p-4 shadow-sm transition-all hover:border-primary/30 hover:shadow-md sm:p-5'
             >
-              <div className='flex flex-col gap-4'>
-                {/* Icon & Badge Row */}
+              <div className='flex flex-col gap-3.5'>
+                {/* Icon & Badge */}
                 <div className='flex items-center justify-between'>
-                  <div className={`flex size-10 items-center justify-center rounded-xl ${way.iconBg}`}>
+                  <div
+                    className={`flex size-9 items-center justify-center rounded-lg ${way.iconBg}`}
+                  >
                     {way.icon}
                   </div>
+
                   {way.badge && (
-                    <span className='rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-primary'>
+                    <span className='rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary'>
                       {way.badge}
                     </span>
                   )}
@@ -270,20 +284,21 @@ const WaysToHelpSection = () => {
 
                 {/* Content */}
                 <div className='space-y-1.5'>
-                  <h3 className='text-base sm:text-lg font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors'>
+                  <h3 className='text-sm font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary sm:text-base'>
                     {way.title}
                   </h3>
-                  <p className='text-muted-foreground text-xs sm:text-sm leading-relaxed'>
+
+                  <p className='text-xs leading-relaxed text-muted-foreground sm:text-[13px]'>
                     {way.description}
                   </p>
                 </div>
               </div>
 
-              {/* Action CTA */}
-              <div className='pt-6 mt-2'>
+              {/* CTA */}
+              <div className='mt-4 pt-1'>
                 <Button
                   variant='outline'
-                  className='w-full justify-between rounded-xl border-border/80 bg-background/50 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all font-medium text-xs sm:text-sm group/btn'
+                  className='group/btn h-9 w-full justify-between rounded-lg border-border/80 bg-background/50 px-3 text-xs font-medium transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground'
                   onClick={() => (window.location.href = way.href)}
                 >
                   <span>{way.cta}</span>

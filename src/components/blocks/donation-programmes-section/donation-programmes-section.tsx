@@ -106,11 +106,14 @@ const bottomProgrammes: Programme[] = [
 ]
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1]
+    }
   }
 }
 
@@ -118,27 +121,36 @@ const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.12 }
+    transition: { staggerChildren: 0.1 }
   }
 }
 
 const DonationProgramsSection = () => {
   const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
+  const isInView = useInView(sectionRef, {
+    once: true,
+    margin: '-80px'
+  })
 
   return (
-    <section ref={sectionRef} id='donation-programmes' className='py-16 sm:py-24 lg:py-32'>
+    <section
+      ref={sectionRef}
+      id='donation-programmes'
+      className='py-14 sm:py-20 lg:py-24'
+    >
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-        
         {/* Header Block */}
         <motion.div
           variants={staggerContainer}
           initial='hidden'
           animate={isInView ? 'visible' : 'hidden'}
-          className='mb-16 flex flex-col items-center text-center'
+          className='mb-10 flex flex-col items-center text-center sm:mb-12'
         >
           <motion.div variants={fadeUp}>
-            <Badge variant='outline' className='gap-2 px-4 py-1.5 text-sm font-medium border-primary/20 bg-primary/5 text-primary rounded-full'>
+            <Badge
+              variant='outline'
+              className='gap-2 rounded-full border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary'
+            >
               <SparkleIcon className='size-4' />
               Transforming Lives Daily
             </Badge>
@@ -146,158 +158,172 @@ const DonationProgramsSection = () => {
 
           <motion.h2
             variants={fadeUp}
-            className='mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl'
+            className='mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl'
           >
-            Fuel Direct Impact Where <span className='text-primary underline decoration-primary/30 underline-offset-8'>It Matters Most</span>
+            Fuel Direct Impact Where{' '}
+            <span className='text-primary underline decoration-primary/30 underline-offset-8'>
+              It Matters Most
+            </span>
           </motion.h2>
 
           <motion.p
             variants={fadeUp}
-            className='mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg leading-relaxed'
+            className='mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base'
           >
-            Your contributions go directly to frontline initiatives—protecting maternal health, nurturing children, and fostering long-term community resilience.
+            Your contributions go directly to frontline initiatives—protecting
+            maternal health, nurturing children, and fostering long-term
+            community resilience.
           </motion.p>
         </motion.div>
 
-        {/* Hero Bento Box (Top Section) */}
+        {/* Featured Programmes */}
         <motion.div
           variants={staggerContainer}
           initial='hidden'
           animate={isInView ? 'visible' : 'hidden'}
-          className='mb-8 grid grid-cols-1 gap-6 lg:grid-cols-12'
+          className='mb-6 grid grid-cols-1 gap-5 lg:grid-cols-12'
         >
-          {/* Main Hero Card (Spans 7 cols on lg) */}
-          <motion.div
+          {/* Featured Card */}
+          <motion.article
             variants={fadeUp}
-            whileHover={{ y: -6 }}
+            whileHover={{ y: -4 }}
             transition={{ duration: 0.3 }}
-            className='group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300 lg:col-span-7'
+            className='group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-xl lg:col-span-7'
           >
-            <div className='relative h-64 sm:h-80 lg:h-96 w-full overflow-hidden'>
+            <div className='relative h-56 overflow-hidden sm:h-64 lg:h-72'>
               <motion.img
                 src={featuredProgramme.image}
                 alt={featuredProgramme.alt}
                 loading='lazy'
-                className='h-full w-full object-cover'
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className='h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105'
               />
-              <div className='absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent lg:hidden' />
-              <div className='absolute top-4 left-4'>
-                <Badge className='bg-background/90 backdrop-blur text-foreground border border-border rounded-full px-3 py-1 text-xs font-medium'>
+
+              <div className='absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent' />
+
+              <div className='absolute left-4 top-4'>
+                <Badge className='rounded-full border border-white/20 bg-black/50 px-3 py-1 text-xs font-medium text-white backdrop-blur-md'>
                   {featuredProgramme.category}
                 </Badge>
               </div>
             </div>
 
-            <div className='flex flex-col justify-between p-6 sm:p-8 flex-1'>
+            <div className='flex flex-1 flex-col justify-between p-5 sm:p-6'>
               <div>
-                <h3 className='text-2xl font-semibold tracking-tight text-foreground sm:text-3xl'>
+                <h3 className='text-xl font-semibold tracking-tight text-foreground sm:text-2xl'>
                   {featuredProgramme.title}
                 </h3>
-                <p className='mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed'>
+
+                <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>
                   {featuredProgramme.description}
                 </p>
               </div>
-              <div className='mt-6 flex items-center gap-2 text-sm font-medium text-primary group-hover:translate-x-1 transition-transform duration-200 cursor-pointer'>
+
+              <div className='mt-5 flex items-center gap-2 text-sm font-medium text-primary transition-transform duration-200 group-hover:translate-x-1'>
                 <span>Support this initiative</span>
                 <ArrowRightIcon className='size-4' />
               </div>
             </div>
-          </motion.div>
+          </motion.article>
 
-          {/* Secondary Stacked Cards (Spans 5 cols on lg) */}
-          <div className='flex flex-col gap-6 lg:col-span-5'>
+          {/* Secondary Programmes */}
+          <div className='grid grid-cols-1 gap-5 lg:col-span-5'>
             {topProgrammes.map((programme, idx) => (
-              <motion.div
+              <motion.article
                 key={idx}
                 variants={fadeUp}
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
-                className='group flex flex-col sm:flex-row overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:shadow-lg hover:border-primary/40 transition-all duration-300 h-full'
+                className='group flex overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg'
               >
-                <div className='relative sm:w-2/5 h-48 sm:h-auto overflow-hidden shrink-0'>
+                <div className='relative hidden w-2/5 shrink-0 overflow-hidden sm:block'>
                   <motion.img
                     src={programme.image}
                     alt={programme.alt}
                     loading='lazy'
-                    className='h-full w-full object-cover'
-                    whileHover={{ scale: 1.06 }}
-                    transition={{ duration: 0.5 }}
+                    className='h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105'
                   />
                 </div>
-                <div className='flex flex-col justify-between p-5 flex-1'>
+
+                <div className='flex flex-1 flex-col justify-between p-5'>
                   <div>
-                    <Badge variant='outline' className='w-fit rounded-full px-2.5 py-0.5 text-xs font-normal mb-2'>
+                    <Badge
+                      variant='outline'
+                      className='mb-2 w-fit rounded-full px-2.5 py-0.5 text-xs font-normal'
+                    >
                       {programme.category}
                     </Badge>
-                    <h4 className='text-lg font-semibold text-foreground leading-snug'>
+
+                    <h4 className='text-base font-semibold leading-snug text-foreground sm:text-lg'>
                       {programme.title}
                     </h4>
-                    <p className='mt-2 text-xs sm:text-sm text-muted-foreground line-clamp-3 leading-relaxed'>
+
+                    <p className='mt-1.5 line-clamp-3 text-xs leading-relaxed text-muted-foreground sm:text-sm'>
                       {programme.description}
                     </p>
                   </div>
-                  <div className='mt-4 flex items-center gap-1.5 text-xs font-medium text-primary group-hover:translate-x-1 transition-transform duration-200 cursor-pointer'>
+
+                  <div className='mt-4 flex items-center gap-1.5 text-xs font-medium text-primary transition-transform duration-200 group-hover:translate-x-1'>
                     <span>Learn more</span>
                     <ArrowRightIcon className='size-3.5' />
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </motion.div>
 
-        {/* Alternating 2x2 Grid (Bottom Section) */}
+        {/* Additional Programmes */}
         <motion.div
           variants={staggerContainer}
           initial='hidden'
           animate={isInView ? 'visible' : 'hidden'}
-          className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'
+          className='grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4'
         >
           {bottomProgrammes.map((programme, index) => (
-            <motion.div
+            <motion.article
               key={index}
               variants={fadeUp}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -4 }}
               transition={{ duration: 0.3 }}
-              className='group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300'
+              className='group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-xl'
             >
-              <div className='relative h-44 w-full overflow-hidden'>
+              <div className='relative h-36 w-full overflow-hidden sm:h-40'>
                 <motion.img
                   src={programme.image}
                   alt={programme.alt}
                   loading='lazy'
-                  className='h-full w-full object-cover'
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className='h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105'
                 />
-                <div className='absolute top-3 left-3'>
-                  <Badge variant='outline' className='bg-background/90 backdrop-blur border-border rounded-full px-2.5 py-0.5 text-xs font-normal'>
+
+                <div className='absolute left-3 top-3'>
+                  <Badge
+                    variant='outline'
+                    className='rounded-full border-white/20 bg-black/50 px-2.5 py-0.5 text-xs font-normal text-white backdrop-blur-md'
+                  >
                     {programme.category}
                   </Badge>
                 </div>
               </div>
-              
+
               <div className='flex flex-1 flex-col justify-between p-5'>
                 <div>
-                  <h4 className='text-base font-semibold text-foreground leading-snug'>
+                  <h4 className='text-base font-semibold leading-snug text-foreground'>
                     {programme.title}
                   </h4>
-                  <p className='mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed'>
+
+                  <p className='mt-2 text-xs leading-relaxed text-muted-foreground sm:text-sm'>
                     {programme.description}
                   </p>
                 </div>
 
-                <div className='mt-5 flex items-center gap-1.5 text-xs font-medium text-primary group-hover:translate-x-1 transition-transform duration-200 cursor-pointer pt-3 border-t border-border/50'>
+                <div className='mt-4 flex items-center gap-1.5 border-t border-border/50 pt-3 text-xs font-medium text-primary transition-transform duration-200 group-hover:translate-x-1'>
                   <span>Inquire or Support</span>
                   <ArrowRightIcon className='size-3.5' />
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </motion.div>
-        
       </div>
     </section>
   )

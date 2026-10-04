@@ -101,8 +101,8 @@ const focusAreas: FocusArea[] = [
     label: 'Mothers Supported',
     tagline: 'Comprehensive Maternal & Postnatal Care',
     pills: ['Direct Healthcare Aid', 'Emergency Welfare', 'Nursing Support'],
-    image: '/images/metrics/mother-braiding-hair.webp',
-    alt: 'Mother braiding hair in community setting',
+    image: '/images/metrics/maternal-care.webp',
+    alt: 'pregnant-woman',
     accentColor: '#F28B5F',
     accentBorder: 'border-[#F28B5F]/40',
     badgeBg: 'bg-[#F28B5F]',
@@ -114,7 +114,7 @@ const focusAreas: FocusArea[] = [
     label: 'Women Empowered',
     tagline: 'Vocational Mastery & Economic Freedom',
     pills: ['Practical Skill-Building', 'Micro-Business Tools', 'Financial Literacy'],
-    image: '/images/metrics/working-woman.webp',
+    image: '/images/metrics/women-in-vocations.webp',
     alt: 'Women participating in hands-on skills training',
     accentColor: '#171717',
     accentBorder: 'border-foreground/20',
@@ -167,7 +167,7 @@ const ImpactMetrics = () => {
           variants={staggerContainer}
           initial='hidden'
           animate={isInView ? 'visible' : 'hidden'}
-          className='mb-16 flex flex-col items-center text-center'
+          className='mb-10 flex flex-col items-center text-center'
         >
           <motion.div variants={fadeUp}>
             <Badge
@@ -181,7 +181,7 @@ const ImpactMetrics = () => {
 
           <motion.h2
             variants={fadeUp}
-            className='mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl'
+            className='mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl'
           >
             Transforming Hope Into{' '}
             <span className='text-primary underline decoration-primary/30 underline-offset-8'>
@@ -191,7 +191,7 @@ const ImpactMetrics = () => {
 
           <motion.p
             variants={fadeUp}
-            className='mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg'
+            className='mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base'
           >
             Every statistic represents a mother empowered, a child educated, and a family given the essential resources to thrive independently.
           </motion.p>
@@ -210,7 +210,7 @@ const ImpactMetrics = () => {
               variants={fadeUp}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.3 }}
-              className={`group relative flex min-h-[520px] flex-col justify-between overflow-hidden rounded-3xl border ${area.accentBorder} bg-card shadow-sm transition-all duration-300 hover:shadow-2xl`}
+              className={`group relative flex min-h-[460px] flex-col justify-between overflow-hidden rounded-3xl border ${area.accentBorder} bg-card shadow-sm transition-all duration-300 hover:shadow-2xl`}
             >
               {/* Vibrant Image Layer (Removed grayscale & multiply blends) */}
               <div className='absolute inset-0 z-0 h-full w-full overflow-hidden'>
