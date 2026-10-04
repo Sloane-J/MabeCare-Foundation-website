@@ -53,7 +53,7 @@ const featuredProgramme: Programme = {
 
 const topProgrammes: Programme[] = [
   {
-    image: '/images/programmes/mother-welfare.webp',
+    image: '/images/programmes/women-skill-training.webp',
     alt: 'Women participating in a skills training workshop',
     category: 'Maternal Empowerment',
     title: 'Women’s Vocational Skills Training',
@@ -61,10 +61,10 @@ const topProgrammes: Programme[] = [
       'Equipping mothers with sustainable trade skills—from tailoring to baking—building long-term financial independence.'
   },
   {
-    image: '/images/programmes/mother-welfare.webp',
+    image: '/images/programmes/child-education.webp',
     alt: 'Children supported through MabEcare outreach programme',
     category: 'Child Welfare',
-    title: 'Youth Growth & Education Support',
+    title: 'Early Childhood Education',
     description:
       'Nurturing children in underserved communities with educational tools, critical nutrition, and safe learning spaces.'
   }
@@ -80,7 +80,7 @@ const bottomProgrammes: Programme[] = [
       'Organizing vital blood drives to guarantee safe, rapid supply for mothers and infants facing critical delivery complications.'
   },
   {
-    image: '/images/programmes/mother-welfare.webp',
+    image: '/images/programmes/post-maternal-care.webp',
     alt: 'Mother receiving mental health counselling',
     category: 'Mental Wellness',
     title: 'Postpartum & Maternal Mental Care',
