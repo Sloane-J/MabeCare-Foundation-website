@@ -82,7 +82,7 @@ export const SITE_METADATA = {
   verification: {
     google: '<meta name="google-site-verification" content="JjtegxanX-Bw1RtFAPdjtqwLp2SLjKUZh-Ggy6xobaY" />', // Add your Google verification code
     yandex: '', // Add your Yandex verification code
-    bing: '' // Add your Bing verification code
+    bing: '' // Add your Bing verification code here
   }
 }
 
