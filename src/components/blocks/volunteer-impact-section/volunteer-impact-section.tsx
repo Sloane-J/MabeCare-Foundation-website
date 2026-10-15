@@ -268,13 +268,15 @@ const VolunteerImpactSection = () => {
                   delay: 0.35
                 }}
               >
+
                 <iframe
-                  src='https://www.youtube.com/embed/Ou58uHb9Piw?autoplay=1&controls=1&loop=1&playlist=Ou58uHb9Piw&rel=0'
-                  title='Volunteers supporting mothers and children in community programs'
-                  className='absolute inset-0 size-full border-0'
-                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  src="https://www.youtube-nocookie.com/embed/Ou58uHb9Piw?autoplay=1&controls=1&loop=1&playlist=Ou58uHb9Piw&rel=0"
+                  title="Volunteers supporting mothers and children in community programs"
+                  className="absolute inset-0 size-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
+
               </motion.div>
             </div>
           </div>
