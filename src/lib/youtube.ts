@@ -8,9 +8,10 @@ export type Video = {
 
 const channelId = import.meta.env.YOUTUBE_CHANNEL_ID as string | undefined
 
-export const channelUrl = channelId
-  ? `https://www.youtube.com/channel/${channelId}`
-  : 'https://www.youtube.com'
+// export const channelUrl = channelId
+//   ? `https://www.youtube.com/channel/${channelId}`
+//   : 'https://www.youtube.com'
+export const channelUrl = 'https://www.youtube.com/@mabecarefoundation'
 
 function decode(text: string) {
   return text
