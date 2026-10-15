@@ -1,0 +1,53 @@
+---
+export const prerender = false
+import Layout from '@/layouts/Layout.astro'
+import VideoGrid from '@/components/blocks/videos/video-grid.astro'
+import { getVideos, channelUrl } from '@/lib/youtube'
+
+const videos = await getVideos()
+
+// Only cache real results, so a failed fetch is never cached
+if (videos.length > 0) {
+  Astro.response.headers.set(
+    'Cache-Control',
+    'public, s-maxage=3600, stale-while-revalidate=86400'
+  )
+}
+---
+
+<Layout
+  title="Videos | MabEcare Foundation"
+  description="Watch videos from MabEcare Foundation showing our outreach, programmes, and the impact we are making for mothers and children in Ghana."
+>
+  <main class="px-4 py-16 sm:py-24">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 text-center">
+        <h1 class="text-3xl font-bold text-foreground sm:text-4xl">Our Videos</h1>
+        <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+          See our outreach, programmes, and the stories behind the work.
+        </p>
+      </div>
+
+      {
+        videos.length > 0 ? (
+          <VideoGrid videos={videos} />
+        ) : (
+          <div class="rounded-2xl border border-dashed border-border py-16 text-center">
+            <p class="text-sm text-muted-foreground">Videos are on the way. Check back soon.</p>
+          </div>
+        )
+      }
+
+      <div class="mt-12 text-center">
+        <a
+          href={channelUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block rounded-xl bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
+        >
+          Visit our YouTube channel
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

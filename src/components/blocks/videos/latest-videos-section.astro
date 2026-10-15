@@ -1,0 +1,36 @@
+---
+import VideoGrid from '@/components/blocks/videos/video-grid.astro'
+import type { Video } from '@/lib/youtube'
+
+interface Props {
+  videos: Video[]
+}
+
+const { videos } = Astro.props
+---
+
+{
+  videos.length > 0 && (
+    <section id="videos" class="py-12 sm:py-20 lg:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
+          <h2 class="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">Watch our latest videos</h2>
+          <p class="mx-auto mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
+            See our outreach and programmes in action across the communities we serve.
+          </p>
+        </div>
+
+        <VideoGrid videos={videos} />
+
+        <div class="mt-12 text-center">
+          <a
+            href="/videos"
+            class="inline-block rounded-xl bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            View all videos
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}

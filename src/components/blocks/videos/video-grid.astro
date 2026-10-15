@@ -1,0 +1,119 @@
+---
+import type { Video } from '@/lib/youtube'
+
+interface Props {
+  videos: Video[]
+}
+
+const { videos } = Astro.props
+
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date(iso))
+---
+
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    videos.map(video => (
+      <button
+        type="button"
+        data-video-id={video.id}
+        data-video-title={video.title}
+        data-video-url={video.url}
+        class="group text-left"
+      >
+        <div class="relative aspect-video overflow-hidden rounded-xl bg-muted">
+          <img
+            src={video.thumbnail}
+            alt={video.title}
+            loading="lazy"
+            width="480"
+            height="360"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <span class="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
+            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform group-hover:scale-110">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-0.5 h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+          </span>
+        </div>
+        <h3 class="mt-3 line-clamp-2 text-sm font-semibold text-foreground">{video.title}</h3>
+        <p class="mt-1 text-xs text-muted-foreground">{formatDate(video.published)}</p>
+      </button>
+    ))
+  }
+</div>
+
+<dialog
+  id="video-dialog"
+  class="m-auto w-[min(92vw,960px)] overflow-hidden rounded-2xl bg-card p-0 text-foreground backdrop:bg-black/70"
+>
+  <div class="flex items-center justify-between gap-4 border-b border-border px-4 py-3">
+    <p id="video-title" class="line-clamp-1 text-sm font-semibold"></p>
+    <form method="dialog">
+      <button type="submit" class="rounded-md p-1 text-muted-foreground hover:text-foreground" aria-label="Close video">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </form>
+  </div>
+  <div id="video-frame" class="aspect-video w-full bg-black"></div>
+  <div class="px-4 py-3">
+    <a
+      id="video-link"
+      href="https://www.youtube.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm font-medium text-primary hover:underline"
+    >
+      Open on YouTube
+    </a>
+  </div>
+</dialog>
+
+<script>
+  function initVideoGrid() {
+    const dialog = document.getElementById('video-dialog') as HTMLDialogElement | null
+    if (!dialog) return
+
+    const frame = document.getElementById('video-frame') as HTMLDivElement
+    const title = document.getElementById('video-title') as HTMLParagraphElement
+    const link = document.getElementById('video-link') as HTMLAnchorElement
+
+    document.querySelectorAll<HTMLButtonElement>('[data-video-id]').forEach(button => {
+      button.addEventListener('click', () => {
+        const id = button.dataset.videoId ?? ''
+        const videoTitle = button.dataset.videoTitle ?? 'Video'
+
+        const iframe = document.createElement('iframe')
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`
+        iframe.title = videoTitle
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'
+        iframe.allowFullscreen = true
+        iframe.className = 'h-full w-full'
+
+        frame.replaceChildren(iframe)
+        title.textContent = videoTitle
+        link.href = button.dataset.videoUrl ?? 'https://www.youtube.com'
+        dialog.showModal()
+      })
+    })
+
+    // Stop playback when the dialog closes
+    dialog.addEventListener('close', () => frame.replaceChildren())
+
+    // Close when clicking the dark backdrop
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog) dialog.close()
+    })
+  }
+
+  // Runs on first load and after every ClientRouter navigation
+  document.addEventListener('astro:page-load', initVideoGrid)
+</script>
