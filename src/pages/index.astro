@@ -11,6 +11,8 @@ import VolunteerImpactSection from '@/components/blocks/volunteer-impact-section
 import WaysToHelpSection from '@/components/blocks/ways-to-help-section/ways-to-help-section'
 import SmoothScroll from '@/components/SmoothScroll'
 import Layout from '@/layouts/Layout.astro'
+import LatestVideosSection from '@/components/blocks/videos/latest-videos-section.astro'
+import { getVideos } from '@/lib/youtube'
 
 const pageTitle = 'MabEcare Foundation | Maternal & Child Welfare'
 const pageDescription =
@@ -19,6 +21,12 @@ const pageKeywords =
   'mabecare foundation, charity Ghana, non-profit Ghana, maternal health Ghana, children welfare Ghana, women empowerment Ghana, community outreach Ho Volta Region, blood donation Ghana, early childhood education, special needs children Ghana, donate Ghana, volunteering Ghana, samuel dorkey, joanna yirenkyi, sloane dev'
 
 const siteUrl = 'https://mabecarefoundation.vercel.app'
+const latestVideos = await getVideos(3)
+
+// Only cache real results, so a failed fetch is never cached
+if (latestVideos.length > 0) {
+  Astro.response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+}
 
 const schema = {
   '@context': 'https://schema.org',
@@ -85,6 +93,7 @@ const schema = {
   <HealthResourcesSection client:visible />
   <VolunteerImpactSection client:visible />
   <GallerySection client:visible />
+  <LatestVideosSection videos={latestVideos} />
   <DonationProgrammesSection client:visible />
   <WaysToHelpSection client:visible />
   <CallToAction client:visible />
