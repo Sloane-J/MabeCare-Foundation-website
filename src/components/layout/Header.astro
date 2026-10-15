@@ -1,56 +1,18 @@
 ---
 import ThemeToggle from '@/components/layout/theme-toggle';
-import { Button } from '@/components/ui/button';
 
 const pathname = Astro.url.pathname;
+const hash = Astro.url.hash;
 
-const homeNavLinks = [
-  { label: 'About Us', href: '/about-us' },
-  { label: 'Programmes', href: '/#donation-programmes' },
-  { label: 'Impact', href: '/#impact-metrics' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact-us' }
+const navLinks = [
+  { label: 'Home', href: '/', match: () => pathname === '/' },
+  { label: 'About Us', href: '/about-us', match: () => pathname === '/about-us' },
+  { label: 'Programmes', href: '/#donation-programmes', match: () => pathname === '/' && hash === '#donation-programmes' },
+  { label: 'Impact', href: '/#impact-metrics', match: () => pathname === '/' && hash === '#impact-metrics' },
+  { label: 'Blog', href: '/blog', match: () => pathname === '/blog' || pathname.startsWith('/blog/') },
+  { label: 'Videos', href: '/videos', match: () => pathname === '/videos' },
+  { label: 'Contact', href: '/contact-us', match: () => pathname === '/contact-us' },
 ];
-
-const aboutNavLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Programmes', href: '/#donation-programmes' },
-  { label: 'Impact', href: '/#impact-metrics' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact-us' }
-];
-
-const contactNavLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about-us' },
-  { label: 'Programmes', href: '/#donation-programmes' },
-  { label: 'Impact', href: '/#impact-metrics' },
-  { label: 'Blog', href: '/blog' }
-];
-
-const isAbout = pathname === '/about-us';
-const isContact = pathname === '/contact-us';
-
-const navLinks = isContact
-  ? contactNavLinks
-  : isAbout
-    ? aboutNavLinks
-    : homeNavLinks;
-
-const isLinkActive = (href: string) => {
-  if (href === '/') return pathname === '/';
-  if (href === '/about-us') return pathname === '/about-us';
-  if (href === '/blog') return pathname === '/blog' || pathname.startsWith('/blog/');
-  if (href === '/contact-us') return pathname === '/contact-us';
-
-  if (href === '/#donation-programmes' || href === '/#impact-metrics') {
-    return pathname === '/' && Astro.url.hash === href.split('#')[1]
-      ? true
-      : false;
-  }
-
-  return false;
-};
 ---
 
 <header
@@ -61,7 +23,6 @@ const isLinkActive = (href: string) => {
     id="header-container"
     class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-8"
   >
-    <!-- Logo -->
     <a
       href="/"
       class="flex shrink-0 items-center gap-2.5 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
@@ -69,56 +30,51 @@ const isLinkActive = (href: string) => {
     >
       <img
         src="/images/site-logo.webp"
-        alt="MabEcare Foundation Logo"
+        alt="MabEcare Foundation logo"
         class="h-10 w-auto object-contain transition-transform duration-200 hover:scale-105"
         width="40"
         height="40"
       />
 
       <div class="hidden flex-col leading-none sm:flex">
-        <span class="text-foreground text-sm font-bold tracking-widest uppercase">
+        <span class="text-sm font-bold tracking-widest text-foreground uppercase">
           MabEcare
         </span>
-
-        <span class="text-primary text-[10px] font-medium tracking-[0.2em] uppercase">
+        <span class="mt-1 text-[10px] font-medium tracking-[0.2em] text-primary uppercase">
           Foundation
         </span>
       </div>
     </a>
 
-    <!-- Desktop navigation -->
     <nav
       class="hidden items-center gap-1 lg:flex"
       aria-label="Main navigation"
     >
-      {
-        navLinks.map((link) => {
-          const isActive = isLinkActive(link.href);
+      {navLinks.filter((link) => link.label !== 'Home').map((link) => {
+        const isActive = link.match();
 
-          return (
-            <a
-              href={link.href}
-              data-nav-link
-              data-href={link.href}
-              aria-current={isActive ? 'page' : undefined}
-              class={`rounded-md px-3.5 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                isActive
-                  ? 'bg-primary/10 font-semibold text-primary'
-                  : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-              }`}
-            >
-              {link.label}
-            </a>
-          );
-        })
-      }
+        return (
+          <a
+            href={link.href}
+            data-nav-link
+            data-href={link.href}
+            aria-current={isActive ? 'page' : undefined}
+            class:list={[
+              'rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+              isActive
+                ? 'bg-primary/10 font-semibold text-primary'
+                : 'text-muted-foreground hover:bg-accent hover:text-foreground',
+            ]}
+          >
+            {link.label}
+          </a>
+        );
+      })}
     </nav>
 
-    <!-- Actions -->
     <div class="flex items-center gap-2.5 sm:gap-3">
       <ThemeToggle client:load />
 
-      <!-- Desktop Donate -->
       <a
         href="/donate"
         aria-label="Donate to MabEcare Foundation"
@@ -131,9 +87,8 @@ const isLinkActive = (href: string) => {
         >
           →
         </span>
-    </a>
+      </a>
 
-      <!-- Mobile menu toggle -->
       <button
         type="button"
         id="menu-toggle-btn"
@@ -177,7 +132,6 @@ const isLinkActive = (href: string) => {
   </div>
 </header>
 
-<!-- Mobile menu -->
 <div
   id="mobile-menu"
   role="dialog"
@@ -187,27 +141,27 @@ const isLinkActive = (href: string) => {
   class="invisible pointer-events-none fixed inset-x-0 top-16 z-40 flex -translate-y-2 flex-col border-b border-border bg-background/98 px-6 pb-8 pt-4 opacity-0 backdrop-blur-xl transition-all duration-300 ease-out lg:hidden"
 >
   <nav class="flex flex-col gap-1" aria-label="Mobile navigation">
-    {
-      navLinks.map((link) => {
-        const isActive = isLinkActive(link.href);
+    {navLinks.map((link) => {
+      const isActive = link.match();
 
-        return (
-          <a
-            href={link.href}
-            data-nav-link
-            data-href={link.href}
-            aria-current={isActive ? 'page' : undefined}
-            class={`rounded-md px-4 py-3 text-lg font-medium transition-colors duration-150 ${
-              isActive
-                ? 'bg-primary/10 font-semibold text-primary'
-                : 'text-foreground hover:bg-accent hover:text-primary'
-            }`}
-          >
-            {link.label}
-          </a>
-        );
-      })
-    }
+      return (
+        <a
+          href={link.href}
+          data-nav-link
+          data-href={link.href}
+          data-mobile-link
+          aria-current={isActive ? 'page' : undefined}
+          class:list={[
+            'rounded-md px-4 py-3 text-lg font-medium transition-colors duration-150',
+            isActive
+              ? 'bg-primary/10 font-semibold text-primary'
+              : 'text-foreground hover:bg-accent hover:text-primary',
+          ]}
+        >
+          {link.label}
+        </a>
+      );
+    })}
   </nav>
 
   <div class="mt-6 border-t border-border pt-5">
@@ -217,7 +171,6 @@ const isLinkActive = (href: string) => {
       class="flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-primary px-6 text-base font-semibold text-primary-foreground shadow-sm transition-all duration-200 hover:bg-primary/90 hover:shadow-md active:scale-[0.98]"
     >
       <span>Donate Now</span>
-
       <span
         class="flex size-7 items-center justify-center rounded-full bg-primary-foreground/15"
         aria-hidden="true"
@@ -238,101 +191,52 @@ const isLinkActive = (href: string) => {
   const navLinks =
     document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
 
-  const mobileCloseTriggers =
-    document.querySelectorAll<HTMLElement>('[data-mobile-close]');
-
   let mobileOpen = false;
 
-  // Header scroll state
   const handleScroll = () => {
     if (!siteHeader) return;
 
-    if (window.scrollY > 20) {
-      siteHeader.classList.add('shadow-sm', 'border-border/80');
-      siteHeader.classList.remove('border-border/40');
-    } else {
-      siteHeader.classList.remove('shadow-sm', 'border-border/80');
-      siteHeader.classList.add('border-border/40');
-    }
+    siteHeader.classList.toggle('shadow-sm', window.scrollY > 20);
+    siteHeader.classList.toggle('border-border/80', window.scrollY > 20);
+    siteHeader.classList.toggle('border-border/40', window.scrollY <= 20);
   };
 
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
 
-  // Mobile menu
   const setMobileMenuState = (open: boolean) => {
-    mobileOpen = open;
-
     if (!mobileMenu || !toggleBtn) return;
 
-    if (open) {
-      mobileMenu.classList.remove(
-        'pointer-events-none',
-        'invisible',
-        'opacity-0',
-        '-translate-y-2'
-      );
+    mobileOpen = open;
 
-      mobileMenu.classList.add(
-        'visible',
-        'pointer-events-auto',
-        'opacity-100',
-        'translate-y-0'
-      );
+    mobileMenu.classList.toggle('invisible', !open);
+    mobileMenu.classList.toggle('pointer-events-none', !open);
+    mobileMenu.classList.toggle('opacity-0', !open);
+    mobileMenu.classList.toggle('-translate-y-2', !open);
 
-      menuIcon?.classList.add('hidden');
-      closeIcon?.classList.remove('hidden');
+    mobileMenu.classList.toggle('visible', open);
+    mobileMenu.classList.toggle('pointer-events-auto', open);
+    mobileMenu.classList.toggle('opacity-100', open);
+    mobileMenu.classList.toggle('translate-y-0', open);
 
-      mobileMenu.setAttribute('aria-hidden', 'false');
-      toggleBtn.setAttribute('aria-expanded', 'true');
-      toggleBtn.setAttribute('aria-label', 'Close menu');
+    menuIcon?.classList.toggle('hidden', open);
+    closeIcon?.classList.toggle('hidden', !open);
 
-      document.body.style.overflow = 'hidden';
-    } else {
-      mobileMenu.classList.add(
-        'pointer-events-none',
-        'invisible',
-        'opacity-0',
-        '-translate-y-2'
-      );
+    mobileMenu.setAttribute('aria-hidden', String(!open));
+    toggleBtn.setAttribute('aria-expanded', String(open));
+    toggleBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 
-      mobileMenu.classList.remove(
-        'visible',
-        'pointer-events-auto',
-        'opacity-100',
-        'translate-y-0'
-      );
-
-      menuIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      toggleBtn.setAttribute('aria-expanded', 'false');
-      toggleBtn.setAttribute('aria-label', 'Open menu');
-
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = open ? 'hidden' : '';
   };
 
   toggleBtn?.addEventListener('click', () => {
     setMobileMenuState(!mobileOpen);
   });
 
-  navLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      if (mobileOpen) {
-        setMobileMenuState(false);
-      }
-    });
+  document.querySelectorAll('[data-mobile-link], [data-mobile-close]').forEach((element) => {
+    element.addEventListener('click', () => setMobileMenuState(false));
   });
 
-  mobileCloseTriggers.forEach((trigger) => {
-    trigger.addEventListener('click', () => {
-      setMobileMenuState(false);
-    });
-  });
-
-  // Close mobile menu with Escape
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && mobileOpen) {
       setMobileMenuState(false);
@@ -340,24 +244,19 @@ const isLinkActive = (href: string) => {
     }
   });
 
-  // Close mobile menu when switching to desktop
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024 && mobileOpen) {
       setMobileMenuState(false);
     }
   });
 
-  // Highlight sections on the homepage
-  const hashLinks = Array.from(navLinks).filter((link) => {
-    const href = link.dataset.href ?? '';
-    return href.startsWith('/#');
-  });
+  const hashLinks = Array.from(navLinks).filter((link) =>
+    link.dataset.href?.startsWith('/#'),
+  );
 
   const targets = hashLinks
     .map((link) => {
-      const href = link.dataset.href ?? '';
-      const id = href.split('#')[1];
-
+      const id = link.dataset.href?.split('#')[1];
       return id ? document.getElementById(id) : null;
     })
     .filter((element): element is HTMLElement => element !== null);
@@ -366,19 +265,15 @@ const isLinkActive = (href: string) => {
     hashLinks.forEach((link) => {
       const isTarget = link.dataset.href === `/#${activeId}`;
 
-      link.classList.remove(
-        'bg-primary/10',
-        'text-primary',
-        'font-semibold',
-        'text-muted-foreground',
-        'font-medium'
-      );
+      link.classList.toggle('bg-primary/10', isTarget);
+      link.classList.toggle('text-primary', isTarget);
+      link.classList.toggle('font-semibold', isTarget);
+      link.classList.toggle('text-muted-foreground', !isTarget);
+      link.classList.toggle('font-medium', !isTarget);
 
       if (isTarget) {
-        link.classList.add('bg-primary/10', 'text-primary', 'font-semibold');
-        link.setAttribute('aria-current', 'page');
+        link.setAttribute('aria-current', 'location');
       } else {
-        link.classList.add('text-muted-foreground', 'font-medium');
         link.removeAttribute('aria-current');
       }
     });
@@ -388,34 +283,28 @@ const isLinkActive = (href: string) => {
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting);
-
         if (visible.length === 0) return;
 
         const top = visible.reduce((current, entry) =>
-          entry.intersectionRatio > current.intersectionRatio
-            ? entry
-            : current
+          entry.intersectionRatio > current.intersectionRatio ? entry : current,
         );
 
         setHashLinkActive(top.target.id);
       },
       {
         threshold: [0.1, 0.25, 0.5],
-        rootMargin: '-80px 0px -50% 0px'
-      }
+        rootMargin: '-80px 0px -50% 0px',
+      },
     );
 
     targets.forEach((target) => observer.observe(target));
   }
 
-  // Smoothly handle same-page hash navigation
   navLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
       const href = link.getAttribute('href');
 
-      if (!href?.startsWith('/#')) return;
-
-      if (window.location.pathname !== '/') return;
+      if (!href?.startsWith('/#') || window.location.pathname !== '/') return;
 
       const id = href.split('#')[1];
       const target = id ? document.getElementById(id) : null;
@@ -426,7 +315,7 @@ const isLinkActive = (href: string) => {
 
       target.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'start',
       });
 
       history.pushState(null, '', href);
