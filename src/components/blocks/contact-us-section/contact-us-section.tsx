@@ -210,7 +210,7 @@ const ContactUsSection = () => {
                           type='text'
                           required
                           autoComplete='name'
-                          placeholder='Joana Ewurama Safoa'
+                          placeholder='Full Name'
                           className='w-full rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-all placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary/15'
                         />
                       </div>
@@ -225,7 +225,7 @@ const ContactUsSection = () => {
                           type='email'
                           required
                           autoComplete='email'
-                          placeholder='joana@example.com'
+                          placeholder='youremail@example.com'
                           className='w-full rounded-xl border border-input bg-background px-4 py-3.5 text-sm text-foreground transition-all placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary/15'
                         />
                       </div>
