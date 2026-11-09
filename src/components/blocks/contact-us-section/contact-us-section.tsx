@@ -23,8 +23,8 @@ const contactDetails = [
   {
     icon: Phone,
     label: 'Phone',
-    value: '+233 54 578 4681 / +233 20 720 5960',
-    href: 'tel:0545784681',
+    value: '+233 55 737 0391 / +233 59 637 0007',
+    href: 'tel:0596370007',
   },
   {
     icon: Mail,
