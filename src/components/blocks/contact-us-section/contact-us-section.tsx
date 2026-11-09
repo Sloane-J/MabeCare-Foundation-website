@@ -35,8 +35,8 @@ const contactDetails = [
   {
     icon: WhatsAppIcon,
     label: 'WhatsApp',
-    value: '+233 54 578 4681',
-    href: 'https://wa.me/233545784681',
+    value: '+233 55 737 0391',
+    href: 'https://wa.me/233557370391',
   },
 ]
 
