@@ -220,6 +220,7 @@ const navLinks = [
     toggleBtn.setAttribute('aria-expanded', String(open));
     toggleBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 
+    // Lenis listens for this event and stops or starts smooth scrolling.
     window.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: { open } }));
   };
 
@@ -332,11 +333,10 @@ const navLinks = [
 
   window.addEventListener('scroll', handleScroll, { passive: true });
 
-  // Reset state before the old page is replaced, so the scroll lock
-  // and open menu don't carry over to the next page.
+  // Reset state before the old page is replaced, so an open menu
+  // doesn't carry over to the next page.
   document.addEventListener('astro:before-swap', () => {
     mobileOpen = false;
-    document.body.style.overflow = '';
   });
 
   // Re-bind page-specific state after each navigation (and on first load).
