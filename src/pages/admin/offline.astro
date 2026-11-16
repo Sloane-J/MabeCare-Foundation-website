@@ -269,59 +269,59 @@
 
     <p class="brand"><span>MabEcare</span> Admin</p>
 
-    <script>
-      const dot = document.getElementById('status-dot')
-      const statusText = document.getElementById('status-text')
-      const retryBtn = document.getElementById('retry-btn')
+<script>
+  const dot = document.getElementById('status-dot')
+  const statusText = document.getElementById('status-text')
+  const retryBtn = document.getElementById('retry-btn') as HTMLButtonElement | null
 
-      function setChecking() {
-        dot.className = 'status-dot checking'
-        statusText.textContent = 'Checking connection…'
-        retryBtn.disabled = true
+  function setChecking() {
+    if (dot) dot.className = 'status-dot checking'
+    if (statusText) statusText.textContent = 'Checking connection…'
+    if (retryBtn) retryBtn.disabled = true
+  }
+
+  function setOffline() {
+    if (dot) dot.className = 'status-dot'
+    if (statusText) statusText.textContent = 'No connection'
+    if (retryBtn) retryBtn.disabled = false
+  }
+
+  function setOnline() {
+    if (dot) dot.className = 'status-dot online'
+    if (statusText) statusText.textContent = 'Back online, reloading…'
+    if (retryBtn) retryBtn.disabled = true
+    setTimeout(() => window.location.reload(), 1000)
+  }
+
+  // Manual retry
+  retryBtn?.addEventListener('click', () => {
+    setChecking()
+    checkNetwork()
+  })
+
+  // Auto-reload when browser detects connection
+  window.addEventListener('online', () => {
+    setChecking()
+    checkNetwork()
+  })
+
+  // Poll server every 5 seconds
+  async function checkNetwork() {
+    try {
+      const res = await fetch('/admin/dashboard', { method: 'HEAD', cache: 'no-store' })
+      if (res.status >= 200 && res.status < 500) {
+        setOnline()
+        return
       }
+    } catch {
+      // still offline
+    }
+    setOffline()
+    setTimeout(checkNetwork, 5000)
+  }
 
-      function setOffline() {
-        dot.className = 'status-dot'
-        statusText.textContent = 'No connection'
-        retryBtn.disabled = false
-      }
-
-      function setOnline() {
-        dot.className = 'status-dot online'
-        statusText.textContent = 'Back online — reloading…'
-        retryBtn.disabled = true
-        setTimeout(() => window.location.reload(), 1000)
-      }
-
-      // Manual retry
-      retryBtn.addEventListener('click', () => {
-        setChecking()
-        checkNetwork()
-      })
-
-      // Auto-reload when browser detects connection
-      window.addEventListener('online', () => {
-        setChecking()
-        checkNetwork()
-      })
-
-      // Poll server every 5 seconds
-      async function checkNetwork() {
-        try {
-          const res = await fetch('/admin/dashboard', { method: 'HEAD', cache: 'no-store' })
-          if (res.status >= 200 && res.status < 500) {
-            setOnline()
-            return
-          }
-        } catch {
-          // still offline
-        }
-        setOffline()
-        setTimeout(checkNetwork, 5000)
-      }
-
-      // Start polling
-      setTimeout(checkNetwork, 5000)
-    </script>
+  // Start polling
+  setTimeout(checkNetwork, 5000)
+</script>
   </body>
 </html>
