@@ -220,7 +220,7 @@ const navLinks = [
     toggleBtn.setAttribute('aria-expanded', String(open));
     toggleBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 
-    document.body.style.overflow = open ? 'hidden' : '';
+    window.dispatchEvent(new CustomEvent('mobile-menu-toggle', { detail: { open } }));
   };
 
   const handleScroll = () => {
