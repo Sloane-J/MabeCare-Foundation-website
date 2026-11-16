@@ -182,29 +182,23 @@ const navLinks = [
 </div>
 
 <script>
-  const siteHeader = document.getElementById('site-header');
-  const toggleBtn = document.getElementById('menu-toggle-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuIcon = document.getElementById('menu-icon');
-  const closeIcon = document.getElementById('close-icon');
-
-  const navLinks =
-    document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+  // This script runs once per full page load. Anything bound to header
+  // elements must be re-bound after each ClientRouter navigation, so
+  // document-level listeners handle clicks and the rest is re-initialized.
 
   let mobileOpen = false;
+  let hashObserver: IntersectionObserver | null = null;
 
-  const handleScroll = () => {
-    if (!siteHeader) return;
-
-    siteHeader.classList.toggle('shadow-sm', window.scrollY > 20);
-    siteHeader.classList.toggle('border-border/80', window.scrollY > 20);
-    siteHeader.classList.toggle('border-border/40', window.scrollY <= 20);
-  };
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+  const getElements = () => ({
+    siteHeader: document.getElementById('site-header'),
+    toggleBtn: document.getElementById('menu-toggle-btn') as HTMLButtonElement | null,
+    mobileMenu: document.getElementById('mobile-menu'),
+    menuIcon: document.getElementById('menu-icon'),
+    closeIcon: document.getElementById('close-icon'),
+  });
 
   const setMobileMenuState = (open: boolean) => {
+    const { toggleBtn, mobileMenu, menuIcon, closeIcon } = getElements();
     if (!mobileMenu || !toggleBtn) return;
 
     mobileOpen = open;
@@ -229,58 +223,51 @@ const navLinks = [
     document.body.style.overflow = open ? 'hidden' : '';
   };
 
-  toggleBtn?.addEventListener('click', () => {
-    setMobileMenuState(!mobileOpen);
-  });
+  const handleScroll = () => {
+    const { siteHeader } = getElements();
+    if (!siteHeader) return;
 
-  document.querySelectorAll('[data-mobile-link], [data-mobile-close]').forEach((element) => {
-    element.addEventListener('click', () => setMobileMenuState(false));
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && mobileOpen) {
-      setMobileMenuState(false);
-      toggleBtn?.focus();
-    }
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 1024 && mobileOpen) {
-      setMobileMenuState(false);
-    }
-  });
-
-  const hashLinks = Array.from(navLinks).filter((link) =>
-    link.dataset.href?.startsWith('/#'),
-  );
-
-  const targets = hashLinks
-    .map((link) => {
-      const id = link.dataset.href?.split('#')[1];
-      return id ? document.getElementById(id) : null;
-    })
-    .filter((element): element is HTMLElement => element !== null);
-
-  const setHashLinkActive = (activeId: string | null) => {
-    hashLinks.forEach((link) => {
-      const isTarget = link.dataset.href === `/#${activeId}`;
-
-      link.classList.toggle('bg-primary/10', isTarget);
-      link.classList.toggle('text-primary', isTarget);
-      link.classList.toggle('font-semibold', isTarget);
-      link.classList.toggle('text-muted-foreground', !isTarget);
-      link.classList.toggle('font-medium', !isTarget);
-
-      if (isTarget) {
-        link.setAttribute('aria-current', 'location');
-      } else {
-        link.removeAttribute('aria-current');
-      }
-    });
+    siteHeader.classList.toggle('shadow-sm', window.scrollY > 20);
+    siteHeader.classList.toggle('border-border/80', window.scrollY > 20);
+    siteHeader.classList.toggle('border-border/40', window.scrollY <= 20);
   };
 
-  if (targets.length > 0) {
-    const observer = new IntersectionObserver(
+  const setHashLinkActive = (activeId: string | null) => {
+    document
+      .querySelectorAll<HTMLAnchorElement>('[data-nav-link][data-href^="/#"]')
+      .forEach((link) => {
+        const isTarget = link.dataset.href === `/#${activeId}`;
+
+        link.classList.toggle('bg-primary/10', isTarget);
+        link.classList.toggle('text-primary', isTarget);
+        link.classList.toggle('font-semibold', isTarget);
+        link.classList.toggle('text-muted-foreground', !isTarget);
+        link.classList.toggle('font-medium', !isTarget);
+
+        if (isTarget) {
+          link.setAttribute('aria-current', 'location');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+  };
+
+  const initHashObserver = () => {
+    hashObserver?.disconnect();
+    hashObserver = null;
+
+    const targets = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('[data-nav-link][data-href^="/#"]'),
+    )
+      .map((link) => {
+        const id = link.dataset.href?.split('#')[1];
+        return id ? document.getElementById(id) : null;
+      })
+      .filter((element): element is HTMLElement => element !== null);
+
+    if (targets.length === 0) return;
+
+    hashObserver = new IntersectionObserver(
       (entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting);
         if (visible.length === 0) return;
@@ -297,29 +284,67 @@ const navLinks = [
       },
     );
 
-    targets.forEach((target) => observer.observe(target));
-  }
+    targets.forEach((target) => hashObserver?.observe(target));
+  };
 
-  navLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-      const href = link.getAttribute('href');
+  // Global listeners: attached once, survive page swaps.
+  document.addEventListener('click', (event) => {
+    const target = event.target as Element | null;
+    if (!target) return;
 
-      if (!href?.startsWith('/#') || window.location.pathname !== '/') return;
+    if (target.closest('#menu-toggle-btn')) {
+      setMobileMenuState(!mobileOpen);
+      return;
+    }
 
-      const id = href.split('#')[1];
-      const target = id ? document.getElementById(id) : null;
+    if (target.closest('[data-mobile-link], [data-mobile-close]')) {
+      setMobileMenuState(false);
+    }
 
-      if (!target) return;
+    const navLink = target.closest<HTMLAnchorElement>('[data-nav-link]');
+    if (!navLink) return;
 
-      event.preventDefault();
+    const href = navLink.getAttribute('href');
+    if (!href?.startsWith('/#') || window.location.pathname !== '/') return;
 
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+    const id = href.split('#')[1];
+    const section = id ? document.getElementById(id) : null;
+    if (!section) return;
 
-      history.pushState(null, '', href);
-      setHashLinkActive(id);
-    });
+    event.preventDefault();
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.pushState(null, '', href);
+    setHashLinkActive(id);
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileOpen) {
+      setMobileMenuState(false);
+      getElements().toggleBtn?.focus();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024 && mobileOpen) {
+      setMobileMenuState(false);
+    }
+  });
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // Reset state before the old page is replaced, so the scroll lock
+  // and open menu don't carry over to the next page.
+  document.addEventListener('astro:before-swap', () => {
+    mobileOpen = false;
+    document.body.style.overflow = '';
+  });
+
+  // Re-bind page-specific state after each navigation (and on first load).
+  const initHeader = () => {
+    handleScroll();
+    initHashObserver();
+  };
+
+  document.addEventListener('astro:page-load', initHeader);
+  initHeader();
 </script>

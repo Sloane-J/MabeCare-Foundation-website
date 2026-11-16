@@ -28,6 +28,16 @@ const seoProps = Astro.props as Props
     <HeadSeo {...seoProps} />
     <ClientRouter />
     <script is:inline>
+      // Suppress the View Transitions abort error when the tab is hidden mid-transition
+      window.addEventListener('unhandledrejection', (event) => {
+        const reason = event.reason
+        if (reason && reason.name === 'InvalidStateError' &&
+            String(reason.message).includes('Transition was aborted')) {
+          event.preventDefault()
+        }
+      })
+    </script>
+    <script is:inline>
       ;(function () {
         const getTheme = () => {
           if (typeof localStorage !== 'undefined') {
