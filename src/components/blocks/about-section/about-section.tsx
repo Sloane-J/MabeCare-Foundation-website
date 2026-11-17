@@ -449,7 +449,7 @@ const AboutSection = () => {
                   asChild
                   className='mt-6 rounded-full px-6'
                 >
-                  <a href='/contact'>
+                  <a href='/contact-us'>
                     Work With Us
                     <ArrowIcon className='ml-2 size-4' />
                   </a>

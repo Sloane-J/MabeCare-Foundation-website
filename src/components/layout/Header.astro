@@ -216,7 +216,7 @@ const navLinks = [
     menuIcon?.classList.toggle('hidden', open);
     closeIcon?.classList.toggle('hidden', !open);
 
-    mobileMenu.setAttribute('aria-hidden', String(!open));
+    mobileMenu.inert = !open;
     toggleBtn.setAttribute('aria-expanded', String(open));
     toggleBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 
